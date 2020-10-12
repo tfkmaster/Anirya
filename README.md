@@ -1,2 +1,2 @@
-# Anyria
-Anyria et le monde inversé
+# Anirya
+Anirya et le monde inversé
