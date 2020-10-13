@@ -70,5 +70,7 @@ crashlytics-build.properties
 InitTestScene*.unity.meta
 InitTestScene*.unity
 
+# Dossier Personnel (ne pas référencer des assets unity de ce dossier dans le projet - gitignore)
+/[Aa]ssets/Personnel
 
 # End of https://www.toptal.com/developers/gitignore/api/unity
