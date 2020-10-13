@@ -24,8 +24,6 @@ public class CharacterController2D : MonoBehaviour
     [SerializeField] private LayerMask m_WhatIsGround;                          // A mask determining what is ground to the character
     [SerializeField] private Transform m_CeilingCheck;                          // A position marking where to check for ceilings
 
-    public List<Collider2D> PlayerColliders;
-
     private Rigidbody2D m_Rigidbody2D;
     const float k_CeilingRadius = .2f; // Radius of the overlap circle to determine if the player can stand up
     
@@ -66,7 +64,6 @@ public class CharacterController2D : MonoBehaviour
     {
         if (Input.GetButtonUp("Jump") && !topReached)
         {
-            topReached = true;
             forceDescent = true;
         }
     }
@@ -77,6 +74,14 @@ public class CharacterController2D : MonoBehaviour
         {
             m_Grounded = true;
             OnLandEvent.Invoke();
+        }
+    }
+
+    void OnCollisionStay2D(Collision2D collision)
+    {
+        if (collision.gameObject.layer == 9)
+        {
+            forceDescent = false;
         }
     }
 
@@ -120,7 +125,6 @@ public class CharacterController2D : MonoBehaviour
             }
         }
         // If the player should jump...
-        
         if (!topReached && jump && Input.GetButton("Jump"))
         {
             //Remember the Y Pos on the base of the jump
@@ -212,14 +216,4 @@ public class CharacterController2D : MonoBehaviour
         topReached = false;
         forceDescent = false;
     }
-
-
-
-    public void GetColliderInfos(Collider2D col)
-    {
-
-        GetComponent<Collider2D>().offset = col.offset;
-        //GetComponent<Collider2D>().size = col.size;
-    }
-
 }

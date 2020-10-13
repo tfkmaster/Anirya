@@ -13,6 +13,7 @@ public class CharacterMovement : MonoBehaviour
 
     private float horizontalMove = 0.0f;
     private float lastValue;
+    private float controllerHorizontalValue = 0.0f;
 
     private bool jump = false;
 
@@ -50,6 +51,10 @@ public class CharacterMovement : MonoBehaviour
         {
             direction = 1;
         }
+        if (Input.GetKey(KeyCode.RightArrow) && Input.GetKey(KeyCode.LeftArrow))
+        {
+            direction = 0;
+        }
         if (Input.GetKeyUp(KeyCode.LeftArrow) && !Input.GetKey(KeyCode.RightArrow))
         {
             direction = 0;
@@ -80,16 +85,18 @@ public class CharacterMovement : MonoBehaviour
 
     void ControllerMovements()
     {
-        if (Input.GetAxisRaw("Horizontal") < 0 && lastValue > 0 
-            || Input.GetAxisRaw("Horizontal") > 0 && lastValue < 0)
+        controllerHorizontalValue = Input.GetAxisRaw("Horizontal");
+
+        if (controllerHorizontalValue < 0.3f && lastValue >= 0.3f
+            || controllerHorizontalValue > -0.3f && lastValue <= -0.3f)
         {
             cc2d.stopCharacter();
         }
-        if(Input.GetAxisRaw("Horizontal") >= 0.05)
+        if(controllerHorizontalValue >= 0.3f)
         {
             horizontalMove = 1 * acceleration;
         }
-        else if(Input.GetAxisRaw("Horizontal") <= -0.05)
+        else if(controllerHorizontalValue <= -0.3f)
         {
             horizontalMove = -1 * acceleration;
         }
@@ -110,7 +117,6 @@ public class CharacterMovement : MonoBehaviour
 
     public void OnLanding()
     {
-        Debug.Log("OnLanding");
         animator.SetBool("jump", false);
         cc2d.ResetJump();
         jump = false;
