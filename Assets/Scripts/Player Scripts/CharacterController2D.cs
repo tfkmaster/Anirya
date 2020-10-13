@@ -4,6 +4,7 @@ using UnityEngine.Events;
 
 public class CharacterController2D : MonoBehaviour
 {
+
     [Header("- Jump Settings -")]
     [SerializeField] private float m_JumpForce = 150f;                          // Amount of force added when the player jumps.
     [SerializeField] private bool m_AirControl = true;                          // Whether or not a player can steer while jumping;
@@ -23,6 +24,7 @@ public class CharacterController2D : MonoBehaviour
     [Header("- EnvironmentInfo Settings -")]
     [SerializeField] private LayerMask m_WhatIsGround;                          // A mask determining what is ground to the character
     [SerializeField] private Transform m_CeilingCheck;                          // A position marking where to check for ceilings
+    [SerializeField] private Transform m_GroundCheck;                          // A position marking where to check for ceilings
 
     private Rigidbody2D m_Rigidbody2D;
     const float k_CeilingRadius = .2f; // Radius of the overlap circle to determine if the player can stand up
@@ -32,11 +34,12 @@ public class CharacterController2D : MonoBehaviour
     private float maxInternSpeed; //Value indicating the max speed the player can reach in his actual state
 
     //Jump Informations
-    private bool m_Grounded;            // Whether or not the player is grounded.
     private bool topReached = false; // For determining if the jump climax has been reached
     private bool forceDescent = false; // For determining if the descent of the player after a jump must be forced or not, depending if he reached his jump climax
     private float yPos; //Y pos the player was on the base of his jump
     private bool yPosRemembered = false; //For determining if the Y value on the base of the jump has been already stored  
+
+    private bool m_Grounded;            // Whether or not the player is grounded.
 
     [Header("Events")]
     [Space]
@@ -60,20 +63,38 @@ public class CharacterController2D : MonoBehaviour
             OnCrouchEvent = new BoolEvent();
     }
 
+
+
     private void Update()
     {
         if (Input.GetButtonUp("Jump") && !topReached)
         {
             forceDescent = true;
-        }
+        }  
     }
 
     void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.layer == 9)
         {
-            m_Grounded = true;
             OnLandEvent.Invoke();
+        }
+    }
+
+    void OnTriggerStay2D(Collider2D collider)
+    {
+        if(collider.gameObject.layer == 9)
+        {
+            m_Grounded = true;
+        }
+    }
+
+    void OnTriggerExit2D(Collider2D collider)
+    {
+        if (collider.gameObject.layer == 9)
+        {
+            Debug.Log("DICK");
+            m_Grounded = false;
         }
     }
 
@@ -85,14 +106,14 @@ public class CharacterController2D : MonoBehaviour
         }
     }
 
-    public void Move(float direction, bool jump)
+    public void Move(float direction, bool onAir)
     {
 
         //only control the player if grounded or airControl is turned on
         if (m_Grounded || m_AirControl)
         {
             //Change the character max speed depending if onAir or not
-            if (jump)
+            if (onAir)
             {
                 maxInternSpeed = maxHorizontalSpeedOnAir;
             }
@@ -124,8 +145,8 @@ public class CharacterController2D : MonoBehaviour
                 Flip();
             }
         }
-        // If the player should jump...
-        if (!topReached && jump && Input.GetButton("Jump"))
+        // If the player is on the air
+        if (!topReached && onAir && Input.GetButton("Jump"))
         {
             //Remember the Y Pos on the base of the jump
             if (!yPosRemembered)
@@ -135,7 +156,6 @@ public class CharacterController2D : MonoBehaviour
             }
             
             // Add a vertical force to the player and maintains it while the jumpClimax Hasn't been reached.
-            m_Grounded = false;
             if(GetComponent<Transform>().position.y <= (yPos + jumpHigh))
             {
                 if (Mathf.Abs(m_Rigidbody2D.velocity.y) <= maxJumpSpeedGoingUp)
@@ -215,5 +235,11 @@ public class CharacterController2D : MonoBehaviour
     {
         topReached = false;
         forceDescent = false;
+        m_Grounded = true;
+    }
+
+    public bool getGrounded()
+    {
+        return m_Grounded;
     }
 }

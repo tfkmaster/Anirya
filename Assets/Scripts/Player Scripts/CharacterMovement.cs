@@ -15,7 +15,13 @@ public class CharacterMovement : MonoBehaviour
     private float lastValue;
     private float controllerHorizontalValue = 0.0f;
 
-    private bool jump = false;
+    [SerializeField] private float groundedRememberTime = 0.2f;
+    private float groundedTimeCount = 0.0f;
+    [SerializeField] private float jumpPressedRememberTime = 0.2f;
+    private float jumpPressedTimeCount = 0.0f;
+
+    private bool jumping = false;
+    private bool jumpValidation = false;
 
     // Awake is called once before Start
     void Awake()
@@ -32,11 +38,34 @@ public class CharacterMovement : MonoBehaviour
         applyMovement();
         animator.SetFloat("speed", Mathf.Abs(horizontalMove));
 
+        groundedTimeCount -= Time.deltaTime;
+        if (cc2d.getGrounded())
+        {
+            groundedTimeCount = groundedRememberTime;
+        }
+
+        jumpPressedTimeCount -= Time.deltaTime;
+
+        if (Input.GetButtonDown("Jump"))
+        {
+            jumpPressedTimeCount = jumpPressedRememberTime;
+        }
+
+        if ((jumpPressedTimeCount > 0) || (groundedTimeCount > 0))
+        {
+            jumpPressedTimeCount = 0;
+            groundedTimeCount = 0;
+            jumpValidation = true;
+        }
+        else
+        {
+            jumpValidation = false;
+        }
     }
 
     void FixedUpdate()
     {
-        cc2d.Move(horizontalMove, jump);
+        cc2d.Move(horizontalMove, jumping);
     }
 
     //Detects which keyboard movement keys are actually pressed and returns the value corresponding
@@ -108,9 +137,9 @@ public class CharacterMovement : MonoBehaviour
     //Character actions
     void Actions()
     {
-        if (Input.GetButtonDown("Jump") && !jump)
+        if ((Input.GetButtonDown("Jump") && !jumping) || (Input.GetButton("Jump") && cc2d.getGrounded() && jumpValidation))
         {
-            jump = true;
+            jumping = true;
             animator.SetBool("jump", true);
         }
     }
@@ -119,13 +148,13 @@ public class CharacterMovement : MonoBehaviour
     {
         animator.SetBool("jump", false);
         cc2d.ResetJump();
-        jump = false;
+        jumping = false;
     }
 
     //jump getter
     public bool isJumping()
     {
-        return jump;
+        return jumping;
     }
 
     //direction getter
