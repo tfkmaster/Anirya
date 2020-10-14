@@ -5,23 +5,31 @@ using UnityEngine;
 public class CharacterMovement : MonoBehaviour
 {
     //Linked components
-    private CharacterController2D cc2d; //The Movement controller attached on player
-    private Animator animator; // The animator attached on the player
+    private CharacterController2D cc2d;             // The Movement controller attached on player
+    private Animator animator;                      // The animator attached on the player
 
-    private int direction = 0; //Value indicating whether the player is moving to the right, to the left or is just static
-    [SerializeField] private float acceleration;
+    private int direction = 0;                      // Value indicating whether the player is moving to the right, to the left or is just static
+    [SerializeField] private float acceleration;    // Controller movement accelleration (how fast the character will reach the maximum speed
 
-    private float horizontalMove = 0.0f;
-    private float lastValue;
-    private float controllerHorizontalValue = 0.0f;
+    //Keyboard Informations
+    private float horizontalMove = 0.0f;            // Used to give him speed in that direction (Keyboard) 
 
-    [SerializeField] private float groundedRememberTime = 0.2f;
-    private float groundedTimeCount = 0.0f;
-    [SerializeField] private float jumpPressedRememberTime = 0.2f;
-    private float jumpPressedTimeCount = 0.0f;
+    //Controller Informations
+    private float lastValue;                        // To Check when the player flips the character (Controller)
+    private float controllerHorizontalValue = 0.0f; // Used to give him speed in that direction (Controller) 
 
-    private bool jumping = false;
-    private bool jumpValidation = false;
+
+    [Header("- Coyote Time Settings -")]
+    [Range(0.001f, 1)] [SerializeField] private float coyoteTimeAfterLeavingGround = 0.1f;      //CoyoteTime after Leaving the ground
+    [Range(0.001f, 1)] [SerializeField] private float coyoteTimeBeforeReachingGround = 0.1f;    //CoyoteTime before reaching the ground
+
+    //Coyote Time Counters
+    private float groundedTimeCount = 0.0f;         // Counts the last time the character was in contact with the floor
+    private float jumpPressedTimeCount = 0.0f;      // Counts the last time the player pushed the jump button
+
+    //Jump Information
+    private bool onAir = false;                     // Determines if the player is currently in the air or not
+    private bool jumpValidation = false;            // Determines if the player is allowed to jump in his current situation
 
     // Awake is called once before Start
     void Awake()
@@ -38,23 +46,22 @@ public class CharacterMovement : MonoBehaviour
         applyMovement();
         animator.SetFloat("speed", Mathf.Abs(horizontalMove));
 
+        //Coyote Time prototype
         groundedTimeCount -= Time.deltaTime;
         if (cc2d.getGrounded())
         {
-            groundedTimeCount = groundedRememberTime;
+            groundedTimeCount = coyoteTimeAfterLeavingGround;
         }
+        
 
         jumpPressedTimeCount -= Time.deltaTime;
-
         if (Input.GetButtonDown("Jump"))
         {
-            jumpPressedTimeCount = jumpPressedRememberTime;
+            jumpPressedTimeCount = coyoteTimeBeforeReachingGround;
         }
 
-        if ((jumpPressedTimeCount > 0) || (groundedTimeCount > 0))
+        if ((jumpPressedTimeCount > 0) && (groundedTimeCount > 0))
         {
-            jumpPressedTimeCount = 0;
-            groundedTimeCount = 0;
             jumpValidation = true;
         }
         else
@@ -65,7 +72,8 @@ public class CharacterMovement : MonoBehaviour
 
     void FixedUpdate()
     {
-        cc2d.Move(horizontalMove, jumping);
+        //Move the character
+        cc2d.Move(horizontalMove, onAir);
     }
 
     //Detects which keyboard movement keys are actually pressed and returns the value corresponding
@@ -107,11 +115,13 @@ public class CharacterMovement : MonoBehaviour
         ControllerMovements();
     }
 
+    //Keyboard Movements value calculation
     void horizontalMoveResult()
     {
         horizontalMove = direction;
     }
 
+    //Controller Movements value calculation
     void ControllerMovements()
     {
         controllerHorizontalValue = Input.GetAxisRaw("Horizontal");
@@ -137,24 +147,25 @@ public class CharacterMovement : MonoBehaviour
     //Character actions
     void Actions()
     {
-        if ((Input.GetButtonDown("Jump") && !jumping) || (Input.GetButton("Jump") && cc2d.getGrounded() && jumpValidation))
+        if ((Input.GetButtonDown("Jump") && !onAir && jumpValidation) || (Input.GetButton("Jump") && cc2d.getGrounded() && jumpValidation) || (Input.GetButton("Jump") && !onAir && jumpValidation))
         {
-            jumping = true;
+            onAir = true;
             animator.SetBool("jump", true);
         }
     }
 
+    //Function called when the character hit the ground
     public void OnLanding()
     {
         animator.SetBool("jump", false);
         cc2d.ResetJump();
-        jumping = false;
+        onAir = false;
     }
 
     //jump getter
     public bool isJumping()
     {
-        return jumping;
+        return onAir;
     }
 
     //direction getter

@@ -67,6 +67,8 @@ public class CharacterController2D : MonoBehaviour
 
     private void Update()
     {
+        //Push the caracter to the ground if the jump button released before reaching it's climax
+        //Allows to do more precise jumps
         if (Input.GetButtonUp("Jump") && !topReached)
         {
             forceDescent = true;
@@ -75,29 +77,33 @@ public class CharacterController2D : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision)
     {
+        //Allows to jump again after reaching the ground
         if (collision.gameObject.layer == 9)
         {
             OnLandEvent.Invoke();
         }
     }
 
-    void OnTriggerStay2D(Collider2D collider)
+    void OnTriggerStay2D(Collider2D other)
     {
-        if(collider.gameObject.layer == 9)
+        //Checks if the character is actually in contact with the floor
+        if(other.gameObject.layer == 9)
         {
             m_Grounded = true;
         }
     }
 
-    void OnTriggerExit2D(Collider2D collider)
+    void OnTriggerExit2D(Collider2D other)
     {
-        if (collider.gameObject.layer == 9)
+        //Checks if the character is actually in contact with the floor
+        if (other.gameObject.layer == 9)
         {
-            Debug.Log("DICK");
+            Debug.Log("not floored");
             m_Grounded = false;
         }
     }
 
+    //Deactivate forced descent when grounded, so the character doesn't get pushed to the ground
     void OnCollisionStay2D(Collision2D collision)
     {
         if (collision.gameObject.layer == 9)
@@ -122,7 +128,7 @@ public class CharacterController2D : MonoBehaviour
                 maxInternSpeed = maxHorizontalSpeedOnGround;
             }
 
-
+            //Maintain the velocity
             if (Mathf.Abs(m_Rigidbody2D.velocity.x) <= maxInternSpeed)
             {
                 m_Rigidbody2D.AddRelativeForce(new Vector2(direction * accelerationX, 0));
@@ -236,10 +242,18 @@ public class CharacterController2D : MonoBehaviour
         topReached = false;
         forceDescent = false;
         m_Grounded = true;
+        yPosRemembered = false;
     }
 
+    //m_grounded boolean getter
     public bool getGrounded()
     {
         return m_Grounded;
+    }
+
+    //m_rigidbody2D boolean getter
+    public Rigidbody2D getRigibody2D()
+    {
+        return m_Rigidbody2D;
     }
 }
