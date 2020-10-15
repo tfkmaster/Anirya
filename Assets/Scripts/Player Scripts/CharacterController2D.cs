@@ -129,12 +129,14 @@ public class CharacterController2D : MonoBehaviour
             }
 
             //Maintain the velocity
-            if (Mathf.Abs(m_Rigidbody2D.velocity.x) <= maxInternSpeed)
+            if (Mathf.Abs(m_Rigidbody2D.velocity.x) <= maxInternSpeed && direction != 0)
             {
                 m_Rigidbody2D.AddRelativeForce(new Vector2(direction * accelerationX, 0));
+               // m_Rigidbody2D.velocity = new Vector2(direction * accelerationX / 10, m_Rigidbody2D.velocity.y);
             }
             else
             {
+                //m_Rigidbody2D.velocity = new Vector2(direction * accelerationX / 10, m_Rigidbody2D.velocity.y);
                 m_Rigidbody2D.velocity *= new Vector2(clampingValueX,1);
             }
 
