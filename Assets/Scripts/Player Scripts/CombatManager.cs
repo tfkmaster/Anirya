@@ -34,19 +34,24 @@ public class CombatManager : MonoBehaviour
             if (canReceiveInput)
             {
                 CC2d.getRigidbody().AddForce(new Vector2(CC2d.facingDirection() * AttackMoveForce, 0), ForceMode2D.Impulse);
-
-                Collider2D[] hitActors = Physics2D.OverlapCircleAll(GetComponent<Player>().attackPoint.position, GetComponent<Player>().attackRange);
-                foreach (Collider2D actor in hitActors)
-                {
-                    actor.GetComponent<Actor>().OnHit(this.gameObject, 10);
-                }
-
                 canReceiveInput = false;
                 inputReceived = true;
             }
             else
             {
                 return;
+            }
+        }
+    }
+
+    public void CheckHit()
+    {
+        Collider2D[] hitActors = Physics2D.OverlapCircleAll(GetComponent<Player>().attackPoint.position, GetComponent<Player>().attackRange);
+        foreach (Collider2D actor in hitActors)
+        {
+            if (actor.CompareTag("Ennemy"))
+            {
+                actor.GetComponent<Actor>().OnHit(gameObject, GetComponent<Player>().GetDamageDone());
             }
         }
     }

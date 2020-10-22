@@ -7,6 +7,7 @@ public class CharacterMovement : MonoBehaviour
     //Linked components
     private CharacterController2D cc2d;             // The Movement controller attached on player
     private Animator animator;                      // The animator attached on the player
+    private Player player;                      // The animator attached on the player
 
     private int direction = 0;                      // Value indicating whether the player is moving to the right, to the left or is just static
     [SerializeField] private float acceleration;    // Controller movement accelleration (how fast the character will reach the maximum speed
@@ -30,50 +31,57 @@ public class CharacterMovement : MonoBehaviour
     //Jump Information
     private bool onAir = false;                     // Determines if the player is currently in the air or not
     private bool jumpValidation = false;            // Determines if the player is allowed to jump in his current situation
+    public bool Inactive = false;                  // Determines if the player is in his invincibility frames or not
 
     // Awake is called once before Start
     void Awake()
     {
         cc2d = GetComponent<CharacterController2D>();
         animator = GetComponent<Animator>();
+        player = GetComponent<Player>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        KeyboardKeyDetection();
-        Actions();
-        applyMovement();
-        animator.SetFloat("speed", Mathf.Abs(horizontalMove));
+        if (!player.isDead)
+        {
+            KeyboardKeyDetection();
+            Actions();
+            applyMovement();
+            animator.SetFloat("speed", Mathf.Abs(horizontalMove));
 
-        //Coyote Time prototype
-        groundedTimeCount -= Time.deltaTime;
-        if (cc2d.getGrounded())
-        {
-            groundedTimeCount = coyoteTimeAfterLeavingGround;
-        }
-        
+            //Coyote Time prototype
+            groundedTimeCount -= Time.deltaTime;
+            if (cc2d.getGrounded())
+            {
+                groundedTimeCount = coyoteTimeAfterLeavingGround;
+            }
 
-        jumpPressedTimeCount -= Time.deltaTime;
-        if (Input.GetButtonDown("Jump"))
-        {
-            jumpPressedTimeCount = coyoteTimeBeforeReachingGround;
-        }
+            jumpPressedTimeCount -= Time.deltaTime;
+            if (Input.GetButtonDown("Jump"))
+            {
+                jumpPressedTimeCount = coyoteTimeBeforeReachingGround;
+            }
 
-        if ((jumpPressedTimeCount > 0) && (groundedTimeCount > 0))
-        {
-            jumpValidation = true;
-        }
-        else
-        {
-            jumpValidation = false;
+            if ((jumpPressedTimeCount > 0) && (groundedTimeCount > 0))
+            {
+                jumpValidation = true;
+            }
+            else
+            {
+                jumpValidation = false;
+            }
         }
     }
 
     void FixedUpdate()
     {
         //Move the character
-        cc2d.Move(horizontalMove, onAir);
+        if (!player.isDead)
+        {
+            cc2d.Move(horizontalMove, onAir);
+        }
     }
 
     //Detects which keyboard movement keys are actually pressed and returns the value corresponding
@@ -92,12 +100,12 @@ public class CharacterMovement : MonoBehaviour
         {
             direction = 0;
         }
-        if (Input.GetKeyUp(KeyCode.LeftArrow) && !Input.GetKey(KeyCode.RightArrow))
+        if (Input.GetKeyUp(KeyCode.LeftArrow) && !Input.GetKey(KeyCode.RightArrow) && !Inactive)
         {
             direction = 0;
             cc2d.stopCharacter();
         }
-        if (Input.GetKeyUp(KeyCode.RightArrow) && !Input.GetKey(KeyCode.LeftArrow))
+        if (Input.GetKeyUp(KeyCode.RightArrow) && !Input.GetKey(KeyCode.LeftArrow) && !Inactive)
         {
             direction = 0;
             cc2d.stopCharacter();
@@ -126,8 +134,8 @@ public class CharacterMovement : MonoBehaviour
     {
         controllerHorizontalValue = Input.GetAxisRaw("Horizontal");
 
-        if (controllerHorizontalValue < 0.3f && lastValue >= 0.3f
-            || controllerHorizontalValue > -0.3f && lastValue <= -0.3f)
+        if (controllerHorizontalValue < 0.3f && lastValue >= 0.3f && !Inactive
+            || controllerHorizontalValue > -0.3f && lastValue <= -0.3f && !Inactive)
         {
             cc2d.stopCharacter();
         }

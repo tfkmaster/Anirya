@@ -5,6 +5,7 @@ using UnityEngine;
 public class Ennemy : Actor
 {
 
+
     // Start is called before the first frame update
     void Start()
     {
@@ -12,12 +13,10 @@ public class Ennemy : Actor
     }
 
     // Update is called once per frame
-    void Update()
+    protected override void Update()
     {
-        if (Input.GetKeyDown(KeyCode.P))
-        {
+        base.Update();
             Attack();
-        }
     }
 
     void Attack()
@@ -28,13 +27,14 @@ public class Ennemy : Actor
         {
             if (actor.CompareTag("Player"))
             {
-                actor.GetComponent<Player>().OnHit(this.gameObject, 10);
+                actor.GetComponent<Player>().OnHit(this.gameObject, damageDone);
             }
         }
     }
 
     public override void OnHit(GameObject hitter, int damages)
     {
+        base.OnHit(hitter,damages);
         Debug.Log("Ennemy hit");
     }
 }

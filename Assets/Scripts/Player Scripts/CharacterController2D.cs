@@ -114,101 +114,106 @@ public class CharacterController2D : MonoBehaviour
 
     public void Move(float direction, bool onAir)
     {
-
-        //only control the player if grounded or airControl is turned on
-        if (m_Grounded || m_AirControl)
+        if (!GetComponent<CharacterMovement>().Inactive)
         {
-            //Change the character max speed depending if onAir or not
-            if (onAir)
+            //only control the player if grounded or airControl is turned on
+            if (m_Grounded || m_AirControl)
             {
-                maxInternSpeed = maxHorizontalSpeedOnAir;
-            }
-            else
-            {
-                maxInternSpeed = maxHorizontalSpeedOnGround;
-            }
-
-            //Maintain the velocity
-            if (Mathf.Abs(m_Rigidbody2D.velocity.x) <= maxInternSpeed && direction != 0)
-            {
-                m_Rigidbody2D.AddRelativeForce(new Vector2(direction * accelerationX, 0));
-               // m_Rigidbody2D.velocity = new Vector2(direction * accelerationX / 10, m_Rigidbody2D.velocity.y);
-            }
-            else
-            {
-                //m_Rigidbody2D.velocity = new Vector2(direction * accelerationX / 10, m_Rigidbody2D.velocity.y);
-                m_Rigidbody2D.velocity *= new Vector2(clampingValueX,1);
-            }
-
-            // If the input is moving the player right and the player is facing left...
-            if (direction > 0 && !m_FacingRight)
-            {
-                // ... flip the player.
-                Flip();
-            }
-            // Otherwise if the input is moving the player left and the player is facing right...
-            else if (direction < 0 && m_FacingRight)
-            {
-                // ... flip the player.
-                Flip();
-            }
-        }
-        // If the player is on the air
-        if (!topReached && onAir && Input.GetButton("Jump"))
-        {
-            //Remember the Y Pos on the base of the jump
-            if (!yPosRemembered)
-            {
-                yPos = GetComponent<Transform>().position.y;
-                yPosRemembered = true;
-            }
-            
-            // Add a vertical force to the player and maintains it while the jumpClimax Hasn't been reached.
-            if(GetComponent<Transform>().position.y <= (yPos + jumpHigh))
-            {
-                if (Mathf.Abs(m_Rigidbody2D.velocity.y) <= maxJumpSpeedGoingUp)
+                //Change the character max speed depending if onAir or not
+                if (onAir)
                 {
-                    m_Rigidbody2D.AddRelativeForce(new Vector2(0f, m_JumpForce));
+                    maxInternSpeed = maxHorizontalSpeedOnAir;
+                }
+                else
+                {
+                    maxInternSpeed = maxHorizontalSpeedOnGround;
+                }
+
+                //Maintain the velocity
+                if (Mathf.Abs(m_Rigidbody2D.velocity.x) <= maxInternSpeed && direction != 0)
+                {
+                    m_Rigidbody2D.AddRelativeForce(new Vector2(direction * accelerationX, 0));
+                    // m_Rigidbody2D.velocity = new Vector2(direction * accelerationX / 10, m_Rigidbody2D.velocity.y);
+                }
+                else
+                {
+                    //m_Rigidbody2D.velocity = new Vector2(direction * accelerationX / 10, m_Rigidbody2D.velocity.y);
+                    m_Rigidbody2D.velocity *= new Vector2(clampingValueX, 1);
+                }
+
+                // If the input is moving the player right and the player is facing left...
+                if (direction > 0 && !m_FacingRight)
+                {
+                    // ... flip the player.
+                    Flip();
+                }
+                // Otherwise if the input is moving the player left and the player is facing right...
+                else if (direction < 0 && m_FacingRight)
+                {
+                    // ... flip the player.
+                    Flip();
+                }
+            }
+            // If the player is on the air
+            if (!topReached && onAir && Input.GetButton("Jump"))
+            {
+                //Remember the Y Pos on the base of the jump
+                if (!yPosRemembered)
+                {
+                    yPos = GetComponent<Transform>().position.y;
+                    yPosRemembered = true;
+                }
+
+                // Add a vertical force to the player and maintains it while the jumpClimax Hasn't been reached.
+                if (GetComponent<Transform>().position.y <= (yPos + jumpHigh))
+                {
+                    if (Mathf.Abs(m_Rigidbody2D.velocity.y) <= maxJumpSpeedGoingUp)
+                    {
+                        m_Rigidbody2D.AddRelativeForce(new Vector2(0f, m_JumpForce));
+                    }
+                    else
+                    {
+                        m_Rigidbody2D.velocity *= new Vector2(1, clampingValueY);
+                    }
+
+                }
+                else
+                {
+                    topReached = true;
+                    yPosRemembered = false;
+                    return;
+                }
+            }
+            //If the player release the jump before the climax, force the character descent
+            if (forceDescent)
+            {
+                if (-Mathf.Abs(m_Rigidbody2D.velocity.y) >= -maxJumpSpeedGoingDown)
+                {
+                    m_Rigidbody2D.AddRelativeForce(new Vector2(0f, -m_JumpForce));
                 }
                 else
                 {
                     m_Rigidbody2D.velocity *= new Vector2(1, clampingValueY);
                 }
-                
             }
-            else
-            {
-                topReached = true;
-                yPosRemembered = false;
-                return;
-            }
+
         }
-        //If the player release the jump before the climax, force the character descent
-        if (forceDescent)
-        {
-            if (-Mathf.Abs(m_Rigidbody2D.velocity.y) >= -maxJumpSpeedGoingDown)
-            {
-                m_Rigidbody2D.AddRelativeForce(new Vector2(0f, -m_JumpForce));
-            }
-            else
-            {
-                m_Rigidbody2D.velocity *= new Vector2(1, clampingValueY);
-            }
-        }
-        
     }
 
     //Flips the player model
     private void Flip()
     {
-        stopCharacter();
-        // Switch the way the player is labelled as facing.
-        m_FacingRight = !m_FacingRight;
+        if (!GetComponent<CharacterMovement>().Inactive)
+        {
+            stopCharacter();
+            // Switch the way the player is labelled as facing.
+            m_FacingRight = !m_FacingRight;
 
-        // Multiply the player's x local scale by -1.
-        Vector3 theScale = transform.localScale;
-        theScale.x *= -1;
-        transform.localScale = theScale;
+            // Multiply the player's x local scale by -1.
+            Vector3 theScale = transform.localScale;
+            theScale.x *= -1;
+            transform.localScale = theScale;
+        }
     }
 
         //Getter that returns the character rigidbody2D
