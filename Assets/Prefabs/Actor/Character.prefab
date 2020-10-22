@@ -1,5 +1,35 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &975284114374748981
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 268490115846682710}
+  m_Layer: 8
+  m_Name: Bottom
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &268490115846682710
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 975284114374748981}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.17, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 5073566120497770087}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3828842248972561732
 GameObject:
   m_ObjectHideFlags: 0
@@ -40,7 +70,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2951569686476594508}
   m_Layer: 8
-  m_Name: GameObject
+  m_Name: CharacterCenter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -54,7 +84,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5901867352025805311}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -0.05, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 5073566120497770087}
@@ -77,7 +107,6 @@ GameObject:
   - component: {fileID: 5557305501605160346}
   - component: {fileID: 2029557562849206198}
   - component: {fileID: 2624260698096605388}
-  - component: {fileID: 5874611808225419729}
   - component: {fileID: 7919516378971771242}
   m_Layer: 8
   m_Name: Character
@@ -99,6 +128,7 @@ Transform:
   m_Children:
   - {fileID: 5165399178166205946}
   - {fileID: 2951569686476594508}
+  - {fileID: 268490115846682710}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -201,21 +231,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 498676e8f92928a47bc47189208eeb8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_Grounded: 0
+  onWall: 0
+  onRightWall: 0
+  onLeftWall: 0
+  wallSide: 0
+  collisionRadius: 0.12
+  bottomOffset: {x: 0.03, y: -1.28}
+  rightOffset: {x: 0, y: 0}
+  leftOffset: {x: 0, y: 0}
   m_JumpForce: 700
   m_AirControl: 0
   jumpHigh: 4
-  clampingValueY: 0.9
-  maxHorizontalSpeedOnGround: 10
-  maxHorizontalSpeedOnAir: 10
-  maxJumpSpeedGoingUp: 12
-  maxJumpSpeedGoingDown: 11
   accelerationX: 0.1
-  clampingValueX: 0.9
   m_WhatIsGround:
     serializedVersion: 2
     m_Bits: 55
   m_CeilingCheck: {fileID: 5165399178166205946}
-  m_GroundCheck: {fileID: 0}
+  m_GroundCheck: {fileID: 268490115846682710}
   OnLandEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -237,6 +270,7 @@ MonoBehaviour:
   acceleration: 0
   coyoteTimeAfterLeavingGround: 0.1
   coyoteTimeBeforeReachingGround: 0.1
+  Inactive: 0
 --- !u!114 &5557305501605160346
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -297,32 +331,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.13540581, y: 0.19926444}
   m_EdgeRadius: 0
---- !u!61 &5874611808225419729
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6723052858451093245}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0.005891241, y: -0.1724267}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.5, y: 0.37}
-    newSize: {x: 1, y: 1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.13504754, y: 0.0075134784}
-  m_EdgeRadius: 0
 --- !u!114 &7919516378971771242
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -335,6 +343,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 762e06dd5687fb641b78898709bbb9b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  HealthPoints: 0
+  damageDone: 0
   attackPoint: {fileID: 0}
   attackRange: 0.5
+  timeRed: 0.5
   knockBackForce: {x: 1, y: 1}
+  InactiveTime: 1
+  isDead: 0

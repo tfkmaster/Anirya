@@ -5,26 +5,36 @@ using UnityEngine.Events;
 public class CharacterController2D : MonoBehaviour
 {
 
+    [Space]
+
+    public bool m_Grounded;            // Whether or not the player is grounded.
+
+    [Space]
+
+    [Header("Collision")]
+    [Space]
+
+    public float collisionRadius = 0.12f;
+    private Color debugCollisionColor = Color.red;
+
     [Header("- Jump Settings -")]
-    [SerializeField] private float m_JumpForce = 150f;                          // Amount of force added when the player jumps.
+    [Space]
+
+    [SerializeField] private float m_JumpForce = 200f;                          // Amount of force added when the player jumps.
     [SerializeField] private bool m_AirControl = true;                          // Whether or not a player can steer while jumping;
     [SerializeField] private float jumpHigh = 4;                                // How high the character can jump
-    [Range(0, 1)] [SerializeField] private float clampingValueY = 0.9f;         // Percentage of clamping the y velocity value
-
-    [Header("- Max Player Speed Settings -")]
-    [SerializeField] private float maxHorizontalSpeedOnGround = 10f;            // The highest velocity on the X axis the character can go while grounded
-    [SerializeField] private float maxHorizontalSpeedOnAir = 10f;               // The highest velocity on the X axis the character can go while onAir
-    [SerializeField] private float maxJumpSpeedGoingUp = 12f;                   // The highest velocity on the Y axis the character can go while going upward during jump
-    [SerializeField] private float maxJumpSpeedGoingDown = 11f;                 // The highest velocity on the Y axis the character can go while going downward during jump
 
     [Header("- Move Settings -")]
+    [Space]
+
     [SerializeField] private float accelerationX = 0.1f;                        // The value of the acceleration to reach maxSpeed
-    [Range(0, 1)] [SerializeField] private float clampingValueX = 0.9f;         // Percentage of clamping the x velocity value
 
     [Header("- EnvironmentInfo Settings -")]
+    [Space]
+
     [SerializeField] private LayerMask m_WhatIsGround;                          // A mask determining what is ground to the character
     [SerializeField] private Transform m_CeilingCheck;                          // A position marking where to check for ceilings
-    [SerializeField] private Transform m_GroundCheck;                          // A position marking where to check for ceilings
+    [SerializeField] private Transform m_GroundCheck;                          // A position marking where to check for ground
 
     private Rigidbody2D m_Rigidbody2D;
     const float k_CeilingRadius = .2f; // Radius of the overlap circle to determine if the player can stand up
@@ -38,8 +48,6 @@ public class CharacterController2D : MonoBehaviour
     private bool forceDescent = false; // For determining if the descent of the player after a jump must be forced or not, depending if he reached his jump climax
     private float yPos; //Y pos the player was on the base of his jump
     private bool yPosRemembered = false; //For determining if the Y value on the base of the jump has been already stored  
-
-    private bool m_Grounded;            // Whether or not the player is grounded.
 
     [Header("Events")]
     [Space]
@@ -67,48 +75,21 @@ public class CharacterController2D : MonoBehaviour
 
     private void Update()
     {
+        m_Grounded = Physics2D.OverlapCircle(m_GroundCheck.position, collisionRadius, m_WhatIsGround);
         //Push the caracter to the ground if the jump button released before reaching it's climax
         //Allows to do more precise jumps
         if (Input.GetButtonUp("Jump") && !topReached)
         {
-            forceDescent = true;
-        }  
+            topReached = true;
+        }
     }
 
-    void OnCollisionEnter2D(Collision2D collision)
+    void OnCollisionStay2D(Collision2D collision)
     {
         //Allows to jump again after reaching the ground
         if (collision.gameObject.layer == 9)
         {
             OnLandEvent.Invoke();
-        }
-    }
-
-    void OnTriggerStay2D(Collider2D other)
-    {
-        //Checks if the character is actually in contact with the floor
-        if(other.gameObject.layer == 9)
-        {
-            m_Grounded = true;
-        }
-    }
-
-    void OnTriggerExit2D(Collider2D other)
-    {
-        //Checks if the character is actually in contact with the floor
-        if (other.gameObject.layer == 9)
-        {
-            Debug.Log("not floored");
-            m_Grounded = false;
-        }
-    }
-
-    //Deactivate forced descent when grounded, so the character doesn't get pushed to the ground
-    void OnCollisionStay2D(Collision2D collision)
-    {
-        if (collision.gameObject.layer == 9)
-        {
-            forceDescent = false;
         }
     }
 
@@ -119,27 +100,7 @@ public class CharacterController2D : MonoBehaviour
             //only control the player if grounded or airControl is turned on
             if (m_Grounded || m_AirControl)
             {
-                //Change the character max speed depending if onAir or not
-                if (onAir)
-                {
-                    maxInternSpeed = maxHorizontalSpeedOnAir;
-                }
-                else
-                {
-                    maxInternSpeed = maxHorizontalSpeedOnGround;
-                }
-
-                //Maintain the velocity
-                if (Mathf.Abs(m_Rigidbody2D.velocity.x) <= maxInternSpeed && direction != 0)
-                {
-                    m_Rigidbody2D.AddRelativeForce(new Vector2(direction * accelerationX, 0));
-                    // m_Rigidbody2D.velocity = new Vector2(direction * accelerationX / 10, m_Rigidbody2D.velocity.y);
-                }
-                else
-                {
-                    //m_Rigidbody2D.velocity = new Vector2(direction * accelerationX / 10, m_Rigidbody2D.velocity.y);
-                    m_Rigidbody2D.velocity *= new Vector2(clampingValueX, 1);
-                }
+                m_Rigidbody2D.velocity = new Vector2(direction * accelerationX / 10, m_Rigidbody2D.velocity.y);
 
                 // If the input is moving the player right and the player is facing left...
                 if (direction > 0 && !m_FacingRight)
@@ -167,33 +128,13 @@ public class CharacterController2D : MonoBehaviour
                 // Add a vertical force to the player and maintains it while the jumpClimax Hasn't been reached.
                 if (GetComponent<Transform>().position.y <= (yPos + jumpHigh))
                 {
-                    if (Mathf.Abs(m_Rigidbody2D.velocity.y) <= maxJumpSpeedGoingUp)
-                    {
-                        m_Rigidbody2D.AddRelativeForce(new Vector2(0f, m_JumpForce));
-                    }
-                    else
-                    {
-                        m_Rigidbody2D.velocity *= new Vector2(1, clampingValueY);
-                    }
-
+                    m_Rigidbody2D.velocity = new Vector2(m_Rigidbody2D.velocity.x, Vector2.up.y * m_JumpForce);
                 }
                 else
                 {
                     topReached = true;
                     yPosRemembered = false;
                     return;
-                }
-            }
-            //If the player release the jump before the climax, force the character descent
-            if (forceDescent)
-            {
-                if (-Mathf.Abs(m_Rigidbody2D.velocity.y) >= -maxJumpSpeedGoingDown)
-                {
-                    m_Rigidbody2D.AddRelativeForce(new Vector2(0f, -m_JumpForce));
-                }
-                else
-                {
-                    m_Rigidbody2D.velocity *= new Vector2(1, clampingValueY);
                 }
             }
 
@@ -205,7 +146,6 @@ public class CharacterController2D : MonoBehaviour
     {
         if (!GetComponent<CharacterMovement>().Inactive)
         {
-            stopCharacter();
             // Switch the way the player is labelled as facing.
             m_FacingRight = !m_FacingRight;
 
@@ -222,13 +162,6 @@ public class CharacterController2D : MonoBehaviour
         return m_Rigidbody2D;
     }
 
-    //Setter stoping the player from moving instantly
-    public void stopCharacter()
-    {
-        m_Rigidbody2D.velocity = new Vector3(0, m_Rigidbody2D.velocity.y, 0);
-        m_Rigidbody2D.angularVelocity = 0;
-    }
-
     //Getter returning which direction the player is facing at
     // 1 for Right and -1 for Left
     public int facingDirection()
@@ -243,11 +176,19 @@ public class CharacterController2D : MonoBehaviour
         }
     }
 
+    //Put the character velocity at 0
+    public void stopCharacter()
+    {
+        m_Rigidbody2D.velocity = Vector2.zero;
+        m_Rigidbody2D.angularVelocity = 0;
+    }
+
+
+
     //Reset Jump values, function called on Landing
     public void ResetJump()
     {
         topReached = false;
-        forceDescent = false;
         m_Grounded = true;
         yPosRemembered = false;
     }
@@ -262,5 +203,14 @@ public class CharacterController2D : MonoBehaviour
     public Rigidbody2D getRigibody2D()
     {
         return m_Rigidbody2D;
+    }
+
+    void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+
+        Gizmos.DrawWireSphere(m_GroundCheck.position, collisionRadius);
+        /*Gizmos.DrawWireSphere((Vector2)transform.position + rightOffset, collisionRadius);
+        Gizmos.DrawWireSphere((Vector2)transform.position + leftOffset, collisionRadius);*/
     }
 }

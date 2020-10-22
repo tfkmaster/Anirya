@@ -27,15 +27,17 @@ public class CombatManager : MonoBehaviour
         Attack();
     }
 
+    //Checks if the player has pushed attack button
     public void Attack()
     {
+
         if (Input.GetButtonDown("Fire1") && !CM.isJumping())
         {
             if (canReceiveInput)
             {
-                CC2d.getRigidbody().AddForce(new Vector2(CC2d.facingDirection() * AttackMoveForce, 0), ForceMode2D.Impulse);
                 canReceiveInput = false;
                 inputReceived = true;
+                CC2d.getRigidbody().AddForce(new Vector2(CC2d.facingDirection() * AttackMoveForce, 0), ForceMode2D.Impulse);
             }
             else
             {
@@ -44,6 +46,7 @@ public class CombatManager : MonoBehaviour
         }
     }
 
+    //Function called on the animation to determines the ennemies who'll get hit by the attack
     public void CheckHit()
     {
         Collider2D[] hitActors = Physics2D.OverlapCircleAll(GetComponent<Player>().attackPoint.position, GetComponent<Player>().attackRange);
