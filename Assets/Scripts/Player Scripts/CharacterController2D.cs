@@ -76,6 +76,10 @@ public class CharacterController2D : MonoBehaviour
     private void Update()
     {
         m_Grounded = Physics2D.OverlapCircle(m_GroundCheck.position, collisionRadius, m_WhatIsGround);
+       if(Physics2D.OverlapCircle(m_CeilingCheck.position, collisionRadius, m_WhatIsGround) && !m_Grounded)
+        {
+            topReached = true;
+        }
         //Push the caracter to the ground if the jump button released before reaching it's climax
         //Allows to do more precise jumps
         if (Input.GetButtonUp("Jump") && !topReached)
@@ -95,6 +99,7 @@ public class CharacterController2D : MonoBehaviour
 
     public void Move(float direction, bool onAir)
     {
+
         if (!GetComponent<CharacterMovement>().Inactive)
         {
             //only control the player if grounded or airControl is turned on
@@ -210,6 +215,7 @@ public class CharacterController2D : MonoBehaviour
         Gizmos.color = Color.red;
 
         Gizmos.DrawWireSphere(m_GroundCheck.position, collisionRadius);
+        Gizmos.DrawWireSphere(m_CeilingCheck.position, collisionRadius);
         /*Gizmos.DrawWireSphere((Vector2)transform.position + rightOffset, collisionRadius);
         Gizmos.DrawWireSphere((Vector2)transform.position + leftOffset, collisionRadius);*/
     }
