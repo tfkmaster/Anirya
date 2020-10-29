@@ -30,7 +30,6 @@ public class CombatManager : MonoBehaviour
     //Checks if the player has pushed attack button
     public void Attack()
     {
-
         if (Input.GetButtonDown("Fire1") && !CM.isJumping())
         {
             if (canReceiveInput)
@@ -52,7 +51,7 @@ public class CombatManager : MonoBehaviour
         Collider2D[] hitActors = Physics2D.OverlapCircleAll(GetComponent<Player>().attackPoint.position, GetComponent<Player>().attackRange);
         foreach (Collider2D actor in hitActors)
         {
-            if (actor.CompareTag("Ennemy"))
+            if (actor.CompareTag("Ennemy") || actor.CompareTag("Destructible Wall"))
             {
                 actor.GetComponent<Actor>().OnHit(gameObject, GetComponent<Player>().GetDamageDone());
             }
