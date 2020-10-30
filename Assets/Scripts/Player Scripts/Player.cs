@@ -15,13 +15,13 @@ public class Player : Actor
     void Awake()
     {
         GM = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
-        GM.Player = gameObject;
+        //GM.Player = gameObject;
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        transform.position = GM.LastCheckpointPosition;
+        //transform.position = GM.LastCheckpoint.GetComponent<CheckpointController>().MyPosition.position;
         InactiveCounter = InactiveTime;
         animator = GetComponent<Animator>();
     }
@@ -72,6 +72,18 @@ public class Player : Actor
         base.Death();
         isDead = true;
         animator.SetBool("dead", true);
+    }
+
+    public void LoadCheckpoint()
+    {
         GM.LoadCheckpoint();
+        animator.SetBool("dead", false);
+    }
+
+    public void Reborn()
+    {
+        Debug.Log("reborn");
+        isDead = false;
+        healthPoints = maxHealthPoints;
     }
 }

@@ -110,7 +110,7 @@ GameObject:
   - component: {fileID: 7919516378971771242}
   m_Layer: 8
   m_Name: Character
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -124,7 +124,7 @@ Transform:
   m_GameObject: {fileID: 6723052858451093245}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.9086194, y: -1.2511106, z: -2.4987106}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 7, y: 7, z: 1}
   m_Children:
   - {fileID: 5165399178166205946}
   - {fileID: 2951569686476594508}
@@ -195,8 +195,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.01664418, y: -0.06242895}
-  m_Size: {x: 0.19276083, y: 0.3340912}
+  m_Offset: {x: 0.0059151887, y: -0.10123306}
+  m_Size: {x: 0.13488126, y: 0.14764205}
   m_Direction: 0
 --- !u!50 &-6684517051663082008
 Rigidbody2D:
@@ -213,7 +213,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 3
+  m_GravityScale: 4
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -232,26 +232,30 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Grounded: 0
-  onWall: 0
-  onRightWall: 0
-  onLeftWall: 0
-  wallSide: 0
   collisionRadius: 0.12
-  bottomOffset: {x: 0.03, y: -1.28}
-  rightOffset: {x: 0, y: 0}
-  leftOffset: {x: 0, y: 0}
-  m_JumpForce: 700
-  m_AirControl: 0
+  m_JumpForce: 10
+  m_AirControl: 1
   jumpHigh: 4
   accelerationX: 0.1
   m_WhatIsGround:
     serializedVersion: 2
-    m_Bits: 55
+    m_Bits: 512
   m_CeilingCheck: {fileID: 5165399178166205946}
   m_GroundCheck: {fileID: 268490115846682710}
   OnLandEvent:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 7870912547993724391}
+        m_MethodName: OnLanding
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   OnCrouchEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -267,7 +271,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c2770ddbfae5e4449afc5ea48f9fe0c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  acceleration: 0
+  acceleration: 1200
   coyoteTimeAfterLeavingGround: 0.1
   coyoteTimeBeforeReachingGround: 0.1
   Inactive: 0
@@ -285,7 +289,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canReceiveInput: 1
   inputReceived: 0
-  AttackMoveForce: 0
+  AttackMoveForce: 3
 --- !u!95 &2029557562849206198
 Animator:
   serializedVersion: 3
@@ -343,11 +347,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 762e06dd5687fb641b78898709bbb9b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HealthPoints: 0
-  damageDone: 0
-  attackPoint: {fileID: 0}
+  maxHealthPoints: 30
+  healthPoints: 30
+  damageDone: 10
+  attackPoint: {fileID: 2951569686476594508}
   attackRange: 0.5
   timeRed: 0.5
-  knockBackForce: {x: 1, y: 1}
+  knockBackForce: {x: 5, y: 5}
   InactiveTime: 1
   isDead: 0

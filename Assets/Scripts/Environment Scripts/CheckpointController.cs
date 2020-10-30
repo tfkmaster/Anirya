@@ -33,8 +33,7 @@ public class CheckpointController : MonoBehaviour
     {
         if (collider.CompareTag("Player"))
         {
-            GM.LastCheckpointPosition = MyPosition.position;
-            GM.LastCheckpointSceneName = MyScene.name;
+            GM.UpdateCheckpoint(this.gameObject);
         }
     }
 }

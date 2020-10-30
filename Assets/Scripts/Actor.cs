@@ -5,7 +5,8 @@ using UnityEngine;
 public class Actor : MonoBehaviour
 {
     //Stats
-    [SerializeField] protected int HealthPoints;
+    [SerializeField] protected int maxHealthPoints;
+    [SerializeField] protected int healthPoints;
     [SerializeField] protected int damageDone;
     
     //Attack
@@ -44,14 +45,14 @@ public class Actor : MonoBehaviour
 
         DamageFeedback();
 
-        if ((HealthPoints-damages) <= 0)
+        if ((healthPoints-damages) <= 0)
         {
-            HealthPoints = 0;
+            healthPoints = 0;
             Death();
         }
         else
         {
-            HealthPoints -= damages;
+            healthPoints -= damages;
         }
     }
 
