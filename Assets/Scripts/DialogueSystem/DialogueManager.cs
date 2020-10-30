@@ -36,7 +36,20 @@ public class DialogueManager : MonoBehaviour
         }
 
         string sentence = sentences.Dequeue();
-        dialogText.text = sentence;
+        StopAllCoroutines();
+        StartCoroutine(TypeSentence(sentence));
+    }
+
+    // coroutine to display each letter of the sentence, individually in the dialog box
+    IEnumerator TypeSentence(string sentence)
+    {
+        dialogText.text = "";
+        foreach(char letter in sentence.ToCharArray())
+        {
+            dialogText.text += letter;
+            yield return new WaitForSeconds(.1f);
+            // alternative would be [yield return null]
+        }
     }
 
     public void EndDialogue()
