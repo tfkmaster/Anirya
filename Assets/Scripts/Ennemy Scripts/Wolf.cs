@@ -9,6 +9,8 @@ public class Wolf : Ennemy
     public GameObject DestinationNode;
     public GameObject StoredNode;
 
+    public float Heuristique = 5;
+
     public float speed;
 
     // Start is called before the first frame update
@@ -33,6 +35,18 @@ public class Wolf : Ennemy
 
     public void SelectANode()
     {
-        DestinationNode = accessibleNodes[Random.Range(0, accessibleNodes.Count)];
+        int index = Random.Range(0, accessibleNodes.Count);
+        if (DestinationNode)
+        {
+            accessibleNodes.Add(DestinationNode);
+        }
+        DestinationNode = accessibleNodes[index];
+        accessibleNodes.RemoveAt(index);
     }
+
+    public void AStar()
+    {
+        //foreach()
+    }
+
 }

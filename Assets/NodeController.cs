@@ -5,6 +5,7 @@ using UnityEngine;
 public class NodeController : MonoBehaviour
 {
     public List<GameObject> neighbours = new List<GameObject>();
+    public List<float> weights = new List<float>();
 
     [SerializeField] private LayerMask WhatIsGround;                          // A mask determining what is ground to detect further raycast collision
     [SerializeField] private LayerMask WhatIsNodeLayer;                          // A mask determining in which layer the nodes are
@@ -29,6 +30,12 @@ public class NodeController : MonoBehaviour
     {
         yield return new WaitForSeconds(waitTime);
         test = Physics2D.OverlapCircleAll(transform.position, collisionRadius, WhatIsNodeLayer);
+
+        foreach (Collider2D col in test)
+        {
+            neighbours.Add(col.gameObject);
+        }
+
     }
 
     // Update is called once per frame

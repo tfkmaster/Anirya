@@ -13,14 +13,13 @@ public class WolfWander : StateMachineBehaviour
     {
         wolfScript = animator.gameObject.GetComponent<Wolf>();
         rb2dWolf = animator.gameObject.GetComponent<Rigidbody2D>();
-
-
+        wolfScript.SelectANode();
     }
 
     //OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        if (Mathf.Abs(animator.transform.position.x) - Mathf.Abs(wolfScript.DestinationNode.transform.position.x) <= 0.2f)
+        if (animator.transform.position.x - wolfScript.DestinationNode.transform.position.x >= 0.2f || animator.transform.position.x - wolfScript.DestinationNode.transform.position.x <= -0.2f)
         {
             if (animator.transform.position.x <= wolfScript.DestinationNode.transform.position.x)
             {
@@ -33,10 +32,8 @@ public class WolfWander : StateMachineBehaviour
         }
         else
         {
-
-        }
-        
-            
+            wolfScript.SelectANode();
+        }    
     }
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
