@@ -5,13 +5,13 @@ using UnityEngine;
 public class WolfWander : StateMachineBehaviour
 {
 
-    private Wolf wolfScript;
+    private AIWolf wolfScript;
     private Rigidbody2D rb2dWolf;
 
     //OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        wolfScript = animator.gameObject.GetComponent<Wolf>();
+        wolfScript = animator.gameObject.GetComponent<AIWolf>();
         rb2dWolf = animator.gameObject.GetComponent<Rigidbody2D>();
         wolfScript.SelectANode();
     }

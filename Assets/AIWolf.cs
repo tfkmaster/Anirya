@@ -8,6 +8,7 @@ public class AIWolf : MonoBehaviour
     public List<GameObject> WanderNodes;
     public List<GameObject> accessibleNodes;
     public GameObject DestinationNode;
+    public GameObject StartNode;
     public GameObject ActualNode;
 
     public float Heuristique = 5;
@@ -43,16 +44,25 @@ public class AIWolf : MonoBehaviour
 
     public void AStar()
     {
-        ActualNode = DestinationNode;
-        DestinationNode.GetComponent<NodeController>().Distance = Vector2.Distance(DestinationNode.transform.position, gameObject.transform.position);
+        List<GameObject> activeNodes = new List<GameObject>();
+        activeNodes.Add(StartNode);
+        List<GameObject> bisitedNodes = new List<GameObject>();
+
+        ActualNode = StartNode;
+        DestinationNode.GetComponent<NodeController>().Distance = Vector2.Distance(DestinationNode.transform.position, StartNode.transform.position);
         DestinationNode.GetComponent<NodeController>().Cost = 0;
+
+        while(activeNodes.Count != 0)
+        {
+
+        }
     }
 
     public void CalculateCost()
     {
         foreach (GameObject node in ActualNode.GetComponent<NodeController>().neighbours)
         {
-            node.GetComponent<NodeController>().Distance = Vector2.Distance(node.transform.position, gameObject.transform.position);
+            node.GetComponent<NodeController>().Distance = Vector2.Distance(node.transform.position, DestinationNode.transform.position);
             node.GetComponent<NodeController>().Cost = ActualNode.GetComponent<NodeController>().Cost + 1;
         }
     }
