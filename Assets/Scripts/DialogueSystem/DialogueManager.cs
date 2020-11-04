@@ -7,15 +7,27 @@ public class DialogueManager : MonoBehaviour
     public Text nametext;
     public Text dialogText;
 
+    public bool dialogHasStart = false;
     private Queue<string> sentences;
+
+    private GameObject player;
 
     void Start()
     {
+        player = GameObject.FindGameObjectWithTag("Player");
         sentences = new Queue<string>();
+    }
+
+    void Update()
+    {
+        if (dialogHasStart && Input.GetKeyDown(KeyCode.E)) DisplayNextSentence();
     }
 
     public void StartDialogue(Dialogue dialogue)
     {
+        player.GetComponent<CharacterMovement>().Interacting = true;
+        player.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+        player.GetComponent<Animator>().SetBool("interacting", true);
         nametext.text = dialogue.name;
 
         sentences.Clear();
@@ -54,6 +66,8 @@ public class DialogueManager : MonoBehaviour
 
     public void EndDialogue()
     {
+        player.GetComponent<CharacterMovement>().Interacting = false;
+        player.GetComponent<Animator>().SetBool("interacting", false);
         Debug.Log("End of conversation");
     }
 }

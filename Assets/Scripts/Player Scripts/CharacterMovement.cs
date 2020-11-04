@@ -32,6 +32,7 @@ public class CharacterMovement : MonoBehaviour
     private bool onAir = false;                     // Determines if the player is currently in the air or not
     private bool jumpValidation = false;            // Determines if the player is allowed to jump in his current situation
     public bool Inactive = false;                  // Determines if the player is in his invincibility frames or not
+    public bool Interacting = false;               // Determines if the player is interacting with some entity
 
     // Awake is called once before Start
     void Awake()
@@ -78,7 +79,7 @@ public class CharacterMovement : MonoBehaviour
     void FixedUpdate()
     {
         //Move the character
-        if (!player.isDead)
+        if (!player.isDead && !Inactive && !Interacting)
         {
             cc2d.Move(horizontalMove, onAir);
         }

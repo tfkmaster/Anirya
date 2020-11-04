@@ -8,5 +8,4 @@ public class Dialogue : ScriptableObject
     public new string name;
     [TextArea(3, 10)]
     public string[] sentences;
-    public bool hasStart = false;
 }
