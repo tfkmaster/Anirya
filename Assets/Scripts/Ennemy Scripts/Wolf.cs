@@ -4,22 +4,11 @@ using UnityEngine;
 
 public class Wolf : Ennemy
 {
-    public List<GameObject> WanderNodes;
-    public List<GameObject> accessibleNodes;
-    public GameObject DestinationNode;
-    public GameObject StoredNode;
-
-    public float Heuristique = 5;
-
-    public float speed;
 
     // Start is called before the first frame update
     void Start()
     {
-        for(int i = 0; i < WanderNodes.Count; i++)
-        {
-            accessibleNodes.Add(WanderNodes[i]);
-        }
+
     }
 
     // Update is called once per frame
@@ -31,22 +20,6 @@ public class Wolf : Ennemy
     public override void OnHit(GameObject hitter, int damages)
     {
         base.OnHit(hitter, damages);
-    }
-
-    public void SelectANode()
-    {
-        int index = Random.Range(0, accessibleNodes.Count);
-        if (DestinationNode)
-        {
-            accessibleNodes.Add(DestinationNode);
-        }
-        DestinationNode = accessibleNodes[index];
-        accessibleNodes.RemoveAt(index);
-    }
-
-    public void AStar()
-    {
-        //foreach()
     }
 
 }

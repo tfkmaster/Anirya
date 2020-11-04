@@ -35,7 +35,6 @@ public class Player : Actor
     protected override void Update()
     {
         base.Update();
-        Debug.Log("afzaef");
         //Character inactive duration
         if(GetComponent<CharacterMovement>().Inactive == true)
         {

@@ -5,7 +5,10 @@ using UnityEngine;
 public class NodeController : MonoBehaviour
 {
     public List<GameObject> neighbours = new List<GameObject>();
-    public List<float> weights = new List<float>();
+    public float Cost;
+    public float Distance;
+    public float CostDistance => Cost + Distance;
+    public GameObject parent;
 
     [SerializeField] private LayerMask WhatIsGround;                          // A mask determining what is ground to detect further raycast collision
     [SerializeField] private LayerMask WhatIsNodeLayer;                          // A mask determining in which layer the nodes are
@@ -33,7 +36,10 @@ public class NodeController : MonoBehaviour
 
         foreach (Collider2D col in test)
         {
-            neighbours.Add(col.gameObject);
+            if(col.gameObject != gameObject)
+            {
+                neighbours.Add(col.gameObject);
+            }
         }
 
     }
