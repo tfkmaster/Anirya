@@ -26,9 +26,17 @@ public class Player : Actor
         animator = GetComponent<Animator>();
     }
 
-    void OnTriggerEnter2D(Collider2D collider)
+    void OnTriggerStay2D(Collider2D collider)
     {
-        
+        if(Input.GetKeyDown(KeyCode.E) && collider.gameObject.CompareTag("Interactible"))
+        {
+            Debug.Log("Test");
+            if (collider.gameObject.GetComponent<DialogueTrigger>())
+            {
+                Debug.Log("if");
+                collider.gameObject.GetComponent<DialogueTrigger>().TriggerDialogue();
+            }
+        }
     }
 
     // Update is called once per frame

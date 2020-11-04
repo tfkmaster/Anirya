@@ -9,6 +9,8 @@ public class DialogueTrigger : MonoBehaviour
     public void TriggerDialogue()
     {
         FindObjectOfType<DialogueManager>().StartDialogue(dialogue);
+        if(!dialogue.hasStart) 
+            dialogue.hasStart = true;
     }
 
 }
