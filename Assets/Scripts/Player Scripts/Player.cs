@@ -12,6 +12,8 @@ public class Player : Actor
     private float InactiveCounter;                                          //Counts the time during which the character is inactive
     public bool isDead = false;                                             //Determines if the player is actually dead or not
 
+    private bool isTriggeringInteractible;                                  //Set to true when the player is triggering an interactible entity
+    private Interactible lastInteractible;                                  //Last interactible entity triggered by the player - set to null if the player is not interacting anymore                
     void Awake()
     {
         GM = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
@@ -26,9 +28,22 @@ public class Player : Actor
         animator = GetComponent<Animator>();
     }
 
-    void OnTriggerEnter2D(Collider2D collider)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        
+        if (collision.gameObject.CompareTag("Interactible"))
+        {
+            isTriggeringInteractible = true;
+            lastInteractible = collision.gameObject.GetComponent<Interactible>();
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Interactible"))
+        {
+            isTriggeringInteractible = false;
+            lastInteractible = null;
+        } 
     }
 
     // Update is called once per frame
@@ -36,7 +51,7 @@ public class Player : Actor
     {
         base.Update();
         //Character inactive duration
-        if(GetComponent<CharacterMovement>().Inactive == true)
+        if (GetComponent<CharacterMovement>().Inactive == true)
         {
             InactiveCounter -= Time.deltaTime;
         }
@@ -44,6 +59,12 @@ public class Player : Actor
         {
             GetComponent<CharacterMovement>().Inactive = false;
             InactiveCounter = InactiveTime;
+        }
+
+        //Interactible objects triggered one time by the player input
+        if (Input.GetKeyDown(KeyCode.E) && isTriggeringInteractible)
+        {
+            lastInteractible.Trigger();
         }
     }
 

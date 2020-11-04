@@ -2,13 +2,24 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DialogueTrigger : MonoBehaviour
+public class DialogueTrigger : Interactible
 {
     public Dialogue dialogue;
+    public DialogueManager dM;
 
-    public void TriggerDialogue()
+    void Start()
     {
-        FindObjectOfType<DialogueManager>().StartDialogue(dialogue);
+        dM = FindObjectOfType<DialogueManager>();
+    }
+
+    public override void Trigger()
+    {
+        base.Trigger();
+        if (!dM.dialogHasStart)
+        {
+            dM.dialogHasStart = true;
+            dM.StartDialogue(dialogue);
+        }
     }
 
 }
