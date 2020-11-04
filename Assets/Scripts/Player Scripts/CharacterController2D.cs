@@ -95,6 +95,27 @@ public class CharacterController2D : MonoBehaviour
         {
             OnLandEvent.Invoke();
         }
+
+        //Prevent the player from jumping when colliding with platform sides
+        foreach (ContactPoint2D hitPos in collision.contacts)
+        {
+            // check if the platform collided on the sides
+            if (hitPos.normal.x != 0) 
+            {
+                // boolean to prevent player from being able to jump
+                m_Grounded = false; 
+                //collision.gameObject.GetComponent<BoxCollider2D>().sharedMaterial.friction = 0f;
+            }
+            // check if its collided on top 
+            else if (hitPos.normal.y > 0)                   
+            {
+                m_Grounded = true;
+            }
+            else
+            {
+                m_Grounded = false;
+            } 
+        }
     }
 
     public void Move(float direction, bool onAir)
