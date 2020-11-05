@@ -6,8 +6,10 @@ public class NodeController : MonoBehaviour
 {
     public List<GameObject> neighbours = new List<GameObject>();
     public float Cost;
+    public float TemporaryCost;
     public float Distance;
     public float CostDistance => Cost + Distance;
+    public float Display;
     public GameObject parent;
 
     [SerializeField] private LayerMask WhatIsGround;                          // A mask determining what is ground to detect further raycast collision
@@ -47,7 +49,10 @@ public class NodeController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetKeyDown(KeyCode.O))
+        {
+            Display = CostDistance;
+        }
     }
 
     void OnDrawGizmos()
