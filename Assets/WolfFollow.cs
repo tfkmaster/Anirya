@@ -2,38 +2,32 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WolfWander : StateMachineBehaviour
+public class WolfFollow : StateMachineBehaviour
 {
-
-    private AIWolf wolfScript;
+    private Wolf wolf;
+    private AIWolf aiWolf;
     private Rigidbody2D rb2dWolf;
 
     //OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        wolfScript = animator.gameObject.GetComponent<AIWolf>();
+        wolf = animator.gameObject.GetComponent<Wolf>();
+        aiWolf = animator.gameObject.GetComponent<AIWolf>();
         rb2dWolf = animator.gameObject.GetComponent<Rigidbody2D>();
-        wolfScript.SelectANode();
+        animator.gameObject.GetComponent<SpriteRenderer>().color = new Color(150f, 0, 0);
     }
 
     //OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        if (animator.transform.position.x - wolfScript.DestinationNode.transform.position.x >= 0.2f || animator.transform.position.x - wolfScript.DestinationNode.transform.position.x <= -0.2f)
+        if (animator.gameObject.GetComponent<Wolf>().player.transform.position.x < animator.gameObject.transform.position.x)
         {
-            if (animator.transform.position.x <= wolfScript.DestinationNode.transform.position.x)
-            {
-                rb2dWolf.velocity = new Vector2(wolfScript.speed, rb2dWolf.velocity.y);
-            }
-            else
-            {
-                rb2dWolf.velocity = new Vector2(-wolfScript.speed, rb2dWolf.velocity.y);
-            }
+            rb2dWolf.velocity = new Vector2(-wolf.FollowSpeed, rb2dWolf.velocity.y);
         }
         else
         {
-            wolfScript.SelectANode();
-        }    
+            rb2dWolf.velocity = new Vector2(wolf.FollowSpeed, rb2dWolf.velocity.y);
+        }
     }
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state

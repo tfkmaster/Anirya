@@ -11,9 +11,9 @@ public class AIWolf : MonoBehaviour
     public GameObject StartNode;
     public GameObject ActualNode;
 
-    public float Heuristique = 5;
+    private bool playerOnSight = false;
 
-    public float speed;
+    public float Heuristique = 1;
 
     // Start is called before the first frame update
     void Start()
@@ -33,16 +33,25 @@ public class AIWolf : MonoBehaviour
         }
     }
 
+    void OnTriggerEnter2D(Collider2D col)
+    {
+        if (col.gameObject.CompareTag("Player"))
+        {
+            playerOnSight = true;
+            GetComponent<Animator>().SetBool("playerOnSight", true);
+        }
+    }
+
 
     public void SelectANode()
     {
-        /*int index = Random.Range(0, accessibleNodes.Count);
+        int index = Random.Range(0, accessibleNodes.Count);
         if (DestinationNode)
         {
             accessibleNodes.Add(DestinationNode);
         }
         DestinationNode = accessibleNodes[index];
-        accessibleNodes.RemoveAt(index);*/
+        accessibleNodes.RemoveAt(index);
     }
 
     public void AStar()
@@ -140,13 +149,13 @@ public class AIWolf : MonoBehaviour
             {
                 node.GetComponent<NodeController>().parent = nodeToCheck;
                 node.GetComponent<NodeController>().Distance = Vector2.Distance(node.transform.position, DestinationNode.transform.position);
-                node.GetComponent<NodeController>().Cost = nodeToCheck.GetComponent<NodeController>().Cost + 1;
+                node.GetComponent<NodeController>().Cost = nodeToCheck.GetComponent<NodeController>().Cost + Heuristique;
             }
             else
             {
                 node.GetComponent<NodeController>().parent = nodeToCheck;
                 node.GetComponent<NodeController>().Distance = Vector2.Distance(node.transform.position, DestinationNode.transform.position);
-                node.GetComponent<NodeController>().TemporaryCost = nodeToCheck.GetComponent<NodeController>().Cost + 1;
+                node.GetComponent<NodeController>().TemporaryCost = nodeToCheck.GetComponent<NodeController>().Cost + Heuristique;
             }
 
             

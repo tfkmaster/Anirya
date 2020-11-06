@@ -4,12 +4,17 @@ using UnityEngine;
 
 public class Ennemy : Actor
 {
+    public GameObject player;
+    public float WanderSpeed = 3;
+    public float FollowSpeed = 5;
 
+    public Collider2D MovementZone;
+    public Collider2D AggroDistance;
 
     // Start is called before the first frame update
-    void Start()
+    protected virtual void Start()
     {
-        
+        player = GameObject.FindGameObjectWithTag("Player");
     }
 
     // Update is called once per frame
