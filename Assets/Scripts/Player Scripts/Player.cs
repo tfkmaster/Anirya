@@ -13,7 +13,11 @@ public class Player : Actor
     public bool isDead = false;                                             //Determines if the player is actually dead or not
 
     private bool isTriggeringInteractible;                                  //Set to true when the player is triggering an interactible entity
-    private Interactible lastInteractible;                                  //Last interactible entity triggered by the player - set to null if the player is not interacting anymore                
+    private Interactible lastInteractible;                                  //Last interactible entity triggered by the player - set to null if the player is not interacting anymore        
+
+    public Collider2D PlayerBox;
+    public bool isOnOneWayPlatform = false;
+
     void Awake()
     {
         GM = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
@@ -35,7 +39,12 @@ public class Player : Actor
             isTriggeringInteractible = true;
             lastInteractible = collision.gameObject.GetComponent<Interactible>();
         }
+        if(collision.gameObject.CompareTag("One Way Platform"))
+        {
+            isOnOneWayPlatform = true;
+        }
     }
+
 
     private void OnTriggerExit2D(Collider2D collision)
     {
@@ -43,7 +52,11 @@ public class Player : Actor
         {
             isTriggeringInteractible = false;
             lastInteractible = null;
-        } 
+        }
+        if (collision.gameObject.CompareTag("One Way Platform"))
+        {
+            isOnOneWayPlatform = false;
+        }
     }
 
     // Update is called once per frame

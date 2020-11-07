@@ -35,6 +35,7 @@ public class CharacterController2D : MonoBehaviour
     [SerializeField] private LayerMask m_WhatIsGround;                          // A mask determining what is ground to the character
     [SerializeField] private Transform m_CeilingCheck;                          // A position marking where to check for ceilings
     [SerializeField] private Transform m_GroundCheck;                          // A position marking where to check for ground
+    [SerializeField] private Transform m_Center;                               // Center of the player
 
     private Rigidbody2D m_Rigidbody2D;
     const float k_CeilingRadius = .2f; // Radius of the overlap circle to determine if the player can stand up
@@ -76,9 +77,11 @@ public class CharacterController2D : MonoBehaviour
     private void Update()
     {
         m_Grounded = Physics2D.OverlapCircle(m_GroundCheck.position, collisionRadius, m_WhatIsGround);
-       if(Physics2D.OverlapCircle(m_CeilingCheck.position, collisionRadius, m_WhatIsGround) && !m_Grounded)
+
+        if (Physics2D.OverlapCircle(m_CeilingCheck.position, collisionRadius, m_WhatIsGround) && !m_Grounded && !GetComponent<Player>().isOnOneWayPlatform)
         {
             topReached = true;
+            Debug.Log("Top reached");
         }
         //Push the caracter to the ground if the jump button released before reaching it's climax
         //Allows to do more precise jumps
@@ -91,7 +94,7 @@ public class CharacterController2D : MonoBehaviour
     void OnCollisionStay2D(Collision2D collision)
     {
         //Allows to jump again after reaching the ground
-        if (collision.gameObject.layer == 9)
+        if (collision.gameObject.layer == 9 && !GetComponent<Player>().isOnOneWayPlatform && !collision.otherCollider.gameObject.CompareTag("One Way Platform") && m_Rigidbody2D.velocity.y <= 0)
         {
             OnLandEvent.Invoke();
         }
@@ -163,7 +166,6 @@ public class CharacterController2D : MonoBehaviour
                     return;
                 }
             }
-
         }
     }
 
