@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Player : Actor
 {
-    [SerializeField] private Vector2 knockBackForce = new Vector2(1,1);     // Determines how much the player get's knocked back on being hit
+    [SerializeField] private Vector2 knockBackForce = new Vector2(1, 1);     // Determines how much the player get's knocked back on being hit
     private Animator animator;                                              // The animator attached on the player
     private GameManager GM;
 
@@ -39,7 +39,7 @@ public class Player : Actor
             isTriggeringInteractible = true;
             lastInteractible = collision.gameObject.GetComponent<Interactible>();
         }
-        if(collision.gameObject.CompareTag("One Way Platform"))
+        if (collision.gameObject.CompareTag("One Way Platform"))
         {
             isOnOneWayPlatform = true;
         }
@@ -68,7 +68,7 @@ public class Player : Actor
         {
             InactiveCounter -= Time.deltaTime;
         }
-        if(InactiveCounter <= 0)
+        if (InactiveCounter <= 0)
         {
             GetComponent<CharacterMovement>().Inactive = false;
             InactiveCounter = InactiveTime;
@@ -82,7 +82,7 @@ public class Player : Actor
     }
 
     //Function called when the actor gets hit
-    public override void OnHit(GameObject hitter,  int damages)
+    public override void OnHit(GameObject hitter, int damages)
     {
         if (!GetComponent<CharacterMovement>().Inactive)
         {
