@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AIWolf : MonoBehaviour
+public class AIWolf : EnnemyMovementController
 {
 
     public List<GameObject> WanderNodes;
@@ -10,8 +10,6 @@ public class AIWolf : MonoBehaviour
     public GameObject DestinationNode;
     public GameObject StartNode;
     public GameObject ActualNode;
-
-    private bool playerOnSight = false;
 
     public float Heuristique = 1;
 
@@ -25,23 +23,14 @@ public class AIWolf : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    protected override void Update()
     {
+        base.Update();
         if (Input.GetKeyDown(KeyCode.P))
         {
             AStar();
         }
     }
-
-    void OnTriggerEnter2D(Collider2D col)
-    {
-        if (col.gameObject.CompareTag("Player"))
-        {
-            playerOnSight = true;
-            GetComponent<Animator>().SetBool("playerOnSight", true);
-        }
-    }
-
 
     public void SelectANode()
     {

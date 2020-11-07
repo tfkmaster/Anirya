@@ -20,13 +20,17 @@ public class WolfFollow : StateMachineBehaviour
     //OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        if (animator.gameObject.GetComponent<Wolf>().player.transform.position.x < animator.gameObject.transform.position.x)
+        if (wolf.player.transform.position.x + aiWolf.nearPlayerStop < animator.gameObject.transform.position.x)
         {
             rb2dWolf.velocity = new Vector2(-wolf.FollowSpeed, rb2dWolf.velocity.y);
         }
-        else
+        else if(wolf.player.transform.position.x - aiWolf.nearPlayerStop > animator.gameObject.transform.position.x)
         {
             rb2dWolf.velocity = new Vector2(wolf.FollowSpeed, rb2dWolf.velocity.y);
+        }
+        else
+        {
+            rb2dWolf.velocity = Vector2.zero;
         }
     }
 

@@ -8,9 +8,6 @@ public class Ennemy : Actor
     public float WanderSpeed = 3;
     public float FollowSpeed = 5;
 
-    public Collider2D MovementZone;
-    public Collider2D AggroDistance;
-
     // Start is called before the first frame update
     protected virtual void Start()
     {
