@@ -23,6 +23,7 @@ public class WolfWander : StateMachineBehaviour
     //OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
+        
         if (animator.transform.position.x - aiWolf.DestinationNode.transform.position.x >= 0.2f || animator.transform.position.x - aiWolf.DestinationNode.transform.position.x <= -0.2f)
         {
             if (animator.transform.position.x > aiWolf.DestinationNode.transform.position.x)

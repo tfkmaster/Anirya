@@ -8,6 +8,8 @@ public class Ennemy : Actor
     public float WanderSpeed = 3;
     public float FollowSpeed = 5;
 
+    bool playerAlreadySelected = false;
+
     // Start is called before the first frame update
     protected virtual void Start()
     {
@@ -18,18 +20,23 @@ public class Ennemy : Actor
     protected override void Update()
     {
         base.Update();
-            Attack();
+        if (!playerAlreadySelected)
+        {
+            CheckAttack();
+        } 
     }
 
-    void Attack()
+    void CheckAttack()
     {
+        
         Collider2D[] hitActors = Physics2D.OverlapCircleAll(attackPoint.position,attackRange);
 
         foreach(Collider2D actor in hitActors)
         {
-            if (actor.CompareTag("Player"))
+            if (actor.CompareTag("Player") && !playerAlreadySelected)
             {
-                actor.GetComponent<Player>().OnHit(this.gameObject, damageDone);
+                Debug.Log("a");
+                GetComponent<Animator>().SetTrigger("StartAttack");
             }
         }
     }
@@ -38,5 +45,30 @@ public class Ennemy : Actor
     {
         base.OnHit(hitter,damages);
         Debug.Log("Ennemy hit");
+    }
+
+    public void DealDamages()
+    {
+        bool playerAlreadyDamaged = false;
+        Collider2D[] hitActors = Physics2D.OverlapCircleAll(attackPoint.position, attackRange);
+
+        foreach (Collider2D actor in hitActors)
+        {
+            if (actor.CompareTag("Player") && !playerAlreadyDamaged)
+            {
+                actor.GetComponent<Player>().OnHit(this.gameObject, damageDone);
+                playerAlreadyDamaged = true;
+            }
+        }
+    }
+
+    public void AttackStarted()
+    {
+        playerAlreadySelected = true;
+    }
+
+    public void AttackEnded()
+    {
+        playerAlreadySelected = false;
     }
 }

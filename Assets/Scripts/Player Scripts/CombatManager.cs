@@ -51,7 +51,7 @@ public class CombatManager : MonoBehaviour
         Collider2D[] hitActors = Physics2D.OverlapCircleAll(GetComponent<Player>().attackPoint.position, GetComponent<Player>().attackRange);
         foreach (Collider2D actor in hitActors)
         {
-            if (actor.CompareTag("Ennemy") || actor.CompareTag("Destructible Wall"))
+            if (!actor.isTrigger && (actor.CompareTag("Ennemy") || actor.CompareTag("Destructible Wall")))
             {
                 actor.GetComponent<Actor>().OnHit(gameObject, GetComponent<Player>().GetDamageDone());
             }

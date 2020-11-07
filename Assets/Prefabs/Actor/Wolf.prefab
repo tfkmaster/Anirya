@@ -130,7 +130,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 1000
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
@@ -205,8 +205,6 @@ MonoBehaviour:
   player: {fileID: 0}
   WanderSpeed: 3
   FollowSpeed: 5
-  MovementZone: {fileID: 0}
-  AggroDistance: {fileID: 0}
 --- !u!114 &7995976945115508894
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -219,6 +217,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39c5721f62c155a49a4b0d3eaddf7dd7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nearPlayerStop: 1
+  MovementZone: {fileID: 0}
+  player: {fileID: 0}
   WanderNodes:
   - {fileID: 0}
   - {fileID: 0}
