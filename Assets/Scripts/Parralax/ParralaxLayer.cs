@@ -5,6 +5,7 @@ public class ParralaxLayer : MonoBehaviour
     [SerializeField] float multiplier = 0.0f;
     [SerializeField] bool horizontalOnly = true;
 
+
     private Transform cameraTransform;
 
     private Vector3 startCameraPos;
@@ -20,6 +21,7 @@ public class ParralaxLayer : MonoBehaviour
     private void LateUpdate()
     {
         var position = startPos;
+
         if (horizontalOnly)
             position.x += multiplier * (cameraTransform.position.x - startCameraPos.x);
         else 
