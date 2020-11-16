@@ -56,6 +56,7 @@ public class Player : Actor
         if (collision.gameObject.CompareTag("One Way Platform"))
         {
             isOnOneWayPlatform = false;
+            collision.gameObject.GetComponent<OneWayPlatform>().setBackEffector();
         }
     }
 
