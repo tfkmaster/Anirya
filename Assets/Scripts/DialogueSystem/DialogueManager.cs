@@ -9,6 +9,7 @@ public class DialogueManager : MonoBehaviour
 
     public bool dialogHasStart = false;
     private Queue<string> sentences;
+    private Queue<string> names;
 
     private GameObject player;
 
@@ -16,6 +17,7 @@ public class DialogueManager : MonoBehaviour
     {
         player = GameObject.FindGameObjectWithTag("Player");
         sentences = new Queue<string>();
+        names = new Queue<string>();
     }
 
     void Update()
@@ -28,8 +30,13 @@ public class DialogueManager : MonoBehaviour
         player.GetComponent<CharacterMovement>().Interacting = true;
         player.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
         player.GetComponent<Animator>().SetBool("interacting", true);
-        nametext.text = dialogue.name;
 
+
+        names.Clear();
+        foreach (string name in dialogue.names)
+        {
+            names.Enqueue(name);
+        }
         sentences.Clear();
         foreach(string sentence in dialogue.sentences)
         {
@@ -48,7 +55,10 @@ public class DialogueManager : MonoBehaviour
         }
 
         string sentence = sentences.Dequeue();
+        string name = names.Dequeue();
         StopAllCoroutines();
+        TypeName(name);
+        //StartCoroutine(TypeSentence(name));
         StartCoroutine(TypeSentence(sentence));
     }
 
@@ -62,6 +72,11 @@ public class DialogueManager : MonoBehaviour
             yield return new WaitForSeconds(.1f);
             // alternative would be [yield return null]
         }
+    }
+
+    public void TypeName(string name)
+    {
+        nametext.text = name;
     }
 
     public void EndDialogue()
