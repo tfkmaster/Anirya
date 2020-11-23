@@ -156,7 +156,14 @@ public class CharacterMovement : MonoBehaviour
     //Character actions
     void Actions()
     {
-        if ((Input.GetButtonDown("Jump") && !onAir && jumpValidation) || (Input.GetButton("Jump") && cc2d.getGrounded() && jumpValidation) || (Input.GetButton("Jump") && !onAir && jumpValidation))
+        if ( Input.GetButtonDown("Jump") && cc2d.getGrounded()) 
+        {
+            GetComponent<Rigidbody2D>().AddForce(new Vector2(0, 10), ForceMode2D.Impulse);
+        }
+
+        if ((Input.GetButtonDown("Jump") && !onAir && jumpValidation) 
+            || (Input.GetButton("Jump") && cc2d.getGrounded() && jumpValidation) 
+            || (Input.GetButton("Jump") && !onAir && jumpValidation))
         {
             onAir = true;
             animator.SetBool("jump", true);
