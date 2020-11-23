@@ -618,7 +618,7 @@ Transform:
   m_Children:
   - {fileID: 95403623}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &609045443
 GameObject:
@@ -2416,7 +2416,7 @@ Transform:
   - {fileID: 1508581601}
   - {fileID: 338175116}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1720844847 stripped
 Transform:
@@ -2541,7 +2541,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.31615257, y: -0.29838085}
+  m_Offset: {x: -1.285553, y: -0.29838085}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -2552,7 +2552,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 3.6353645, y: 3.7185688}
+  m_Size: {x: 0.43195343, y: 3.7185688}
   m_EdgeRadius: 0
 --- !u!114 &1823696985
 MonoBehaviour:
