@@ -76,9 +76,13 @@ public class Actor : MonoBehaviour
     //Displays a visual feedback on the current Actor
     protected virtual void DamageFeedback()
     {
-        GetComponent<SpriteRenderer>().color = new Color(1, 0, 0);
-        timeRedCounter = 0;
-        gotHit = true;
+        SpriteRenderer spr_renderer = GetComponent<SpriteRenderer>();
+        if (spr_renderer)
+        {
+            spr_renderer.color = new Color(1, 0, 0);
+            timeRedCounter = 0;
+            gotHit = true;
+        }
     }
 
     public int GetDamageDone()
