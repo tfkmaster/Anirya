@@ -6,12 +6,18 @@ public class DestructibleWall : Actor
 {
     protected override void Death()
     {
-        Destroy(this.gameObject);
+        GetComponent<Animator>().SetBool("dead", true);
     }
 
     public override void OnHit(GameObject hitter, int damages)
     {
         base.OnHit(hitter, damages);
+        GetComponent<Animator>().SetTrigger("hit");
         Debug.Log("Wall hit");
+    }
+
+    public void SelfDestruct()
+    {
+        Destroy(this.gameObject);
     }
 }
