@@ -12,10 +12,14 @@ public class Stalactite : NonHittableActor
             Debug.Log("Anirya hit !");
             Destroy(gameObject);
         }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
 
     private void OnDestroy()
     {
-        
+        // destroy anim calls
     }
 }
