@@ -6,7 +6,7 @@ public class DestructibleWall : Actor
 {
     protected override void Death()
     {
-        Destroy(this);
+        Destroy(this.gameObject);
     }
 
     public override void OnHit(GameObject hitter, int damages)
