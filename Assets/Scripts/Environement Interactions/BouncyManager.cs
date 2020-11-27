@@ -12,6 +12,7 @@ public class BouncyManager : MonoBehaviour
         GameObject Player = GameObject.FindGameObjectWithTag("Player");
         if(collision.gameObject.tag == "Player")
         {
+            GetComponent<Animator>().SetTrigger("bounce");
             Player.GetComponent<Animator>().SetBool("jump", true);
             Player.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
             Player.GetComponent<Rigidbody2D>().AddForce(Vector2.up * bouncy_amount, ForceMode2D.Impulse);
