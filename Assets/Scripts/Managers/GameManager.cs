@@ -11,6 +11,9 @@ public class GameManager : MonoBehaviour
     private GameObject LastCheckpoint;
     public GameObject Player;
     private GameObject myPlayer;
+    private bool isPaused = default;
+    [SerializeField]
+    private UIManager _UIManager = default;
     // Start is called before the first frame update
 
     void Awake()
@@ -32,7 +35,9 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        
+        isPaused = false;
+        //Get the scene UI Manager
+        getUIManagerInScene();
     }
 
     // Update is called once per frame
@@ -87,5 +92,47 @@ public class GameManager : MonoBehaviour
         yield return new WaitForEndOfFrame();
         //Move the player to the adequate spawn point
         myPlayer.transform.position = GameObject.FindGameObjectWithTag(spawnPointName).transform.position;
+        //Get the scene UI Manager
+        getUIManagerInScene();
     }
+
+    // the following methods manage pause and resume in the game
+    void PauseGame()
+    {
+        Time.timeScale = 0;
+        isPaused = true;
+    }
+
+    void ResumeGame()
+    {
+        Time.timeScale = 1;
+        isPaused = false;
+    }
+
+    public void SetPause() 
+    {
+        
+        if (isPaused)
+        {
+            _UIManager.DisplayPauseMenu(false);
+            ResumeGame();
+            Debug.Log("Resume");
+
+        }
+        else 
+        {
+            _UIManager.DisplayPauseMenu(true);
+            PauseGame();
+            Debug.Log("Pause");
+        }
+        
+    }
+
+    private void getUIManagerInScene()
+    {
+        _UIManager = GameObject.FindGameObjectWithTag("UIManager").GetComponent<UIManager>();
+        Debug.Log("UIII");
+    }
+
+
 }

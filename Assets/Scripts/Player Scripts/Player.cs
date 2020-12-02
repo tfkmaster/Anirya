@@ -80,6 +80,12 @@ public class Player : Actor
         {
             lastInteractible.Trigger();
         }
+
+        //Resume or Pause the game
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            GM.SetPause();
+        }
     }
 
     //Function called when the actor gets hit
