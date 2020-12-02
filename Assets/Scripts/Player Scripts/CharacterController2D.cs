@@ -94,7 +94,7 @@ public class CharacterController2D : MonoBehaviour
     void OnCollisionStay2D(Collision2D collision)
     {
         //Allows to jump again after reaching the ground
-        if (collision.gameObject.layer == 9 && !GetComponent<Player>().isOnOneWayPlatform && !collision.otherCollider.gameObject.CompareTag("One Way Platform") && m_Rigidbody2D.velocity.y <= 0f && m_Grounded)
+        if (collision.gameObject.layer == 9 && !GetComponent<Player>().isOnOneWayPlatform && !collision.otherCollider.gameObject.CompareTag("One Way Platform") /*&& m_Rigidbody2D.velocity.y <= 0f*/ && m_Grounded)
         {
             OnLandEvent.Invoke();
         }
