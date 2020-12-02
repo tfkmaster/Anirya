@@ -97,6 +97,7 @@ public class CharacterController2D : MonoBehaviour
         if (collision.gameObject.layer == 9 && !GetComponent<Player>().isOnOneWayPlatform && !collision.otherCollider.gameObject.CompareTag("One Way Platform") /*&& m_Rigidbody2D.velocity.y <= 0f*/ && m_Grounded)
         {
             OnLandEvent.Invoke();
+            //GetComponent<Rigidbody2D>().velocity = new Vector2(GetComponent<Rigidbody2D>().velocity.x, -0.5f);
         }
 
         //Prevent the player from jumping when colliding with platform sides
