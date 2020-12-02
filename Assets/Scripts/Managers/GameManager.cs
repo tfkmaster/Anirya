@@ -25,7 +25,6 @@ public class GameManager : MonoBehaviour
             DontDestroyOnLoad(GMInstance);
             myPlayer = Instantiate(Player,this.transform.position,new Quaternion(0,0,0,0));
             UIManagerInstance = Instantiate(UIManager, this.transform.position, new Quaternion(0, 0, 0, 0));
-
             //Do put in a scene Manager
             GameObject.FindGameObjectWithTag("FollowCamera").GetComponent<Cinemachine.CinemachineVirtualCamera>().m_Follow = myPlayer.transform;
             DontDestroyOnLoad(myPlayer);
