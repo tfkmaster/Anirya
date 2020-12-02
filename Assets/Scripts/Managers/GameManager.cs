@@ -12,8 +12,9 @@ public class GameManager : MonoBehaviour
     public GameObject Player;
     private GameObject myPlayer;
     private bool isPaused = default;
-    [SerializeField]
-    private UIManager _UIManager = default;
+    //UI Management
+    public GameObject UIManager;
+    private GameObject UIManagerInstance;
     // Start is called before the first frame update
 
     void Awake()
@@ -23,9 +24,11 @@ public class GameManager : MonoBehaviour
             GMInstance = this;
             DontDestroyOnLoad(GMInstance);
             myPlayer = Instantiate(Player,this.transform.position,new Quaternion(0,0,0,0));
+            UIManagerInstance = Instantiate(UIManager, this.transform.position, new Quaternion(0, 0, 0, 0));
             //Do put in a scene Manager
             GameObject.FindGameObjectWithTag("FollowCamera").GetComponent<Cinemachine.CinemachineVirtualCamera>().m_Follow = myPlayer.transform;
             DontDestroyOnLoad(myPlayer);
+            DontDestroyOnLoad(UIManagerInstance);
         }
         else
         {
@@ -36,8 +39,6 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         isPaused = false;
-        //Get the scene UI Manager
-        getUIManagerInScene();
     }
 
     // Update is called once per frame
@@ -92,8 +93,6 @@ public class GameManager : MonoBehaviour
         yield return new WaitForEndOfFrame();
         //Move the player to the adequate spawn point
         myPlayer.transform.position = GameObject.FindGameObjectWithTag(spawnPointName).transform.position;
-        //Get the scene UI Manager
-        getUIManagerInScene();
     }
 
     //pause the game
@@ -113,25 +112,15 @@ public class GameManager : MonoBehaviour
     //allows the UIManager to display the menu
     public void SetPause() 
     {
-        
         if (isPaused)
         {
-            _UIManager.DisplayPauseMenu(false);
+            UIManagerInstance.GetComponent<UIManager>().DisplayPauseMenu(false);
             ResumeGame();
         }
         else 
         {
-            _UIManager.DisplayPauseMenu(true);
+            UIManagerInstance.GetComponent<UIManager>().DisplayPauseMenu(true);
             PauseGame();
         }
-        
     }
-
-    //attach to the GameObject the instance of UIManager in the scene
-    private void getUIManagerInScene()
-    {
-        _UIManager = GameObject.FindGameObjectWithTag("UIManager").GetComponent<UIManager>();
-    }
-
-
 }
