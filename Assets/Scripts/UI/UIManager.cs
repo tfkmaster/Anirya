@@ -12,6 +12,11 @@ public class UIManager : MonoBehaviour
         PauseMenu.SetActive(false);
     }
 
+    void Start()
+    {
+        
+    }
+
     public void DisplayPauseMenu(bool _display)
     {
         if (_display)
