@@ -96,19 +96,21 @@ public class GameManager : MonoBehaviour
         getUIManagerInScene();
     }
 
-    // the following methods manage pause and resume in the game
+    //pause the game
     void PauseGame()
     {
         Time.timeScale = 0;
         isPaused = true;
     }
 
+    //resume the game
     void ResumeGame()
     {
         Time.timeScale = 1;
         isPaused = false;
     }
 
+    //allows the UIManager to display the menu
     public void SetPause() 
     {
         
@@ -116,22 +118,19 @@ public class GameManager : MonoBehaviour
         {
             _UIManager.DisplayPauseMenu(false);
             ResumeGame();
-            Debug.Log("Resume");
-
         }
         else 
         {
             _UIManager.DisplayPauseMenu(true);
             PauseGame();
-            Debug.Log("Pause");
         }
         
     }
 
+    //attach to the GameObject the instance of UIManager in the scene
     private void getUIManagerInScene()
     {
         _UIManager = GameObject.FindGameObjectWithTag("UIManager").GetComponent<UIManager>();
-        Debug.Log("UIII");
     }
 
 
