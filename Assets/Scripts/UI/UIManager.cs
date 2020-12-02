@@ -4,28 +4,25 @@ using UnityEngine;
 
 public class UIManager : MonoBehaviour
 {
-    [SerializeField]
-    GameObject PauseMenu;
+    public GameObject PauseCanvas;
+    private GameObject PauseCanvasInstance;
 
     void Awake()
     {
-        PauseMenu.SetActive(false);
-    }
-
-    void Start()
-    {
-        
+        DontDestroyOnLoad(gameObject);
+        PauseCanvasInstance = Instantiate(PauseCanvas, this.transform.position, new Quaternion(0, 0, 0, 0));
+        PauseCanvasInstance.SetActive(false);
     }
 
     public void DisplayPauseMenu(bool _display)
     {
         if (_display)
         {
-            PauseMenu.SetActive(true);
+            PauseCanvasInstance.SetActive(true);
         }
         else
         {
-            PauseMenu.SetActive(false);
+            PauseCanvasInstance.SetActive(false);
         }
     }
 }
