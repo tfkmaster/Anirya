@@ -25,7 +25,6 @@ public class GameManager : MonoBehaviour
             GMInstance = this;
             DontDestroyOnLoad(GMInstance);
             myPlayer = Instantiate(Player,this.transform.position,new Quaternion(0,0,0,0));
-
             UIManagerInstance = Instantiate(UIManager, this.transform.position, new Quaternion(0, 0, 0, 0));
 
             //Do put in a scene Manager
@@ -135,5 +134,10 @@ public class GameManager : MonoBehaviour
         #else
             Application.Quit();
         #endif
+    }
+
+    public void SendPlayerStatsToUIManager(int maxHealth, int actualHealth, float maxHeat, float actualHeat)
+    {
+        UIManagerInstance.GetComponent<UIManager>().SendPlayerStatsToPlayerStatsManager(maxHealth, actualHealth, maxHeat, actualHeat);
     }
 }

@@ -78,4 +78,9 @@ public class UIManager : MonoBehaviour
         ControlsCanvasInstance.SetActive(false);
         PauseCanvasInstance.SetActive(true);
     }
+
+    public void SendPlayerStatsToPlayerStatsManager(int maxHealth, int actualHealth, float maxHeat, float actualHeat)
+    {
+        PlayerStatsCanvasInstance.GetComponent<PlayerStatsManager>().updateVisual(maxHealth, actualHealth, maxHeat, actualHeat);
+    }
 }   

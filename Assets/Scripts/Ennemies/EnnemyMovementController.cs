@@ -14,9 +14,9 @@ public class EnnemyMovementController : MonoBehaviour
     public bool playerOnSight = false;
 
     // Start is called before the first frame update
-    void Start()
+    public virtual void Start()
     {
-        
+        player = GameObject.FindGameObjectWithTag("Player");
     }
 
     // Update is called once per frame
