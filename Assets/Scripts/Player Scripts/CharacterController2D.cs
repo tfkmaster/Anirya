@@ -212,6 +212,11 @@ public class CharacterController2D : MonoBehaviour
         m_Rigidbody2D.angularVelocity = 0;
     }
 
+    public bool isStoped()
+    {
+        return m_Rigidbody2D.velocity == Vector2.zero;
+    }
+
 
 
     //Reset Jump values, function called on Landing
