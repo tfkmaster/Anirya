@@ -33,6 +33,7 @@ public class CharacterMovement : MonoBehaviour
     private bool jumpValidation = false;            // Determines if the player is allowed to jump in his current situation
     public bool Inactive = false;                  // Determines if the player is in his invincibility frames or not
     public bool Interacting = false;               // Determines if the player is interacting with some entity
+    public bool canMove = true;
 
     // Awake is called once before Start
     void Awake()
@@ -79,7 +80,7 @@ public class CharacterMovement : MonoBehaviour
     void FixedUpdate()
     {
         //Move the character
-        if (!player.isDead && !Inactive && !Interacting)
+        if (!player.isDead && !Inactive && !Interacting && canMove)
         {
             cc2d.Move(horizontalMove, onAir);
         }
@@ -156,14 +157,14 @@ public class CharacterMovement : MonoBehaviour
     //Character actions
     void Actions()
     {
-        if ( Input.GetButtonDown("Jump") && cc2d.getGrounded()) 
+        if ( Input.GetButtonDown("Jump") && cc2d.getGrounded() && canMove) 
         {
             GetComponent<Rigidbody2D>().AddForce(new Vector2(0, 10), ForceMode2D.Impulse);
         }
 
-        if ((Input.GetButtonDown("Jump") && !onAir && jumpValidation) 
-            || (Input.GetButton("Jump") && cc2d.getGrounded() && jumpValidation) 
-            || (Input.GetButton("Jump") && !onAir && jumpValidation))
+        if ((Input.GetButtonDown("Jump") && !onAir && jumpValidation && canMove) 
+            || (Input.GetButton("Jump") && cc2d.getGrounded() && jumpValidation && canMove) 
+            || (Input.GetButton("Jump") && !onAir && jumpValidation && canMove))
         {
             onAir = true;
             animator.SetBool("jump", true);

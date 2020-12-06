@@ -34,6 +34,7 @@ public class CombatManager : MonoBehaviour
         {
             if (canReceiveInput)
             {
+                CM.canMove = false;
                 canReceiveInput = false;
                 inputReceived = true;
                 CC2d.getRigidbody().AddForce(new Vector2(CC2d.facingDirection() * AttackMoveForce, 0), ForceMode2D.Impulse);
