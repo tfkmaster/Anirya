@@ -116,8 +116,15 @@ public class GameManager : MonoBehaviour
     {
         if (isPaused)
         {
-            UIManagerInstance.GetComponent<UIManager>().DisplayPauseMenu(false);
-            ResumeGame();
+            if (UIManagerInstance.GetComponent<UIManager>().controlScreenOn)
+            {
+                UIManagerInstance.GetComponent<UIManager>().back_to_pause_menu_button_action();
+            }
+            else
+            {
+                UIManagerInstance.GetComponent<UIManager>().DisplayPauseMenu(false);
+                ResumeGame();
+            }
         }
         else 
         {

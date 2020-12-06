@@ -14,6 +14,8 @@ public class UIManager : MonoBehaviour
     public GameObject PlayerStatsCanvas;
     private GameObject PlayerStatsCanvasInstance;
 
+    public bool controlScreenOn = false;
+
     [SerializeField]
     public GameManager GM;
 
@@ -69,12 +71,14 @@ public class UIManager : MonoBehaviour
 
     public void show_controls_button_action()
     {
+        controlScreenOn = true;
         PauseCanvasInstance.SetActive(false);
         ControlsCanvasInstance.SetActive(true);
     }
 
-    void back_to_pause_menu_button_action()
+    public void back_to_pause_menu_button_action()
     {
+        controlScreenOn = false;
         ControlsCanvasInstance.SetActive(false);
         PauseCanvasInstance.SetActive(true);
     }
