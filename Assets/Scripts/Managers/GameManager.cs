@@ -11,11 +11,12 @@ public class GameManager : MonoBehaviour
     private GameObject LastCheckpoint;
     public GameObject Player;
     private GameObject myPlayer;
+    
     private bool isPaused = default;
+
     //UI Management
     public GameObject UIManager;
     private GameObject UIManagerInstance;
-    // Start is called before the first frame update
 
     void Awake()
     {
@@ -24,7 +25,9 @@ public class GameManager : MonoBehaviour
             GMInstance = this;
             DontDestroyOnLoad(GMInstance);
             myPlayer = Instantiate(Player,this.transform.position,new Quaternion(0,0,0,0));
+
             UIManagerInstance = Instantiate(UIManager, this.transform.position, new Quaternion(0, 0, 0, 0));
+
             //Do put in a scene Manager
             GameObject.FindGameObjectWithTag("FollowCamera").GetComponent<Cinemachine.CinemachineVirtualCamera>().m_Follow = myPlayer.transform;
             DontDestroyOnLoad(myPlayer);
@@ -122,5 +125,15 @@ public class GameManager : MonoBehaviour
             UIManagerInstance.GetComponent<UIManager>().DisplayPauseMenu(true);
             PauseGame();
         }
+    }
+
+    //exit the game
+    public void ExitGame()
+    {
+        #if UNITY_EDITOR
+            UnityEditor.EditorApplication.isPlaying = false;
+        #else
+            Application.Quit();
+        #endif
     }
 }
