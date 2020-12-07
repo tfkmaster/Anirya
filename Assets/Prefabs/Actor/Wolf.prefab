@@ -41,11 +41,11 @@ GameObject:
   - component: {fileID: 7995976945115508883}
   - component: {fileID: 7995976945115508882}
   - component: {fileID: 7995976945115508881}
-  - component: {fileID: 7995976945115508880}
   - component: {fileID: 7995976945115508892}
   - component: {fileID: 7995976945115508893}
   - component: {fileID: 7995976945115508894}
   - component: {fileID: 7321668295004518316}
+  - component: {fileID: 9071079031646068552}
   m_Layer: 0
   m_Name: Wolf
   m_TagString: Ennemy
@@ -139,32 +139,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!61 &7995976945115508880
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7995976945115508887}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
-    newSize: {x: 1, y: 1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1}
-  m_EdgeRadius: 0
 --- !u!95 &7995976945115508892
 Animator:
   serializedVersion: 3
@@ -200,7 +174,7 @@ MonoBehaviour:
   healthPoints: 0
   damageDone: 0
   attackPoint: {fileID: 8443321721572229100}
-  attackRange: 1
+  attackRange: 0.5
   timeRed: 0.5
   player: {fileID: 0}
   WanderSpeed: 3
@@ -220,6 +194,7 @@ MonoBehaviour:
   nearPlayerStop: 1
   MovementZone: {fileID: 0}
   player: {fileID: 0}
+  playerOnSight: 0
   WanderNodes:
   - {fileID: 0}
   - {fileID: 0}
@@ -244,3 +219,19 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 9
+--- !u!70 &9071079031646068552
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7995976945115508887}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: -1.7}
+  m_Size: {x: 30, y: 14}
+  m_Direction: 1

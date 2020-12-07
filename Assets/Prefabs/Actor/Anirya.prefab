@@ -3381,8 +3381,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 762e06dd5687fb641b78898709bbb9b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealthPoints: 30
-  healthPoints: 30
+  maxHealthPoints: 3
+  healthPoints: 3
   damageDone: 10
   attackPoint: {fileID: 8494506563806587602}
   attackRange: 0.5
@@ -3392,6 +3392,8 @@ MonoBehaviour:
   isDead: 0
   PlayerBox: {fileID: 0}
   isOnOneWayPlatform: 0
+  maxHeat: 100
+  actualHeat: 0
 --- !u!50 &4841952934814992695
 Rigidbody2D:
   serializedVersion: 4

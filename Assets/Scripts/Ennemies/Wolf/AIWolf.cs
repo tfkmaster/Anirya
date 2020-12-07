@@ -14,8 +14,9 @@ public class AIWolf : EnnemyMovementController
     public float Heuristique = 1;
 
     // Start is called before the first frame update
-    void Start()
+    public override void Start()
     {
+        base.Start();
         for (int i = 0; i < WanderNodes.Count; i++)
         {
             accessibleNodes.Add(WanderNodes[i]);

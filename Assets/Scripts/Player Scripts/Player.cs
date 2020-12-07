@@ -18,6 +18,9 @@ public class Player : Actor
     public Collider2D PlayerBox;
     public bool isOnOneWayPlatform = false;
 
+    public float maxHeat;
+    public float actualHeat;
+
     void Awake()
     {
         GM = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
@@ -28,6 +31,7 @@ public class Player : Actor
     void Start()
     {
         //transform.position = GM.LastCheckpoint.GetComponent<CheckpointController>().MyPosition.position;
+        SendPlayerStatsToGameManager();
         InactiveCounter = InactiveTime;
         animator = GetComponent<Animator>();
     }
@@ -104,6 +108,7 @@ public class Player : Actor
                 GetComponent<Rigidbody2D>().AddForce(knockBackForce, ForceMode2D.Impulse);
             }
             base.OnHit(hitter, damages);
+            SendPlayerStatsToGameManager();
         }
     }
 
@@ -126,5 +131,10 @@ public class Player : Actor
         Debug.Log("reborn");
         isDead = false;
         healthPoints = maxHealthPoints;
+    }
+
+    public void SendPlayerStatsToGameManager()
+    {
+        GM.GetComponent<GameManager>().SendPlayerStatsToUIManager(maxHealthPoints, healthPoints, maxHeat, actualHeat);
     }
 }
