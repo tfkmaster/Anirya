@@ -3319,6 +3319,8 @@ MonoBehaviour:
   m_CeilingCheck: {fileID: 6283638884093184441}
   m_GroundCheck: {fileID: 8840987136483673903}
   m_Center: {fileID: 0}
+  leftHandFire: {fileID: 9081678978282844405}
+  rightHandFire: {fileID: 4089393578313544375}
   OnLandEvent:
     m_PersistentCalls:
       m_Calls:
@@ -3363,6 +3365,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c2770ddbfae5e4449afc5ea48f9fe0c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 0}
   acceleration: 1200
   coyoteTimeAfterLeavingGround: 0.1
   coyoteTimeBeforeReachingGround: 0.1
@@ -3388,12 +3391,14 @@ MonoBehaviour:
   attackRange: 0.5
   timeRed: 0.5
   knockBackForce: {x: 5, y: 5}
+  GM: {fileID: 0}
   InactiveTime: 1
   isDead: 0
   PlayerBox: {fileID: 0}
   isOnOneWayPlatform: 0
   maxHeat: 100
   actualHeat: 0
+  AddHeat: 15
 --- !u!50 &4841952934814992695
 Rigidbody2D:
   serializedVersion: 4
@@ -4529,6 +4534,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: CFX4 Fire (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 100004, guid: 1c20c7996d683754db1f0f62a361952c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: 1c20c7996d683754db1f0f62a361952c, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.4613
@@ -4599,6 +4608,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1c20c7996d683754db1f0f62a361952c, type: 3}
+--- !u!1 &4089393578313544375 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 100004, guid: 1c20c7996d683754db1f0f62a361952c,
+    type: 3}
+  m_PrefabInstance: {fileID: 4089393578313643027}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &4089393578313510551 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400004, guid: 1c20c7996d683754db1f0f62a361952c,
@@ -4615,6 +4630,10 @@ PrefabInstance:
     - target: {fileID: 100004, guid: 1c20c7996d683754db1f0f62a361952c, type: 3}
       propertyPath: m_Name
       value: CFX4 Fire
+      objectReference: {fileID: 0}
+    - target: {fileID: 100004, guid: 1c20c7996d683754db1f0f62a361952c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: 1c20c7996d683754db1f0f62a361952c, type: 3}
       propertyPath: m_LocalPosition.x
@@ -4689,6 +4708,12 @@ PrefabInstance:
 --- !u!4 &9081678978282548437 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400004, guid: 1c20c7996d683754db1f0f62a361952c,
+    type: 3}
+  m_PrefabInstance: {fileID: 9081678978282944081}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &9081678978282844405 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 100004, guid: 1c20c7996d683754db1f0f62a361952c,
     type: 3}
   m_PrefabInstance: {fileID: 9081678978282944081}
   m_PrefabAsset: {fileID: 0}

@@ -62,7 +62,7 @@ public class CombatManager : MonoBehaviour
 
     public void AddHeat()
     {
-        if(GetComponent<Player>().actualHeat + GetComponent<Player>().AddHeat <= 100)
+        if (GetComponent<Player>().actualHeat + GetComponent<Player>().AddHeat <= 100)
         {
             GetComponent<Player>().actualHeat += GetComponent<Player>().AddHeat;
         }
@@ -70,6 +70,6 @@ public class CombatManager : MonoBehaviour
         {
             GetComponent<Player>().actualHeat = 100;
         }
-        
+        GetComponent<Player>().SendPlayerStatsToGameManager();
     }
 }

@@ -6520,7 +6520,14 @@ AnimationClip:
   m_HasMotionFloatCurves: 0
   m_Events:
   - time: 0
-    functionName: 
+    functionName: DisableLeftFlame
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 0
+    functionName: DisableRightFlame
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0

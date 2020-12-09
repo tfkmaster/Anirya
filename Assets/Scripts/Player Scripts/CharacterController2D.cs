@@ -36,6 +36,9 @@ public class CharacterController2D : MonoBehaviour
     [SerializeField] private Transform m_CeilingCheck;                          // A position marking where to check for ceilings
     [SerializeField] private Transform m_GroundCheck;                          // A position marking where to check for ground
     [SerializeField] private Transform m_Center;                               // Center of the player
+    [SerializeField] private GameObject leftHandFire;
+    [SerializeField] private GameObject rightHandFire;
+
 
     private Rigidbody2D m_Rigidbody2D;
     const float k_CeilingRadius = .2f; // Radius of the overlap circle to determine if the player can stand up
@@ -247,5 +250,23 @@ public class CharacterController2D : MonoBehaviour
         Gizmos.DrawWireSphere(m_CeilingCheck.position, collisionRadius);
         /*Gizmos.DrawWireSphere((Vector2)transform.position + rightOffset, collisionRadius);
         Gizmos.DrawWireSphere((Vector2)transform.position + leftOffset, collisionRadius);*/
+    }
+
+    public void EnableLeftFlame()
+    {
+        leftHandFire.SetActive(true);
+    }
+    public void EnableRightFlame()
+    {
+        rightHandFire.SetActive(true);
+    }
+    public void DisableLeftFlame()
+    {
+        leftHandFire.SetActive(false);
+    }
+
+    public void DisableRightFlame()
+    {
+        rightHandFire.SetActive(false);
     }
 }
