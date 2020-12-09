@@ -14,6 +14,9 @@ public class UIManager : MonoBehaviour
     public GameObject PlayerStatsCanvas;
     private GameObject PlayerStatsCanvasInstance;
 
+    public GameObject DialogCanvas;
+    private GameObject DialogCanvasInstance;
+
     public bool controlScreenOn = false;
 
     [SerializeField]
@@ -42,6 +45,11 @@ public class UIManager : MonoBehaviour
         PlayerStatsCanvasInstance = Instantiate(PlayerStatsCanvas, this.transform.position, new Quaternion(0f, 0f, 0f, 0f));
         DontDestroyOnLoad(PlayerStatsCanvasInstance);
         PlayerStatsCanvasInstance.SetActive(true);
+
+        //Canvas where dialogs are displayed
+        DialogCanvasInstance = Instantiate(DialogCanvas, this.transform.position, new Quaternion(0f, 0f, 0f, 0f));
+        DontDestroyOnLoad(DialogCanvasInstance);
+        DialogCanvasInstance.SetActive(false);
     }
 
 
