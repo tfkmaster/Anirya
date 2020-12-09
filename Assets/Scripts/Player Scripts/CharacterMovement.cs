@@ -7,7 +7,7 @@ public class CharacterMovement : MonoBehaviour
     //Linked components
     private CharacterController2D cc2d;             // The Movement controller attached on player
     private Animator animator;                      // The animator attached on the player
-    private Player player;                      // The animator attached on the player
+    public Player player;                      // The animator attached on the player
 
     private int direction = 0;                      // Value indicating whether the player is moving to the right, to the left or is just static
     [SerializeField] private float acceleration;    // Controller movement accelleration (how fast the character will reach the maximum speed
@@ -80,7 +80,7 @@ public class CharacterMovement : MonoBehaviour
     void FixedUpdate()
     {
         //Move the character
-        if (!player.isDead && !Inactive && !Interacting && canMove)
+        if (!player.isDead && !Inactive && !Interacting && canMove && !player.GM.isPaused)
         {
             cc2d.Move(horizontalMove, onAir);
         }

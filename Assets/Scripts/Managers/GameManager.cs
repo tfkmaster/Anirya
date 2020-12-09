@@ -12,7 +12,7 @@ public class GameManager : MonoBehaviour
     public GameObject Player;
     private GameObject myPlayer;
     
-    private bool isPaused = default;
+    public bool isPaused = default;
 
     //UI Management
     public GameObject UIManager;

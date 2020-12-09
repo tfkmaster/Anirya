@@ -6,7 +6,7 @@ public class Player : Actor
 {
     [SerializeField] private Vector2 knockBackForce = new Vector2(1, 1);     // Determines how much the player get's knocked back on being hit
     private Animator animator;                                              // The animator attached on the player
-    private GameManager GM;
+    public GameManager GM;
 
     [SerializeField] private float InactiveTime = 1f;                       //Determines the duration during which the player can't control the character
     private float InactiveCounter;                                          //Counts the time during which the character is inactive

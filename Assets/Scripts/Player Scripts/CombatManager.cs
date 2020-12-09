@@ -30,7 +30,7 @@ public class CombatManager : MonoBehaviour
     //Checks if the player has pushed attack button
     public void Attack()
     {
-        if (Input.GetButtonDown("Fire1") && !CM.isJumping())
+        if (Input.GetButtonDown("Fire1") && !CM.isJumping() && !CM.player.GM.isPaused)
         {
             if (canReceiveInput)
             {
