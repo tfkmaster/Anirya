@@ -18,8 +18,9 @@ public class Player : Actor
     public Collider2D PlayerBox;
     public bool isOnOneWayPlatform = false;
 
-    public float maxHeat;
+    public float maxHeat = 100;
     public float actualHeat;
+    public float AddHeat = 15;
 
     void Awake()
     {

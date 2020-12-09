@@ -54,8 +54,22 @@ public class CombatManager : MonoBehaviour
         {
             if (!actor.isTrigger && (actor.CompareTag("Ennemy") || actor.CompareTag("Destructible Wall")))
             {
+                AddHeat();
                 actor.GetComponent<Actor>().OnHit(gameObject, GetComponent<Player>().GetDamageDone());
             }
         }
+    }
+
+    public void AddHeat()
+    {
+        if(GetComponent<Player>().actualHeat + GetComponent<Player>().AddHeat <= 100)
+        {
+            GetComponent<Player>().actualHeat += GetComponent<Player>().AddHeat;
+        }
+        else
+        {
+            GetComponent<Player>().actualHeat = 100;
+        }
+        
     }
 }
