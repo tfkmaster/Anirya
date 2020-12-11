@@ -38,6 +38,7 @@ public class Player : Actor
         animator = GetComponentInChildren<Animator>();
     }
 
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Interactible"))
@@ -88,7 +89,7 @@ public class Player : Actor
         }
 
         //Resume or Pause the game
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown("joystick button 7"))
         {
             GM.SetPause();
         }
