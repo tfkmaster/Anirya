@@ -5,9 +5,9 @@ using UnityEngine;
 public class Actor : MonoBehaviour
 {
     //Stats
-    [SerializeField] protected int maxHealthPoints;
-    [SerializeField] protected int healthPoints;
-    [SerializeField] protected int damageDone;
+    [SerializeField] public int maxHealthPoints;
+    [SerializeField] public int healthPoints;
+    [SerializeField] public int damageDone;
     
     //Attack
     public Transform attackPoint;

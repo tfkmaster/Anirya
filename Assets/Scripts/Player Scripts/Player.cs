@@ -21,6 +21,7 @@ public class Player : Actor
     public float maxHeat = 100;
     public float actualHeat;
     public float AddHeat = 15;
+    public float RegenCost = 40;
 
     void Awake()
     {
@@ -34,7 +35,7 @@ public class Player : Actor
         //transform.position = GM.LastCheckpoint.GetComponent<CheckpointController>().MyPosition.position;
         SendPlayerStatsToGameManager();
         InactiveCounter = InactiveTime;
-        animator = GetComponent<Animator>();
+        animator = GetComponentInChildren<Animator>();
     }
 
 

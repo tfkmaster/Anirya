@@ -7,8 +7,14 @@ public class CombatManager : MonoBehaviour
 {
     public bool canReceiveInput = true;                 // For determining if the character is able to receive an input 
     public bool inputReceived;                          // Checks if an attackInput has been pressed down
+    
+    private bool regenButtonHeldDown = false;
+    public float HoldRegenTime = 1.5f;
+    private float holdRegenCounter = 0;
+
     private CharacterMovement CM;                       
     private CharacterController2D CC2d;
+    private Player player;
     [SerializeField] private float AttackMoveForce;
 
 
@@ -19,12 +25,14 @@ public class CombatManager : MonoBehaviour
         CMInstance = this;
         CM = GetComponent<CharacterMovement>();
         CC2d = GetComponent<CharacterController2D>();
+        player = GetComponent<Player>();
     }
 
     // Update is called once per frame
     void Update()
     {
         Attack();
+        Regen();
     }
 
     //Checks if the player has pushed attack button
@@ -34,6 +42,7 @@ public class CombatManager : MonoBehaviour
         {
             if (canReceiveInput)
             {
+                GetComponent<Rigidbody2D>().velocity = new Vector2(0, GetComponent<Rigidbody2D>().velocity.y);
                 CM.canMove = false;
                 canReceiveInput = false;
                 inputReceived = true;
@@ -44,6 +53,39 @@ public class CombatManager : MonoBehaviour
                 return;
             }
         }
+    }
+
+    public void Regen()
+    {
+        if (Input.GetButtonDown("Fire2") && player.actualHeat >= player.RegenCost)
+        {
+            holdRegenCounter = 0;
+            regenButtonHeldDown = true;
+            CM.canMove = false;
+            canReceiveInput = false;
+            GetComponentInChildren<Animator>().SetTrigger("startRegen");
+        }
+        if (Input.GetButtonUp("Fire2"))
+        {
+            regenButtonHeldDown = false;
+            CM.canMove = true;
+            canReceiveInput = true;
+            GetComponentInChildren<Animator>().SetTrigger("stopRegen");
+        }
+
+        if (regenButtonHeldDown && player.healthPoints != player.maxHealthPoints)
+        {
+            holdRegenCounter += Time.deltaTime;
+            player.actualHeat -= Time.deltaTime * player.RegenCost / HoldRegenTime;
+            if(holdRegenCounter >= HoldRegenTime)
+            {
+                regenButtonHeldDown = false;
+                player.healthPoints += 1;
+                GetComponentInChildren<Animator>().SetTrigger("stopRegen");
+            }
+            player.SendPlayerStatsToGameManager();
+        }
+
     }
 
     //Function called on the animation to determines the ennemies who'll get hit by the attack
