@@ -39,7 +39,7 @@ public class CharacterMovement : MonoBehaviour
     void Awake()
     {
         cc2d = GetComponent<CharacterController2D>();
-        animator = GetComponent<Animator>();
+        animator = GetComponentInChildren<Animator>();
         player = GetComponent<Player>();
     }
 
