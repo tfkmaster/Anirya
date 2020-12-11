@@ -22,18 +22,28 @@ public class UIManager : MonoBehaviour
     [SerializeField]
     public GameManager GM;
 
+    private bool reset_y_axis = true;
+
+    public Color[] ButtonColors = new Color[]
+    {
+        new Color32(201, 233, 235, 255), //blue
+        new Color32(255, 255, 255, 255), //white
+        new Color32(0, 0, 0, 255)        //black
+    };
+
     void Awake()
     {
         DontDestroyOnLoad(gameObject);
         GM = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
 
         PauseCanvasInstance = Instantiate(PauseCanvas, this.transform.position, new Quaternion(0f, 0f, 0f, 0f));
+        PauseCanvasInstance.GetComponent<PauseCanvas>().UIManager = gameObject.GetComponent<UIManager>();
         PauseCanvasInstance.SetActive(false);
 
         //Adding Event Listeners to Pause Canvas buttons 
-        PauseCanvasInstance.GetComponent<PauseCanvas>().resume.onClick.AddListener(resume_button_action);
-        PauseCanvasInstance.GetComponent<PauseCanvas>().exit.onClick.AddListener(exit_game_button_action);
-        PauseCanvasInstance.GetComponent<PauseCanvas>().controls.onClick.AddListener(show_controls_button_action);
+        PauseCanvasInstance.GetComponent<PauseCanvas>().Buttons[0].GetComponent<Button>().onClick.AddListener(resume_button_action);
+        PauseCanvasInstance.GetComponent<PauseCanvas>().Buttons[1].GetComponent<Button>().onClick.AddListener(show_controls_button_action);
+        PauseCanvasInstance.GetComponent<PauseCanvas>().Buttons[2].GetComponent<Button>().onClick.AddListener(exit_game_button_action);
 
         //Window showing player controls
         ControlsCanvasInstance = Instantiate(ControlsCanvas, this.transform.position, new Quaternion(0f, 0f, 0f, 0f));
@@ -52,12 +62,43 @@ public class UIManager : MonoBehaviour
         DialogCanvasInstance.SetActive(false);
     }
 
+    void Update()
+    {
+        if(controlScreenOn && (Input.GetKeyDown("joystick button 2")))
+        {
+            back_to_pause_menu_button_action();
+        }
+        if (controlScreenOn && (Input.GetKeyDown("joystick button 0")))
+        {
+            ControlsCanvasInstance.transform.GetChild(3).gameObject.GetComponent<Button>().onClick.Invoke();
+        }
+
+        //UI navigation with directional pad
+        float y_axis = Input.GetAxis("Vertical");
+
+        if(y_axis < -0.2 && reset_y_axis)
+        {
+            PauseCanvasInstance.GetComponent<PauseCanvas>().SelectNextButton();
+            reset_y_axis = false;
+        }
+        else if(y_axis > 0.2 && reset_y_axis)
+        {
+            PauseCanvasInstance.GetComponent<PauseCanvas>().SelectPreviousButton();
+            reset_y_axis = false;
+        }
+        else if(y_axis >= -0.2 && y_axis <= 0.2)
+        {
+            reset_y_axis = true;
+        }
+    }
+
 
     public void DisplayPauseMenu(bool _display)
     {
         if (_display)
         {
             PauseCanvasInstance.SetActive(true);
+            PauseCanvasInstance.GetComponent<PauseCanvas>().ResetActiveButton();
             PlayerStatsCanvasInstance.SetActive(false);
         }
         else
@@ -80,6 +121,7 @@ public class UIManager : MonoBehaviour
     public void show_controls_button_action()
     {
         controlScreenOn = true;
+        ButtonHover(ControlsCanvasInstance.transform.GetChild(3).gameObject, true);
         PauseCanvasInstance.SetActive(false);
         ControlsCanvasInstance.SetActive(true);
     }
@@ -94,5 +136,20 @@ public class UIManager : MonoBehaviour
     public void SendPlayerStatsToPlayerStatsManager(int maxHealth, int actualHealth, float maxHeat, float actualHeat)
     {
         PlayerStatsCanvasInstance.GetComponent<PlayerStatsManager>().updateVisual(maxHealth, actualHealth, maxHeat, actualHeat);
+    }
+
+    public void ButtonHover(GameObject button, bool on_hover)
+    {
+        if (on_hover)
+        {
+            button.GetComponentInChildren<Text>().color = ButtonColors[1];
+            button.GetComponent<Image>().color = ButtonColors[0];
+        }
+        else
+        {
+            button.GetComponentInChildren<Text>().color = ButtonColors[2];
+            button.GetComponent<Image>().color = ButtonColors[1];
+        }
+        return;
     }
 }   

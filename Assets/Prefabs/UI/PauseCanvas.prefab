@@ -177,7 +177,7 @@ MonoBehaviour:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_SelectedColor: {r: 0.7882353, g: 0.9137255, b: 0.92156863, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -289,7 +289,7 @@ GameObject:
   - component: {fileID: 1822711488358062461}
   - component: {fileID: 1822711488358062434}
   - component: {fileID: 1822711488358062435}
-  - component: {fileID: 2489090123862688628}
+  - component: {fileID: 4917494347209092174}
   m_Layer: 5
   m_Name: PauseCanvas
   m_TagString: Untagged
@@ -310,6 +310,7 @@ RectTransform:
   m_Children:
   - {fileID: 1822711489434397895}
   - {fileID: 5487771273917233306}
+  - {fileID: 8384774727804392285}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -378,7 +379,7 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &2489090123862688628
+--- !u!114 &4917494347209092174
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -390,9 +391,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ff0d317a0869db4fb9931505629f2ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  resume: {fileID: 1959848146077040035}
-  controls: {fileID: 8003661491018741580}
-  exit: {fileID: 5424402641898484102}
+  Buttons:
+  - {fileID: 4297736426135228804}
+  - {fileID: 601541476315048707}
+  - {fileID: 7910261116872111402}
 --- !u!1 &1822711488518272298
 GameObject:
   m_ObjectHideFlags: 0
@@ -684,7 +686,7 @@ MonoBehaviour:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_SelectedColor: {r: 0.7882353, g: 0.9137255, b: 0.92156863, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -831,7 +833,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.0000076293945, y: -256}
+  m_AnchoredPosition: {x: 0, y: -256}
   m_SizeDelta: {x: 384.3899, y: 96.01614}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2759223822449822964
@@ -894,7 +896,7 @@ MonoBehaviour:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_SelectedColor: {r: 0.7882353, g: 0.9137255, b: 0.92156863, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -988,4 +990,79 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8091344286037483911, guid: 7b128776b60cf324397d9059e468d59d,
     type: 3}
   m_PrefabInstance: {fileID: 4351110729643546909}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &7929274335481734151
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1822711488358062432}
+    m_Modifications:
+    - target: {fileID: 1897920690505824090, guid: e383f2fd210023944a3a606c913c5d92,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -109.18939
+      objectReference: {fileID: 0}
+    - target: {fileID: 1897920690505824090, guid: e383f2fd210023944a3a606c913c5d92,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 216.62616
+      objectReference: {fileID: 0}
+    - target: {fileID: 1897920690505824090, guid: e383f2fd210023944a3a606c913c5d92,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -587.4026
+      objectReference: {fileID: 0}
+    - target: {fileID: 1897920690505824090, guid: e383f2fd210023944a3a606c913c5d92,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1897920690505824090, guid: e383f2fd210023944a3a606c913c5d92,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1897920690505824090, guid: e383f2fd210023944a3a606c913c5d92,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1897920690505824090, guid: e383f2fd210023944a3a606c913c5d92,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1897920690505824090, guid: e383f2fd210023944a3a606c913c5d92,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1897920690505824090, guid: e383f2fd210023944a3a606c913c5d92,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1897920690505824090, guid: e383f2fd210023944a3a606c913c5d92,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1897920690505824090, guid: e383f2fd210023944a3a606c913c5d92,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5528603927921018296, guid: e383f2fd210023944a3a606c913c5d92,
+        type: 3}
+      propertyPath: m_Name
+      value: UI Ornaments
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: e383f2fd210023944a3a606c913c5d92, type: 3}
+--- !u!4 &8384774727804392285 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1897920690505824090, guid: e383f2fd210023944a3a606c913c5d92,
+    type: 3}
+  m_PrefabInstance: {fileID: 7929274335481734151}
   m_PrefabAsset: {fileID: 0}
