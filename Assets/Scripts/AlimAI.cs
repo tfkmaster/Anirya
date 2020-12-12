@@ -21,31 +21,16 @@ public class AlimAI : MonoBehaviour
     }
 
     void Update()
-    {
-        if(Path.desiredVelocity.x >= 0.01f)
-        {
-            transform.localScale = new Vector3(1f, 1f, 1f);
-        }
-        else if(Path.desiredVelocity.x <= -0.01f)
-        {
-            transform.localScale = new Vector3(-1f, 1f, 1f);
-        }
+    {   
+        float x_diff = AniryaController.transform.position.x - this.transform.position.x;
 
-        //FlipWhenTargetReached();
-    }
-
-    void FlipWhenTargetReached()
-    {
-        if (Path.reachedDestination)
+        if(x_diff >= 0f)
         {
-            if (AniryaController.facingDirection() == 1)
-            {
-                transform.localScale = new Vector3(1f, 1f, 1f);
-            }
-            else if (AniryaController.facingDirection() == -1)
-            {
-                transform.localScale = new Vector3(-1f, 1f, 1f);
-            }
+            GetComponentInChildren<SpriteRenderer>().flipX = false;
+        }
+        else if(x_diff < 0f)
+        {
+            GetComponentInChildren<SpriteRenderer>().flipX = true;
         }
     }
 }
