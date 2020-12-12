@@ -22,4 +22,9 @@ public class EnnemyScriptLinker : MonoBehaviour
     {
         GetComponentInParent<Wolf>().DealDamages();
     }
+
+    public void StartFade()
+    {
+        GetComponentInParent<Wolf>().StartFade();
+    }
 }

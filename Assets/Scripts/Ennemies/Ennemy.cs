@@ -7,6 +7,11 @@ public class Ennemy : Actor
     public GameObject player;
     public float WanderSpeed = 3;
     public float FollowSpeed = 5;
+    protected bool isDead;
+    protected bool fading;
+
+    public float disapearTime = 1f;
+    private float disapearTimer = 0;
 
     bool playerAlreadySelected = false;
 
@@ -23,7 +28,11 @@ public class Ennemy : Actor
         if (!playerAlreadySelected)
         {
             CheckAttack();
-        } 
+        }
+        if (fading)
+        {
+            AnimateFade();
+        }
     }
 
     void CheckAttack()
@@ -37,6 +46,14 @@ public class Ennemy : Actor
             {
                 GetComponentInChildren<Animator>().SetTrigger("StartAttack");
             }
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.layer == 8 && isDead)
+        {
+            Physics2D.IgnoreCollision(collision.collider, collision.otherCollider);
         }
     }
 
@@ -70,4 +87,33 @@ public class Ennemy : Actor
     {
         playerAlreadySelected = false;
     }
+
+    protected override void Death()
+    {
+        base.Death();
+        isDead = true;
+    }
+
+    protected void AnimateFade()
+    {
+            SpriteRenderer[] spr_renderers = GetComponentsInChildren<SpriteRenderer>();
+            if (disapearTimer < disapearTime)
+            {
+                disapearTimer += Time.deltaTime;
+                foreach (SpriteRenderer spr in spr_renderers)
+                {
+                    spr.color = new Color(1, 1, 1, spr.color.a - Time.deltaTime / disapearTime);
+                }
+            }
+            else
+            {
+                Destroy(gameObject);
+            }
+    }
+
+    public void StartFade()
+    {
+        fading = true;
+    }
+
 }

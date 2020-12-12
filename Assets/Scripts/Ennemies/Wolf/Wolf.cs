@@ -14,6 +14,10 @@ public class Wolf : Ennemy
     protected override void Update()
     {
         base.Update();
+        if (Input.GetKeyDown(KeyCode.K))
+        {
+            StartFight();
+        }
     }
 
     public override void OnHit(GameObject hitter, int damages)
@@ -24,8 +28,12 @@ public class Wolf : Ennemy
     protected override void Death()
     {
         base.Death();
-        Debug.Log("aa");
         GetComponentInChildren<Animator>().SetBool("dead", true);
+    }
+
+    public void StartFight()
+    {
+        GetComponentInChildren<Animator>().SetTrigger("startFight");
     }
 
 }
