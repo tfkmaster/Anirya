@@ -8,46 +8,39 @@ public class SimpleCameraSwitch : MonoBehaviour
     public CinemachineVirtualCamera SourceCam;
     public CinemachineVirtualCamera TargetCam;
 
-    private bool has_switch;
-    private bool is_allowed_to_switch;
+    public Transform Anirya = default;
+
+    [SerializeField]
+    private Transform CSTrigger = default;
 
     void Start()
     {
-        has_switch = false;
-        is_allowed_to_switch = true;
+        Anirya = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
     }
 
-    public void SwitchCamera()
+    void Update()
     {
-        if (!has_switch)
+        if(CSTrigger.position.x < Anirya.position.x && CSTrigger.GetComponent<CameraSwitchTrigger>().isActive)
         {
-            TargetCam.Priority = 11;
-            SourceCam.Priority = 10;
-            has_switch = true;
+            SwitchCamera(true);
+        }
+        else if(CSTrigger.position.x >= Anirya.position.x && CSTrigger.GetComponent<CameraSwitchTrigger>().isActive)
+        {
+            SwitchCamera(false);
+        }
+    }
+
+    void SwitchCamera(bool switch_camera)
+    {
+        if (switch_camera)
+        {
+            SourceCam.Priority = 9;
+            TargetCam.Priority = 10;
         }
         else
         {
-            SourceCam.Priority = 11;
-            TargetCam.Priority = 10;
-            has_switch = false;
-        }
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.CompareTag("Player") && is_allowed_to_switch)
-        {
-            SwitchCamera();
-            is_allowed_to_switch = false;
-        }
-    }
-
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (!is_allowed_to_switch)
-        {
-            //if(has_switch && collision.gameObject.GetComponent<Transform>().position.x >=)
-            is_allowed_to_switch = true;
+            TargetCam.Priority = 9;
+            SourceCam.Priority = 10;
         }
     }
 }
