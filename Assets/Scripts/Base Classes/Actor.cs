@@ -8,7 +8,7 @@ public class Actor : MonoBehaviour
     [SerializeField] public int maxHealthPoints;
     [SerializeField] public int healthPoints;
     [SerializeField] public int damageDone;
-    
+
     //Attack
     public Transform attackPoint;
     public float attackRange = 0.5f;
@@ -21,7 +21,7 @@ public class Actor : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -35,7 +35,11 @@ public class Actor : MonoBehaviour
         {
             gotHit = false;
             timeRedCounter = 0;
-            GetComponent<SpriteRenderer>().color = new Color(1, 1, 1);
+            SpriteRenderer[] spr_renderers = GetComponentsInChildren<SpriteRenderer>();
+            foreach (SpriteRenderer spr in spr_renderers)
+            {
+                spr.color = new Color(1, 1, 1);
+            }
         }
     }
 
@@ -76,13 +80,14 @@ public class Actor : MonoBehaviour
     //Displays a visual feedback on the current Actor
     protected virtual void DamageFeedback()
     {
-        SpriteRenderer spr_renderer = GetComponent<SpriteRenderer>();
-        if (spr_renderer)
+        SpriteRenderer[] spr_renderers = GetComponentsInChildren<SpriteRenderer>();
+        foreach (SpriteRenderer spr in spr_renderers)
         {
-            spr_renderer.color = new Color(1, 0, 0);
+            spr.color = new Color(1, 0, 0);
             timeRedCounter = 0;
-            gotHit = true;
+            
         }
+        gotHit = true;
     }
 
     public int GetDamageDone()

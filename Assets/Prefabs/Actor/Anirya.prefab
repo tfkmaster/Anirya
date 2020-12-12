@@ -3438,7 +3438,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealthPoints: 3
   healthPoints: 3
-  damageDone: 10
+  damageDone: 1
   attackPoint: {fileID: 8494506563806587602}
   attackRange: 0.5
   timeRed: 0.5
@@ -3451,6 +3451,7 @@ MonoBehaviour:
   maxHeat: 100
   actualHeat: 0
   AddHeat: 15
+  RegenCost: 40
 --- !u!50 &4841952934814992695
 Rigidbody2D:
   serializedVersion: 4
@@ -3528,6 +3529,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canReceiveInput: 1
   inputReceived: 0
+  HoldRegenTime: 1.5
   AttackMoveForce: 0
 --- !u!1 &7537073916549489944
 GameObject:

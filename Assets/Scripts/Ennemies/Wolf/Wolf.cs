@@ -21,4 +21,11 @@ public class Wolf : Ennemy
         base.OnHit(hitter, damages);
     }
 
+    protected override void Death()
+    {
+        base.Death();
+        Debug.Log("aa");
+        GetComponentInChildren<Animator>().SetBool("dead", true);
+    }
+
 }
