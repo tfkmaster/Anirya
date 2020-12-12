@@ -34,9 +34,9 @@ public class EnnemyMovementController : MonoBehaviour
             // ... flip the ennemy.
             Flip();
         }
-        if (playerOnSight && player.GetComponent<Collider2D>().IsTouching(MovementZone) && GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("Wander"))
+        if (playerOnSight && player.GetComponent<Collider2D>().IsTouching(MovementZone) && GetComponentInChildren<Animator>().GetCurrentAnimatorStateInfo(0).IsName("Wander"))
         {
-            GetComponent<Animator>().SetTrigger("StartFollowing");
+            GetComponentInChildren<Animator>().SetTrigger("StartFollowing");
         }
     }
 
@@ -52,7 +52,7 @@ public class EnnemyMovementController : MonoBehaviour
             playerOnSight = true;
             if (player.GetComponent<Collider2D>().IsTouching(MovementZone))
             {
-                GetComponent<Animator>().SetTrigger("StartFollowing");
+                GetComponentInChildren<Animator>().SetTrigger("StartFollowing");
             }
         }
 
@@ -70,7 +70,7 @@ public class EnnemyMovementController : MonoBehaviour
     {
         if(col == MovementZone)
         {
-            GetComponent<Animator>().SetTrigger("StartWandering");
+            GetComponentInChildren<Animator>().SetTrigger("StartWandering");
         }
         if (col.gameObject.CompareTag("Player"))
         {

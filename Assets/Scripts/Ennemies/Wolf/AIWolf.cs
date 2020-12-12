@@ -11,6 +11,8 @@ public class AIWolf : EnnemyMovementController
     public GameObject StartNode;
     public GameObject ActualNode;
 
+    public GameObject parent;
+
     public float Heuristique = 1;
 
     // Start is called before the first frame update
