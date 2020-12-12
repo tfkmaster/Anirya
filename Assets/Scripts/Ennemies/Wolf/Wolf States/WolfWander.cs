@@ -12,12 +12,10 @@ public class WolfWander : StateMachineBehaviour
     //OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        wolf = animator.gameObject.GetComponent<Wolf>();
-        aiWolf = animator.gameObject.GetComponent<AIWolf>();
-        rb2dWolf = animator.gameObject.GetComponent<Rigidbody2D>();
+        wolf = animator.gameObject.GetComponentInParent<Wolf>();
+        aiWolf = animator.gameObject.GetComponentInParent<AIWolf>();
+        rb2dWolf = animator.gameObject.GetComponentInParent<Rigidbody2D>();
         aiWolf.SelectANode();
-
-        animator.gameObject.GetComponent<SpriteRenderer>().color = new Color(255, 255, 255);
     }
 
     //OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
@@ -30,7 +28,7 @@ public class WolfWander : StateMachineBehaviour
             {
                 rb2dWolf.velocity = new Vector2(-wolf.WanderSpeed, rb2dWolf.velocity.y);
             }
-            else
+            else if(animator.transform.position.x < aiWolf.DestinationNode.transform.position.x)
             {
                 rb2dWolf.velocity = new Vector2(+wolf.WanderSpeed, rb2dWolf.velocity.y);
             }

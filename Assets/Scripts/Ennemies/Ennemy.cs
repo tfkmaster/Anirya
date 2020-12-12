@@ -35,7 +35,7 @@ public class Ennemy : Actor
         {
             if (actor.CompareTag("Player") && !playerAlreadySelected)
             {
-                GetComponent<Animator>().SetTrigger("StartAttack");
+                GetComponentInChildren<Animator>().SetTrigger("StartAttack");
             }
         }
     }
