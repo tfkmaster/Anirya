@@ -4,12 +4,18 @@ using UnityEngine;
 
 public class Stalactite : NonHittableActor
 {
+    void Start()
+    {
+        //ignore collision on layer Ground
+        Physics.IgnoreLayerCollision(9, 9);
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.GetComponent<Player>())
         {
-            gameObject.GetComponent<SpriteRenderer>().color = Color.red;
             gameObject.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
+            gameObject.GetComponent<Rigidbody2D>().gravityScale = 3f;
         }
     }
 
@@ -22,6 +28,7 @@ public class Stalactite : NonHittableActor
         }
         else
         {
+            Debug.LogError(collision.gameObject.name);
             Destroy(gameObject);
         }
     }
