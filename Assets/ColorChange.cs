@@ -31,7 +31,6 @@ public class ColorChange : MonoBehaviour
     {
             //Get distance between those two Objects
             float distanceApart = getSqrDistance(GetComponentInParent<Transform>().position, endPoint.position);
-            UnityEngine.Debug.Log(getSqrDistance(GetComponentInParent<Transform>().position, endPoint.position));
 
             //Convert 0 and 200 distance range to 0f and 1f range
             float lerp = mapValue(distanceApart, 0, MAX_DISTANCE, 0f, 1f);

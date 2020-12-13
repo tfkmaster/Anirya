@@ -11,6 +11,9 @@ public class GameManager : MonoBehaviour
     private GameObject LastCheckpoint;
     public GameObject Player;
     private GameObject myPlayer;
+    public float TransitionTime = 1;
+    private bool isLoading = false;
+    private Animator sceneTransitionAnimator;
     
     public bool isPaused = default;
 
@@ -41,6 +44,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         isPaused = false;
+        sceneTransitionAnimator = GetComponentInChildren<Animator>();
     }
 
     // Update is called once per frame
@@ -80,12 +84,19 @@ public class GameManager : MonoBehaviour
     //Launches the loading scene method with the according parameter
     public void LoadScene(string sceneName, string spawnPointName)
     {
-        StartCoroutine(LoadSceneAsync(sceneName, spawnPointName));
+        if (!isLoading)
+        {
+            StartCoroutine(LoadSceneAsync(sceneName, spawnPointName));
+        }
     }
 
     // Asynchronous Scene loading, so that methods get executed after the entire scene is loaded
     private IEnumerator LoadSceneAsync(string sceneName, string spawnPointName)
     {
+        isLoading = true;
+        sceneTransitionAnimator.SetBool("end", false);
+        sceneTransitionAnimator.SetBool("start",true);
+        yield return new WaitForSeconds(TransitionTime);
         // Start loading the scene
         AsyncOperation asyncLoadLevel = SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Single);
         // Wait until the level finish loading
@@ -95,6 +106,9 @@ public class GameManager : MonoBehaviour
         yield return new WaitForEndOfFrame();
         //Move the player to the adequate spawn point
         myPlayer.transform.position = GameObject.FindGameObjectWithTag(spawnPointName).transform.position;
+        sceneTransitionAnimator.SetBool("start", false);
+        sceneTransitionAnimator.SetBool("end", true);
+        isLoading = false;
     }
 
     //pause the game
