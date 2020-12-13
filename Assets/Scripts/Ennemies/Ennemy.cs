@@ -25,6 +25,10 @@ public class Ennemy : Actor
     protected override void Update()
     {
         base.Update();
+        if(player == null)
+        {
+            player = GameObject.FindGameObjectWithTag("Player");
+        }
         if (!playerAlreadySelected)
         {
             CheckAttack();
@@ -56,7 +60,7 @@ public class Ennemy : Actor
             Physics2D.IgnoreCollision(collision.collider, collision.otherCollider);
         }
 
-        if (collision.gameObject.CompareTag("Player"))
+        else if (collision.gameObject.CompareTag("Player"))
         {
             collision.gameObject.GetComponent<Player>().OnHit(this.gameObject, damageDone);
         }
