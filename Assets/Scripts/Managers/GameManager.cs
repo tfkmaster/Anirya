@@ -46,7 +46,7 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        changeSceneHelper();
     }
 
     public void LoadCheckpoint()
@@ -152,7 +152,17 @@ public class GameManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
+            LoadScene("tuto_001", "sp_tuto001_01");
+        }
 
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            LoadScene("tuto_002", "sp_tuto002_01");
+        }
+
+        if (Input.GetKeyDown(KeyCode.Alpha4))
+        {
+            LoadScene("tuto_004", "sp_tuto004_01");
         }
     }
 }
