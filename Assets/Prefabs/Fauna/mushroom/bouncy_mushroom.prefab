@@ -175,6 +175,7 @@ GameObject:
   - component: {fileID: 373596773201136665}
   - component: {fileID: 1516464364561964690}
   - component: {fileID: 2290244658302527070}
+  - component: {fileID: 687917957708401177}
   m_Layer: 0
   m_Name: bouncy_mushroom
   m_TagString: Untagged
@@ -191,7 +192,7 @@ Transform:
   m_GameObject: {fileID: 2218316283520678465}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.82630676, y: -0.3158878, z: -0.11925675}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1}
   m_Children:
   - {fileID: 5624736071033691174}
   - {fileID: 6517996516691576276}
@@ -236,6 +237,44 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bouncy_amount: 26
+--- !u!60 &687917957708401177
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2218316283520678465}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: 0.32305652, y: 1.9809353}
+      - {x: -0.17802858, y: 1.7515689}
+      - {x: -0.42519164, y: 1.3664539}
+      - {x: -0.41426128, y: 0.987556}
+      - {x: -0.3675246, y: 0.87970424}
+      - {x: -0.052864507, y: 0.80857724}
+      - {x: 0.45821083, y: 0.9143808}
+      - {x: 0.8053096, y: 0.9909327}
+      - {x: 1.3136668, y: 1.1694725}
+      - {x: 1.4962459, y: 1.4603201}
+      - {x: 1.372403, y: 1.6608386}
+      - {x: 1.1896408, y: 1.883866}
+      - {x: 0.72578335, y: 2.0076368}
 --- !u!1 &2283560001664860485
 GameObject:
   m_ObjectHideFlags: 0
