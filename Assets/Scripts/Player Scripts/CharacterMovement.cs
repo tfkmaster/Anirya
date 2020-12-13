@@ -105,12 +105,10 @@ public class CharacterMovement : MonoBehaviour
         if (Input.GetKeyUp(KeyCode.LeftArrow) && !Input.GetKey(KeyCode.RightArrow) && !Inactive)
         {
             direction = 0;
-            //cc2d.stopCharacter();
         }
         if (Input.GetKeyUp(KeyCode.RightArrow) && !Input.GetKey(KeyCode.LeftArrow) && !Inactive)
         {
             direction = 0;
-            //cc2d.stopCharacter();
         }
         if (!Input.GetKey(KeyCode.RightArrow) && !Input.GetKey(KeyCode.LeftArrow))
         {
@@ -136,11 +134,6 @@ public class CharacterMovement : MonoBehaviour
     {
         controllerHorizontalValue = Input.GetAxisRaw("Horizontal");
 
-        if (controllerHorizontalValue < 0.3f && lastValue >= 0.3f && !Inactive
-            || controllerHorizontalValue > -0.3f && lastValue <= -0.3f && !Inactive)
-        {
-            //cc2d.stopCharacter();
-        }
         if(controllerHorizontalValue >= 0.3f)
         {
             horizontalMove = 1 * acceleration;

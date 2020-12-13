@@ -29,6 +29,8 @@ public class ColorChange : MonoBehaviour
 
     void Update()
     {
+        if(renderers.Length != 0)
+        {
             //Get distance between those two Objects
             float distanceApart = getSqrDistance(GetComponentInParent<Transform>().position, endPoint.position);
 
@@ -41,6 +43,7 @@ public class ColorChange : MonoBehaviour
                 Color lerpColor = Color.Lerp(colChan.ColorToReach, colChan.baseColor, lerp);
                 colChan.spr.color = lerpColor;
             }
+        }    
     }
 
     public float getSqrDistance(Vector2 v1, Vector2 v2)
