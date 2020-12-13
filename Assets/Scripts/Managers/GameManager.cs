@@ -147,4 +147,12 @@ public class GameManager : MonoBehaviour
     {
         UIManagerInstance.GetComponent<UIManager>().SendPlayerStatsToPlayerStatsManager(maxHealth, actualHealth, maxHeat, actualHeat);
     }
+
+    void changeSceneHelper()
+    {
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+
+        }
+    }
 }
