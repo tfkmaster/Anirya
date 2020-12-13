@@ -131,10 +131,9 @@ public class CharacterController2D : MonoBehaviour
         if (!GetComponent<CharacterMovement>().Inactive)
         {
             //only control the player if grounded or airControl is turned on
-            if (m_Grounded || m_AirControl)
+            if (m_Grounded || m_AirControl && !GetComponent<CharacterMovement>().Inactive)
             {
                 m_Rigidbody2D.velocity = new Vector2(direction * accelerationX / 10, m_Rigidbody2D.velocity.y);
-
                 // If the input is moving the player right and the player is facing left...
                 if (direction > 0 && !m_FacingRight)
                 {

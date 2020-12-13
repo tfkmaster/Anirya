@@ -3441,10 +3441,10 @@ MonoBehaviour:
   damageDone: 1
   attackPoint: {fileID: 8494506563806587602}
   attackRange: 0.5
-  timeRed: 0.5
-  knockBackForce: {x: 5, y: 5}
+  timeRed: 0.2
+  knockBackForce: {x: 10, y: 5}
   GM: {fileID: 0}
-  InactiveTime: 1
+  InactiveTime: 0.5
   isDead: 0
   PlayerBox: {fileID: 0}
   isOnOneWayPlatform: 0
@@ -3486,7 +3486,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.89999986, y: 11.671184}
+  m_Offset: {x: 0.89999986, y: 10.28}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -3497,7 +3497,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 4.94, y: 13.19031}
+  m_Size: {x: 4.94, y: 14.364155}
   m_EdgeRadius: 0
 --- !u!58 &3347099521236498093
 CircleCollider2D:
@@ -3508,11 +3508,11 @@ CircleCollider2D:
   m_GameObject: {fileID: 7437983559192654034}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: d3b493a63b3730547b6dfd378850a3fe, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.89, y: 5.33}
+  m_Offset: {x: 0.89, y: 3.07}
   serializedVersion: 2
   m_Radius: 2.5
 --- !u!114 &3095632009894793201
@@ -4572,7 +4572,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 3765034617402400118}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 720.001}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 720}
 --- !u!1001 &4089393578313643027
 PrefabInstance:
   m_ObjectHideFlags: 0

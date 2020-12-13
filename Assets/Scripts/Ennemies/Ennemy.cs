@@ -55,6 +55,11 @@ public class Ennemy : Actor
         {
             Physics2D.IgnoreCollision(collision.collider, collision.otherCollider);
         }
+
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            collision.gameObject.GetComponent<Player>().OnHit(this.gameObject, damageDone);
+        }
     }
 
     public override void OnHit(GameObject hitter, int damages)
