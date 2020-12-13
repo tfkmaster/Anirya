@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -10303,6 +10303,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameManager
       objectReference: {fileID: 0}
+    - target: {fileID: 6763830305034975861, guid: 8e3f69a4b2299984fa4eb96f90de0bc9,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8e3f69a4b2299984fa4eb96f90de0bc9, type: 3}
 --- !u!1 &1400223204
@@ -11388,11 +11393,6 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 6273394650291205208, guid: b30f2958983b8cf41bfaf8ff809d2e82,
         type: 3}
-      propertyPath: m_Offset.x
-      value: 0.11446273
-      objectReference: {fileID: 0}
-    - target: {fileID: 6273394650291205208, guid: b30f2958983b8cf41bfaf8ff809d2e82,
-        type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.x
       value: 6.57
       objectReference: {fileID: 0}
@@ -11401,17 +11401,6 @@ PrefabInstance:
       propertyPath: m_SpriteTilingProperty.oldSize.y
       value: 9.53
       objectReference: {fileID: 0}
-    - target: {fileID: 6273394650291205208, guid: b30f2958983b8cf41bfaf8ff809d2e82,
-        type: 3}
-      propertyPath: m_Size.x
-      value: 3.324289
-      objectReference: {fileID: 0}
-    - target: {fileID: 6273394650291205210, guid: b30f2958983b8cf41bfaf8ff809d2e82,
-        type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: -5566004636774020850, guid: 83f9d495d917e854995d1380bb105142,
-        type: 3}
     - target: {fileID: 6273394650291205211, guid: b30f2958983b8cf41bfaf8ff809d2e82,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -11466,16 +11455,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6273394650291205211, guid: b30f2958983b8cf41bfaf8ff809d2e82,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.9
-      objectReference: {fileID: 0}
-    - target: {fileID: 6273394650291205211, guid: b30f2958983b8cf41bfaf8ff809d2e82,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.9
       objectReference: {fileID: 0}
     - target: {fileID: 6273394650291205213, guid: b30f2958983b8cf41bfaf8ff809d2e82,
         type: 3}
