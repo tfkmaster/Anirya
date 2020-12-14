@@ -17,6 +17,8 @@ public class CombatManager : MonoBehaviour
     private Player player;
     [SerializeField] private float AttackMoveForce;
 
+    public ParticleSystem HitParticles;
+
 
     public static CombatManager CMInstance;
 
@@ -100,6 +102,7 @@ public class CombatManager : MonoBehaviour
             if (!actor.isTrigger && (actor.CompareTag("Ennemy") || actor.CompareTag("Destructible Wall")))
             {
                 AddHeat();
+                Instantiate(HitParticles, GetComponent<Player>().attackPoint.position, new Quaternion());
                 actor.GetComponent<Actor>().OnHit(gameObject, GetComponent<Player>().GetDamageDone());
             }
         }
@@ -117,4 +120,5 @@ public class CombatManager : MonoBehaviour
         }
         GetComponent<Player>().SendPlayerStatsToGameManager();
     }
+
 }

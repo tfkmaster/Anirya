@@ -17,6 +17,7 @@ public class EnnemyMovementController : MonoBehaviour
     public virtual void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
+        Flip();
     }
 
     // Update is called once per frame
