@@ -8,12 +8,13 @@ public class DialogueManager : MonoBehaviour
     public Text dialogText;
 
     public bool dialogHasStart = false;
+    public bool dialogEnded = false;
     private Queue<string> sentences;
     private Queue<string> names;
 
     private GameObject player;
 
-    void Start()
+    void Awake()
     {
         player = GameObject.FindGameObjectWithTag("Player");
         sentences = new Queue<string>();
@@ -22,19 +23,24 @@ public class DialogueManager : MonoBehaviour
 
     void Update()
     {
-        if (dialogHasStart && Input.GetKeyDown(KeyCode.E)) DisplayNextSentence();
+        if(player == null) GameObject.FindGameObjectWithTag("Player");
+        if (dialogHasStart && (Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown("joystick button 0"))) DisplayNextSentence();
+    }
+
+    public void StunAniryaForDialoguePurpose()
+    {
+        player.GetComponent<CharacterMovement>().Interacting = true;
+        player.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+        player.GetComponentInChildren<Animator>().SetBool("interacting", true);
     }
 
     public void StartDialogue(Dialogue dialogue)
     {
-        player.GetComponent<CharacterMovement>().Interacting = true;
-        player.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
-        player.GetComponent<Animator>().SetBool("interacting", true);
-
-
         names.Clear();
+        Debug.Log(dialogue.names);
         foreach (string name in dialogue.names)
         {
+            Debug.Log(name);
             names.Enqueue(name);
         }
         sentences.Clear();
@@ -69,7 +75,7 @@ public class DialogueManager : MonoBehaviour
         foreach(char letter in sentence.ToCharArray())
         {
             dialogText.text += letter;
-            yield return new WaitForSeconds(.1f);
+            yield return new WaitForSeconds(.05f);
             // alternative would be [yield return null]
         }
     }
@@ -82,7 +88,7 @@ public class DialogueManager : MonoBehaviour
     public void EndDialogue()
     {
         player.GetComponent<CharacterMovement>().Interacting = false;
-        player.GetComponent<Animator>().SetBool("interacting", false);
-        Debug.Log("End of conversation");
+        player.GetComponentInChildren<Animator>().SetBool("interacting", false);
+        dialogEnded = true;
     }
 }

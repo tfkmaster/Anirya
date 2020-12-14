@@ -15,8 +15,9 @@ public class AlimAI : MonoBehaviour
 
     void Start()
     {
+        DontDestroyOnLoad(gameObject);
         AniryaController = GameObject.FindGameObjectWithTag("Player").GetComponent<CharacterController2D>();
-        DestinationSetter.target = GameObject.FindGameObjectWithTag("Alim Destination").transform;
+        //DestinationSetter.target = GameObject.FindGameObjectWithTag("Alim Destination").transform;
         Path.maxSpeed = speed;
     }
 

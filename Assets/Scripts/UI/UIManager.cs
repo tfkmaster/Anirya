@@ -152,4 +152,17 @@ public class UIManager : MonoBehaviour
         }
         return;
     }
+
+    public void SetActiveDialog(bool set)
+    {
+        if (set)
+        {
+            DialogCanvasInstance.SetActive(true);
+        }
+    }
+
+    public DialogueManager GetDialogueManager()
+    {
+        return DialogCanvasInstance.GetComponentInChildren<DialogueManager>();
+    }
 }   
