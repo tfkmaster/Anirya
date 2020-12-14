@@ -18,6 +18,7 @@ public class CombatManager : MonoBehaviour
     [SerializeField] private float AttackMoveForce;
 
     public ParticleSystem HitParticles;
+    public ParticleSystem RegenParticles;
 
 
     public static CombatManager CMInstance;
@@ -63,34 +64,37 @@ public class CombatManager : MonoBehaviour
 
     public void Regen()
     {
-            if (Input.GetButtonDown("Fire2") && player.actualHeat >= player.RegenCost)
-            {
-                holdRegenCounter = 0;
-                regenButtonHeldDown = true;
-                CM.canMove = false;
-                canReceiveInput = false;
-                GetComponentInChildren<Animator>().SetTrigger("startRegen");
-            }
-            if (Input.GetButtonUp("Fire2"))
+        if (Input.GetButtonDown("Fire2") && player.actualHeat >= player.RegenCost)
+        {
+            holdRegenCounter = 0;
+            regenButtonHeldDown = true;
+            CM.canMove = false;
+            canReceiveInput = false;
+            GetComponentInChildren<Animator>().SetTrigger("startRegen");
+            RegenParticles.Play();
+        }
+        if (Input.GetButtonUp("Fire2"))
+        {
+            regenButtonHeldDown = false;
+            CM.canMove = true;
+            canReceiveInput = true;
+            GetComponentInChildren<Animator>().SetTrigger("stopRegen");
+            RegenParticles.Stop();
+        }
+        
+        if (regenButtonHeldDown && player.healthPoints != player.maxHealthPoints)
+        {
+            holdRegenCounter += Time.deltaTime;
+            player.actualHeat -= Time.deltaTime * player.RegenCost / HoldRegenTime;
+            if (holdRegenCounter >= HoldRegenTime)
             {
                 regenButtonHeldDown = false;
-                CM.canMove = true;
-                canReceiveInput = true;
+                player.healthPoints += 1;
                 GetComponentInChildren<Animator>().SetTrigger("stopRegen");
+                RegenParticles.Stop();
             }
-
-            if (regenButtonHeldDown && player.healthPoints != player.maxHealthPoints)
-            {
-                holdRegenCounter += Time.deltaTime;
-                player.actualHeat -= Time.deltaTime * player.RegenCost / HoldRegenTime;
-                if (holdRegenCounter >= HoldRegenTime)
-                {
-                    regenButtonHeldDown = false;
-                    player.healthPoints += 1;
-                    GetComponentInChildren<Animator>().SetTrigger("stopRegen");
-                }
-                player.SendPlayerStatsToGameManager();
-            }
+            player.SendPlayerStatsToGameManager();
+        }
     }
 
     //Function called on the animation to determines the ennemies who'll get hit by the attack
