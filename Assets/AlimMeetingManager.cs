@@ -11,6 +11,8 @@ public class AlimMeetingManager : MonoBehaviour
 
     public Dialogue Dialog = default;
 
+    public ParticleSystem TallamShadow;
+
     public bool dialogDone = false;
 
     private bool isPossesed = false;
@@ -26,6 +28,8 @@ public class AlimMeetingManager : MonoBehaviour
     {
         if (launchAlimMeeting && !GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>().alimMet)
         {
+            TallamShadow.Play();
+            TallamShadow.GetComponentInChildren<Collider2D>().isTrigger = false;
             GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>().alimMet = true;
             AlimFocusCam.Priority = 12;
             Alim.GetComponentInChildren<SpriteRenderer>().enabled = true;
