@@ -52,8 +52,14 @@ MonoBehaviour:
     type: 3}
   DialogCanvas: {fileID: 7255393479855550314, guid: 0c5368a45c804ee42a7ff7e108eb6232,
     type: 3}
+  PlaceTitleCanvas: {fileID: 345040038092829665, guid: a9d83ee709c90be458bdff56c45a92e3,
+    type: 3}
   controlScreenOn: 0
   GM: {fileID: 0}
+  ButtonColors:
+  - {r: 0.7882353, g: 0.9137255, b: 0.92156863, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 0, g: 0, b: 0, a: 1}
 --- !u!1 &6571265427637002106
 GameObject:
   m_ObjectHideFlags: 0
