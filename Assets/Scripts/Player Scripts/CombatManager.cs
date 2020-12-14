@@ -37,7 +37,10 @@ public class CombatManager : MonoBehaviour
         if (!CM.player.GM.isPaused)
         {
             Attack();
-            Regen();
+            if (GetComponent<Player>().GM.alimMet)
+            {
+                Regen();
+            }
         }
         
     }
@@ -100,14 +103,17 @@ public class CombatManager : MonoBehaviour
     //Function called on the animation to determines the ennemies who'll get hit by the attack
     public void CheckHit()
     {
-        Collider2D[] hitActors = Physics2D.OverlapCircleAll(GetComponent<Player>().attackPoint.position, GetComponent<Player>().attackRange);
-        foreach (Collider2D actor in hitActors)
+        if (GetComponent<Player>().GM.alimMet)
         {
-            if (!actor.isTrigger && (actor.CompareTag("Ennemy") || actor.CompareTag("Destructible Wall")))
+            Collider2D[] hitActors = Physics2D.OverlapCircleAll(GetComponent<Player>().attackPoint.position, GetComponent<Player>().attackRange);
+            foreach (Collider2D actor in hitActors)
             {
-                AddHeat();
-                Instantiate(HitParticles, GetComponent<Player>().attackPoint.position, new Quaternion());
-                actor.GetComponent<Actor>().OnHit(gameObject, GetComponent<Player>().GetDamageDone());
+                if (!actor.isTrigger && (actor.CompareTag("Ennemy") || actor.CompareTag("Destructible Wall")))
+                {
+                    AddHeat();
+                    Instantiate(HitParticles, GetComponent<Player>().attackPoint.position, new Quaternion());
+                    actor.GetComponent<Actor>().OnHit(gameObject, GetComponent<Player>().GetDamageDone());
+                }
             }
         }
     }

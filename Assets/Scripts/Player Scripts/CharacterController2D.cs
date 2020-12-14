@@ -253,19 +253,32 @@ public class CharacterController2D : MonoBehaviour
 
     public void EnableLeftFlame()
     {
-        leftHandFire.SetActive(true);
+        if (GetComponent<Player>().GM.alimMet)
+        {
+            leftHandFire.SetActive(true);
+        }
     }
     public void EnableRightFlame()
     {
-        rightHandFire.SetActive(true);
+        if (GetComponent<Player>().GM.alimMet)
+        {
+            rightHandFire.SetActive(true);
+        }
     }
     public void DisableLeftFlame()
     {
-        leftHandFire.SetActive(false);
+        if (GetComponent<Player>().GM.alimMet)
+        {
+            leftHandFire.SetActive(false);
+        }
+        
     }
 
     public void DisableRightFlame()
     {
-        rightHandFire.SetActive(false);
+        if (GetComponent<Player>().GM.alimMet)
+        {
+            rightHandFire.SetActive(false);
+        }
     }
 }

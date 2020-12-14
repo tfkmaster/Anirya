@@ -46,7 +46,7 @@ public class CharacterMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!player.isDead && !player.GM.isPaused)
+        if (!player.isDead && !player.GM.isPaused && !Interacting)
         {
             KeyboardKeyDetection();
             Actions();
