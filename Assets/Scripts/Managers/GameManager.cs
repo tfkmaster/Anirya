@@ -14,6 +14,8 @@ public class GameManager : MonoBehaviour
     public float TransitionTime = 1;
     private bool isLoading = false;
     private Animator sceneTransitionAnimator;
+
+    public bool alimMet = false;
     
     public bool isPaused = default;
 
@@ -112,7 +114,7 @@ public class GameManager : MonoBehaviour
         yield return new WaitForEndOfFrame();
         //Move the player to the adequate spawn point
         myPlayer.transform.position = GameObject.FindGameObjectWithTag(spawnPointName).transform.position;
-        if (GameObject.FindGameObjectWithTag("Alim"))
+        if (GameObject.FindGameObjectWithTag("Alim") && alimMet)
         {
             GameObject.FindGameObjectWithTag("Alim").transform.position = GameObject.FindGameObjectWithTag(spawnPointName).transform.position;
         }

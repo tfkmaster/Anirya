@@ -24,8 +24,9 @@ public class AlimMeetingManager : MonoBehaviour
 
     void Update()
     {
-        if (launchAlimMeeting)
+        if (launchAlimMeeting && !GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>().alimMet)
         {
+            GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>().alimMet = true;
             AlimFocusCam.Priority = 12;
             Alim.GetComponentInChildren<SpriteRenderer>().enabled = true;
             Alim.GetComponentInChildren<Animator>().SetTrigger("leaveJail");
@@ -43,7 +44,7 @@ public class AlimMeetingManager : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Player"))
+        if (collision.gameObject.CompareTag("Player") && !GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>().alimMet)
         {
             launchAlimMeeting = true;
         }

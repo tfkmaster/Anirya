@@ -13,6 +13,13 @@ public class AlimAI : MonoBehaviour
 
     CharacterController2D AniryaController = default;
 
+    void Awake()
+    {
+        if(GameObject.FindGameObjectsWithTag("Alim").Length >= 2)
+        {
+            Destroy(gameObject);
+        }
+    }
     void Start()
     {
         DontDestroyOnLoad(gameObject);
