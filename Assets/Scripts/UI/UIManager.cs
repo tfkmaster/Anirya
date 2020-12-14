@@ -17,6 +17,9 @@ public class UIManager : MonoBehaviour
     public GameObject DialogCanvas;
     private GameObject DialogCanvasInstance;
 
+    public GameObject PlaceTitleCanvas;
+    private GameObject PlaceTitleCanvasInstance;
+
     public bool controlScreenOn = false;
 
     [SerializeField]
@@ -60,6 +63,11 @@ public class UIManager : MonoBehaviour
         DialogCanvasInstance = Instantiate(DialogCanvas, this.transform.position, new Quaternion(0f, 0f, 0f, 0f));
         DontDestroyOnLoad(DialogCanvasInstance);
         DialogCanvasInstance.SetActive(false);
+
+        //Canvas where place titles are displayed
+        PlaceTitleCanvasInstance = Instantiate(PlaceTitleCanvas, this.transform.position, new Quaternion(0f, 0f, 0f, 0f));
+        DontDestroyOnLoad(PlaceTitleCanvasInstance);
+        PlaceTitleCanvasInstance.SetActive(false);
     }
 
     void Update()
@@ -161,5 +169,18 @@ public class UIManager : MonoBehaviour
     public DialogueManager GetDialogueManager()
     {
         return DialogCanvasInstance.GetComponentInChildren<DialogueManager>();
+    }
+
+    public void DisplayPlaceTitle(string latin, string tiffinagh)
+    {
+        PlaceTitleCanvasInstance.transform.GetChild(1).GetComponent<Text>().text = latin;
+        PlaceTitleCanvasInstance.transform.GetChild(2).GetComponent<Text>().text = tiffinagh;
+        PlaceTitleCanvasInstance.SetActive(true);
+    }
+
+    public void FadePlaceTitle(bool fadein)
+    {
+        PlaceTitleCanvasInstance.GetComponent<Animator>().SetBool("end", fadein);
+        PlaceTitleCanvasInstance.GetComponent<Animator>().SetBool("start", !fadein);
     }
 }   
