@@ -380,6 +380,7 @@ MonoBehaviour:
   nametext: {fileID: 7255393480286826582}
   dialogText: {fileID: 7255393480002288878}
   dialogHasStart: 0
+  dialogEnded: 0
 --- !u!1 &7255393480002288872
 GameObject:
   m_ObjectHideFlags: 0
@@ -414,8 +415,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -119, y: -71}
-  m_SizeDelta: {x: 3762.815, y: 529.8795}
+  m_AnchoredPosition: {x: -53.9, y: -77.9}
+  m_SizeDelta: {x: 5064.904, y: 668.3993}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7255393480002288877
 CanvasRenderer:

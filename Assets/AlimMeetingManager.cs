@@ -33,6 +33,7 @@ public class AlimMeetingManager : MonoBehaviour
 
         if (launchAlimMeeting && UIManager.GetDialogueManager().dialogEnded == true)
         {
+            UIManager.SetActiveDialog(false);
             AlimFocusCam.Priority = 8;
             Alim.GetComponentInChildren<Animator>().SetTrigger("toNewIdle");
             Alim.GetComponent<AlimAI>().DestinationSetter.target = GameObject.FindGameObjectWithTag("Alim Destination").transform;

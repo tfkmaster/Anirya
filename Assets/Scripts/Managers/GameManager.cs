@@ -50,7 +50,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         isPaused = false;
-        sceneTransitionAnimator = GetComponentInChildren<Animator>();
+        sceneTransitionAnimator = LevelLoaderInstance.GetComponentInChildren<Animator>();
     }
 
     // Update is called once per frame
@@ -112,6 +112,10 @@ public class GameManager : MonoBehaviour
         yield return new WaitForEndOfFrame();
         //Move the player to the adequate spawn point
         myPlayer.transform.position = GameObject.FindGameObjectWithTag(spawnPointName).transform.position;
+        if (GameObject.FindGameObjectWithTag("Alim"))
+        {
+            GameObject.FindGameObjectWithTag("Alim").transform.position = GameObject.FindGameObjectWithTag(spawnPointName).transform.position;
+        }
         sceneTransitionAnimator.SetBool("start", false);
         sceneTransitionAnimator.SetBool("end", true);
         isLoading = false;

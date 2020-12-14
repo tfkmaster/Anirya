@@ -155,10 +155,7 @@ public class UIManager : MonoBehaviour
 
     public void SetActiveDialog(bool set)
     {
-        if (set)
-        {
-            DialogCanvasInstance.SetActive(true);
-        }
+        DialogCanvasInstance.SetActive(set);
     }
 
     public DialogueManager GetDialogueManager()
