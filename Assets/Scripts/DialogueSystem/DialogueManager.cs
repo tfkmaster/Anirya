@@ -14,6 +14,11 @@ public class DialogueManager : MonoBehaviour
 
     private GameObject player;
 
+    private string curr_sentence = "";
+    private string curr_name = "";
+
+    private bool sentence_fully_displayed = false;
+
     void Awake()
     {
         player = GameObject.FindGameObjectWithTag("Player");
@@ -24,7 +29,18 @@ public class DialogueManager : MonoBehaviour
     void Update()
     {
         if(player == null) GameObject.FindGameObjectWithTag("Player");
-        if (dialogHasStart && (Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown("joystick button 0"))) DisplayNextSentence();
+        if (dialogHasStart && (Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown("joystick button 0")))
+        {
+            if (sentence_fully_displayed)
+            {
+                DisplayNextSentence();
+            }
+            else
+            {
+                StopAllCoroutines();
+                ForceTypeSentence(curr_sentence);
+            }
+        }
     }
 
     public void StunAniryaForDialoguePurpose()
@@ -59,13 +75,20 @@ public class DialogueManager : MonoBehaviour
             EndDialogue();
             return;
         }
+        sentence_fully_displayed = false;
 
-        string sentence = sentences.Dequeue();
-        string name = names.Dequeue();
+        curr_sentence = sentences.Dequeue();
+        curr_name = names.Dequeue();
         StopAllCoroutines();
-        TypeName(name);
-        //StartCoroutine(TypeSentence(name));
-        StartCoroutine(TypeSentence(sentence));
+        TypeName(curr_name);
+
+        StartCoroutine(TypeSentence(curr_sentence));
+    }
+
+    public void ForceTypeSentence(string sentence)
+    {
+        dialogText.text = sentence;
+        sentence_fully_displayed = true;
     }
 
     // coroutine to display each letter of the sentence, individually in the dialog box
@@ -75,7 +98,11 @@ public class DialogueManager : MonoBehaviour
         foreach(char letter in sentence.ToCharArray())
         {
             dialogText.text += letter;
-            yield return new WaitForSeconds(.05f);
+            if(dialogText.text.Length == sentence.Length)
+            {
+                sentence_fully_displayed = true;
+            }
+            yield return new WaitForSeconds(.025f);
             // alternative would be [yield return null]
         }
     }
