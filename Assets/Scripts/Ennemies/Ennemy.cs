@@ -7,7 +7,6 @@ public class Ennemy : Actor
     public GameObject player;
     public float WanderSpeed = 3;
     public float FollowSpeed = 5;
-    protected bool isDead;
     protected bool fading;
 
     public float disapearTime = 1f;
@@ -55,7 +54,7 @@ public class Ennemy : Actor
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.layer == 8 && isDead)
+        if (collision.gameObject.layer == 8 && dead)
         {
             Physics2D.IgnoreCollision(collision.collider, collision.otherCollider);
         }
@@ -100,7 +99,6 @@ public class Ennemy : Actor
     protected override void Death()
     {
         base.Death();
-        isDead = true;
     }
 
     protected void AnimateFade()

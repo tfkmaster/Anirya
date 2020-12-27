@@ -8,6 +8,7 @@ public class Actor : MonoBehaviour
     [SerializeField] public int maxHealthPoints;
     [SerializeField] public int healthPoints;
     [SerializeField] public int damageDone;
+    protected bool dead = false;
 
     //Attack
     public Transform attackPoint;
@@ -46,8 +47,10 @@ public class Actor : MonoBehaviour
     //Function called when the actor gets hit
     public virtual void OnHit(GameObject hitter, int damages)
     {
-
-        DamageFeedback();
+        if (!dead)
+        {
+            DamageFeedback();
+        }
 
         if ((healthPoints-damages) <= 0)
         {
@@ -74,7 +77,7 @@ public class Actor : MonoBehaviour
 
     protected virtual void Death()
     {
-
+        dead = true;
     }
 
     //Displays a visual feedback on the current Actor
