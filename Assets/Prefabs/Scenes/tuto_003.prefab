@@ -254,6 +254,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4147085862249225891}
   - component: {fileID: 6914318743767239363}
+  - component: {fileID: 5741991316520406380}
   m_Layer: 0
   m_Name: salle3_tronc_Toit_0
   m_TagString: Untagged
@@ -311,8 +312,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -935043993
-  m_SortingLayer: 2
+  m_SortingLayerID: 894383015
+  m_SortingLayer: 5
   m_SortingOrder: 10
   m_Sprite: {fileID: -3973002796216587981, guid: 06e3c11ee0d297747bb007afd6fc18b0,
     type: 3}
@@ -326,6 +327,37 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!60 &5741991316520406380
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 245611532969531908}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 17.25, y: 5.64}
+    newSize: {x: 17.25, y: 5.64}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: 3.8274415, y: -0.82483155}
+      - {x: -0.60134816, y: 0.0020535737}
+      - {x: -5.094487, y: 0.2518087}
+      - {x: -7.689179, y: 0.67930734}
+      - {x: 2.6670136, y: 0.47474575}
+      - {x: 7.98117, y: -1.8277929}
 --- !u!1 &486779110549444136
 GameObject:
   m_ObjectHideFlags: 0
@@ -2188,6 +2220,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3908478185185706881}
   - component: {fileID: 7080374762856197481}
+  - component: {fileID: 2475680380453765780}
   m_Layer: 0
   m_Name: salle3_tronc_Toit_1
   m_TagString: Untagged
@@ -2245,8 +2278,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -935043993
-  m_SortingLayer: 2
+  m_SortingLayerID: 894383015
+  m_SortingLayer: 5
   m_SortingOrder: 18
   m_Sprite: {fileID: -7365031946281341454, guid: 06e3c11ee0d297747bb007afd6fc18b0,
     type: 3}
@@ -2260,6 +2293,37 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!60 &2475680380453765780
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4784513502632682905}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 10.820001, y: 6.14}
+    newSize: {x: 10.820001, y: 6.14}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: -3.1728685, y: -0.62718844}
+      - {x: -1.1266545, y: -0.09181701}
+      - {x: 1.7182282, y: 0.24102174}
+      - {x: 2.2263236, y: 0.374778}
+      - {x: 1.6796174, y: 1.0198001}
+      - {x: -1.4704312, y: 0.40417105}
 --- !u!1 &4847504359659521867
 GameObject:
   m_ObjectHideFlags: 0
