@@ -255,21 +255,21 @@ public class CharacterController2D : MonoBehaviour
     {
         if (GetComponent<Player>().GM.alimMet)
         {
-            leftHandFire.SetActive(true);
+            leftHandFire.GetComponent<ParticleSystem>().Play();
         }
     }
     public void EnableRightFlame()
     {
         if (GetComponent<Player>().GM.alimMet)
         {
-            rightHandFire.SetActive(true);
+            rightHandFire.GetComponent<ParticleSystem>().Play();
         }
     }
     public void DisableLeftFlame()
     {
         if (GetComponent<Player>().GM.alimMet)
         {
-            leftHandFire.SetActive(false);
+            leftHandFire.GetComponent<ParticleSystem>().Stop();
         }
         
     }
@@ -278,7 +278,7 @@ public class CharacterController2D : MonoBehaviour
     {
         if (GetComponent<Player>().GM.alimMet)
         {
-            rightHandFire.SetActive(false);
+            rightHandFire.GetComponent<ParticleSystem>().Stop();
         }
     }
 }
