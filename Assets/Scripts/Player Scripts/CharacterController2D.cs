@@ -44,7 +44,7 @@ public class CharacterController2D : MonoBehaviour
     const float k_CeilingRadius = .2f; // Radius of the overlap circle to determine if the player can stand up
     
     //Movement Information
-    private bool m_FacingRight = true;  // For determining which way the player is currently facing.
+    public bool m_FacingRight = true;  // For determining which way the player is currently facing.
     private float maxInternSpeed; //Value indicating the max speed the player can reach in his actual state
 
     //Jump Informations

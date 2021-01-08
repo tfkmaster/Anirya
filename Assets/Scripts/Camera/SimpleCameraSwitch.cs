@@ -28,15 +28,6 @@ public class SimpleCameraSwitch : MonoBehaviour
             TargetCam.Follow = Anirya;
         }
 
-        if (CSTrigger.position.x < Anirya.position.x)
-        {
-            SwitchCamera(true);
-        }
-        else if (CSTrigger.position.x >= Anirya.position.x)
-        {
-            SwitchCamera(false);
-        }
-
         target_cam_pos = TargetCam.transform.position;
     }
 
@@ -56,13 +47,13 @@ public class SimpleCameraSwitch : MonoBehaviour
     {
         if (switch_camera)
         {
-            SourceCam.Priority = 9;
-            TargetCam.Priority = 10;
+            SourceCam.Priority = 8;
+            TargetCam.Priority = 12;
         }
         else
         {
-            TargetCam.Priority = 9;
-            SourceCam.Priority = 10;
+            TargetCam.Priority = 8;
+            SourceCam.Priority = 12;
         }
     }
 }

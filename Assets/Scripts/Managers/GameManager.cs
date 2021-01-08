@@ -27,6 +27,10 @@ public class GameManager : MonoBehaviour
     public GameObject LevelLoader;
     private GameObject LevelLoaderInstance;
 
+    //Follow Cam Management
+    private Cinemachine.CinemachineVirtualCamera FollowCamRight;
+    private Cinemachine.CinemachineVirtualCamera FollowCamLeft;
+
     void Awake()
     {
         if(GMInstance == null)
@@ -38,7 +42,10 @@ public class GameManager : MonoBehaviour
             LevelLoaderInstance = Instantiate(LevelLoader, this.transform.position, new Quaternion(0, 0, 0, 0));
 
             //Do put in a scene Manager
-            GameObject.FindGameObjectWithTag("FollowCamera").GetComponent<Cinemachine.CinemachineVirtualCamera>().m_Follow = myPlayer.transform;
+            FollowCamRight = GameObject.FindGameObjectWithTag("FollowCamera").GetComponent<Cinemachine.CinemachineVirtualCamera>();
+            FollowCamLeft = GameObject.FindGameObjectWithTag("FollowCamera2").GetComponent<Cinemachine.CinemachineVirtualCamera>();
+            FollowCamRight.m_Follow = myPlayer.transform;
+            FollowCamLeft.m_Follow = myPlayer.transform;
             DontDestroyOnLoad(myPlayer);
             DontDestroyOnLoad(UIManagerInstance);
             DontDestroyOnLoad(LevelLoaderInstance);
@@ -59,6 +66,23 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         changeSceneHelper();
+        FlipFollowCam();
+    }
+
+    
+
+    public void FlipFollowCam()
+    {
+        if (myPlayer.GetComponent<CharacterController2D>().m_FacingRight)
+        {
+            FollowCamRight.Priority = 11;
+            FollowCamLeft.Priority = 10;
+        }
+        else if (!myPlayer.GetComponent<CharacterController2D>().m_FacingRight)
+        {
+            FollowCamRight.Priority = 10;
+            FollowCamLeft.Priority = 11;
+        }
     }
 
     public void LoadCheckpoint()
