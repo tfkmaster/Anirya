@@ -28,6 +28,15 @@ public class SimpleCameraSwitch : MonoBehaviour
             TargetCam.Follow = Anirya;
         }
 
+        if (CSTrigger.position.x < Anirya.position.x)
+        {
+            SwitchCamera(true);
+        }
+        else if (CSTrigger.position.x >= Anirya.position.x)
+        {
+            SwitchCamera(false);
+        }
+
         target_cam_pos = TargetCam.transform.position;
     }
 

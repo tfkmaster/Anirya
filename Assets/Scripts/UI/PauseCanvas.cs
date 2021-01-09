@@ -22,9 +22,15 @@ public class PauseCanvas : MonoBehaviour
 
     void Update()
     {
+        //custom button onClick activated
         if(Input.GetKeyDown("joystick button 0"))
         {
             Buttons[active_button_index % 3].GetComponent<Button>().onClick.Invoke();
+        }
+        //allows to Get Back In Game From B button 
+        if(Input.GetKeyDown("joystick button 2"))
+        {
+            Buttons[0].GetComponent<Button>().onClick.Invoke();
         }
     }
 

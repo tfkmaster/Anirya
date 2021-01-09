@@ -29,9 +29,11 @@ public class UIManager : MonoBehaviour
 
     public Color[] ButtonColors = new Color[]
     {
+        new Color32(168, 78, 123, 255), //pink anirya
         new Color32(201, 233, 235, 255), //blue
         new Color32(255, 255, 255, 255), //white
-        new Color32(0, 0, 0, 255)        //black
+        
+
     };
 
     void Awake()
@@ -108,6 +110,7 @@ public class UIManager : MonoBehaviour
             PauseCanvasInstance.SetActive(true);
             PauseCanvasInstance.GetComponent<PauseCanvas>().ResetActiveButton();
             PlayerStatsCanvasInstance.SetActive(false);
+            PlaceTitleCanvasInstance.SetActive(false);
         }
         else
         {
@@ -150,13 +153,13 @@ public class UIManager : MonoBehaviour
     {
         if (on_hover)
         {
-            button.GetComponentInChildren<Text>().color = ButtonColors[1];
-            button.GetComponent<Image>().color = ButtonColors[0];
+            button.GetComponentInChildren<Text>().color = new Color32(168, 78, 123, 255);
+            button.transform.GetChild(0).gameObject.SetActive(true);
         }
         else
         {
-            button.GetComponentInChildren<Text>().color = ButtonColors[2];
-            button.GetComponent<Image>().color = ButtonColors[1];
+            button.GetComponentInChildren<Text>().color = new Color32(255, 255, 255, 255);
+            button.transform.GetChild(0).gameObject.SetActive(false);
         }
         return;
     }
