@@ -19,8 +19,17 @@ public class CharacterMovement : MonoBehaviour
     private float lastValue;                        // To Check when the player flips the character (Controller)
     private float controllerHorizontalValue = 0.0f; // Used to give him speed in that direction (Controller) 
 
+    //Slope Information
+    ContactPoint2D[] contacts;
+    float slopeAngle;
+    float maxSlopeAngle = 60;
+    RaycastHit2D hit;
+    float counter;
+    float time = 0.1f;
+    bool immobile = false;
 
-    [Header("- Coyote Time Settings -")]
+
+   [Header("- Coyote Time Settings -")]
     [Range(0.001f, 1)] [SerializeField] private float coyoteTimeAfterLeavingGround = 0.1f;      //CoyoteTime after Leaving the ground
     [Range(0.001f, 1)] [SerializeField] private float coyoteTimeBeforeReachingGround = 0.1f;    //CoyoteTime before reaching the ground
 
@@ -46,6 +55,20 @@ public class CharacterMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(horizontalMove == 0)
+        {
+            counter += Time.deltaTime;
+            if(counter >= time)
+            {
+                immobile = true;
+            }
+        }
+        else
+        {
+            immobile = false;
+            counter = 0;
+        }
+
         if (!player.isDead && !player.GM.isPaused && !Interacting)
         {
             Actions();
@@ -79,9 +102,22 @@ public class CharacterMovement : MonoBehaviour
     void FixedUpdate()
     {
         //Move the character
+
         if (!player.isDead && !Inactive && !Interacting && canMove && !player.GM.isPaused)
         {
             cc2d.Move(horizontalMove, onAir);
+            if (!isJumping() && !immobile)
+            {
+                int layer_mask = LayerMask.GetMask("Ground");
+                hit = Physics2D.Raycast(gameObject.transform.position + new Vector3(0, 1, 0), Vector2.down, 100, layer_mask);
+
+                slopeAngle = Vector2.Angle(hit.normal, Vector2.up);
+                if (hit.normal != Vector2.up && slopeAngle <= maxSlopeAngle)
+                {
+                    gameObject.transform.position -= new Vector3(0, Mathf.Abs(hit.point.y - contacts[0].point.y), 0);
+                }
+                
+            }   
         }
     }
 
@@ -151,5 +187,18 @@ public class CharacterMovement : MonoBehaviour
     public int getDirection()
     {
         return direction;
+    }
+
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        if (collision.otherCollider.GetType() == typeof(CircleCollider2D) && !collision.collider.GetComponent<Player>())
+        {
+            contacts = collision.contacts;
+        }
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawLine(gameObject.transform.position + new Vector3(0,1,0), new Vector3(hit.point.x, hit.point.y, 0));
     }
 }
