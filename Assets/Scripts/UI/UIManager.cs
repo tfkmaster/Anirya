@@ -110,6 +110,7 @@ public class UIManager : MonoBehaviour
             PauseCanvasInstance.SetActive(true);
             PauseCanvasInstance.GetComponent<PauseCanvas>().ResetActiveButton();
             PlayerStatsCanvasInstance.SetActive(false);
+            PlaceTitleCanvasInstance.SetActive(false);
         }
         else
         {
