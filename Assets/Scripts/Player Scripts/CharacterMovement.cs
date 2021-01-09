@@ -48,7 +48,6 @@ public class CharacterMovement : MonoBehaviour
     {
         if (!player.isDead && !player.GM.isPaused && !Interacting)
         {
-            KeyboardKeyDetection();
             Actions();
             applyMovement();
             animator.SetFloat("speed", Mathf.Abs(horizontalMove));
@@ -86,36 +85,6 @@ public class CharacterMovement : MonoBehaviour
         }
     }
 
-    //Detects which keyboard movement keys are actually pressed and returns the value corresponding
-    // -1 for left / 1 for right / 0 for static
-    void KeyboardKeyDetection()
-    {
-        if (Input.GetKey(KeyCode.LeftArrow))
-        {
-            direction = -1;
-        }
-        if (Input.GetKey(KeyCode.RightArrow))
-        {
-            direction = 1;
-        }
-        if (Input.GetKey(KeyCode.RightArrow) && Input.GetKey(KeyCode.LeftArrow))
-        {
-            direction = 0;
-        }
-        if (Input.GetKeyUp(KeyCode.LeftArrow) && !Input.GetKey(KeyCode.RightArrow) && !Inactive)
-        {
-            direction = 0;
-        }
-        if (Input.GetKeyUp(KeyCode.RightArrow) && !Input.GetKey(KeyCode.LeftArrow) && !Inactive)
-        {
-            direction = 0;
-        }
-        if (!Input.GetKey(KeyCode.RightArrow) && !Input.GetKey(KeyCode.LeftArrow))
-        {
-            direction = 0;
-        }
-    }
-
     //Movements to apply depending on which controller is used
     void applyMovement()
     {
@@ -143,7 +112,6 @@ public class CharacterMovement : MonoBehaviour
             horizontalMove = -1 * acceleration;
         }
         lastValue = horizontalMove;
-
     }
 
 
