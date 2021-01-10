@@ -111,11 +111,19 @@ public class UIManager : MonoBehaviour
             PauseCanvasInstance.GetComponent<PauseCanvas>().ResetActiveButton();
             PlayerStatsCanvasInstance.SetActive(false);
             PlaceTitleCanvasInstance.SetActive(false);
+
+            DialogCanvasInstance.SetActive(false);
         }
         else
         {
             PauseCanvasInstance.SetActive(false);
             PlayerStatsCanvasInstance.SetActive(true);
+
+            if(DialogCanvasInstance.GetComponent<DialogueManager>().InProgress())
+            {
+                DialogCanvasInstance.GetComponent<DialogueManager>().ForceTypeSentence();
+                DialogCanvasInstance.SetActive(true);
+            }
         }
     }
 
