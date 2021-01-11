@@ -86,12 +86,12 @@ public class UIManager : MonoBehaviour
         //UI navigation with directional pad
         float y_axis = Input.GetAxis("Vertical");
 
-        if(y_axis < -0.2 && reset_y_axis)
+        if((y_axis < -0.2 && reset_y_axis) || Input.GetKeyDown(KeyCode.DownArrow))
         {
             PauseCanvasInstance.GetComponent<PauseCanvas>().SelectNextButton();
             reset_y_axis = false;
         }
-        else if(y_axis > 0.2 && reset_y_axis)
+        else if((y_axis > 0.2 && reset_y_axis) || Input.GetKeyDown(KeyCode.UpArrow))
         {
             PauseCanvasInstance.GetComponent<PauseCanvas>().SelectPreviousButton();
             reset_y_axis = false;
