@@ -91,6 +91,11 @@ public class DialogueManager : MonoBehaviour
         sentence_fully_displayed = true;
     }
 
+    public void ForceTypeSentence()
+    {
+        ForceTypeSentence(curr_sentence);
+    }
+
     // coroutine to display each letter of the sentence, individually in the dialog box
     IEnumerator TypeSentence(string sentence)
     {
@@ -117,5 +122,11 @@ public class DialogueManager : MonoBehaviour
         player.GetComponent<CharacterMovement>().Interacting = false;
         player.GetComponentInChildren<Animator>().SetBool("interacting", false);
         dialogEnded = true;
+    }
+
+    //is the dialog in progress ?
+    public bool InProgress()
+    {
+        return dialogHasStart && !dialogEnded;
     }
 }

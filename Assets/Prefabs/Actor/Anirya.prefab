@@ -3445,7 +3445,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealthPoints: 3
-  healthPoints: 3
+  healthPoints: 1
   damageDone: 1
   attackPoint: {fileID: 8494506563806587602}
   attackRange: 0.5
@@ -3457,7 +3457,7 @@ MonoBehaviour:
   PlayerBox: {fileID: 0}
   isOnOneWayPlatform: 0
   maxHeat: 100
-  actualHeat: 0
+  actualHeat: 100
   AddHeat: 15
   RegenCost: 40
 --- !u!50 &4841952934814992695
@@ -3568,6 +3568,7 @@ MonoBehaviour:
   HitParticles: {fileID: 198157547220164012, guid: 4961a16ba01e09547be3e1c9d16d5ad0,
     type: 3}
   RegenParticles: {fileID: 8150286909116981264}
+  VCams: []
 --- !u!1 &7537073916549489944
 GameObject:
   m_ObjectHideFlags: 0
