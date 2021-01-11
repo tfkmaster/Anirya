@@ -3287,11 +3287,11 @@ GameObject:
   - component: {fileID: 2145358253238841715}
   - component: {fileID: 4225594607555093213}
   - component: {fileID: 395561075794586203}
-  - component: {fileID: 4841952934814992695}
   - component: {fileID: 4519377992430526304}
   - component: {fileID: 5308147093484016914}
   - component: {fileID: 3347099521236498093}
   - component: {fileID: 3095632009894793201}
+  - component: {fileID: 7030331248784037400}
   m_Layer: 8
   m_Name: Anirya
   m_TagString: Player
@@ -3388,8 +3388,8 @@ MonoBehaviour:
   m_CeilingCheck: {fileID: 6283638884093184441}
   m_GroundCheck: {fileID: 8840987136483673903}
   m_Center: {fileID: 0}
-  leftHandFire: {fileID: 9081678978282844405}
-  rightHandFire: {fileID: 4089393578313544375}
+  HorizontalRayCount: 4
+  VerticalRayCount: 4
   m_FacingRight: 1
   OnLandEvent:
     m_PersistentCalls:
@@ -3405,9 +3405,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  OnCrouchEvent:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!114 &4225594607555093213
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3422,11 +3419,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 0}
   acceleration: 1200
-  HorizontalRayCount: 4
-  VerticalRayCount: 4
-  layer_mask2:
-    serializedVersion: 2
-    m_Bits: 0
+  jumpHeight: 8
+  minJumpHeight: 2
+  TimeToJumpApex: 0.6
+  moveSpeed: 14
   coyoteTimeAfterLeavingGround: 0.1
   coyoteTimeBeforeReachingGround: 0.1
   Inactive: 0
@@ -3460,27 +3456,6 @@ MonoBehaviour:
   actualHeat: 100
   AddHeat: 15
   RegenCost: 40
---- !u!50 &4841952934814992695
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7437983559192654034}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 3
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 4
 --- !u!61 &4519377992430526304
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3568,7 +3543,28 @@ MonoBehaviour:
   HitParticles: {fileID: 198157547220164012, guid: 4961a16ba01e09547be3e1c9d16d5ad0,
     type: 3}
   RegenParticles: {fileID: 8150286909116981264}
-  VCams: []
+  CBrain: {fileID: 0}
+--- !u!50 &7030331248784037400
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7437983559192654034}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &7537073916549489944
 GameObject:
   m_ObjectHideFlags: 0
@@ -4734,12 +4730,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 4089393578313643027}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &4089393578313544375 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 100004, guid: 1c20c7996d683754db1f0f62a361952c,
-    type: 3}
-  m_PrefabInstance: {fileID: 4089393578313643027}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &8347956604962262808
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5019,12 +5009,6 @@ PrefabInstance:
 --- !u!4 &9081678978282548437 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400004, guid: 1c20c7996d683754db1f0f62a361952c,
-    type: 3}
-  m_PrefabInstance: {fileID: 9081678978282944081}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &9081678978282844405 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 100004, guid: 1c20c7996d683754db1f0f62a361952c,
     type: 3}
   m_PrefabInstance: {fileID: 9081678978282944081}
   m_PrefabAsset: {fileID: 0}

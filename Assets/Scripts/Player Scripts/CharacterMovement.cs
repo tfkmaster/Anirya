@@ -117,16 +117,16 @@ public class CharacterMovement : MonoBehaviour
             velocity.y = 0;
         }
 
-        velocity.x = input.x * moveSpeed;
-        
-        velocity.y += gravity * Time.deltaTime;
-
-        cc2d.newMove(velocity * Time.deltaTime);
-
-        
 
         if (!player.isDead && !player.GM.isPaused && !Interacting)
         {
+
+            velocity.x = input.x * moveSpeed;
+
+            velocity.y += gravity * Time.deltaTime;
+
+            cc2d.newMove(velocity * Time.deltaTime);
+
             Actions();
             applyMovement();
             animator.SetFloat("speed", Mathf.Abs(horizontal));
