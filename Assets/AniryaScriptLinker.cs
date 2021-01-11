@@ -25,7 +25,7 @@ public class AniryaScriptLinker : MonoBehaviour
         CombatM.CheckHit();
     }
 
-    public void EnableLeftFlame()
+    /*public void EnableLeftFlame()
     {
         CC2D.EnableLeftFlame();
     }
@@ -41,5 +41,5 @@ public class AniryaScriptLinker : MonoBehaviour
     public void DisableRightFlame()
     {
         CC2D.DisableRightFlame();
-    }
+    }*/
 }

@@ -53,6 +53,8 @@ public class CharacterController2D : MonoBehaviour
     private float yPos; //Y pos the player was on the base of his jump
     private bool yPosRemembered = false; //For determining if the Y value on the base of the jump has been already stored  
 
+    
+
     [Header("Events")]
     [Space]
 
@@ -75,7 +77,18 @@ public class CharacterController2D : MonoBehaviour
             OnCrouchEvent = new BoolEvent();
     }
 
-
+    public void newMove(Vector3 velocity)
+    {
+        if(velocity.x != 0)
+        {
+            GetComponent<CharacterMovement>().HorizontalCollisions(ref velocity);
+        }
+        if (velocity.y != 0)
+        {
+            GetComponent<CharacterMovement>().VerticalCollisions(ref velocity);
+        }
+        transform.Translate(velocity);
+    }
 
     private void Update()
     {
@@ -133,7 +146,7 @@ public class CharacterController2D : MonoBehaviour
             //only control the player if grounded or airControl is turned on
             if (m_Grounded || m_AirControl && !GetComponent<CharacterMovement>().Inactive)
             {
-                m_Rigidbody2D.velocity = new Vector2(direction * accelerationX / 10, m_Rigidbody2D.velocity.y);
+                //m_Rigidbody2D.velocity = new Vector2(direction * accelerationX / 10, m_Rigidbody2D.velocity.y);
                 // If the input is moving the player right and the player is facing left...
                 if (direction > 0 && !m_FacingRight)
                 {
@@ -160,7 +173,7 @@ public class CharacterController2D : MonoBehaviour
                 // Add a vertical force to the player and maintains it while the jumpClimax Hasn't been reached.
                 if (GetComponent<Transform>().position.y <= (yPos + jumpHigh))
                 {
-                    m_Rigidbody2D.velocity = new Vector2(m_Rigidbody2D.velocity.x, Vector2.up.y * m_JumpForce);
+                    //m_Rigidbody2D.velocity = new Vector2(m_Rigidbody2D.velocity.x, Vector2.up.y * m_JumpForce);
                 }
                 else
                 {
