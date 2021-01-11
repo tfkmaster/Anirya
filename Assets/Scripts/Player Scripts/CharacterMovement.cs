@@ -30,19 +30,19 @@ public class CharacterMovement : MonoBehaviour
     float time = 0.1f;
     bool immobile = false;
 
-    //New colision system
-    BoxCollider2D collider;
-    RaycastOrigins raycastOrigins;
-    const float skinWidth = 0.015f;
-    public int HorizontalRayCount = 4;
-    public int VerticalRayCount = 4;
-    float horizontalRaySpacing;
-    float verticalRaySpacing;
-
     //New Movement System
-    float gravity = -20;
+    public float jumpHeight = 4f;
+    public float minJumpHeight = 1f;
+    public float TimeToJumpApex = 0.4f;
+    public float moveSpeed = 9;
+
+    private float yDistance;
+    private bool jumpReleased;
+
+
+    float gravity;
+    float jumpVelocity;
     Vector3 velocity;
-    public LayerMask layer_mask2;
 
 
     [Header("- Coyote Time Settings -")]
@@ -70,116 +70,60 @@ public class CharacterMovement : MonoBehaviour
 
     private void Start()
     {
-        collider = GetComponent<BoxCollider2D>();
-        CalculateRaySpacing();
-    }
-
-    void UpdateRaycastOrigins()
-    {
-        Bounds bounds = collider.bounds;
-        bounds.Expand(skinWidth * -2);
-
-        raycastOrigins.bottomLeft = new Vector2(bounds.min.x, bounds.min.y);
-        raycastOrigins.bottomRight = new Vector2(bounds.max.x, bounds.min.y);
-        raycastOrigins.topLeft = new Vector2(bounds.min.x, bounds.max.y);
-        raycastOrigins.topRight = new Vector2(bounds.max.x, bounds.max.y);
-    }
-
-    void CalculateRaySpacing()
-    {
-        Bounds bounds = collider.bounds;
-        bounds.Expand(skinWidth * -2);
-
-        HorizontalRayCount = Mathf.Clamp(HorizontalRayCount, 2, int.MaxValue);
-        VerticalRayCount = Mathf.Clamp(VerticalRayCount, 2, int.MaxValue);
-
-        horizontalRaySpacing = bounds.size.y / (HorizontalRayCount - 1);
-        verticalRaySpacing = bounds.size.x / (VerticalRayCount - 1);
-    }
-
-    struct RaycastOrigins
-    {
-        public Vector2 topLeft, topRight;
-        public Vector2 bottomLeft, bottomRight;
-    }
-
-    public void HorizontalCollisions(ref Vector3 velocity)
-    {
-        float DirectionX = Mathf.Sign(velocity.x);
-        float rayLength = Mathf.Abs(velocity.x) + skinWidth;
-        for (int i = 0; i < HorizontalRayCount; i++)
-        {
-            Vector2 rayOrigin = (DirectionX == -1) ? raycastOrigins.bottomLeft : raycastOrigins.bottomRight;
-            rayOrigin += Vector2.up * (horizontalRaySpacing * i);
-
-            RaycastHit2D hit2 = Physics2D.Raycast(rayOrigin, Vector2.right * DirectionX, rayLength, layer_mask2);
-            Debug.DrawRay(rayOrigin, Vector2.right * DirectionX * rayLength, Color.red);
-            if (hit2)
-            {
-                velocity.x = (hit2.distance - skinWidth) * DirectionX;
-                rayLength = hit2.distance;
-            }
-        }
-    }
-
-    public void VerticalCollisions(ref Vector3 velocity)
-    {
-        float DirectionY = Mathf.Sign(velocity.y);
-        float rayLength = Mathf.Abs(velocity.y) + skinWidth;
-        for (int i = 0; i < VerticalRayCount; i++)
-        {
-            Vector2 rayOrigin = (DirectionY == -1) ? raycastOrigins.bottomLeft : raycastOrigins.topLeft;
-            rayOrigin += Vector2.right * (verticalRaySpacing * i + velocity.x);            
-            
-            RaycastHit2D hit2 = Physics2D.Raycast(rayOrigin, Vector2.up * DirectionY, rayLength, layer_mask2);
-            Debug.DrawRay(rayOrigin, Vector2.up * DirectionY * rayLength, Color.red);
-            if (hit2)
-            {
-                Debug.Log("a");
-                velocity.y = (hit2.distance-skinWidth) * DirectionY;
-                rayLength = hit2.distance;
-            }
-        }
+        /*gravity = -(2 * jumpHeight) / Mathf.Pow(TimeToJumpApex, 2);
+        jumpVelocity = Mathf.Abs(gravity) * TimeToJumpApex;*/
     }
 
     // Update is called once per frame
     void Update()
     {
-        //Stop character from sliding on slopes
-        if (horizontalMove == 0)
+        gravity = -(2 * jumpHeight) / Mathf.Pow(TimeToJumpApex, 2);
+        jumpVelocity = Mathf.Abs(gravity) * TimeToJumpApex;
+
+        stopCharacterFromSliding();
+
+        if(cc2d.collisions.above || cc2d.collisions.below)
         {
-            counter += Time.deltaTime;
-            if(counter >= time)
-            {
-                immobile = true;
-            }
-        }
-        else
-        {
-            immobile = false;
-            counter = 0;
+            velocity.y = 0;
+            cc2d.OnLandEvent.Invoke();
         }
 
-        float horizontal;
-        if(Input.GetAxisRaw("Horizontal") >= 0.3f)
-        {
-            horizontal = 1;
-        }
-        else if(Input.GetAxisRaw("Horizontal")<= -0.3f)
-        {
-            horizontal = -1;
-
-        }
-        else
-        {
-            horizontal = 0;
-        }
+        float horizontal = calculateDirection();
+        
         Vector2 input = new Vector2(horizontal, Input.GetAxisRaw("Vertical"));
 
-        velocity.x = input.x * 9;
+        if (Input.GetButtonDown("Jump") && cc2d.collisions.below
+            || Input.GetButton("Jump") && cc2d.collisions.below && jumpValidation)
+        {
+            velocity.y = jumpVelocity;
+            animator.SetBool("jump", true);
+        }
+
+        if (Input.GetButtonUp("Jump") && !cc2d.collisions.below && velocity.y >= 0)
+        {
+            if(yDistance >= minJumpHeight)
+            {
+                velocity.y = 0;
+            }
+            else
+            {
+                jumpReleased = true;
+            }
+        }
+
+        if (velocity.y >= 0 && jumpReleased && yDistance >= minJumpHeight)
+        {
+            jumpReleased = false;
+            velocity.y = 0;
+        }
+
+        velocity.x = input.x * moveSpeed;
+        
         velocity.y += gravity * Time.deltaTime;
-        UpdateRaycastOrigins();
+
         cc2d.newMove(velocity * Time.deltaTime);
+
+        
 
         if (!player.isDead && !player.GM.isPaused && !Interacting)
         {
@@ -255,11 +199,11 @@ public class CharacterMovement : MonoBehaviour
     {
         controllerHorizontalValue = Input.GetAxisRaw("Horizontal");
 
-        if(controllerHorizontalValue >= 0.3f)
+        if(controllerHorizontalValue >= 0.1f)
         {
             horizontalMove = 1 * acceleration;
         }
-        else if(controllerHorizontalValue <= -0.3f)
+        else if(controllerHorizontalValue <= -0.1f)
         {
             horizontalMove = -1 * acceleration;
         }
@@ -272,15 +216,15 @@ public class CharacterMovement : MonoBehaviour
     {
         if ( Input.GetButtonDown("Jump") && cc2d.getGrounded() && canMove) 
         {
-            GetComponent<Rigidbody2D>().AddForce(new Vector2(0, 10), ForceMode2D.Impulse);
+            //GetComponent<Rigidbody2D>().AddForce(new Vector2(0, 10), ForceMode2D.Impulse);
         }
 
         if ((Input.GetButtonDown("Jump") && !onAir && jumpValidation && canMove) 
             || (Input.GetButton("Jump") && cc2d.getGrounded() && jumpValidation && canMove) 
             || (Input.GetButton("Jump") && !onAir && jumpValidation && canMove))
         {
-            onAir = true;
-            animator.SetBool("jump", true);
+            //onAir = true;
+            //animator.SetBool("jump", true);
         }
 
     }
@@ -288,6 +232,7 @@ public class CharacterMovement : MonoBehaviour
     //Function called when the character hit the ground
     public void OnLanding()
     {
+        yDistance = 0;
         animator.SetBool("jump", false);
         cc2d.ResetJump();
         onAir = false;
@@ -305,16 +250,47 @@ public class CharacterMovement : MonoBehaviour
         return direction;
     }
 
-    private void OnCollisionStay2D(Collision2D collision)
+    private float calculateDirection()
     {
-        /*if (collision.otherCollider.GetType() == typeof(CircleCollider2D) && !collision.collider.GetComponent<Player>())
+        float horizontal;
+        if (Input.GetAxisRaw("Horizontal") >= 0.1f)
         {
-            contacts = collision.contacts;
-        }*/
+            horizontal = 1;
+        }
+        else if (Input.GetAxisRaw("Horizontal") <= -0.1f)
+        {
+            horizontal = -1;
+
+        }
+        else
+        {
+            horizontal = 0;
+        }
+
+        return horizontal;
     }
 
-    private void OnDrawGizmos()
+    private void stopCharacterFromSliding()
     {
-        //Gizmos.DrawLine(gameObject.transform.position + new Vector3(0,1,0), new Vector3(hit.point.x, hit.point.y, 0));
+        //Stop character from sliding on slopes
+        if (horizontalMove == 0)
+        {
+            counter += Time.deltaTime;
+            if (counter >= time)
+            {
+                immobile = true;
+            }
+        }
+        else
+        {
+            immobile = false;
+            counter = 0;
+        }
     }
+
+    public void CalculateYDistance(float value)
+    {
+        yDistance += value;
+    }
+
 }

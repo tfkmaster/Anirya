@@ -16,6 +16,7 @@ public class CharacterController2D : MonoBehaviour
 
     public float collisionRadius = 0.12f;
     private Color debugCollisionColor = Color.red;
+    public CollisionInfo collisions;
 
     [Header("- Jump Settings -")]
     [Space]
@@ -36,58 +37,139 @@ public class CharacterController2D : MonoBehaviour
     [SerializeField] private Transform m_CeilingCheck;                          // A position marking where to check for ceilings
     [SerializeField] private Transform m_GroundCheck;                          // A position marking where to check for ground
     [SerializeField] private Transform m_Center;                               // Center of the player
-    [SerializeField] private GameObject leftHandFire;
-    [SerializeField] private GameObject rightHandFire;
 
+    //New colision system
+    BoxCollider2D footCollider;
+    RaycastOrigins raycastOrigins;
+    const float skinWidth = 0.015f;
+    public int HorizontalRayCount = 4;
+    public int VerticalRayCount = 4;
+    float horizontalRaySpacing;
+    float verticalRaySpacing;
 
     private Rigidbody2D m_Rigidbody2D;
     const float k_CeilingRadius = .2f; // Radius of the overlap circle to determine if the player can stand up
     
     //Movement Information
     public bool m_FacingRight = true;  // For determining which way the player is currently facing.
-    private float maxInternSpeed; //Value indicating the max speed the player can reach in his actual state
 
     //Jump Informations
     private bool topReached = false; // For determining if the jump climax has been reached
-    private bool forceDescent = false; // For determining if the descent of the player after a jump must be forced or not, depending if he reached his jump climax
     private float yPos; //Y pos the player was on the base of his jump
     private bool yPosRemembered = false; //For determining if the Y value on the base of the jump has been already stored  
 
-    
+    CharacterMovement characterMovement;
 
     [Header("Events")]
     [Space]
 
     public UnityEvent OnLandEvent;
 
-    [System.Serializable]
-    public class BoolEvent : UnityEvent<bool> { }
-
-    public BoolEvent OnCrouchEvent;
-    private bool m_wasCrouching = false;
-
     private void Awake()
     {
-        m_Rigidbody2D = GetComponent<Rigidbody2D>();
+        //m_Rigidbody2D = GetComponent<Rigidbody2D>();
 
         if (OnLandEvent == null)
             OnLandEvent = new UnityEvent();
 
-        if (OnCrouchEvent == null)
-            OnCrouchEvent = new BoolEvent();
     }
+
+    private void Start()
+    {
+        footCollider = GetComponent<BoxCollider2D>();
+        characterMovement = GetComponent<CharacterMovement>();
+        CalculateRaySpacing();
+    }
+
+    
 
     public void newMove(Vector3 velocity)
     {
-        if(velocity.x != 0)
+        UpdateRaycastOrigins();
+        collisions.Reset();
+        if (velocity.x != 0)
         {
-            GetComponent<CharacterMovement>().HorizontalCollisions(ref velocity);
+            HorizontalCollisions(ref velocity);
         }
         if (velocity.y != 0)
         {
-            GetComponent<CharacterMovement>().VerticalCollisions(ref velocity);
+            VerticalCollisions(ref velocity);
         }
         transform.Translate(velocity);
+        characterMovement.CalculateYDistance(velocity.y);
+    }
+
+    void UpdateRaycastOrigins()
+    {
+        Bounds bounds = footCollider.bounds;
+        bounds.Expand(skinWidth * -2);
+
+        raycastOrigins.bottomLeft = new Vector2(bounds.min.x, bounds.min.y);
+        raycastOrigins.bottomRight = new Vector2(bounds.max.x, bounds.min.y);
+        raycastOrigins.topLeft = new Vector2(bounds.min.x, bounds.max.y);
+        raycastOrigins.topRight = new Vector2(bounds.max.x, bounds.max.y);
+    }
+
+    void CalculateRaySpacing()
+    {
+        Bounds bounds = footCollider.bounds;
+        bounds.Expand(skinWidth * -2);
+
+        HorizontalRayCount = Mathf.Clamp(HorizontalRayCount, 2, int.MaxValue);
+        VerticalRayCount = Mathf.Clamp(VerticalRayCount, 2, int.MaxValue);
+
+        horizontalRaySpacing = bounds.size.y / (HorizontalRayCount - 1);
+        verticalRaySpacing = bounds.size.x / (VerticalRayCount - 1);
+    }
+
+    struct RaycastOrigins
+    {
+        public Vector2 topLeft, topRight;
+        public Vector2 bottomLeft, bottomRight;
+    }
+
+    public void HorizontalCollisions(ref Vector3 velocity)
+    {
+        float DirectionX = Mathf.Sign(velocity.x);
+        float rayLength = Mathf.Abs(velocity.x) + skinWidth;
+        for (int i = 0; i < HorizontalRayCount; i++)
+        {
+            Vector2 rayOrigin = (DirectionX == -1) ? raycastOrigins.bottomLeft : raycastOrigins.bottomRight;
+            rayOrigin += Vector2.up * (horizontalRaySpacing * i);
+
+            RaycastHit2D hit = Physics2D.Raycast(rayOrigin, Vector2.right * DirectionX, rayLength, m_WhatIsGround);
+            Debug.DrawRay(rayOrigin, Vector2.right * DirectionX * rayLength, Color.red);
+            if (hit)
+            {
+                velocity.x = (hit.distance - skinWidth) * DirectionX;
+                rayLength = hit.distance;
+
+                collisions.left = DirectionX == -1;
+                collisions.right = DirectionX == 1;
+            }
+        }
+    }
+
+    public void VerticalCollisions(ref Vector3 velocity)
+    {
+        float DirectionY = Mathf.Sign(velocity.y);
+        float rayLength = Mathf.Abs(velocity.y) + skinWidth;
+        for (int i = 0; i < VerticalRayCount; i++)
+        {
+            Vector2 rayOrigin = (DirectionY == -1) ? raycastOrigins.bottomLeft : raycastOrigins.topLeft;
+            rayOrigin += Vector2.right * (verticalRaySpacing * i + velocity.x);
+
+            RaycastHit2D hit = Physics2D.Raycast(rayOrigin, Vector2.up * DirectionY, rayLength, m_WhatIsGround);
+            Debug.DrawRay(rayOrigin, Vector2.up * DirectionY * rayLength, Color.red);
+            if (hit)
+            {
+                velocity.y = (hit.distance - skinWidth) * DirectionY;
+                rayLength = hit.distance;
+
+                collisions.below = DirectionY == -1;
+                collisions.above = DirectionY == 1;
+            }
+        }
     }
 
     private void Update()
@@ -110,10 +192,9 @@ public class CharacterController2D : MonoBehaviour
     void OnCollisionStay2D(Collision2D collision)
     {
         //Allows to jump again after reaching the ground
-        if (collision.gameObject.layer == 9 && !GetComponent<Player>().isOnOneWayPlatform && !collision.otherCollider.gameObject.CompareTag("One Way Platform") /*&& m_Rigidbody2D.velocity.y <= 0f*/ && m_Grounded)
+        if (collision.gameObject.layer == 9 && !GetComponent<Player>().isOnOneWayPlatform && !collision.otherCollider.gameObject.CompareTag("One Way Platform") && m_Grounded)
         {
             OnLandEvent.Invoke();
-            //GetComponent<Rigidbody2D>().velocity = new Vector2(GetComponent<Rigidbody2D>().velocity.x, -0.5f);
         }
 
         //Prevent the player from jumping when colliding with platform sides
@@ -264,34 +345,16 @@ public class CharacterController2D : MonoBehaviour
         Gizmos.DrawWireSphere((Vector2)transform.position + leftOffset, collisionRadius);*/
     }
 
-    public void EnableLeftFlame()
+    public struct CollisionInfo
     {
-        if (GetComponent<Player>().GM.alimMet)
+        public bool above, below;
+        public bool left, right;
+        public void Reset()
         {
-            leftHandFire.GetComponent<ParticleSystem>().Play();
+            above = below = false;
+            left = right = false;
         }
-    }
-    public void EnableRightFlame()
-    {
-        if (GetComponent<Player>().GM.alimMet)
-        {
-            rightHandFire.GetComponent<ParticleSystem>().Play();
-        }
-    }
-    public void DisableLeftFlame()
-    {
-        if (GetComponent<Player>().GM.alimMet)
-        {
-            leftHandFire.GetComponent<ParticleSystem>().Stop();
-        }
-        
     }
 
-    public void DisableRightFlame()
-    {
-        if (GetComponent<Player>().GM.alimMet)
-        {
-            rightHandFire.GetComponent<ParticleSystem>().Stop();
-        }
-    }
+    
 }
