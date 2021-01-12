@@ -21,25 +21,20 @@ public class CharacterController2D : MonoBehaviour
     [Header("- Jump Settings -")]
     [Space]
 
-    [SerializeField] private float m_JumpForce = 200f;                          // Amount of force added when the player jumps.
     [SerializeField] private bool m_AirControl = true;                          // Whether or not a player can steer while jumping;
-    [SerializeField] private float jumpHigh = 4;                                // How high the character can jump
 
-    [Header("- Move Settings -")]
-    [Space]
 
-    [SerializeField] private float accelerationX = 0.1f;                        // The value of the acceleration to reach maxSpeed
-
-    [Header("- EnvironmentInfo Settings -")]
+    [Header("- Environment Info Settings -")]
     [Space]
 
     [SerializeField] private LayerMask m_WhatIsGround;                          // A mask determining what is ground to the character
+    [SerializeField] private LayerMask m_DefaultLayer;                          // A mask determining what is the default layer
     [SerializeField] private Transform m_CeilingCheck;                          // A position marking where to check for ceilings
     [SerializeField] private Transform m_GroundCheck;                          // A position marking where to check for ground
     [SerializeField] private Transform m_Center;                               // Center of the player
 
-    //New colision system
-    BoxCollider2D footCollider;
+    //Collision Information
+    BoxCollider2D groundCollider;
     RaycastOrigins raycastOrigins;
     const float skinWidth = 0.015f;
     public int HorizontalRayCount = 4;
@@ -47,17 +42,18 @@ public class CharacterController2D : MonoBehaviour
     float horizontalRaySpacing;
     float verticalRaySpacing;
 
+    //Slope Information
+    ContactPoint2D[] contacts;
+    float slopeAngle;
+    public float maxSlopeAngle = 60;
+    RaycastHit2D hit;
+
     private Rigidbody2D m_Rigidbody2D;
     const float k_CeilingRadius = .2f; // Radius of the overlap circle to determine if the player can stand up
     
     //Movement Information
     public bool m_FacingRight = true;  // For determining which way the player is currently facing.
-
-    //Jump Informations
-    private bool topReached = false; // For determining if the jump climax has been reached
-    private float yPos; //Y pos the player was on the base of his jump
-    private bool yPosRemembered = false; //For determining if the Y value on the base of the jump has been already stored  
-
+  
     CharacterMovement characterMovement;
 
     [Header("Events")]
@@ -76,12 +72,15 @@ public class CharacterController2D : MonoBehaviour
 
     private void Start()
     {
-        footCollider = GetComponent<BoxCollider2D>();
+        groundCollider = GetComponent<BoxCollider2D>();
         characterMovement = GetComponent<CharacterMovement>();
         CalculateRaySpacing();
-    }
+    }  
 
-    
+    private void Update()
+    {
+        m_Grounded = Physics2D.OverlapCircle(m_GroundCheck.position, collisionRadius, m_WhatIsGround);
+    }
 
     public void newMove(Vector3 velocity)
     {
@@ -99,9 +98,11 @@ public class CharacterController2D : MonoBehaviour
         characterMovement.CalculateYDistance(velocity.y);
     }
 
+    //Places the edges of the groundCheck player collider depending on it's actual position in the world
+    //Used to cast rays from and between these positions to detect collisions
     void UpdateRaycastOrigins()
     {
-        Bounds bounds = footCollider.bounds;
+        Bounds bounds = groundCollider.bounds;
         bounds.Expand(skinWidth * -2);
 
         raycastOrigins.bottomLeft = new Vector2(bounds.min.x, bounds.min.y);
@@ -110,9 +111,10 @@ public class CharacterController2D : MonoBehaviour
         raycastOrigins.topRight = new Vector2(bounds.max.x, bounds.max.y);
     }
 
+    //Order rays on the groundCHeck player collider depending on the number of rays
     void CalculateRaySpacing()
     {
-        Bounds bounds = footCollider.bounds;
+        Bounds bounds = groundCollider.bounds;
         bounds.Expand(skinWidth * -2);
 
         HorizontalRayCount = Mathf.Clamp(HorizontalRayCount, 2, int.MaxValue);
@@ -128,6 +130,7 @@ public class CharacterController2D : MonoBehaviour
         public Vector2 bottomLeft, bottomRight;
     }
 
+    //Used to detect horizontal collisions
     public void HorizontalCollisions(ref Vector3 velocity)
     {
         float DirectionX = Mathf.Sign(velocity.x);
@@ -137,19 +140,59 @@ public class CharacterController2D : MonoBehaviour
             Vector2 rayOrigin = (DirectionX == -1) ? raycastOrigins.bottomLeft : raycastOrigins.bottomRight;
             rayOrigin += Vector2.up * (horizontalRaySpacing * i);
 
-            RaycastHit2D hit = Physics2D.Raycast(rayOrigin, Vector2.right * DirectionX, rayLength, m_WhatIsGround);
+            RaycastHit2D hit = Physics2D.Raycast(rayOrigin, Vector2.right * DirectionX, rayLength, m_WhatIsGround | m_DefaultLayer);
             Debug.DrawRay(rayOrigin, Vector2.right * DirectionX * rayLength, Color.red);
             if (hit)
             {
-                velocity.x = (hit.distance - skinWidth) * DirectionX;
-                rayLength = hit.distance;
+                slopeAngle = Vector2.Angle(hit.normal, Vector2.up);
+                if (i == 0 && slopeAngle <= maxSlopeAngle)
+                {
+                    /*float distanceToSlopeStart = 0;
+                    if(slopeAngle != collisions.OldSlopeAngle)
+                    {
+                        distanceToSlopeStart = hit.distance - skinWidth;
+                        velocity.x -= distanceToSlopeStart * DirectionX;
+                    }*/
+                    ClimbSlope(ref velocity, slopeAngle);
+                    //velocity.x += distanceToSlopeStart * DirectionX;
+                }
+                if(!collisions.climbingSlope || slopeAngle > maxSlopeAngle)
+                {
+                    Debug.Log(slopeAngle);
+                    velocity.x = Mathf.Min(Mathf.Abs(velocity.x), (hit.distance - skinWidth)) * DirectionX;
+                    rayLength = Mathf.Min(Mathf.Abs(velocity.x) + skinWidth, hit.distance);
 
-                collisions.left = DirectionX == -1;
-                collisions.right = DirectionX == 1;
+                    if (collisions.climbingSlope)
+                    {
+                        velocity.y = Mathf.Tan(collisions.slopeAngle * Mathf.Deg2Rad) * Mathf.Abs(velocity.x);
+                    }
+
+                    collisions.left = DirectionX == -1;
+                    collisions.right = DirectionX == 1;
+                }
+                
+                
             }
         }
     }
 
+    void ClimbSlope(ref Vector3 velocity, float slopeAngle)
+    {
+        float moveDistance = Mathf.Abs(velocity.x);
+        float climbVelocity = Mathf.Sin(slopeAngle * Mathf.Deg2Rad) * moveDistance;
+
+        if(velocity.y <= climbVelocity)
+        {
+            velocity.y = climbVelocity;
+            velocity.x = Mathf.Cos(slopeAngle * Mathf.Deg2Rad) * moveDistance * Mathf.Sign(velocity.x);
+            collisions.below = true;
+            collisions.climbingSlope = true;
+            collisions.slopeAngle = slopeAngle;
+        }
+
+    }
+
+    //Used to detect vertical collisions
     public void VerticalCollisions(ref Vector3 velocity)
     {
         float DirectionY = Mathf.Sign(velocity.y);
@@ -159,7 +202,7 @@ public class CharacterController2D : MonoBehaviour
             Vector2 rayOrigin = (DirectionY == -1) ? raycastOrigins.bottomLeft : raycastOrigins.topLeft;
             rayOrigin += Vector2.right * (verticalRaySpacing * i + velocity.x);
 
-            RaycastHit2D hit = Physics2D.Raycast(rayOrigin, Vector2.up * DirectionY, rayLength, m_WhatIsGround);
+            RaycastHit2D hit = Physics2D.Raycast(rayOrigin, Vector2.up * DirectionY, rayLength, m_WhatIsGround | m_DefaultLayer);
             Debug.DrawRay(rayOrigin, Vector2.up * DirectionY * rayLength, Color.red);
             if (hit)
             {
@@ -169,23 +212,6 @@ public class CharacterController2D : MonoBehaviour
                 collisions.below = DirectionY == -1;
                 collisions.above = DirectionY == 1;
             }
-        }
-    }
-
-    private void Update()
-    {
-        m_Grounded = Physics2D.OverlapCircle(m_GroundCheck.position, collisionRadius, m_WhatIsGround);
-
-        if (Physics2D.OverlapCircle(m_CeilingCheck.position, collisionRadius, m_WhatIsGround) && !m_Grounded && !GetComponent<Player>().isOnOneWayPlatform)
-        {
-            topReached = true;
-            Debug.Log("Top reached");
-        }
-        //Push the caracter to the ground if the jump button released before reaching it's climax
-        //Allows to do more precise jumps
-        if (Input.GetButtonUp("Jump") && !topReached)
-        {
-            topReached = true;
         }
     }
 
@@ -219,7 +245,7 @@ public class CharacterController2D : MonoBehaviour
         }
     }
 
-    public void Move(float direction, bool onAir)
+    public void Turn(float direction)
     {
 
         if (!GetComponent<CharacterMovement>().Inactive)
@@ -227,7 +253,6 @@ public class CharacterController2D : MonoBehaviour
             //only control the player if grounded or airControl is turned on
             if (m_Grounded || m_AirControl && !GetComponent<CharacterMovement>().Inactive)
             {
-                //m_Rigidbody2D.velocity = new Vector2(direction * accelerationX / 10, m_Rigidbody2D.velocity.y);
                 // If the input is moving the player right and the player is facing left...
                 if (direction > 0 && !m_FacingRight)
                 {
@@ -239,28 +264,6 @@ public class CharacterController2D : MonoBehaviour
                 {
                     // ... flip the player.
                     Flip();
-                }
-            }
-            // If the player is on the air
-            if (!topReached && onAir && Input.GetButton("Jump"))
-            {
-                //Remember the Y Pos on the base of the jump
-                if (!yPosRemembered)
-                {
-                    yPos = GetComponent<Transform>().position.y;
-                    yPosRemembered = true;
-                }
-
-                // Add a vertical force to the player and maintains it while the jumpClimax Hasn't been reached.
-                if (GetComponent<Transform>().position.y <= (yPos + jumpHigh))
-                {
-                    //m_Rigidbody2D.velocity = new Vector2(m_Rigidbody2D.velocity.x, Vector2.up.y * m_JumpForce);
-                }
-                else
-                {
-                    topReached = true;
-                    yPosRemembered = false;
-                    return;
                 }
             }
         }
@@ -318,9 +321,7 @@ public class CharacterController2D : MonoBehaviour
     //Reset Jump values, function called on Landing
     public void ResetJump()
     {
-        topReached = false;
         m_Grounded = true;
-        yPosRemembered = false;
     }
 
     //m_grounded boolean getter
@@ -341,18 +342,24 @@ public class CharacterController2D : MonoBehaviour
 
         Gizmos.DrawWireSphere(m_GroundCheck.position, collisionRadius);
         Gizmos.DrawWireSphere(m_CeilingCheck.position, collisionRadius);
-        /*Gizmos.DrawWireSphere((Vector2)transform.position + rightOffset, collisionRadius);
-        Gizmos.DrawWireSphere((Vector2)transform.position + leftOffset, collisionRadius);*/
     }
 
     public struct CollisionInfo
     {
         public bool above, below;
         public bool left, right;
+
+        public bool climbingSlope;
+        public float slopeAngle, OldSlopeAngle;
+
         public void Reset()
         {
             above = below = false;
             left = right = false;
+            climbingSlope = false;
+
+            OldSlopeAngle = slopeAngle;
+            slopeAngle = 0;
         }
     }
 

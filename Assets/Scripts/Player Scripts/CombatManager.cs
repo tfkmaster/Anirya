@@ -60,7 +60,7 @@ public class CombatManager : MonoBehaviour
     //Checks if the player has pushed attack button
     public void Attack()
     {
-        if (Input.GetButtonDown("Fire1") && !CM.isJumping())
+        if (Input.GetButtonDown("Fire1") && GetComponent<CharacterController2D>().m_Grounded)
         {
             if (canReceiveInput)
             {
@@ -68,7 +68,7 @@ public class CombatManager : MonoBehaviour
                 CM.canMove = false;
                 canReceiveInput = false;
                 inputReceived = true;
-                CC2d.getRigidbody().AddForce(new Vector2(CC2d.facingDirection() * AttackMoveForce, 0), ForceMode2D.Impulse);
+                //CC2d.getRigidbody().AddForce(new Vector2(CC2d.facingDirection() * AttackMoveForce, 0), ForceMode2D.Impulse);
             }
             else
             {
@@ -201,6 +201,5 @@ public class CombatManager : MonoBehaviour
             reset_ortho = true;
             yield break;
     }
-
 
 }
