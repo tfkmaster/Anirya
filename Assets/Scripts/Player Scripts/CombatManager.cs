@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using FMODUnity;
 
 public class CombatManager : MonoBehaviour
 {
@@ -139,7 +139,15 @@ public class CombatManager : MonoBehaviour
             }
         }
     }
+    
 
+
+
+        public void PlaySound()
+        {
+            FMODUnity.RuntimeManager.PlayOneShot("event:/Text sound/Button next", GetComponent<Transform>().position);
+        
+        }
     public void AddHeat()
     {
         if (GetComponent<Player>().actualHeat + GetComponent<Player>().AddHeat <= 100)
