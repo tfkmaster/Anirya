@@ -2077,6 +2077,7 @@ GameObject:
   - component: {fileID: 3382547590504743766}
   - component: {fileID: 2987559726683429211}
   - component: {fileID: 5365488975463212080}
+  - component: {fileID: 1170622020773268609}
   m_Layer: 8
   m_Name: AnimatorContainer
   m_TagString: Untagged
@@ -2165,6 +2166,18 @@ MonoBehaviour:
   Player: {fileID: 395561075794586203}
   CC2D: {fileID: 2145358253238841715}
   CM: {fileID: 4225594607555093213}
+--- !u!114 &1170622020773268609
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5208728940198623644}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37b993d9cf72aa449a4e1d551063938d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5246196210810575745
 GameObject:
   m_ObjectHideFlags: 0
@@ -3290,6 +3303,7 @@ GameObject:
   - component: {fileID: 4519377992430526304}
   - component: {fileID: 3095632009894793201}
   - component: {fileID: 7030331248784037400}
+  - component: {fileID: 3235842480084988740}
   m_Layer: 8
   m_Name: Anirya
   m_TagString: Player
@@ -3521,6 +3535,20 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 0
+--- !u!114 &3235842480084988740
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7437983559192654034}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86c6556701af9e04380698b89f691b6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attenuationObject: {fileID: 0}
+  ListenerNumber: -1
 --- !u!1 &7537073916549489944
 GameObject:
   m_ObjectHideFlags: 0
