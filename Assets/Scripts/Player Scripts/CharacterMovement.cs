@@ -95,6 +95,7 @@ public class CharacterMovement : MonoBehaviour
     {
         yDistance = 0;
         animator.SetBool("jump", false);
+        animator.SetBool("fall", false);
         cc2d.ResetJump();
     }
 
@@ -181,6 +182,14 @@ public class CharacterMovement : MonoBehaviour
             else
             {
                 jumpReleased = true;
+            }
+        }
+
+        if (!cc2d.collisions.below && velocity.y <= 0)
+        {
+            if (yDistance <= -0.5f)
+            {
+                animator.SetBool("fall", true);
             }
         }
 
