@@ -24,6 +24,7 @@ public class SceneLoaderController : MonoBehaviour
     {
         if (collider.CompareTag("Player"))
         {
+            collider.gameObject.GetComponent<CombatManager>().canReceiveInput = false;
             GM.LoadScene(SceneToGoTo, SpawnPointToGoTo);
         }
     }

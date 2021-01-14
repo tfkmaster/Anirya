@@ -215,5 +215,4 @@ public class CharacterMovement : MonoBehaviour
     {
         yDistance += value;
     }
-
 }
