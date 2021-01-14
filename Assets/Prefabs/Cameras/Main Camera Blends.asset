@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Main Camera Blends
   m_EditorClassIdentifier: 
   m_CustomBlends:
-  - m_From: CM vcam1 RIGHT
-    m_To: CM vcam1 LEFT
+  - m_From: Follow Right
+    m_To: Follow Left
     m_Blend:
       m_Style: 1
       m_Time: 0.7
@@ -24,8 +24,8 @@ MonoBehaviour:
         m_PreInfinity: 0
         m_PostInfinity: 0
         m_RotationOrder: 0
-  - m_From: CM vcam1 LEFT
-    m_To: CM vcam1 RIGHT
+  - m_From: Follow Left
+    m_To: Follow Right
     m_Blend:
       m_Style: 1
       m_Time: 0.7
@@ -35,7 +35,7 @@ MonoBehaviour:
         m_PreInfinity: 0
         m_PostInfinity: 0
         m_RotationOrder: 0
-  - m_From: CM vcam1 RIGHT
+  - m_From: Follow Right
     m_To: CM vcam2
     m_Blend:
       m_Style: 1
@@ -46,7 +46,7 @@ MonoBehaviour:
         m_PreInfinity: 0
         m_PostInfinity: 0
         m_RotationOrder: 0
-  - m_From: CM vcam1 LEFT
+  - m_From: Follow Left
     m_To: CM vcam2
     m_Blend:
       m_Style: 1
