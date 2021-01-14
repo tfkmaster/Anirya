@@ -530,7 +530,7 @@ MonoBehaviour:
   actualHeat: 0
   HeatGauge: {fileID: 1840232257796792387}
   Lives: {fileID: 1095931602136243283}
-  emptyHeart: {fileID: 21300000, guid: 992393a586633dc4ca7ed8944d74f487, type: 3}
+  emptyHeart: {fileID: 21300000, guid: f7b4142dc64dee94d9d81891d55edfca, type: 3}
   fullHeart: {fileID: 21300000, guid: b36738a940aec1a4bb24982f0ef313f5, type: 3}
 --- !u!1 &6961545980065569469
 GameObject:
@@ -738,6 +738,21 @@ PrefabInstance:
       propertyPath: m_LocalScale.y
       value: 1.7
       objectReference: {fileID: 0}
+    - target: {fileID: 8784119541508514645, guid: ac451e8a6a18f614d93bb13f709b8746,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 0.65882355
+      objectReference: {fileID: 0}
+    - target: {fileID: 8784119541508514645, guid: ac451e8a6a18f614d93bb13f709b8746,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 0.30588236
+      objectReference: {fileID: 0}
+    - target: {fileID: 8784119541508514645, guid: ac451e8a6a18f614d93bb13f709b8746,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 0.48235294
+      objectReference: {fileID: 0}
     - target: {fileID: 8784119541678172947, guid: ac451e8a6a18f614d93bb13f709b8746,
         type: 3}
       propertyPath: m_Sprite
@@ -763,6 +778,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Color.a
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8784119541750417258, guid: ac451e8a6a18f614d93bb13f709b8746,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8784119541750417258, guid: ac451e8a6a18f614d93bb13f709b8746,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 0.53333336
+      objectReference: {fileID: 0}
+    - target: {fileID: 8784119541750417258, guid: ac451e8a6a18f614d93bb13f709b8746,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 0.73333335
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ac451e8a6a18f614d93bb13f709b8746, type: 3}
