@@ -33,6 +33,7 @@ public class DialogueManager : MonoBehaviour
         {
             if (sentence_fully_displayed)
             {
+                //Play Sound One shot
                 DisplayNextSentence();
             }
             else
