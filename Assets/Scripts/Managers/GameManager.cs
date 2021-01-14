@@ -42,14 +42,15 @@ public class GameManager : MonoBehaviour
             LevelLoaderInstance = Instantiate(LevelLoader, this.transform.position, new Quaternion(0, 0, 0, 0));
             sceneTransitionAnimator = LevelLoaderInstance.GetComponentInChildren<Animator>();
 
+            DontDestroyOnLoad(myPlayer);
+            DontDestroyOnLoad(UIManagerInstance);
+            DontDestroyOnLoad(LevelLoaderInstance);
+
             //Do put in a scene Manager
             FollowCamRight = GameObject.FindGameObjectWithTag("FollowCamera").GetComponent<Cinemachine.CinemachineVirtualCamera>();
             FollowCamLeft = GameObject.FindGameObjectWithTag("FollowCamera2").GetComponent<Cinemachine.CinemachineVirtualCamera>();
             FollowCamRight.m_Follow = myPlayer.transform;
-            FollowCamLeft.m_Follow = myPlayer.transform;
-            DontDestroyOnLoad(myPlayer);
-            DontDestroyOnLoad(UIManagerInstance);
-            DontDestroyOnLoad(LevelLoaderInstance);
+            FollowCamLeft.m_Follow = myPlayer.transform;           
         }
         else
         {
