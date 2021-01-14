@@ -40,6 +40,7 @@ public class GameManager : MonoBehaviour
             myPlayer = Instantiate(Player,this.transform.position,new Quaternion(0,0,0,0));
             UIManagerInstance = Instantiate(UIManager, this.transform.position, new Quaternion(0, 0, 0, 0));
             LevelLoaderInstance = Instantiate(LevelLoader, this.transform.position, new Quaternion(0, 0, 0, 0));
+            sceneTransitionAnimator = LevelLoaderInstance.GetComponentInChildren<Animator>();
 
             //Do put in a scene Manager
             FollowCamRight = GameObject.FindGameObjectWithTag("FollowCamera").GetComponent<Cinemachine.CinemachineVirtualCamera>();
@@ -59,7 +60,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         isPaused = false;
-        sceneTransitionAnimator = LevelLoaderInstance.GetComponentInChildren<Animator>();
+        
     }
 
     // Update is called once per frame
