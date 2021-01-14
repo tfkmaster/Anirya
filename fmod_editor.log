@@ -7,7 +7,7 @@
 [LOG] OutputWASAPI::init                       : Output buffer size: 4096 samples, latency: 0.00ms, period: 10.00ms, DSP buffer: 1024 * 4
 [LOG] Thread::initThread                       : Init FMOD stream thread. Affinity: 0x8000000000000003, Priority: 0xFFFF7FFB, Stack Size: 98304, Semaphore: No, Sleep Time: 10, Looping: Yes.
 [LOG] Thread::initThread                       : Init FMOD mixer thread. Affinity: 0x8000000000000001, Priority: 0xFFFF7FFA, Stack Size: 81920, Semaphore: No, Sleep Time: 0, Looping: Yes.
-[LOG] AsyncManager::init                       : manager 000001E922A65C88 isAsync 0 updatePeriod 0.02
+[LOG] AsyncManager::init                       : manager 0000025C034DD548 isAsync 0 updatePeriod 0.02
 [LOG] AsyncManager::init                       : done
 [LOG] PlaybackSystem::init                     : 
 [LOG] Thread::initThread                       : Init FMOD Studio sample load thread. Affinity: 0x8000000000000003, Priority: 0xFFFF7FFD, Stack Size: 98304, Semaphore: No, Sleep Time: 1, Looping: No.
@@ -16,9 +16,379 @@
 [LOG] Manager::init                            : done.
 [LOG] Manager::readBank                        : fileversion = 135, compatVersion = 132 (oldest = 44, newest = 135)
 [LOG] Manager::readBank                        : fileversion = 135, compatVersion = 132 (oldest = 44, newest = 135)
-[LOG] SoundI::release                          : untitled-001 (000001E879BC5208)
-[LOG] SoundI::release                          :     untitled-001 (000001E8890F7A68)
-[LOG] SoundI::release                          :     untitled-001 (000001E879BC5568)
+[LOG] Manager::readBank                        : fileversion = 135, compatVersion = 132 (oldest = 44, newest = 135)
+[LOG] PlaybackSystem::acquireMasterBus         : Setting master channel group format to 6
+[LOG] SystemI::createSoundInternal             : Create name='', mode=0x02000202
+[LOG] SystemI::createSoundInternal             : exinfo->cbsize             = 224
+[LOG] SystemI::createSoundInternal             : exinfo->length             = 25728
+[LOG] SystemI::createSoundInternal             : exinfo->fileoffset         = 9120
+[LOG] SystemI::createSoundInternal             : exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 000000BB90EEF3D8
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             : exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             : exinfo->useropen           = 00007FF9A9DE7DE0
+[LOG] SystemI::createSoundInternal             : exinfo->userclose          = 00007FF9A9DE7DB0
+[LOG] SystemI::createSoundInternal             : exinfo->userread           = 00007FF9A9DE7EB0
+[LOG] SystemI::createSoundInternal             : exinfo->userseek           = 00007FF9A9DE7F70
+[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 0000025C7627A9E8
+[LOG] SystemI::createSoundInternal             : exinfo->initialseekpostype = 1
+[LOG] SystemI::DSPCodecPoolRegister            : register codec pool for pool type 5
+[LOG] SystemI::createSoundInternal             : Sample 0/1: name='Strix FS 3', format=5, channels=2, frequency=48000, lengthbytes=1984, lengthpcm=7515, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.021820.
+[LOG] SystemI::createSoundInternal             : Create name='', mode=0x02000202
+[LOG] SystemI::createSoundInternal             : exinfo->cbsize             = 224
+[LOG] SystemI::createSoundInternal             : exinfo->length             = 25728
+[LOG] SystemI::createSoundInternal             : exinfo->fileoffset         = 9120
+[LOG] SystemI::createSoundInternal             : exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 000000BB90EEF3D8
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             : exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             : exinfo->useropen           = 00007FF9A9DE7DE0
+[LOG] SystemI::createSoundInternal             : exinfo->userclose          = 00007FF9A9DE7DB0
+[LOG] SystemI::createSoundInternal             : exinfo->userread           = 00007FF9A9DE7EB0
+[LOG] SystemI::createSoundInternal             : exinfo->userseek           = 00007FF9A9DE7F70
+[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 0000025C7627A9E8
+[LOG] SystemI::createSoundInternal             : exinfo->initialseekpostype = 1
+[LOG] SystemI::DSPCodecPoolRegister            : register codec pool for pool type 5
+[LOG] SystemI::createSoundInternal             : Sample 0/1: name='Strix FS1', format=5, channels=2, frequency=48000, lengthbytes=1440, lengthpcm=5358, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.008484.
+[LOG] SystemI::createSoundInternal             : Create name='', mode=0x02000202
+[LOG] SystemI::createSoundInternal             : exinfo->cbsize             = 224
+[LOG] SystemI::createSoundInternal             : exinfo->length             = 25728
+[LOG] SystemI::createSoundInternal             : exinfo->fileoffset         = 9120
+[LOG] SystemI::createSoundInternal             : exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 000000BB90EEF3D8
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             : exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             : exinfo->useropen           = 00007FF9A9DE7DE0
+[LOG] SystemI::createSoundInternal             : exinfo->userclose          = 00007FF9A9DE7DB0
+[LOG] SystemI::createSoundInternal             : exinfo->userread           = 00007FF9A9DE7EB0
+[LOG] SystemI::createSoundInternal             : exinfo->userseek           = 00007FF9A9DE7F70
+[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 0000025C7627A9E8
+[LOG] SystemI::createSoundInternal             : exinfo->initialseekpostype = 1
+[LOG] SystemI::DSPCodecPoolRegister            : register codec pool for pool type 5
+[LOG] SystemI::createSoundInternal             : Sample 0/1: name='Strix FS 2', format=5, channels=2, frequency=48000, lengthbytes=1536, lengthpcm=5769, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.013489.
+[LOG] SystemI::createSound                     : filename = Assets\Audio\Anyria\Build\Desktop/Ambiance.bank : mode 02010082
+[LOG] SystemI::createSound                     : FMOD_NONBLOCKING specified.  Putting into queue to be opened asynchronously!
+[LOG] SystemI::createSound                     : setdata soundi = 0000025BD3AFB788 : node = 0000025C03284250
+[LOG] SystemI::createSound                     : add node to async list : head = 0000025C7E692508.  list count = 0
+[LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 0000025BD3AFB788
+[LOG] SystemI::createSoundInternal             :     Create name='Assets\Audio\Anyria\Build\Desktop/Ambiance.bank', mode=0x02010082
+[LOG] SystemI::createSoundInternal             :     exinfo->cbsize             = 224
+[LOG] SystemI::createSoundInternal             :     exinfo->length             = 594112
+[LOG] SystemI::createSoundInternal             :     exinfo->fileoffset         = 2208
+[LOG] SystemI::createSoundInternal             :     exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlist      = 0000025C03284360
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             :     exinfo->initialseekposition = 3000
+[LOG] SystemI::createSoundInternal             :     exinfo->initialseekpostype = 1
+[LOG] SystemI::createSoundInternal             :     Stream 0/1: name='untitled-001', format=5, channels=2, frequency=48000, lengthbytes=593632, lengthpcm=2236991, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.040558.
+[LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 0000025BD3AFB788
+[LOG] SystemI::createSound                     : filename = Assets\Audio\Anyria\Build\Desktop/Ambiance.bank : mode 02010082
+[LOG] SystemI::createSound                     : FMOD_NONBLOCKING specified.  Putting into queue to be opened asynchronously!
+[LOG] SystemI::createSound                     : setdata soundi = 0000025C7E4A0328 : node = 0000025C0546DF10
+[LOG] SystemI::createSound                     : add node to async list : head = 0000025C7E692508.  list count = 0
+[LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 0000025C7E4A0328
+[LOG] SystemI::createSoundInternal             :     Create name='Assets\Audio\Anyria\Build\Desktop/Ambiance.bank', mode=0x02010082
+[LOG] SystemI::createSoundInternal             :     exinfo->cbsize             = 224
+[LOG] SystemI::createSoundInternal             :     exinfo->length             = 594112
+[LOG] SystemI::createSoundInternal             :     exinfo->fileoffset         = 2208
+[LOG] SystemI::createSoundInternal             :     exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlist      = 0000025C0546E020
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             :     exinfo->initialseekposition = 5500
+[LOG] SystemI::createSoundInternal             :     exinfo->initialseekpostype = 1
+[LOG] SystemI::createSoundInternal             :     Stream 0/1: name='untitled-001', format=5, channels=2, frequency=48000, lengthbytes=593632, lengthpcm=2236991, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.040558.
+[LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 0000025C7E4A0328
+[LOG] SoundI::release                          : untitled-001 (0000025BD3AFB788)
+[LOG] SoundI::release                          :     untitled-001 (0000025C0517A228)
+[LOG] SoundI::release                          :     untitled-001 (0000025C7E49FE18)
+[LOG] SoundI::release                          : untitled-001 (0000025C01D37908)
+[LOG] SoundI::release                          :     untitled-001 (0000025C05174DA8)
+[LOG] SoundI::release                          :     untitled-001 (0000025C01D389E8)
+[LOG] SystemI::createSound                     : filename = Assets\Audio\Anyria\Build\Desktop/Ambiance.bank : mode 02010082
+[LOG] SystemI::createSound                     : FMOD_NONBLOCKING specified.  Putting into queue to be opened asynchronously!
+[LOG] SystemI::createSound                     : setdata soundi = 0000025C044C6218 : node = 0000025C0CA0E100
+[LOG] SystemI::createSound                     : add node to async list : head = 0000025C7E692508.  list count = 0
+[LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 0000025C044C6218
+[LOG] SystemI::createSoundInternal             :     Create name='Assets\Audio\Anyria\Build\Desktop/Ambiance.bank', mode=0x02010082
+[LOG] SystemI::createSoundInternal             :     exinfo->cbsize             = 224
+[LOG] SystemI::createSoundInternal             :     exinfo->length             = 594112
+[LOG] SystemI::createSoundInternal             :     exinfo->fileoffset         = 2208
+[LOG] SystemI::createSoundInternal             :     exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlist      = 0000025C0CA0E210
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             :     exinfo->initialseekposition = 5500
+[LOG] SystemI::createSoundInternal             :     exinfo->initialseekpostype = 1
+[LOG] SystemI::createSoundInternal             :     Stream 0/1: name='untitled-001', format=5, channels=2, frequency=48000, lengthbytes=593632, lengthpcm=2236991, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.040558.
+[LOG] SystemI::createSoundInternal             :     Create name='', mode=0x02000202
+[LOG] SystemI::createSoundInternal             :     exinfo->cbsize             = 224
+[LOG] SystemI::createSoundInternal             :     exinfo->length             = 25728
+[LOG] SystemI::createSoundInternal             :     exinfo->fileoffset         = 9120
+[LOG] SystemI::createSoundInternal             :     exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlist      = 000000BB90EEF3D8
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             :     exinfo->useropen           = 00007FF9A9DE7DE0
+[LOG] SystemI::createSoundInternal             :     exinfo->userclose          = 00007FF9A9DE7DB0
+[LOG] SystemI::createSoundInternal             :     exinfo->userread           = 00007FF9A9DE7EB0
+[LOG] SystemI::createSoundInternal             :     exinfo->userseek           = 00007FF9A9DE7F70
+[LOG] SystemI::createSoundInternal             :     exinfo->fileuserdata       = 0000025C01AC83A8
+[LOG] SystemI::createSoundInternal             :     exinfo->initialseekpostype = 1
+[LOG] SystemI::DSPCodecPoolRegister            :     register codec pool for pool type 5
+[LOG] SystemI::createSoundInternal             :     Sample 0/1: name='Rocks break', format=5, channels=1, frequency=48000, lengthbytes=6208, lengthpcm=33432, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.999969.
+[LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 0000025C044C6218
+[LOG] SystemI::createSound                     : filename = Assets\Audio\Anyria\Build\Desktop/Ambiance.bank : mode 02010082
+[LOG] SystemI::createSound                     : FMOD_NONBLOCKING specified.  Putting into queue to be opened asynchronously!
+[LOG] SystemI::createSound                     : setdata soundi = 0000025BD3AFB5D8 : node = 0000025C0CA57780
+[LOG] SystemI::createSound                     : add node to async list : head = 0000025C7E692508.  list count = 0
+[LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 0000025BD3AFB5D8
+[LOG] SystemI::createSoundInternal             :     Create name='Assets\Audio\Anyria\Build\Desktop/Ambiance.bank', mode=0x02010082
+[LOG] SystemI::createSoundInternal             :     exinfo->cbsize             = 224
+[LOG] SystemI::createSoundInternal             :     exinfo->length             = 594112
+[LOG] SystemI::createSoundInternal             :     exinfo->fileoffset         = 2208
+[LOG] SystemI::createSoundInternal             :     exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlist      = 0000025C0CA57890
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             :     exinfo->initialseekposition = 5500
+[LOG] SystemI::createSoundInternal             :     exinfo->initialseekpostype = 1
+[LOG] SystemI::createSoundInternal             :     Stream 0/1: name='untitled-001', format=5, channels=2, frequency=48000, lengthbytes=593632, lengthpcm=2236991, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.040558.
+[LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 0000025BD3AFB5D8
+[LOG] SoundI::release                          : untitled-001 (0000025C044C6218)
+[LOG] SoundI::release                          :     untitled-001 (0000025C059FFF88)
+[LOG] SoundI::release                          :     untitled-001 (0000025C01D389E8)
+[LOG] SystemI::createSound                     : filename = Assets\Audio\Anyria\Build\Desktop/Ambiance.bank : mode 02010082
+[LOG] SystemI::createSound                     : FMOD_NONBLOCKING specified.  Putting into queue to be opened asynchronously!
+[LOG] SystemI::createSound                     : setdata soundi = 0000025C051070E8 : node = 0000025BD2753EB0
+[LOG] SystemI::createSound                     : add node to async list : head = 0000025C7E692508.  list count = 0
+[LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 0000025C051070E8
+[LOG] SystemI::createSoundInternal             :     Create name='Assets\Audio\Anyria\Build\Desktop/Ambiance.bank', mode=0x02010082
+[LOG] SystemI::createSoundInternal             :     exinfo->cbsize             = 224
+[LOG] SystemI::createSoundInternal             :     exinfo->length             = 594112
+[LOG] SystemI::createSoundInternal             :     exinfo->fileoffset         = 2208
+[LOG] SystemI::createSoundInternal             :     exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlist      = 0000025BD2753FC0
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             :     exinfo->initialseekposition = 5500
+[LOG] SystemI::createSoundInternal             :     exinfo->initialseekpostype = 1
+[LOG] SystemI::createSoundInternal             :     Stream 0/1: name='untitled-001', format=5, channels=2, frequency=48000, lengthbytes=593632, lengthpcm=2236991, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.040558.
+[LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 0000025C051070E8
+[LOG] SystemI::createSoundInternal             : Create name='', mode=0x02000202
+[LOG] SystemI::createSoundInternal             : exinfo->cbsize             = 224
+[LOG] SystemI::createSoundInternal             : exinfo->length             = 25728
+[LOG] SystemI::createSoundInternal             : exinfo->fileoffset         = 9120
+[LOG] SystemI::createSoundInternal             : exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 000000BB90EEF3D8
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             : exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             : exinfo->useropen           = 00007FF9A9DE7DE0
+[LOG] SystemI::createSoundInternal             : exinfo->userclose          = 00007FF9A9DE7DB0
+[LOG] SystemI::createSoundInternal             : exinfo->userread           = 00007FF9A9DE7EB0
+[LOG] SystemI::createSoundInternal             : exinfo->userseek           = 00007FF9A9DE7F70
+[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 0000025C01ACACE8
+[LOG] SystemI::createSoundInternal             : exinfo->initialseekpostype = 1
+[LOG] SystemI::DSPCodecPoolRegister            : register codec pool for pool type 5
+[LOG] SystemI::createSoundInternal             : Sample 0/1: name='Woosh-Mark_DiAngelo-4778593', format=5, channels=2, frequency=48000, lengthbytes=2176, lengthpcm=26496, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.999878.
+[LOG] SystemI::createSound                     : filename = Assets\Audio\Anyria\Build\Desktop/Ambiance.bank : mode 02010082
+[LOG] SystemI::createSound                     : FMOD_NONBLOCKING specified.  Putting into queue to be opened asynchronously!
+[LOG] SystemI::createSound                     : setdata soundi = 0000025C05107448 : node = 0000025C0CA57C80
+[LOG] SystemI::createSound                     : add node to async list : head = 0000025C7E692508.  list count = 0
+[LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 0000025C05107448
+[LOG] SystemI::createSoundInternal             :     Create name='Assets\Audio\Anyria\Build\Desktop/Ambiance.bank', mode=0x02010082
+[LOG] SystemI::createSoundInternal             :     exinfo->cbsize             = 224
+[LOG] SystemI::createSoundInternal             :     exinfo->length             = 594112
+[LOG] SystemI::createSoundInternal             :     exinfo->fileoffset         = 2208
+[LOG] SystemI::createSoundInternal             :     exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlist      = 0000025C0CA57D90
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             :     exinfo->initialseekposition = 5500
+[LOG] SystemI::createSoundInternal             :     exinfo->initialseekpostype = 1
+[LOG] SystemI::createSoundInternal             :     Stream 0/1: name='untitled-001', format=5, channels=2, frequency=48000, lengthbytes=593632, lengthpcm=2236991, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.040558.
+[LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 0000025C05107448
+[LOG] SoundI::release                          : untitled-001 (0000025C051070E8)
+[LOG] SoundI::release                          :     untitled-001 (0000025C0BE91DD8)
+[LOG] SoundI::release                          :     untitled-001 (0000025C051061B8)
+[LOG] SystemI::createSound                     : filename = Assets\Audio\Anyria\Build\Desktop/Ambiance.bank : mode 02010082
+[LOG] SystemI::createSound                     : FMOD_NONBLOCKING specified.  Putting into queue to be opened asynchronously!
+[LOG] SystemI::createSound                     : setdata soundi = 0000025C05106A28 : node = 0000025C03283D50
+[LOG] SystemI::createSound                     : add node to async list : head = 0000025C7E692508.  list count = 0
+[LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 0000025C05106A28
+[LOG] SystemI::createSoundInternal             :     Create name='Assets\Audio\Anyria\Build\Desktop/Ambiance.bank', mode=0x02010082
+[LOG] SystemI::createSoundInternal             :     exinfo->cbsize             = 224
+[LOG] SystemI::createSoundInternal             :     exinfo->length             = 594112
+[LOG] SystemI::createSoundInternal             :     exinfo->fileoffset         = 2208
+[LOG] SystemI::createSoundInternal             :     exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlist      = 0000025C03283E60
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             :     exinfo->initialseekposition = 5500
+[LOG] SystemI::createSoundInternal             :     exinfo->initialseekpostype = 1
+[LOG] SystemI::createSoundInternal             :     Stream 0/1: name='untitled-001', format=5, channels=2, frequency=48000, lengthbytes=593632, lengthpcm=2236991, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.040558.
+[LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 0000025C05106A28
+[LOG] SystemI::createSoundInternal             : Create name='', mode=0x02000202
+[LOG] SystemI::createSoundInternal             : exinfo->cbsize             = 224
+[LOG] SystemI::createSoundInternal             : exinfo->length             = 25728
+[LOG] SystemI::createSoundInternal             : exinfo->fileoffset         = 9120
+[LOG] SystemI::createSoundInternal             : exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 000000BB90EEF3D8
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             : exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             : exinfo->useropen           = 00007FF9A9DE7DE0
+[LOG] SystemI::createSoundInternal             : exinfo->userclose          = 00007FF9A9DE7DB0
+[LOG] SystemI::createSoundInternal             : exinfo->userread           = 00007FF9A9DE7EB0
+[LOG] SystemI::createSoundInternal             : exinfo->userseek           = 00007FF9A9DE7F70
+[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 0000025C057C9388
+[LOG] SystemI::createSoundInternal             : exinfo->initialseekpostype = 1
+[LOG] SystemI::DSPCodecPoolRegister            : register codec pool for pool type 5
+[LOG] SystemI::createSoundInternal             : Sample 0/1: name='JUMP', format=5, channels=1, frequency=48000, lengthbytes=1632, lengthpcm=9961, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.026276.
+[LOG] SystemI::createSound                     : filename = Assets\Audio\Anyria\Build\Desktop/Ambiance.bank : mode 02010082
+[LOG] SystemI::createSound                     : FMOD_NONBLOCKING specified.  Putting into queue to be opened asynchronously!
+[LOG] SystemI::createSound                     : setdata soundi = 0000025C051075F8 : node = 0000025C0CA57A00
+[LOG] SystemI::createSound                     : add node to async list : head = 0000025C7E692508.  list count = 0
+[LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 0000025C051075F8
+[LOG] SystemI::createSoundInternal             :     Create name='Assets\Audio\Anyria\Build\Desktop/Ambiance.bank', mode=0x02010082
+[LOG] SystemI::createSoundInternal             :     exinfo->cbsize             = 224
+[LOG] SystemI::createSoundInternal             :     exinfo->length             = 594112
+[LOG] SystemI::createSoundInternal             :     exinfo->fileoffset         = 2208
+[LOG] SystemI::createSoundInternal             :     exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlist      = 0000025C0CA57B10
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             :     exinfo->initialseekposition = 3000
+[LOG] SystemI::createSoundInternal             :     exinfo->initialseekpostype = 1
+[LOG] SystemI::createSoundInternal             :     Stream 0/1: name='untitled-001', format=5, channels=2, frequency=48000, lengthbytes=593632, lengthpcm=2236991, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.040558.
+[LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 0000025C051075F8
+[LOG] SystemI::createSound                     : filename = Assets\Audio\Anyria\Build\Desktop/Ambiance.bank : mode 02010082
+[LOG] SystemI::createSound                     : FMOD_NONBLOCKING specified.  Putting into queue to be opened asynchronously!
+[LOG] SystemI::createSound                     : setdata soundi = 0000025C05106BD8 : node = 0000025C03284250
+[LOG] SystemI::createSound                     : add node to async list : head = 0000025C7E692508.  list count = 0
+[LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 0000025C05106BD8
+[LOG] SystemI::createSoundInternal             :     Create name='Assets\Audio\Anyria\Build\Desktop/Ambiance.bank', mode=0x02010082
+[LOG] SystemI::createSoundInternal             :     exinfo->cbsize             = 224
+[LOG] SystemI::createSoundInternal             :     exinfo->length             = 594112
+[LOG] SystemI::createSoundInternal             :     exinfo->fileoffset         = 2208
+[LOG] SystemI::createSoundInternal             :     exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlist      = 0000025C03284360
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             :     exinfo->initialseekposition = 5500
+[LOG] SystemI::createSoundInternal             :     exinfo->initialseekpostype = 1
+[LOG] SystemI::createSoundInternal             :     Stream 0/1: name='untitled-001', format=5, channels=2, frequency=48000, lengthbytes=593632, lengthpcm=2236991, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.040558.
+[LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 0000025C05106BD8
+[LOG] SoundI::release                          : untitled-001 (0000025C05106A28)
+[LOG] SoundI::release                          :     untitled-001 (0000025C0BE93E58)
+[LOG] SoundI::release                          :     untitled-001 (0000025C051077A8)
+[LOG] SystemI::createSound                     : filename = Assets\Audio\Anyria\Build\Desktop/Ambiance.bank : mode 02010082
+[LOG] SystemI::createSound                     : FMOD_NONBLOCKING specified.  Putting into queue to be opened asynchronously!
+[LOG] SystemI::createSound                     : setdata soundi = 0000025C05106368 : node = 0000025C03283D50
+[LOG] SystemI::createSound                     : add node to async list : head = 0000025C7E692508.  list count = 0
+[LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 0000025C05106368
+[LOG] SystemI::createSoundInternal             :     Create name='Assets\Audio\Anyria\Build\Desktop/Ambiance.bank', mode=0x02010082
+[LOG] SystemI::createSoundInternal             :     exinfo->cbsize             = 224
+[LOG] SystemI::createSoundInternal             :     exinfo->length             = 594112
+[LOG] SystemI::createSoundInternal             :     exinfo->fileoffset         = 2208
+[LOG] SystemI::createSoundInternal             :     exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlist      = 0000025C03283E60
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             :     exinfo->initialseekposition = 5500
+[LOG] SystemI::createSoundInternal             :     exinfo->initialseekpostype = 1
+[LOG] SystemI::createSoundInternal             :     Stream 0/1: name='untitled-001', format=5, channels=2, frequency=48000, lengthbytes=593632, lengthpcm=2236991, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.040558.
+[LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 0000025C05106368
+[LOG] SoundI::release                          : untitled-001 (0000025C051075F8)
+[LOG] SoundI::release                          :     untitled-001 (0000025C0BE94818)
+[LOG] SoundI::release                          :     untitled-001 (0000025C05107958)
+[LOG] SoundI::release                          : untitled-001 (0000025C7E4A0328)
+[LOG] SoundI::release                          :     untitled-001 (0000025C0517A3C8)
+[LOG] SoundI::release                          :     untitled-001 (0000025C0C05CCF8)
+[LOG] SystemI::createSound                     : filename = Assets\Audio\Anyria\Build\Desktop/Ambiance.bank : mode 02010082
+[LOG] SystemI::createSound                     : FMOD_NONBLOCKING specified.  Putting into queue to be opened asynchronously!
+[LOG] SystemI::createSound                     : setdata soundi = 0000025C05107958 : node = 0000025BD2753EB0
+[LOG] SystemI::createSound                     : add node to async list : head = 0000025C7E692508.  list count = 0
+[LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 0000025C05107958
+[LOG] SystemI::createSoundInternal             :     Create name='Assets\Audio\Anyria\Build\Desktop/Ambiance.bank', mode=0x02010082
+[LOG] SystemI::createSoundInternal             :     exinfo->cbsize             = 224
+[LOG] SystemI::createSoundInternal             :     exinfo->length             = 594112
+[LOG] SystemI::createSoundInternal             :     exinfo->fileoffset         = 2208
+[LOG] SystemI::createSoundInternal             :     exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlist      = 0000025BD2753FC0
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             :     exinfo->initialseekposition = 3000
+[LOG] SystemI::createSoundInternal             :     exinfo->initialseekpostype = 1
+[LOG] SystemI::createSoundInternal             :     Stream 0/1: name='untitled-001', format=5, channels=2, frequency=48000, lengthbytes=593632, lengthpcm=2236991, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.040558.
+[LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 0000025C05107958
+[LOG] SystemI::createSound                     : filename = Assets\Audio\Anyria\Build\Desktop/Ambiance.bank : mode 02010082
+[LOG] SystemI::createSound                     : FMOD_NONBLOCKING specified.  Putting into queue to be opened asynchronously!
+[LOG] SystemI::createSound                     : setdata soundi = 0000025C051070E8 : node = 0000025C032835D0
+[LOG] SystemI::createSound                     : add node to async list : head = 0000025C7E692508.  list count = 0
+[LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 0000025C051070E8
+[LOG] SystemI::createSoundInternal             :     Create name='Assets\Audio\Anyria\Build\Desktop/Ambiance.bank', mode=0x02010082
+[LOG] SystemI::createSoundInternal             :     exinfo->cbsize             = 224
+[LOG] SystemI::createSoundInternal             :     exinfo->length             = 594112
+[LOG] SystemI::createSoundInternal             :     exinfo->fileoffset         = 2208
+[LOG] SystemI::createSoundInternal             :     exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlist      = 0000025C032836E0
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             :     exinfo->initialseekposition = 5500
+[LOG] SystemI::createSoundInternal             :     exinfo->initialseekpostype = 1
+[LOG] SystemI::createSoundInternal             :     Stream 0/1: name='untitled-001', format=5, channels=2, frequency=48000, lengthbytes=593632, lengthpcm=2236991, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.040558.
+[LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 0000025C051070E8
+[LOG] SoundI::release                          : untitled-001 (0000025C05107958)
+[LOG] SoundI::release                          :     untitled-001 (0000025C0BE94818)
+[LOG] SoundI::release                          :     untitled-001 (0000025C05107B08)
+[LOG] SoundI::release                          : untitled-001 (0000025BD3AFB5D8)
+[LOG] SoundI::release                          :     untitled-001 (0000025C0BE90578)
+[LOG] SoundI::release                          :     untitled-001 (0000025BD3AFB788)
+[LOG] SystemI::createSound                     : filename = Assets\Audio\Anyria\Build\Desktop/Ambiance.bank : mode 02010082
+[LOG] SystemI::createSound                     : FMOD_NONBLOCKING specified.  Putting into queue to be opened asynchronously!
+[LOG] SystemI::createSound                     : setdata soundi = 0000025C05107958 : node = 0000025BD2753EB0
+[LOG] SystemI::createSound                     : add node to async list : head = 0000025C7E692508.  list count = 0
+[LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 0000025C05107958
+[LOG] SystemI::createSoundInternal             :     Create name='Assets\Audio\Anyria\Build\Desktop/Ambiance.bank', mode=0x02010082
+[LOG] SystemI::createSoundInternal             :     exinfo->cbsize             = 224
+[LOG] SystemI::createSoundInternal             :     exinfo->length             = 594112
+[LOG] SystemI::createSoundInternal             :     exinfo->fileoffset         = 2208
+[LOG] SystemI::createSoundInternal             :     exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlist      = 0000025BD2753FC0
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             :     exinfo->initialseekposition = 3000
+[LOG] SystemI::createSoundInternal             :     exinfo->initialseekpostype = 1
+[LOG] SystemI::createSoundInternal             :     Stream 0/1: name='untitled-001', format=5, channels=2, frequency=48000, lengthbytes=593632, lengthpcm=2236991, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.040558.
+[LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 0000025C05107958
+[LOG] SoundI::release                          : untitled-001 (0000025C05106BD8)
+[LOG] SoundI::release                          :     untitled-001 (0000025C05174DA8)
+[LOG] SoundI::release                          :     untitled-001 (0000025C051061B8)
+[LOG] SoundI::release                          : untitled-001 (0000025C051070E8)
+[LOG] SoundI::release                          :     untitled-001 (0000025C0BE8E9D8)
+[LOG] SoundI::release                          :     untitled-001 (0000025C05106A28)
+[LOG] SoundI::release                          : untitled-001 (0000025C05107958)
+[LOG] SoundI::release                          :     untitled-001 (0000025C0BE95D38)
+[LOG] SoundI::release                          :     untitled-001 (0000025C05107B08)
+[LOG] SoundI::release                          : untitled-001 (0000025C05107448)
+[LOG] SoundI::release                          :     untitled-001 (0000025C0BE93B18)
+[LOG] SoundI::release                          :     untitled-001 (0000025C05107298)
+[LOG] SoundI::release                          : untitled-001 (0000025C05106368)
+[LOG] SoundI::release                          :     untitled-001 (0000025C05175C48)
+[LOG] SoundI::release                          :     untitled-001 (0000025C05106F38)
+[LOG] SoundI::release                          :  (0000025C762805B8)
+[LOG] SoundI::release                          :     Woosh-Mark_DiAngelo-4778593 (0000025C0BE91A98)
+[LOG] SoundI::release                          :  (0000025C02E5B1D8)
+[LOG] SoundI::release                          :     Rocks break (0000025C059FF908)
+[LOG] SoundI::release                          :  (0000025C01418CA8)
+[LOG] SoundI::release                          :     JUMP (0000025C0BE91DD8)
+[LOG] SoundI::release                          :  (0000025C7E8F04D8)
+[LOG] SoundI::release                          :     Strix FS 3 (0000025C0517A708)
+[LOG] SoundI::release                          :  (0000025C017731F8)
+[LOG] SoundI::release                          :     Strix FS1 (0000025C05179EE8)
+[LOG] SoundI::release                          :  (0000025C01773A98)
+[LOG] SoundI::release                          :     Strix FS 2 (0000025C0517AD88)
 [LOG] Thread::callback                         : FMOD Studio update thread finished.
 [LOG] Thread::callback                         : FMOD Studio bank load thread finished.
 [LOG] Profile::disconnectAll                   : Profiler disconnecting all clients
@@ -29,13 +399,6 @@
 [LOG] Thread::callback                         : FMOD mixer thread finished.
 [LOG] Profile::disconnectAll                   : Profiler disconnecting all clients
 [LOG] SystemI::close                           : Closed.
-[LOG] Manager::readBank                        : fileversion = 135, compatVersion = 132 (oldest = 44, newest = 135)
-[LOG] Manager::readBank                        : fileversion = 135, compatVersion = 132 (oldest = 44, newest = 135)
-[LOG] Manager::readBank                        : fileversion = 135, compatVersion = 132 (oldest = 44, newest = 135)
-[LOG] Manager::readBank                        : fileversion = 135, compatVersion = 132 (oldest = 44, newest = 135)
-[LOG] PlaybackSystem::acquireMasterBus         : Setting master channel group format to 6
-[LOG] Manager::readBank                        : fileversion = 135, compatVersion = 132 (oldest = 44, newest = 135)
-[LOG] Manager::readBank                        : fileversion = 135, compatVersion = 132 (oldest = 44, newest = 135)
 [LOG] Thread::callback                         : FMOD Studio bank load thread finished.
 [LOG] Thread::callback                         : FMOD Studio sample load thread finished.
 [LOG] LiveUpdate::release                      : 

@@ -45,7 +45,8 @@ public class CharacterController2D : MonoBehaviour
     //Slope Information
     ContactPoint2D[] contacts;
     float slopeAngle;
-    public float maxSlopeAngle = 60;
+    public float maxClimbAngle = 60;
+    public float maxDescendAngle = 60;
     RaycastHit2D hit;
 
     private Rigidbody2D m_Rigidbody2D;
@@ -86,6 +87,10 @@ public class CharacterController2D : MonoBehaviour
     {
         UpdateRaycastOrigins();
         collisions.Reset();
+        if (velocity.y <= 0)
+        {
+            DescendSlope(ref velocity);
+        }
         if (velocity.x != 0)
         {
             HorizontalCollisions(ref velocity);
@@ -145,18 +150,11 @@ public class CharacterController2D : MonoBehaviour
             if (hit)
             {
                 slopeAngle = Vector2.Angle(hit.normal, Vector2.up);
-                if (i == 0 && slopeAngle <= maxSlopeAngle)
+                if (i == 0 && slopeAngle <= maxClimbAngle)
                 {
-                    /*float distanceToSlopeStart = 0;
-                    if(slopeAngle != collisions.OldSlopeAngle)
-                    {
-                        distanceToSlopeStart = hit.distance - skinWidth;
-                        velocity.x -= distanceToSlopeStart * DirectionX;
-                    }*/
                     ClimbSlope(ref velocity, slopeAngle);
-                    //velocity.x += distanceToSlopeStart * DirectionX;
                 }
-                if(!collisions.climbingSlope || slopeAngle > maxSlopeAngle)
+                if(!collisions.climbingSlope || slopeAngle > maxClimbAngle)
                 {
                     velocity.x = Mathf.Min(Mathf.Abs(velocity.x), (hit.distance - skinWidth)) * DirectionX;
                     rayLength = Mathf.Min(Mathf.Abs(velocity.x) + skinWidth, hit.distance);
@@ -191,6 +189,39 @@ public class CharacterController2D : MonoBehaviour
 
     }
 
+    void DescendSlope(ref Vector3 velocity)
+    {
+        float directionX = Mathf.Sign(velocity.x);
+        if (velocity.x == 0)
+        {
+            directionX = facingDirection();
+        }
+        Vector2 rayOrigin = (directionX == -1) ? raycastOrigins.bottomRight : raycastOrigins.bottomLeft;
+        RaycastHit2D hit = Physics2D.Raycast(rayOrigin, -Vector2.up, Mathf.Infinity, m_WhatIsGround);
+
+        if (hit)
+        {
+            float slopeAngle = Vector2.Angle(hit.normal, Vector2.up);
+            if (slopeAngle != 0 && slopeAngle <= maxDescendAngle)
+            {
+                if (Mathf.Sign(hit.normal.x) == directionX)
+                {
+                    if (hit.distance - skinWidth <= Mathf.Tan(slopeAngle * Mathf.Deg2Rad) * Mathf.Abs(velocity.x))
+                    {
+                        float moveDistance = Mathf.Abs(velocity.x);
+                        float descendVelocityY = Mathf.Sin(slopeAngle * Mathf.Deg2Rad) * moveDistance;
+                        velocity.x = Mathf.Cos(slopeAngle * Mathf.Deg2Rad) * moveDistance * Mathf.Sign(velocity.x);
+                        velocity.y -= descendVelocityY;
+
+                        collisions.slopeAngle = slopeAngle;
+                        collisions.descendingSlope = true;
+                        collisions.below = true;
+                    }
+                }
+            }
+        }
+    }
+
     //Used to detect vertical collisions
     public void VerticalCollisions(ref Vector3 velocity)
     {
@@ -212,6 +243,24 @@ public class CharacterController2D : MonoBehaviour
                 collisions.above = DirectionY == 1;
             }
         }
+
+        if (collisions.climbingSlope)
+        {
+            float directionX = Mathf.Sign(velocity.x);
+            rayLength = Mathf.Abs(velocity.x) + skinWidth;
+            Vector2 rayOrigin = ((directionX == -1) ? raycastOrigins.bottomLeft : raycastOrigins.bottomRight) + Vector2.up * velocity.y;
+            RaycastHit2D hit = Physics2D.Raycast(rayOrigin, Vector2.right * directionX, rayLength, m_WhatIsGround);
+
+            if (hit)
+            {
+                float slopeAngle = Vector2.Angle(hit.normal, Vector2.up);
+                if (slopeAngle != collisions.slopeAngle)
+                {
+                    velocity.x = (hit.distance - skinWidth) * directionX;
+                    collisions.slopeAngle = slopeAngle;
+                }
+            }
+        }
     }
 
     void OnCollisionStay2D(Collision2D collision)
@@ -230,7 +279,6 @@ public class CharacterController2D : MonoBehaviour
             {
                 // boolean to prevent player from being able to jump
                 m_Grounded = false; 
-                //collision.gameObject.GetComponent<BoxCollider2D>().sharedMaterial.friction = 0f;
             }
             // check if its collided on top 
             else if (hitPos.normal.y > 0)                   
@@ -247,10 +295,10 @@ public class CharacterController2D : MonoBehaviour
     public void Turn(float direction)
     {
 
-        if (!GetComponent<CharacterMovement>().Inactive)
+        if (!GetComponent<CharacterMovement>().ableToMove)
         {
             //only control the player if grounded or airControl is turned on
-            if (m_Grounded || m_AirControl && !GetComponent<CharacterMovement>().Inactive)
+            if (m_Grounded || m_AirControl && !GetComponent<CharacterMovement>().ableToMove)
             {
                 // If the input is moving the player right and the player is facing left...
                 if (direction > 0 && !m_FacingRight)
@@ -271,7 +319,7 @@ public class CharacterController2D : MonoBehaviour
     //Flips the player model
     private void Flip()
     {
-        if (!GetComponent<CharacterMovement>().Inactive)
+        if (!GetComponent<CharacterMovement>().ableToMove)
         {
             // Switch the way the player is labelled as facing.
             m_FacingRight = !m_FacingRight;
@@ -301,13 +349,6 @@ public class CharacterController2D : MonoBehaviour
         {
             return -1;
         }
-    }
-
-    //Put the character velocity at 0
-    public void stopCharacter()
-    {
-        m_Rigidbody2D.velocity = Vector2.zero;
-        m_Rigidbody2D.angularVelocity = 0;
     }
 
     public bool isStoped()
@@ -348,7 +389,7 @@ public class CharacterController2D : MonoBehaviour
         public bool above, below;
         public bool left, right;
 
-        public bool climbingSlope;
+        public bool climbingSlope, descendingSlope;
         public float slopeAngle, OldSlopeAngle;
 
         public void Reset()
@@ -356,6 +397,7 @@ public class CharacterController2D : MonoBehaviour
             above = below = false;
             left = right = false;
             climbingSlope = false;
+            descendingSlope = false;
 
             OldSlopeAngle = slopeAngle;
             slopeAngle = 0;
