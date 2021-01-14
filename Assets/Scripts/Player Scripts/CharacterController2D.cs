@@ -158,7 +158,6 @@ public class CharacterController2D : MonoBehaviour
                 }
                 if(!collisions.climbingSlope || slopeAngle > maxSlopeAngle)
                 {
-                    Debug.Log(slopeAngle);
                     velocity.x = Mathf.Min(Mathf.Abs(velocity.x), (hit.distance - skinWidth)) * DirectionX;
                     rayLength = Mathf.Min(Mathf.Abs(velocity.x) + skinWidth, hit.distance);
 
