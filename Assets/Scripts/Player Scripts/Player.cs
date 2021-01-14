@@ -8,8 +8,11 @@ public class Player : Actor
     private Animator animator;                                              // The animator attached on the player
     public GameManager GM;
 
-    [SerializeField] private float InactiveTime = 1f;                       //Determines the duration during which the player can't control the character
-    private float InactiveCounter;                                          //Counts the time during which the character is inactive
+    [SerializeField] private float InputFreezeDuration = 1f;                       //Determines the duration during which the player can't control the character
+    [SerializeField] private float knockbackVelocityX;
+    [SerializeField] private float knockbackVelocityY;
+
+    private float unableToMoveCounter;                                          //Counts the time during which the character is inactive
     public bool isDead = false;                                             //Determines if the player is actually dead or not
 
     private bool isTriggeringInteractible;                                  //Set to true when the player is triggering an interactible entity
@@ -34,7 +37,7 @@ public class Player : Actor
     {
         //transform.position = GM.LastCheckpoint.GetComponent<CheckpointController>().MyPosition.position;
         SendPlayerStatsToGameManager();
-        InactiveCounter = InactiveTime;
+        unableToMoveCounter = InputFreezeDuration;
         animator = GetComponentInChildren<Animator>();
     }
 
@@ -72,14 +75,15 @@ public class Player : Actor
     {
         base.Update();
         //Character inactive duration
-        if (GetComponent<CharacterMovement>().Inactive == true)
+        if (GetComponent<CharacterMovement>().ableToMove == true)
         {
-            InactiveCounter -= Time.deltaTime;
+            unableToMoveCounter -= Time.deltaTime;
         }
-        if (InactiveCounter <= 0)
+        if (unableToMoveCounter <= 0)
         {
-            GetComponent<CharacterMovement>().Inactive = false;
-            InactiveCounter = InactiveTime;
+            GetComponent<CharacterMovement>().ableToMove = false;
+            GetComponent<CharacterMovement>().StopKnockBack();
+            unableToMoveCounter = InputFreezeDuration;
         }
 
         //Interactible objects triggered one time by the player input
@@ -98,18 +102,13 @@ public class Player : Actor
     //Function called when the actor gets hit
     public override void OnHit(GameObject hitter, int damages)
     {
-        if (!GetComponent<CharacterMovement>().Inactive)
+        if (!GetComponent<CharacterMovement>().ableToMove)
         {
-            GetComponent<CharacterMovement>().Inactive = true;
-            GetComponent<CharacterController2D>().stopCharacter();
-            if (hitter.GetComponent<Transform>().position.x > GetComponent<Transform>().position.x)
-            {
-                GetComponent<Rigidbody2D>().AddForce(knockBackForce * new Vector2(-1, 1), ForceMode2D.Impulse);
-            }
-            else
-            {
-                GetComponent<Rigidbody2D>().AddForce(knockBackForce, ForceMode2D.Impulse);
-            }
+            GetComponent<CharacterMovement>().ableToMove = true;
+            Vector3 direction = (GetComponent<Transform>().position - hitter.GetComponent<Transform>().position).normalized;
+            direction.x = Mathf.Sign(direction.x) * knockbackVelocityX;
+            direction.y = knockbackVelocityY;
+            GetComponent<CharacterMovement>().StartKnockBack(new Vector2(direction.x,direction.y));
             base.OnHit(hitter, damages);
             SendPlayerStatsToGameManager();
         }

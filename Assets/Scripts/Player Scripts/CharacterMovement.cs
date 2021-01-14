@@ -17,21 +17,23 @@ public class CharacterMovement : MonoBehaviour
     //Jump information
     float yDistance;
     bool jumpReleased;
-    float jumpVelocity;   
-    public bool Inactive = false;                  // Determines if the player is in his invincibility frames or not
+    float maxJumpVelocity;
+    public bool ableToMove = false;                  // Determines if the player inputs are recorded or not
     public bool Interacting = false;               // Determines if the player is interacting with some entity
     public bool canMove = true;
-   
+
     //Immobile on slopes
     float counter;
     float time = 0.1f;
     bool immobile = false;   
 
     [Header("- Player Movement Settings -")]
-    public float jumpHeight = 4f;
+    public float maxJumpHeight = 4f;
     public float minJumpHeight = 1f;
     public float TimeToJumpApex = 0.4f;
-    public float moveSpeed = 9;   
+    public float moveSpeed = 9;
+
+    bool gotHit = false;
 
 
     [Header("- Coyote Time Settings -")]
@@ -63,20 +65,23 @@ public class CharacterMovement : MonoBehaviour
     {
         if (!player.isDead && !player.GM.isPaused && !Interacting)
         {
-            gravity = -(2 * jumpHeight) / Mathf.Pow(TimeToJumpApex, 2);
-            jumpVelocity = Mathf.Abs(gravity) * TimeToJumpApex;
+            gravity = -(2 * maxJumpHeight) / Mathf.Pow(TimeToJumpApex, 2);
+            maxJumpVelocity = Mathf.Abs(gravity) * TimeToJumpApex;
 
             stopCharacterFromSliding();
 
-            if(cc2d.collisions.above || cc2d.collisions.below)
+            if((cc2d.collisions.above || cc2d.collisions.below) && !gotHit)
             {
                 velocity.y = 0;
                 cc2d.OnLandEvent.Invoke();
             }
 
             horizontalMove = calculateDirection();
-            Jump();
-            CoyoteTime();
+            if (!gotHit)
+            {
+                Jump();
+                CoyoteTime(); 
+            }
             playerMovements();
         }
     }
@@ -84,7 +89,7 @@ public class CharacterMovement : MonoBehaviour
     void FixedUpdate()
     {
         //Turn the character on the direction he is facing
-        if (!player.isDead && !Inactive && !Interacting && canMove && !player.GM.isPaused)
+        if (!player.isDead && !ableToMove && !Interacting && canMove && !player.GM.isPaused)
         {
             cc2d.Turn(horizontalMove);
         }
@@ -169,7 +174,7 @@ public class CharacterMovement : MonoBehaviour
         if (Input.GetButtonDown("Jump") && cc2d.collisions.below
             || Input.GetButton("Jump") && cc2d.collisions.below && jumpValidation)
         {
-            velocity.y = jumpVelocity;
+            velocity.y = maxJumpVelocity;
             animator.SetBool("jump", true);
         }
 
@@ -204,8 +209,11 @@ public class CharacterMovement : MonoBehaviour
     void playerMovements()
     {
         Vector2 input = new Vector2(horizontalMove, Input.GetAxisRaw("Vertical"));
-        velocity.x = input.x * moveSpeed;
-        velocity.y += gravity * Time.deltaTime;
+        if (!gotHit)
+        {
+            velocity.x = input.x * moveSpeed;
+            velocity.y += gravity * Time.deltaTime;
+        }
         cc2d.newMove(velocity * Time.deltaTime);
         animator.SetFloat("speed", Mathf.Abs(horizontalMove));
     }
@@ -214,5 +222,20 @@ public class CharacterMovement : MonoBehaviour
     public void CalculateYDistance(float value)
     {
         yDistance += value;
+    }
+
+    public void StartKnockBack(Vector2 direction)
+    {
+        Debug.Log(direction.x + "a" + direction.y);
+            gotHit = true;
+            velocity.y = direction.y;
+            velocity.x = direction.x;
+    }
+
+    public void StopKnockBack()
+    {
+        gotHit = false;
+        velocity.y = 0;
+        velocity.x = 0;
     }
 }

@@ -3402,7 +3402,8 @@ MonoBehaviour:
   m_Center: {fileID: 0}
   HorizontalRayCount: 4
   VerticalRayCount: 4
-  maxSlopeAngle: 60
+  maxClimbAngle: 60
+  maxDescendAngle: 60
   m_FacingRight: 1
   OnLandEvent:
     m_PersistentCalls:
@@ -3431,10 +3432,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
-  Inactive: 0
+  ableToMove: 0
   Interacting: 0
   canMove: 1
-  jumpHeight: 5
+  maxJumpHeight: 4
   minJumpHeight: 2
   TimeToJumpApex: 0.5
   moveSpeed: 13
@@ -3453,14 +3454,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealthPoints: 3
-  healthPoints: 1
+  healthPoints: 3
   damageDone: 1
   attackPoint: {fileID: 8494506563806587602}
   attackRange: 0.5
   timeRed: 0.2
   knockBackForce: {x: 10, y: 5}
   GM: {fileID: 0}
-  InactiveTime: 0.5
+  InputFreezeDuration: 0.133
+  knockbackVelocityX: 35
+  knockbackVelocityY: 17
   isDead: 0
   PlayerBox: {fileID: 0}
   isOnOneWayPlatform: 0
