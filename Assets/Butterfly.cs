@@ -5,8 +5,7 @@ using UnityEngine;
 
 public class Butterfly : MonoBehaviour
 {
-    [SerializeField]
-    private float speed = 6f;
+    public float speed = 0f;
     [SerializeField]
     private Transform[] destinationTargets = default;
 
@@ -33,6 +32,11 @@ public class Butterfly : MonoBehaviour
         {
             GetComponentInChildren<Animator>().SetBool("isFlying", true);
         }
+    }
+
+    public void SetSpeed(float spd)
+    {
+        Path.maxSpeed = spd;
     }
 
     public void MoveToNextTarget()
