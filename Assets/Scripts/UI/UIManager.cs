@@ -194,4 +194,10 @@ public class UIManager : MonoBehaviour
         PlaceTitleCanvasInstance.GetComponent<Animator>().SetBool("end", fadein);
         PlaceTitleCanvasInstance.GetComponent<Animator>().SetBool("start", !fadein);
     }
+
+    public void FadeTutoGuide(GameObject TutoGuide, bool fadein)
+    {
+        TutoGuide.GetComponent<Animator>().SetBool("end", fadein);
+        TutoGuide.GetComponent<Animator>().SetBool("start", !fadein);
+    }
 }   
