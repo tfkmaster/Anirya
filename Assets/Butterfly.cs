@@ -27,6 +27,7 @@ public class Butterfly : MonoBehaviour
         if(Path.reachedDestination)
         {
             GetComponentInChildren<Animator>().SetBool("isFlying", false);
+            gameObject.SetActive(false);
         }
         else
         {
