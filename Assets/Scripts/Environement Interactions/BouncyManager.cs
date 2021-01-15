@@ -20,19 +20,15 @@ public class BouncyManager : MonoBehaviour
         bump_direction_x = 1f;
         bump_direction_y = 1f;
     }
-    private void OnCollisionEnter2D(Collision2D collision)
+
+    private void OnTriggerEnter2D(Collider2D collider)
     {
         Debug.Log("Colliding");
-        if (collision.gameObject.CompareTag("Player"))
+        if (collider.gameObject.CompareTag("Player"))
         {
-            Debug.Log("Player colliding");
             GetComponent<Animator>().SetTrigger("bounce");
             Player.GetComponentInChildren<Animator>().SetBool("jump", true);
-
-            //Player.GetComponent<CharacterMovement>().SetVelocity(new Vector2(1f, bouncy_amount));
-
-            //Player.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
-            //Player.GetComponent<Rigidbody2D>().AddForce(new Vector2(bump_direction_x, bump_direction_y) * bouncy_amount, ForceMode2D.Impulse);
+            Player.GetComponent<CharacterMovement>().setVelocity(25);
         }
     }
 }

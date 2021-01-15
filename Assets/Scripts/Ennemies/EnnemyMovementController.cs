@@ -24,13 +24,13 @@ public class EnnemyMovementController : MonoBehaviour
     protected virtual void Update()
     {
         // If the ennemy is facing left and moves to the right...
-        if (GetComponent<Rigidbody2D>() && GetComponent<Rigidbody2D>().velocity.x > 0.5f && !m_FacingRight)
+        if (GetComponent<Rigidbody2D>() && GetComponent<Rigidbody2D>().velocity.x > 0.5f && !m_FacingRight && !GetComponent<Wolf>().knockbacked)
         {
             // ... flip the ennemy.
             Flip();
         }
         // Otherwise if the ennemy is facing right and moves to the left...
-        else if (GetComponent<Rigidbody2D>() && GetComponent<Rigidbody2D>().velocity.x < -0.5f && m_FacingRight)
+        else if (GetComponent<Rigidbody2D>() && GetComponent<Rigidbody2D>().velocity.x < -0.5f && m_FacingRight && !GetComponent<Wolf>().knockbacked)
         {
             // ... flip the ennemy.
             Flip();
@@ -86,8 +86,8 @@ public class EnnemyMovementController : MonoBehaviour
             m_FacingRight = !m_FacingRight;
 
             // Multiply the player's x local scale by -1.
-            Vector3 theScale = transform.localScale;
+            Vector3 theScale = transform.GetChild(0).transform.localScale;
             theScale.x *= -1;
-            transform.localScale = theScale;
+            transform.GetChild(0).transform.localScale = theScale;
     }
 }

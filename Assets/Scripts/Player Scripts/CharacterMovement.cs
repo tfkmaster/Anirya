@@ -28,7 +28,7 @@ public class CharacterMovement : MonoBehaviour
     bool immobile = false;   
 
     [Header("- Player Movement Settings -")]
-    public float maxJumpHeight = 4f;
+    public float maxJumpHeight = 8f;
     public float minJumpHeight = 1f;
     public float TimeToJumpApex = 0.4f;
     public float moveSpeed = 9;
@@ -226,7 +226,6 @@ public class CharacterMovement : MonoBehaviour
 
     public void StartKnockBack(Vector2 direction)
     {
-        Debug.Log(direction.x + "a" + direction.y);
             gotHit = true;
             velocity.y = direction.y;
             velocity.x = direction.x;
@@ -237,5 +236,10 @@ public class CharacterMovement : MonoBehaviour
         gotHit = false;
         velocity.y = 0;
         velocity.x = 0;
+    }
+
+    public void setVelocity(float yVelocity)
+    {
+        velocity.y = yVelocity;
     }
 }
