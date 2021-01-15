@@ -10,16 +10,13 @@ public class Wolf : Ennemy
     protected override void Start()
     {
         base.Start();
+        StartFight();
     }
 
     // Update is called once per frame
     protected override void Update()
     {
         base.Update();
-        if (Input.GetKeyDown(KeyCode.P))
-        {
-            StartFight();
-        }
     }
 
     public override void OnHit(GameObject hitter, int damages)
