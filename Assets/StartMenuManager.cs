@@ -52,7 +52,7 @@ public class StartMenuManager : MonoBehaviour
             reset_y_axis = true;
         }
 
-        if (credits_on && Input.GetKeyDown("joystick button 2"))
+        if (credits_on && Input.GetKeyDown("joystick button 1"))
         {
             foreach (GameObject g in go)
             {

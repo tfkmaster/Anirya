@@ -74,7 +74,7 @@ public class UIManager : MonoBehaviour
 
     void Update()
     {
-        if(controlScreenOn && (Input.GetKeyDown("joystick button 2")))
+        if(controlScreenOn && (Input.GetKeyDown("joystick button 1")))
         {
             back_to_pause_menu_button_action();
         }
