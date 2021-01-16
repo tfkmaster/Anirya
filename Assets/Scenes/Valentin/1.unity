@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -3111,6 +3111,18 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 398808176}
   m_PrefabAsset: {fileID: 0}
+--- !u!225 &398808179
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 398808178}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 0
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!224 &412358356 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1752847859241625020, guid: 6d9ec856d9a59f645a20c86b47ea9085,
@@ -9803,6 +9815,18 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1032798214}
   m_PrefabAsset: {fileID: 0}
+--- !u!225 &1032798217
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1032798216}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 0
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &1036603514
 GameObject:
   m_ObjectHideFlags: 0
