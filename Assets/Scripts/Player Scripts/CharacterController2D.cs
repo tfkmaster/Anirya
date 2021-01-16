@@ -42,9 +42,18 @@ public class CharacterController2D : MonoBehaviour
     float horizontalRaySpacing;
     float verticalRaySpacing;
 
+    Vector2 rayOrigin;
+
+    Vector3 a;
+    float characterAngle;
+    float actualAngle;
+    float oldAngle;
+    float c;
+
     //Slope Information
     ContactPoint2D[] contacts;
     float slopeAngle;
+    float SignedSlopeAngle;
     public float maxClimbAngle = 60;
     public float maxDescendAngle = 60;
     RaycastHit2D hit;
@@ -78,9 +87,161 @@ public class CharacterController2D : MonoBehaviour
         CalculateRaySpacing();
     }  
 
-    private void Update()
+    private void LateUpdate()
     {
         m_Grounded = Physics2D.OverlapCircle(m_GroundCheck.position, collisionRadius, m_WhatIsGround);
+
+        RaycastHit2D hitSlope = Physics2D.Raycast(rayOrigin, Vector2.down, 5, m_WhatIsGround | m_DefaultLayer);
+
+        if (hitSlope)
+        {
+            float signedAngle = (-1) * Vector2.SignedAngle(hitSlope.normal, Vector2.up);
+            if(signedAngle == 0f)
+            {
+                Debug.Log(signedAngle);
+            }
+            
+            if(signedAngle < 0)
+            {
+                actualAngle = 360 + signedAngle;
+            }
+            else
+            {
+                actualAngle = signedAngle;
+            }
+             
+            characterAngle = transform.GetChild(0).transform.eulerAngles.z;
+            if(characterAngle <= ((actualAngle - 2)%360) || characterAngle >= ((actualAngle + 2) % 360))
+            {
+                if(oldAngle > 180f && actualAngle > 180f && signedAngle != 0f)
+                {
+                    if(oldAngle < actualAngle)
+                    {
+                        a = new Vector3(transform.GetChild(0).transform.eulerAngles.x, transform.GetChild(0).transform.eulerAngles.y, characterAngle + (Time.deltaTime * 100));
+                        Debug.Log("a");
+                    }
+                    else
+                    {
+                        a = new Vector3(transform.GetChild(0).transform.eulerAngles.x, transform.GetChild(0).transform.eulerAngles.y, characterAngle - (Time.deltaTime * 100));
+                        Debug.Log("b");
+                    }
+                }
+                else if(oldAngle < 180 && actualAngle < 180 && signedAngle != 0f)
+                {
+                    if (oldAngle <= actualAngle)
+                    {
+                        a = new Vector3(transform.GetChild(0).transform.eulerAngles.x, transform.GetChild(0).transform.eulerAngles.y, characterAngle + (Time.deltaTime * 100));
+                        Debug.Log("c");
+                    }
+                    else
+                    {
+                        a = new Vector3(transform.GetChild(0).transform.eulerAngles.x, transform.GetChild(0).transform.eulerAngles.y, characterAngle - (Time.deltaTime * 100));
+                        Debug.Log("d");
+                    }
+                }
+                else if (((oldAngle > 180 && actualAngle < 180) || (oldAngle < 180 && actualAngle > 180)) && signedAngle != 0f)
+                {
+                    if (oldAngle > 180)
+                    {
+                        a = new Vector3(transform.GetChild(0).transform.eulerAngles.x, transform.GetChild(0).transform.eulerAngles.y, characterAngle + (Time.deltaTime * 100));
+                        Debug.Log("e");
+                    }
+                    else if(actualAngle > 180)
+                    {
+                        a = new Vector3(transform.GetChild(0).transform.eulerAngles.x, transform.GetChild(0).transform.eulerAngles.y, characterAngle - (Time.deltaTime * 100));
+                        Debug.Log("f");
+                    }
+                    else
+                    {
+                        Debug.Log("couille");
+                        Debug.Log(oldAngle);
+                        Debug.Log(actualAngle);
+                    }
+                }
+                else
+                {
+                    if(oldAngle >= 358 || oldAngle <= 2)
+                    {
+                        if(actualAngle > 180)
+                        {
+                            a = new Vector3(transform.GetChild(0).transform.eulerAngles.x, transform.GetChild(0).transform.eulerAngles.y, characterAngle - (Time.deltaTime * 100));
+                            Debug.Log("g");
+                        }
+                        else
+                        {
+                            a = new Vector3(transform.GetChild(0).transform.eulerAngles.x, transform.GetChild(0).transform.eulerAngles.y, characterAngle + (Time.deltaTime * 100));
+                            Debug.Log("h");
+                        }
+                    }
+                    else
+                    {
+                        if (oldAngle > 180)
+                        {
+                            a = new Vector3(transform.GetChild(0).transform.eulerAngles.x, transform.GetChild(0).transform.eulerAngles.y, characterAngle + (Time.deltaTime * 100));
+                            Debug.Log("i");
+                        }
+                        else
+                        {
+                            a = new Vector3(transform.GetChild(0).transform.eulerAngles.x, transform.GetChild(0).transform.eulerAngles.y, characterAngle - (Time.deltaTime * 100));
+                            Debug.Log("j");
+                        }
+                    }
+                }
+                Debug.Log(characterAngle + " <= " + actualAngle);
+                Debug.Log(characterAngle + " <= " + actualAngle);
+
+                
+                transform.GetChild(0).transform.localRotation = Quaternion.Euler(a);
+
+            }
+                oldAngle = characterAngle;
+        }
+
+
+
+        
+        /*c = transform.GetChild(0).transform.eulerAngles.z;
+        if(anglous > 0)
+        {
+            if (360 - c >= 360 - SignedSlopeAngle + 2 || 360 - c <= 360 - SignedSlopeAngle - 2)
+            {
+                if(transform.GetChild(0).transform.eulerAngles.z >= 180)
+                {
+                    a = new Vector3(transform.GetChild(0).transform.eulerAngles.x, transform.GetChild(0).transform.eulerAngles.y, c - (Time.deltaTime * 100 * Mathf.Sign(SignedSlopeAngle - c)));
+                }
+                else
+                {
+                    
+                    a = new Vector3(transform.GetChild(0).transform.eulerAngles.x, transform.GetChild(0).transform.eulerAngles.y, c + (Time.deltaTime * 100 * Mathf.Sign(SignedSlopeAngle - c)));
+                }
+            }
+        }
+        else
+        {
+            SignedSlopeAngle *= -1;
+            if(((360 - SignedSlopeAngle + 2) % 360) -((360 - SignedSlopeAngle - 2) % 360) != 4)
+            {
+                if (c <= ((360 - SignedSlopeAngle - 2) % 360) && c >= ((360 - SignedSlopeAngle + 2) % 360))
+                {
+                     a = new Vector3(transform.GetChild(0).transform.eulerAngles.x, transform.GetChild(0).transform.eulerAngles.y, c - (Time.deltaTime * 100 * Mathf.Sign(SignedSlopeAngle - c)));
+                }
+            }
+            else
+            {
+                if (c <= (360 + SignedSlopeAngle - 2) || c >= (360 + SignedSlopeAngle + 2))
+                {
+                    Debug.Log(Time.deltaTime * 100 * Mathf.Sign(SignedSlopeAngle - c));
+                    a = new Vector3(transform.GetChild(0).transform.eulerAngles.x, transform.GetChild(0).transform.eulerAngles.y, c + (Time.deltaTime * 100 * Mathf.Sign(SignedSlopeAngle - c)));
+                    
+                }
+            }
+            transform.GetChild(0).transform.localRotation = Quaternion.Euler(a);
+        }
+        
+        
+        //a = new Vector3(transform.GetChild(0).transform.eulerAngles.x, transform.GetChild(0).transform.eulerAngles.y, -20);
+        transform.GetChild(0).transform.localRotation = Quaternion.Euler(a);*/
+
     }
 
     public void newMove(Vector3 velocity)
@@ -98,7 +259,8 @@ public class CharacterController2D : MonoBehaviour
         if (velocity.y != 0)
         {
             VerticalCollisions(ref velocity);
-        }
+        }    
+
         transform.Translate(velocity);
         characterMovement.CalculateYDistance(velocity.y);
     }
@@ -142,7 +304,7 @@ public class CharacterController2D : MonoBehaviour
         float rayLength = Mathf.Abs(velocity.x) + skinWidth;
         for (int i = 0; i < HorizontalRayCount; i++)
         {
-            Vector2 rayOrigin = (DirectionX == -1) ? raycastOrigins.bottomLeft : raycastOrigins.bottomRight;
+            rayOrigin = (DirectionX == -1) ? raycastOrigins.bottomLeft : raycastOrigins.bottomRight;
             rayOrigin += Vector2.up * (horizontalRaySpacing * i);
 
             RaycastHit2D hit = Physics2D.Raycast(rayOrigin, Vector2.right * DirectionX, rayLength, m_WhatIsGround | m_DefaultLayer);
@@ -150,6 +312,7 @@ public class CharacterController2D : MonoBehaviour
             if (hit)
             {
                 slopeAngle = Vector2.Angle(hit.normal, Vector2.up);
+                SignedSlopeAngle = Vector2.SignedAngle(hit.normal, Vector2.up);
                 if (i == 0 && slopeAngle <= maxClimbAngle)
                 {
                     ClimbSlope(ref velocity, slopeAngle);
@@ -185,6 +348,7 @@ public class CharacterController2D : MonoBehaviour
             collisions.below = true;
             collisions.climbingSlope = true;
             collisions.slopeAngle = slopeAngle;
+            collisions.SignedSlopeAngle = SignedSlopeAngle;
         }
 
     }
@@ -202,6 +366,7 @@ public class CharacterController2D : MonoBehaviour
         if (hit)
         {
             float slopeAngle = Vector2.Angle(hit.normal, Vector2.up);
+            float SignedSlopeAngle = Vector2.SignedAngle(hit.normal, Vector2.up);
             if (slopeAngle != 0 && slopeAngle <= maxDescendAngle)
             {
                 if (Mathf.Sign(hit.normal.x) == directionX)
@@ -214,6 +379,7 @@ public class CharacterController2D : MonoBehaviour
                         velocity.y -= descendVelocityY;
 
                         collisions.slopeAngle = slopeAngle;
+                        collisions.SignedSlopeAngle = SignedSlopeAngle;
                         collisions.descendingSlope = true;
                         collisions.below = true;
                     }
@@ -254,10 +420,12 @@ public class CharacterController2D : MonoBehaviour
             if (hit)
             {
                 float slopeAngle = Vector2.Angle(hit.normal, Vector2.up);
+                float SignedSlopeAngle = Vector2.SignedAngle(hit.normal, Vector2.up);
                 if (slopeAngle != collisions.slopeAngle)
                 {
                     velocity.x = (hit.distance - skinWidth) * directionX;
                     collisions.slopeAngle = slopeAngle;
+                    collisions.SignedSlopeAngle = SignedSlopeAngle;
                 }
             }
         }
@@ -325,9 +493,9 @@ public class CharacterController2D : MonoBehaviour
             m_FacingRight = !m_FacingRight;
 
             // Multiply the player's x local scale by -1.
-            Vector3 theScale = transform.localScale;
+            Vector3 theScale = transform.GetChild(0).transform.localScale;
             theScale.x *= -1;
-            transform.localScale = theScale;
+            transform.GetChild(0).transform.localScale = theScale;
         }
     }
 
@@ -391,6 +559,7 @@ public class CharacterController2D : MonoBehaviour
 
         public bool climbingSlope, descendingSlope;
         public float slopeAngle, OldSlopeAngle;
+        public float SignedSlopeAngle,OldSignedSlopeAngle;
 
         public void Reset()
         {
@@ -400,6 +569,7 @@ public class CharacterController2D : MonoBehaviour
             descendingSlope = false;
 
             OldSlopeAngle = slopeAngle;
+            OldSignedSlopeAngle = SignedSlopeAngle;
             slopeAngle = 0;
         }
     }
