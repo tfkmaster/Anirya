@@ -41,17 +41,21 @@ public class tuto_002_Manager : MonoBehaviour
             PersistentDatas.tuto_002.TrunkIsBroken = true;
         }
 
-        if (display_guide == 1)
+        if (!PersistentDatas.tuto_002.XAttackDisplay)
         {
-            StopAllCoroutines();
-            StartCoroutine(FadeCanvas(TutoGuide, 0f, 1f, 1.2f, true));
-            ++display_guide;
-        }
-        else if(display_guide == 2 && Input.GetKeyDown("joystick button 2"))
-        {
-            ++display_guide;
-            StopAllCoroutines();
-            StartCoroutine(FadeCanvas(TutoGuide, 1f, 0f, 1.2f, true));
+            if (display_guide == 1)
+            {
+                StopAllCoroutines();
+                StartCoroutine(FadeCanvas(TutoGuide, 0f, 1f, 1.2f, true));
+                ++display_guide;
+            }
+            else if (display_guide == 2 && Input.GetKeyDown("joystick button 2"))
+            {
+                ++display_guide;
+                StopAllCoroutines();
+                StartCoroutine(FadeCanvas(TutoGuide, 1f, 0f, 1.2f, true));
+                PersistentDatas.tuto_002.XAttackDisplay = true;
+            }
         }
     }
 
