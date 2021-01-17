@@ -5,7 +5,7 @@ using UnityEngine;
 public class EnnemyMovementController : MonoBehaviour
 {
     //Movement Information
-    protected bool m_FacingRight = true;  // For determining which way the ennemy is currently facing.
+    public bool m_FacingRight = true;  // For determining which way the ennemy is currently facing.
     public float nearPlayerStop = 1f; //Determines at what distances the wolf stop following the player when he is near him, so that he doesn't spam left and right movement to match the exact player's position
 
     public Collider2D MovementZone; // Determines the zone where the ennemy can follow the player
@@ -23,6 +23,16 @@ public class EnnemyMovementController : MonoBehaviour
     // Update is called once per frame
     protected virtual void Update()
     {
+        if(player.transform.position.x < gameObject.transform.position.x && m_FacingRight)
+        {
+            Flip();
+        }
+
+        if(player.transform.position.x > gameObject.transform.position.x && !m_FacingRight)
+        {
+            Flip();
+        }
+
         // If the ennemy is facing left and moves to the right...
         if (GetComponent<Rigidbody2D>() && GetComponent<Rigidbody2D>().velocity.x > 0.5f && !m_FacingRight && !GetComponent<Wolf>().knockbacked)
         {

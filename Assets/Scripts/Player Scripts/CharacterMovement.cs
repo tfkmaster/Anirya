@@ -17,6 +17,7 @@ public class CharacterMovement : MonoBehaviour
     //Jump information
     float yDistance;
     bool jumpReleased;
+    public bool jumped = false;
     float maxJumpVelocity;
     public bool ableToMove = false;                  // Determines if the player inputs are recorded or not
     public bool Interacting = false;               // Determines if the player is interacting with some entity
@@ -63,7 +64,8 @@ public class CharacterMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!player.isDead && !player.GM.isPaused && !Interacting)
+        
+        if (!player.GM.isPaused && !Interacting)
         {
             gravity = -(2 * maxJumpHeight) / Mathf.Pow(TimeToJumpApex, 2);
             maxJumpVelocity = Mathf.Abs(gravity) * TimeToJumpApex;
@@ -77,7 +79,7 @@ public class CharacterMovement : MonoBehaviour
             }
 
             horizontalMove = calculateDirection();
-            if (!gotHit)
+            if (!gotHit && !player.isDead)
             {
                 Jump();
                 CoyoteTime(); 
@@ -99,6 +101,7 @@ public class CharacterMovement : MonoBehaviour
     public void OnLanding()
     {
         yDistance = 0;
+        jumped = false;
         animator.SetBool("jump", false);
         animator.SetBool("fall", false);
         cc2d.ResetJump();
@@ -174,11 +177,12 @@ public class CharacterMovement : MonoBehaviour
         if (Input.GetButtonDown("Jump") && cc2d.collisions.below
             || Input.GetButton("Jump") && cc2d.collisions.below && jumpValidation)
         {
+            jumped = true;
             velocity.y = maxJumpVelocity;
             animator.SetBool("jump", true);
         }
 
-        if (Input.GetButtonUp("Jump") && !cc2d.collisions.below && velocity.y >= 0)
+        if (Input.GetButtonUp("Jump") && !cc2d.collisions.below && velocity.y >= 0 && jumped)
         {
             if (yDistance >= minJumpHeight)
             {
@@ -208,7 +212,17 @@ public class CharacterMovement : MonoBehaviour
     //Move the player depending on inputs and 
     void playerMovements()
     {
-        Vector2 input = new Vector2(horizontalMove, Input.GetAxisRaw("Vertical"));
+        Vector2 input = new Vector2(0, 0);
+
+        if (!player.isDead)
+        {
+            input = new Vector2(horizontalMove, Input.GetAxisRaw("Vertical"));
+        }
+        else
+        {
+            input = new Vector2(0, 0);
+        }
+        
         if (!gotHit)
         {
             velocity.x = input.x * moveSpeed;

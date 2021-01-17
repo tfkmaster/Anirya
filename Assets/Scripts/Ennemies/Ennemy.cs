@@ -40,10 +40,13 @@ public class Ennemy : Actor
 
     void CheckAttack()
     {
-        
-        Collider2D[] hitActors = Physics2D.OverlapCircleAll(attackPoint.position,attackRange);
 
-        foreach(Collider2D actor in hitActors)
+        Vector2 a = attackPoint.position;
+        Vector2 b = attackPoint2.position;
+
+        Collider2D[] hitActors = Physics2D.OverlapBoxAll((a + b) / 2, new Vector2(Vector3.Distance(attackPoint.position, attackPoint2.position), attackRange),0);
+
+        foreach (Collider2D actor in hitActors)
         {
             if (actor.CompareTag("Player") && !playerAlreadySelected)
             {
@@ -58,6 +61,12 @@ public class Ennemy : Actor
         {
             Physics2D.IgnoreCollision(collision.collider, collision.otherCollider);
         }
+
+        if (collision.gameObject.layer == 8 && collision.gameObject.GetComponent<Player>().isDead)
+        {
+            Physics2D.IgnoreCollision(collision.collider, collision.otherCollider);
+        }
+
 
         else if (collision.gameObject.CompareTag("Player"))
         {
@@ -75,6 +84,7 @@ public class Ennemy : Actor
     {
         bool playerAlreadyDamaged = false;
         Collider2D[] hitActors = Physics2D.OverlapCircleAll(attackPoint.position, attackRange);
+        
 
         foreach (Collider2D actor in hitActors)
         {

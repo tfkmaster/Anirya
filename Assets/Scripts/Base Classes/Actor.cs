@@ -12,6 +12,7 @@ public class Actor : MonoBehaviour
 
     //Attack
     public Transform attackPoint;
+    public Transform attackPoint2;
     public float attackRange = 0.5f;
 
     //Damages visual Feedback
@@ -72,6 +73,7 @@ public class Actor : MonoBehaviour
             return;
         }
         Gizmos.DrawWireSphere(attackPoint.position, attackRange);
+        Gizmos.DrawCube((attackPoint.position + attackPoint2.position) / 2, new Vector3(Vector3.Distance(attackPoint.position,attackPoint2.position), attackRange, 0));
 
     }
 

@@ -114,14 +114,14 @@ public class UIManager : MonoBehaviour
         }
         else
         {
-            PauseCanvasInstance.SetActive(false);
-            PlayerStatsCanvasInstance.GetComponent<CanvasGroup>().alpha = 1f;
-
-            if (DialogCanvasInstance.GetComponent<DialogueManager>().InProgress())
-            {
-                DialogCanvasInstance.GetComponent<DialogueManager>().ForceTypeSentence();
-                DialogCanvasInstance.SetActive(true);
-            }
+            PauseCanvasInstance.SetActive(false);
+            PlayerStatsCanvasInstance.GetComponent<CanvasGroup>().alpha = 1f;
+
+            if (DialogCanvasInstance.GetComponent<DialogueManager>().InProgress())
+            {
+                DialogCanvasInstance.GetComponent<DialogueManager>().ForceTypeSentence();
+                DialogCanvasInstance.SetActive(true);
+            }
         }
     }
 
