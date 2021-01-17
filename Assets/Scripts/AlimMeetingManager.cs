@@ -43,6 +43,9 @@ public class AlimMeetingManager : MonoBehaviour
             Alim.GetComponentInChildren<Animator>().SetTrigger("toNewIdle");
             Alim.GetComponent<AlimAI>().DestinationSetter.target = GameObject.FindGameObjectWithTag("Alim Destination").transform;
             launchAlimMeeting = false;
+
+            UIManager.PlayerStatsCanvasInstance.SetActive(true);
+            UIManager.PlayerStatsCanvasInstance.GetComponent<Animator>().SetBool("Pop Player Stats", true);
         }
     }
 

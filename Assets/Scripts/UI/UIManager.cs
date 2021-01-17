@@ -12,7 +12,7 @@ public class UIManager : MonoBehaviour
     private GameObject ControlsCanvasInstance;
 
     public GameObject PlayerStatsCanvas;
-    private GameObject PlayerStatsCanvasInstance;
+    public GameObject PlayerStatsCanvasInstance;
 
     public GameObject DialogCanvas;
     private GameObject DialogCanvasInstance;
@@ -58,7 +58,7 @@ public class UIManager : MonoBehaviour
         //Canvas where player stats are rendered
         PlayerStatsCanvasInstance = Instantiate(PlayerStatsCanvas, this.transform.position, new Quaternion(0f, 0f, 0f, 0f));
         DontDestroyOnLoad(PlayerStatsCanvasInstance);
-        PlayerStatsCanvasInstance.SetActive(true);
+        PlayerStatsCanvasInstance.SetActive(false);
 
         //Canvas where dialogs are displayed
         DialogCanvasInstance = Instantiate(DialogCanvas, this.transform.position, new Quaternion(0f, 0f, 0f, 0f));
