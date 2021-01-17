@@ -31,7 +31,7 @@ public class CinematicManager : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKey("joystick button 1"))
+        if (Input.GetKey("joystick button 1") || Input.GetKey(KeyCode.Escape))
         {
             decrease_bar = false;
             circle_progress_bar.fillAmount += 1 / (delay / Time.deltaTime);
@@ -40,7 +40,7 @@ public class CinematicManager : MonoBehaviour
             b_button_background.gameObject.SetActive(true);
         }
 
-        if (Input.GetKeyUp("joystick button 1") && circle_progress_bar.fillAmount >= 0f)
+        if ((Input.GetKeyUp("joystick button 1") || Input.GetKeyUp(KeyCode.Escape)) && circle_progress_bar.fillAmount >= 0f)
         {
             decrease_bar = true;
         }

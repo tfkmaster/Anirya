@@ -34,7 +34,7 @@ public class StartMenuManager : MonoBehaviour
     void Update()
     {
         //custom button onClick activated
-        if (Input.GetKeyDown("joystick button 0"))
+        if (Input.GetKeyDown("joystick button 0") || Input.GetKeyDown(KeyCode.Return))
         {
             Buttons[active_button_index % 3].GetComponent<Button>().onClick.Invoke();
         }
@@ -56,7 +56,7 @@ public class StartMenuManager : MonoBehaviour
             reset_y_axis = true;
         }
 
-        if (credits_on && Input.GetKeyDown("joystick button 1"))
+        if (credits_on && (Input.GetKeyDown("joystick button 1") || Input.GetKeyDown(KeyCode.Escape)))
         {
             foreach (GameObject g in go)
             {
@@ -102,6 +102,7 @@ public class StartMenuManager : MonoBehaviour
     {
         ButtonHover(Buttons[active_button_index % 3], false);
         ++active_button_index;
+        Debug.Log(active_button_index);
         ButtonHover(Buttons[active_button_index % 3], true);
     }
 
@@ -110,6 +111,7 @@ public class StartMenuManager : MonoBehaviour
         ButtonHover(Buttons[active_button_index % 3], false);
         if (active_button_index == 0) active_button_index = 3;
         --active_button_index;
+        Debug.Log(active_button_index);
         ButtonHover(Buttons[active_button_index % 3], true);
     }
 

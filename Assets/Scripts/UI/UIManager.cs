@@ -12,7 +12,7 @@ public class UIManager : MonoBehaviour
     private GameObject ControlsCanvasInstance;
 
     public GameObject PlayerStatsCanvas;
-    private GameObject PlayerStatsCanvasInstance;
+    public GameObject PlayerStatsCanvasInstance;
 
     public GameObject DialogCanvas;
     private GameObject DialogCanvasInstance;
@@ -32,8 +32,6 @@ public class UIManager : MonoBehaviour
         new Color32(168, 78, 123, 255), //pink anirya
         new Color32(201, 233, 235, 255), //blue
         new Color32(255, 255, 255, 255), //white
-        
-
     };
 
     void Awake()
@@ -58,7 +56,7 @@ public class UIManager : MonoBehaviour
         //Canvas where player stats are rendered
         PlayerStatsCanvasInstance = Instantiate(PlayerStatsCanvas, this.transform.position, new Quaternion(0f, 0f, 0f, 0f));
         DontDestroyOnLoad(PlayerStatsCanvasInstance);
-        PlayerStatsCanvasInstance.SetActive(true);
+        PlayerStatsCanvasInstance.SetActive(false);
 
         //Canvas where dialogs are displayed
         DialogCanvasInstance = Instantiate(DialogCanvas, this.transform.position, new Quaternion(0f, 0f, 0f, 0f));
@@ -73,28 +71,32 @@ public class UIManager : MonoBehaviour
 
     void Update()
     {
-        if(controlScreenOn && (Input.GetKeyDown("joystick button 1")))
+        if(controlScreenOn && ((Input.GetKeyDown("joystick button 1") || Input.GetKeyDown(KeyCode.Escape))))
         {
+            Debug.Log("Escaping");
             ControlsCanvasInstance.GetComponent<ControlsCanvas>().ResetActiveButton();
             back_to_pause_menu_button_action();
         }
 
-        //UI navigation with directional pad
-        float y_axis = Input.GetAxis("Vertical");
+        if (!controlScreenOn)
+        {
+            //UI navigation with directional pad
+            float y_axis = Input.GetAxis("Vertical");
 
-        if((y_axis < -0.2 && reset_y_axis) || Input.GetKeyDown(KeyCode.DownArrow))
-        {
-            PauseCanvasInstance.GetComponent<PauseCanvas>().SelectNextButton();
-            reset_y_axis = false;
-        }
-        else if((y_axis > 0.2 && reset_y_axis) || Input.GetKeyDown(KeyCode.UpArrow))
-        {
-            PauseCanvasInstance.GetComponent<PauseCanvas>().SelectPreviousButton();
-            reset_y_axis = false;
-        }
-        else if(y_axis >= -0.2 && y_axis <= 0.2)
-        {
-            reset_y_axis = true;
+            if ((y_axis < -0.2 && reset_y_axis) || Input.GetKeyDown(KeyCode.DownArrow))
+            {
+                PauseCanvasInstance.GetComponent<PauseCanvas>().SelectNextButton();
+                reset_y_axis = false;
+            }
+            else if ((y_axis > 0.2 && reset_y_axis) || Input.GetKeyDown(KeyCode.UpArrow))
+            {
+                PauseCanvasInstance.GetComponent<PauseCanvas>().SelectPreviousButton();
+                reset_y_axis = false;
+            }
+            else if (y_axis >= -0.2 && y_axis <= 0.2)
+            {
+                reset_y_axis = true;
+            }
         }
     }
 

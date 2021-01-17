@@ -101,7 +101,7 @@ public class Player : Actor
         }
 
         //Resume or Pause the game
-        if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown("joystick button 7"))
+        if ((Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown("joystick button 7")) && !GameObject.FindGameObjectWithTag("UIManager").GetComponent<UIManager>().controlScreenOn)
         {
             GM.SetPause();
         }
