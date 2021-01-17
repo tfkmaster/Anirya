@@ -11,7 +11,7 @@ public class Wolf : Ennemy
     protected override void Start()
     {
         base.Start();
-        StartFight();
+        //StartFight();
     }
 
     // Update is called once per frame
@@ -53,7 +53,7 @@ public class Wolf : Ennemy
 
     public void StartFight()
     {
-        GetComponentInChildren<Animator>().SetTrigger("startFight");
+        GetComponentInChildren<Animator>().SetBool("startFight", true);
     }
 
     private IEnumerator Knockback()
