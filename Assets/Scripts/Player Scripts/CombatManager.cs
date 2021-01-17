@@ -47,7 +47,6 @@ public class CombatManager : MonoBehaviour
         if (!CM.player.GM.isPaused)
         {
             Attack();
-            Regen();
 
             if (GetComponent<Player>().GM.alimMet)
             {

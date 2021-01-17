@@ -53,7 +53,6 @@ public class UIManager : MonoBehaviour
         //Window showing player controls
         ControlsCanvasInstance = Instantiate(ControlsCanvas, this.transform.position, new Quaternion(0f, 0f, 0f, 0f));
         DontDestroyOnLoad(ControlsCanvasInstance);
-        ControlsCanvasInstance.GetComponentInChildren<Button>().onClick.AddListener(back_to_pause_menu_button_action);
         ControlsCanvasInstance.SetActive(false);
 
         //Canvas where player stats are rendered
@@ -76,11 +75,8 @@ public class UIManager : MonoBehaviour
     {
         if(controlScreenOn && (Input.GetKeyDown("joystick button 1")))
         {
+            ControlsCanvasInstance.GetComponent<ControlsCanvas>().ResetActiveButton();
             back_to_pause_menu_button_action();
-        }
-        if (controlScreenOn && (Input.GetKeyDown("joystick button 0")))
-        {
-            ControlsCanvasInstance.transform.GetChild(3).gameObject.GetComponent<Button>().onClick.Invoke();
         }
 
         //UI navigation with directional pad
