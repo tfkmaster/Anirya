@@ -49,15 +49,11 @@ public class Wolf : Ennemy
 
     }
 
-    private IEnumerator WolfDash()
+    public IEnumerator WolfDash()
     {
-        //knockbacked = true;
-        
-        GetComponent<Rigidbody2D>().AddForce(new Vector2(10* m_FacingRight ? 1 : -1, 0), ForceMode2D.Impulse);
+        GetComponent<Rigidbody2D>().AddForce(new Vector2(40* (GetComponent<AIWolf>().m_FacingRight ? 1 : -1), 0), ForceMode2D.Impulse);
         yield return new WaitForSeconds(0.5f);
         GetComponent<Rigidbody2D>().velocity = new Vector2(0, GetComponent<Rigidbody2D>().velocity.y);
-        //knockbacked = false;
-
     }
 
 }

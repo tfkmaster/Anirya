@@ -27,4 +27,10 @@ public class EnnemyScriptLinker : MonoBehaviour
     {
         GetComponentInParent<Wolf>().StartFade();
     }
+
+    public void DashWolf()
+    {
+        //GetComponentInParent<Wolf>().StartFade();
+        GetComponentInParent<Wolf>().StartCoroutine(GetComponentInParent<Wolf>().WolfDash());
+    }
 }
