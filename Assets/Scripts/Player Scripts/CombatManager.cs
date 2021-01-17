@@ -96,14 +96,17 @@ public class CombatManager : MonoBehaviour
             }
         }
         
-        if (isHealing && player.healthPoints != player.maxHealthPoints)
+        if (isHealing /*&& player.healthPoints != player.maxHealthPoints*/)
         {
             holdRegenCounter += Time.deltaTime;
             player.actualHeat -= Time.deltaTime * player.RegenCost / HoldRegenTime;
             Zoom();
             if (holdRegenCounter >= HoldRegenTime)
             {
-                player.healthPoints += 1;
+                if(player.healthPoints != player.maxHealthPoints)
+                {
+                    player.healthPoints += 1;
+                }
                 if (player.actualHeat < player.RegenCost)
                 {
                     isHealing = false;

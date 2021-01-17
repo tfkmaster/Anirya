@@ -72,7 +72,6 @@ public class AlimMeetingManager : MonoBehaviour
 
             UIManager.PlayerStatsCanvasInstance.SetActive(true);
             UIManager.PlayerStatsCanvasInstance.GetComponent<Animator>().SetBool("Pop Player Stats", true);
-            GameObject.FindGameObjectWithTag("Player").GetComponent<CharacterMovement>().Interacting = true;
         }
     }
 
