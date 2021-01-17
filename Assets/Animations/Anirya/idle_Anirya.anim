@@ -6041,7 +6041,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.z
-    path: Root/pelvis_1
+    path: leg_R_solver/leg_R_solver_Target
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -6051,7 +6051,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.y
-    path: Root/pelvis_1
+    path: leg_R_solver/leg_R_solver_Target
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -6061,7 +6061,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.x
-    path: Root/pelvis_1
+    path: leg_R_solver/leg_R_solver_Target
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -6431,7 +6431,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.x
-    path: leg_R_solver/leg_R_solver_Target
+    path: Root/pelvis_1
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -6441,7 +6441,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.y
-    path: leg_R_solver/leg_R_solver_Target
+    path: Root/pelvis_1
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -6451,7 +6451,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.z
-    path: leg_R_solver/leg_R_solver_Target
+    path: Root/pelvis_1
     classID: 4
     script: {fileID: 0}
   m_HasGenericRootTransform: 0

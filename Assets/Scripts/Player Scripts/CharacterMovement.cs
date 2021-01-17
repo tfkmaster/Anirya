@@ -6,7 +6,7 @@ public class CharacterMovement : MonoBehaviour
 {
     //Linked components
     private CharacterController2D cc2d;             // The Movement controller attached on player
-    private Animator animator;                      // The animator attached on the player
+    public Animator animator;                      // The animator attached on the player
     public Player player;                           // The animator attached on the player
 
     //Movement Information
