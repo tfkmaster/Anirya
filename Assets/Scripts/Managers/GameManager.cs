@@ -140,6 +140,7 @@ public class GameManager : MonoBehaviour
         yield return new WaitForEndOfFrame();
         //Move the player to the adequate spawn point
         myPlayer.transform.position = GameObject.FindGameObjectWithTag(spawnPointName).transform.position;
+        myPlayer.GetComponent<CombatManager>().getBrain();
         if (GameObject.FindGameObjectWithTag("Alim") && alimMet)
         {
             GameObject.FindGameObjectWithTag("Alim").transform.position = GameObject.FindGameObjectWithTag(spawnPointName).transform.position;

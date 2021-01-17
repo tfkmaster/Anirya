@@ -75,9 +75,8 @@ SpriteRenderer:
   m_SortingLayerID: 894383015
   m_SortingLayer: 5
   m_SortingOrder: 0
-  m_Sprite: {fileID: -5566004636774020850, guid: 83f9d495d917e854995d1380bb105142,
-    type: 3}
-  m_Color: {r: 0.68235296, g: 0.70380354, b: 1, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 7ac75b87aa4978344b799ee26508db29, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -104,7 +103,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 6.57, y: 9.53}
+    oldSize: {x: 38.399998, y: 21.599998}
     newSize: {x: 10.93, y: 18.14}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -129,6 +128,7 @@ MonoBehaviour:
   healthPoints: 5
   damageDone: 0
   attackPoint: {fileID: 0}
+  attackPoint2: {fileID: 0}
   attackRange: 0.5
   timeRed: 0.5
   onHitParticles1: {fileID: 6273394649707659263}

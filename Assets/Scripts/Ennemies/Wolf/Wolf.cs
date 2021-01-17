@@ -6,6 +6,7 @@ public class Wolf : Ennemy
 {
     public bool knockbacked = false;
     public bool playerGrounded = false;
+    public float waitTime;
 
     // Start is called before the first frame update
     protected override void Start()

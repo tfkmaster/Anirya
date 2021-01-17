@@ -61,6 +61,11 @@ public class CombatManager : MonoBehaviour
         
     }
 
+    public void getBrain()
+    {
+        CBrain = FindObjectOfType<Cinemachine.CinemachineBrain>();
+    }
+
     //Checks if the player has pushed attack button
     public void Attack()
     {
@@ -96,9 +101,9 @@ public class CombatManager : MonoBehaviour
                 isHealing = false;
                 CM.canMove = true;
                 canReceiveInput = true;
-                GetComponentInChildren<Animator>().SetTrigger("stopRegen");
-                RegenParticles.Stop();
             }
+            GetComponentInChildren<Animator>().SetTrigger("stopRegen");
+            RegenParticles.Stop();
         }
         
         if (isHealing)
