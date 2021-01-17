@@ -55,7 +55,7 @@ public class DidacticielSeq : MonoBehaviour
         }
         if(tutorial_step == 3 && Input.GetButtonDown("Jump"))
         {
-            StartCoroutine(FadeCanvas(TutoGuides[1].GetComponent<CanvasGroup>(), 1f, 2f, 0.8f, false));
+            StartCoroutine(FadeCanvas(TutoGuides[1].GetComponent<CanvasGroup>(), 1f, 0f, 0.8f, false));
             tutorial_step++;
         }
     }
