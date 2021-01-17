@@ -3837,6 +3837,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1d44c4a0dbf2159478acd8d95ef3d87c, type: 3}
+--- !u!1 &707672533 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4472929067535591222, guid: 1d44c4a0dbf2159478acd8d95ef3d87c,
+    type: 3}
+  m_PrefabInstance: {fileID: 707672532}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &707672537 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4852040677996367791, guid: 1d44c4a0dbf2159478acd8d95ef3d87c,
@@ -4887,6 +4893,12 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1009569312 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1214533189241997763, guid: ae1cd9d2b13fec54db4481b4b76977fb,
+    type: 3}
+  m_PrefabInstance: {fileID: 1602452999}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1043988808
 GameObject:
   m_ObjectHideFlags: 0
@@ -7270,6 +7282,51 @@ MonoBehaviour:
   - {x: 0.5, y: -0.5, z: 0}
   - {x: 0.5, y: 0.5, z: 0}
   - {x: -0.5, y: 0.5, z: 0}
+--- !u!1 &1509766601
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1509766603}
+  - component: {fileID: 1509766602}
+  m_Layer: 0
+  m_Name: SceneManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1509766602
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1509766601}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ffe3879fb0a148458f2fcff6a660c74, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  trunk: {fileID: 707672533}
+  tallam_shadows: {fileID: 1009569312}
+--- !u!4 &1509766603
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1509766601}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 72.20517, y: -0.42792052, z: -30.009375}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 21
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!198 &1520152879 stripped
 ParticleSystem:
   m_CorrespondingSourceObject: {fileID: 3539187445882568906, guid: ae1cd9d2b13fec54db4481b4b76977fb,
