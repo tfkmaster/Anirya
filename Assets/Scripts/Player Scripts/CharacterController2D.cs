@@ -2,6 +2,7 @@
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Animations;
+using System.Collections;
 
 public class CharacterController2D : MonoBehaviour
 {
@@ -47,13 +48,21 @@ public class CharacterController2D : MonoBehaviour
 
     Vector3 a;
     Vector3 b;
+    Vector3 c;
+    Vector3 d;
     float characterAngleA;
     float characterAngleB;
     float actualAngle;
     float oldAngle;
     bool wasIdling = false;
+
+    float rootFloat;
+    float container;
+    float arms;
     
     public GameObject root;
+    public Transform leftArm;
+    public Transform rightArm;
 
     //Slope Information
     ContactPoint2D[] contacts;
@@ -95,7 +104,7 @@ public class CharacterController2D : MonoBehaviour
     private void LateUpdate()
     {
         m_Grounded = Physics2D.OverlapCircle(m_GroundCheck.position, collisionRadius, m_WhatIsGround);
-        if (characterMovement.animator.GetCurrentAnimatorStateInfo(0).IsName("Idle"))
+        /*if (characterMovement.animator.GetCurrentAnimatorStateInfo(0).IsName("Idle"))
         {
             wasIdling = true;
             RaycastHit2D hitSlope = Physics2D.Raycast(rayOrigin, Vector2.down, 5, m_WhatIsGround | m_DefaultLayer);
@@ -114,12 +123,12 @@ public class CharacterController2D : MonoBehaviour
                 if ((((characterAngleA <= -((facingDirection() * actualAngle + 2) % 360)) || (characterAngleA >= -((facingDirection() * actualAngle - 2) % 360)))) )
                 {
 
-                    if (/*oldAngle < 0 && */actualAngle < 0 && signedAngle != 0f)
+                    if (actualAngle < 0 && signedAngle != 0f)
                     {
-                        if (/*oldAngle < actualAngle && (-oldAngle <= actualAngle)*/ true)
+                        if (true)
                         {
                             a = new Vector3(transform.GetChild(0).transform.eulerAngles.x, transform.GetChild(0).transform.eulerAngles.y, characterAngleA + (Time.deltaTime * 100) * facingDirection());
-                            b = new Vector3(transform.GetChild(0).transform.eulerAngles.x, transform.GetChild(0).transform.eulerAngles.y, characterAngleB - (Time.deltaTime * 100));
+                            b = new Vector3(transform.GetChild(0).transform.eulerAngles.x, transform.GetChild(0).transform.eulerAngles.y, characterAngleB - (Time.deltaTime * 100));                          
                             Debug.Log("a");
                         }
                         else
@@ -143,59 +152,23 @@ public class CharacterController2D : MonoBehaviour
                             b = new Vector3(transform.GetChild(0).transform.eulerAngles.x, transform.GetChild(0).transform.eulerAngles.y,  characterAngleB - (Time.deltaTime * 100));
                             Debug.Log("d");
                         }
-                    }/*
-                    else if (((oldAngle > 180 && actualAngle < 180) || (oldAngle < 180 && actualAngle > 180)) && signedAngle != 0f)
+                    }
+
+                    if(facingDirection() == -1)
                     {
-                        if (oldAngle > 180)
-                        {
-                            a = new Vector3(transform.GetChild(0).transform.eulerAngles.x, transform.GetChild(0).transform.eulerAngles.y, characterAngleA - (Time.deltaTime * 100));
-                            b = new Vector3(transform.GetChild(0).transform.eulerAngles.x, transform.GetChild(0).transform.eulerAngles.y, -characterAngleA + (Time.deltaTime * 100));
-                            Debug.Log("e");
-                        }
-                        else if (actualAngle > 180)
-                        {
-                            a = new Vector3(transform.GetChild(0).transform.eulerAngles.x, transform.GetChild(0).transform.eulerAngles.y, characterAngleA - (Time.deltaTime * 100) * facingDirection());
-                            b = new Vector3(transform.GetChild(0).transform.eulerAngles.x, transform.GetChild(0).transform.eulerAngles.y, characterAngleB + (Time.deltaTime * 100));
-                            Debug.Log("f");
-                        }
+                        c = new Vector3(leftArm.eulerAngles.x, leftArm.eulerAngles.y, characterAngleB + (Mathf.Sign(signedAngle) * facingDirection() * (Time.deltaTime * 100)));
+                        d = new Vector3(rightArm.eulerAngles.x, rightArm.eulerAngles.y, characterAngleB + (Mathf.Sign(signedAngle) * facingDirection() * (Time.deltaTime * 100)));
                     }
                     else
                     {
-                        Debug.Log("couillasse");
-                        if (oldAngle >= 358 || oldAngle <= 2)
-                        {
-                            if (actualAngle > 180)
-                            {
-                                a = new Vector3(transform.GetChild(0).transform.eulerAngles.x, transform.GetChild(0).transform.eulerAngles.y, characterAngleA - (Time.deltaTime * 100));
-                                Debug.Log("g");
-                            }
-                            else
-                            {
-                                a = new Vector3(transform.GetChild(0).transform.eulerAngles.x, transform.GetChild(0).transform.eulerAngles.y, characterAngleA + (Time.deltaTime * 100));
-                                Debug.Log("h");
-                            }
-                        }
-                        else
-                        {
-                            if (oldAngle > 180)
-                            {
-                                a = new Vector3(transform.GetChild(0).transform.eulerAngles.x, transform.GetChild(0).transform.eulerAngles.y, characterAngleA + (Time.deltaTime * 100));
-                                Debug.Log("i");
-                            }
-                            else
-                            {
-                                a = new Vector3(transform.GetChild(0).transform.eulerAngles.x, transform.GetChild(0).transform.eulerAngles.y, characterAngleA - (Time.deltaTime * 100));
-                                Debug.Log("j");
-                            }
-                        }
-                    }*/
-
-                    Debug.Log(characterAngleA + " <= " + ((facingDirection() * actualAngle + 2) % 360));
-                    Debug.Log(characterAngleA + " => " + ((facingDirection() * actualAngle - 2) % 360));
-                    Debug.Log(characterAngleB);
-
+                        c = new Vector3(leftArm.eulerAngles.x, leftArm.eulerAngles.y, - characterAngleB + ((Time.deltaTime * 100)));
+                        d = new Vector3(rightArm.eulerAngles.x, rightArm.eulerAngles.y, - characterAngleB + ((Time.deltaTime * 100)));
+                    }
+                    
                     root.GetComponent<RotationConstraint>().rotationOffset = a;
                     transform.GetChild(0).transform.localRotation = Quaternion.Euler(b);
+                    leftArm.localRotation = Quaternion.Euler(c);
+                    rightArm.localRotation = Quaternion.Euler(d);
 
 
                 }
@@ -206,12 +179,51 @@ public class CharacterController2D : MonoBehaviour
         {
             wasIdling = false;
             Debug.Log("hey");
-            root.GetComponent<RotationConstraint>().rotationOffset = new Vector3(0,0,0);
-            root.GetComponent<RotationConstraint>().rotationAtRest = new Vector3(0, 0, 90);
-            transform.GetChild(0).transform.localRotation = Quaternion.Euler(new Vector3(0,0,0));
+            StopAllCoroutines();
+            StartCoroutine(SmoothReset());
         }
-        
+        */
 
+    }
+
+    IEnumerator SmoothReset()
+    {
+        rootFloat = Mathf.Sign(root.GetComponent<RotationConstraint>().rotationOffset.z);
+        container = Mathf.Sign(transform.GetChild(0).transform.localRotation.eulerAngles.z);
+        arms = Mathf.Sign(leftArm.localRotation.eulerAngles.z);
+
+        while(root.GetComponent<RotationConstraint>().rotationOffset.z <= -2 || root.GetComponent<RotationConstraint>().rotationOffset.z >= 2)
+        {
+            characterAngleA = root.GetComponent<RotationConstraint>().rotationOffset.z;
+            characterAngleB = transform.GetChild(0).transform.localRotation.eulerAngles.z;
+
+            if (facingDirection() == -1)
+            {
+                root.GetComponent<RotationConstraint>().rotationOffset = root.GetComponent<RotationConstraint>().rotationOffset + (new Vector3(0, 0, -rootFloat * (Time.deltaTime * 200)));
+                transform.GetChild(0).transform.localRotation = Quaternion.Euler(new Vector3(0, 0, transform.GetChild(0).transform.localRotation.eulerAngles.z - container * (Time.deltaTime * 200)));
+                leftArm.localRotation = Quaternion.Euler(new Vector3(0, 0, leftArm.localRotation.eulerAngles.z - arms * (Time.deltaTime * 200)));
+                rightArm.localRotation = Quaternion.Euler(new Vector3(0, 0, leftArm.localRotation.eulerAngles.z - arms * (Time.deltaTime * 200)));
+            }
+            else
+            {
+                root.GetComponent<RotationConstraint>().rotationOffset = (new Vector3(0, 0, characterAngleA + (Time.deltaTime * 200)));
+                transform.GetChild(0).transform.localRotation = Quaternion.Euler(new Vector3(0, 0, characterAngleB - (Time.deltaTime * 200)));
+                leftArm.localRotation = Quaternion.Euler(new Vector3(0, 0, -characterAngleB + (Time.deltaTime * 200)));
+                rightArm.localRotation = Quaternion.Euler(new Vector3(0, 0, -characterAngleB +  (Time.deltaTime * 200)));
+            }          
+            yield return new WaitForEndOfFrame();
+        }
+
+        HardReset();
+    }
+
+    void HardReset()
+    {
+        root.GetComponent<RotationConstraint>().rotationOffset = new Vector3(0, 0, 0);
+        root.GetComponent<RotationConstraint>().rotationAtRest = new Vector3(0, 0, 90);
+        transform.GetChild(0).transform.localRotation = Quaternion.Euler(new Vector3(0, 0, 0));
+        leftArm.localRotation = Quaternion.Euler(new Vector3(0, 0, 0));
+        rightArm.localRotation = Quaternion.Euler(new Vector3(0, 0, 0));
     }
 
     public void newMove(Vector3 velocity)
