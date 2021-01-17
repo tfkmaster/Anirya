@@ -5,6 +5,7 @@ using UnityEngine;
 public class Wolf : Ennemy
 {
     public bool knockbacked = false;
+    public bool playerGrounded = false;
 
     // Start is called before the first frame update
     protected override void Start()
@@ -17,6 +18,22 @@ public class Wolf : Ennemy
     protected override void Update()
     {
         base.Update();
+    }
+
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        if (collision.otherCollider.GetType() == typeof(BoxCollider2D) && collision.collider.gameObject.CompareTag("Player") && collision.collider.isTrigger)
+        {
+            playerGrounded = true;
+        }
+    }
+
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.otherCollider.GetType() == typeof(BoxCollider2D) && collision.collider.gameObject.CompareTag("Player") && collision.collider.isTrigger)
+        {
+            playerGrounded = false;
+        }
     }
 
     public override void OnHit(GameObject hitter, int damages)
@@ -51,7 +68,7 @@ public class Wolf : Ennemy
 
     public IEnumerator WolfDash()
     {
-        GetComponent<Rigidbody2D>().AddForce(new Vector2(40* (GetComponent<AIWolf>().m_FacingRight ? 1 : -1), 0), ForceMode2D.Impulse);
+        GetComponent<Rigidbody2D>().AddForce(new Vector2(30* (GetComponent<AIWolf>().m_FacingRight ? 1 : -1), 0), ForceMode2D.Impulse);
         yield return new WaitForSeconds(0.5f);
         GetComponent<Rigidbody2D>().velocity = new Vector2(0, GetComponent<Rigidbody2D>().velocity.y);
     }

@@ -23,6 +23,16 @@ public class EnnemyMovementController : MonoBehaviour
     // Update is called once per frame
     protected virtual void Update()
     {
+        if(player.transform.position.x < gameObject.transform.position.x && m_FacingRight)
+        {
+            Flip();
+        }
+
+        if(player.transform.position.x > gameObject.transform.position.x && !m_FacingRight)
+        {
+            Flip();
+        }
+
         // If the ennemy is facing left and moves to the right...
         if (GetComponent<Rigidbody2D>() && GetComponent<Rigidbody2D>().velocity.x > 0.5f && !m_FacingRight && !GetComponent<Wolf>().knockbacked)
         {

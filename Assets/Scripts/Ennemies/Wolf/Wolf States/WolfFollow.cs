@@ -21,17 +21,25 @@ public class WolfFollow : StateMachineBehaviour
     {
         if (!wolf.player.GetComponent<Player>().isDead)
         {
-            if (wolf.player.transform.position.x + aiWolf.nearPlayerStop < animator.GetComponentInParent<Transform>().position.x)
+            if (wolf.player.GetComponent<CharacterController2D>().m_Grounded)
             {
-                rb2dWolf.velocity = new Vector2(-wolf.FollowSpeed, rb2dWolf.velocity.y);
-            }
-            else if (wolf.player.transform.position.x - aiWolf.nearPlayerStop > animator.GetComponentInParent<Transform>().transform.position.x)
-            {
-                rb2dWolf.velocity = new Vector2(wolf.FollowSpeed, rb2dWolf.velocity.y);
+                animator.SetBool("playerGrounded", true);
+                if (wolf.player.transform.position.x + aiWolf.nearPlayerStop < animator.GetComponentInParent<Transform>().position.x)
+                {
+                    rb2dWolf.velocity = new Vector2(-wolf.FollowSpeed, rb2dWolf.velocity.y);
+                }
+                else if (wolf.player.transform.position.x - aiWolf.nearPlayerStop > animator.GetComponentInParent<Transform>().transform.position.x)
+                {
+                    rb2dWolf.velocity = new Vector2(wolf.FollowSpeed, rb2dWolf.velocity.y);
+                }
+                else
+                {
+                    rb2dWolf.velocity = Vector2.zero;
+                }
             }
             else
             {
-                rb2dWolf.velocity = Vector2.zero;
+                animator.SetBool("playerGrounded", false);
             }
         }
         else
