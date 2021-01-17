@@ -1,10 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
-<<<<<<< HEAD
---- !u!114 &-8962195427344164445
-=======
---- !u!114 &-8049783043709778251
->>>>>>> develop
+--- !u!114 &-5664127225367819060
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -13,14 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-<<<<<<< HEAD
   m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
   m_Name: event:/Text sound/Button next
   m_EditorClassIdentifier: 
   Path: event:/Text sound/Button next
   guid: 0d270cc2443f054a8a60514897cf7a7b
   Banks:
-  - {fileID: 7448122919003446300}
+  - {fileID: 4558357919221559390}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -28,91 +23,7 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 0
---- !u!114 &-8275216537011511248
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/Characters/Heal
-  m_EditorClassIdentifier: 
-  Path: event:/Characters/Heal
-  guid: 9f37fddc9032e345baa74f6d0d68b976
-  Banks:
-  - {fileID: 7448122919003446300}
-  IsStream: 0
-  Is3D: 0
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 0
-  MaxDistance: 0
-  Length: 3000
---- !u!114 &-7514780772547045846
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/Characters/Anirya Footsteps
-  m_EditorClassIdentifier: 
-  Path: event:/Characters/Anirya Footsteps
-  guid: 2107b9f40b1222449c82923700df8555
-  Banks:
-  - {fileID: 7448122919003446300}
-  IsStream: 0
-  Is3D: 1
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 156
---- !u!114 &-4742225071955977985
-=======
-  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: bank:/Music.bank
-  m_EditorClassIdentifier: 
-  Path: Assets/Audio/Anyria/Build/Desktop/Music.bank
-  Name: Music
-  lastModified: 637464693336378456
-  LoadResult: 0
-  FileSizes: []
-  Exists: 1
---- !u!114 &-7848268871749406402
->>>>>>> develop
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: bank:/Master.bank
-  m_EditorClassIdentifier: 
-  Path: Assets/Audio/Anyria/Build/Desktop/Master.bank
-  Name: Master
-<<<<<<< HEAD
-  lastModified: 637461663491097154
-  LoadResult: 0
-  FileSizes: []
-  Exists: 1
---- !u!114 &-4297035265568015455
-=======
-  lastModified: 637461647290080426
-  LoadResult: 0
-  FileSizes: []
-  Exists: 1
---- !u!114 &-5593776973070480730
->>>>>>> develop
+--- !u!114 &-3450513157539075203
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -127,24 +38,15 @@ MonoBehaviour:
   Path: event:/Ambiances/bACK pAN
   guid: 5fd3d3d8f66ec24393a455cc8777dac4
   Banks:
-<<<<<<< HEAD
-  - {fileID: -2813649767634679846}
-=======
-  - {fileID: 3453689120754430069}
->>>>>>> develop
+  - {fileID: 6017693090206942277}
   IsStream: 1
   Is3D: 0
   IsOneShot: 0
   Parameters: []
   MinDistance: 0
   MaxDistance: 0
-<<<<<<< HEAD
-  Length: 254829
---- !u!114 &-4006390299243211112
-=======
   Length: 29000
---- !u!114 &-5063468059299426035
->>>>>>> develop
+--- !u!114 &-2406437501742092389
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -154,85 +56,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/Text sound/Button next
-  m_EditorClassIdentifier: 
-  Path: event:/Text sound/Button next
-  guid: 0d270cc2443f054a8a60514897cf7a7b
-  Banks:
-<<<<<<< HEAD
-  - {fileID: 7448122919003446300}
-=======
-  - {fileID: 6909709769896673904}
->>>>>>> develop
-  IsStream: 0
-  Is3D: 0
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 0
-  MaxDistance: 0
-<<<<<<< HEAD
-  Length: 1007
---- !u!114 &-3484467480984211054
-=======
-  Length: 0
---- !u!114 &-1051940913207482771
->>>>>>> develop
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-<<<<<<< HEAD
-  m_Name: event:/Characters/Jump
-  m_EditorClassIdentifier: 
-  Path: event:/Characters/Jump
-  guid: 9c0d2dd39ad23848b845bfc293a21b38
-  Banks:
-  - {fileID: 7448122919003446300}
-=======
   m_Name: event:/Characters/Heal
   m_EditorClassIdentifier: 
   Path: event:/Characters/Heal
   guid: 9f37fddc9032e345baa74f6d0d68b976
   Banks:
-  - {fileID: 6909709769896673904}
->>>>>>> develop
+  - {fileID: 4558357919221559390}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
   Parameters: []
   MinDistance: 0
   MaxDistance: 0
-<<<<<<< HEAD
-  Length: 498
---- !u!114 &-3184725957808447609
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/Characters/Punch
-  m_EditorClassIdentifier: 
-  Path: event:/Characters/Punch
-  guid: 1652b3ac52e79544bbf8fc7f10d79df8
-  Banks:
-  - {fileID: 7448122919003446300}
-  IsStream: 0
-  Is3D: 0
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 0
-  MaxDistance: 0
-  Length: 552
---- !u!114 &-2813649767634679846
+  Length: 3000
+--- !u!114 &-2337326748519552864
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -250,155 +87,7 @@ MonoBehaviour:
   LoadResult: 0
   FileSizes: []
   Exists: 1
---- !u!114 &-1523331828032798677
-=======
-  Length: 3000
---- !u!114 &-311850323415017333
->>>>>>> develop
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/Ambiances/bACK pAN
-  m_EditorClassIdentifier: 
-<<<<<<< HEAD
-  Path: event:/Ambiances/bACK pAN
-  guid: 5fd3d3d8f66ec24393a455cc8777dac4
-  Banks:
-  - {fileID: 2280103255605557248}
-  IsStream: 1
-  Is3D: 0
-  IsOneShot: 0
-  Parameters: []
-  MinDistance: 0
-  MaxDistance: 0
-  Length: 29000
---- !u!114 &-947408045753897993
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/FX environement/Rocks Break
-  m_EditorClassIdentifier: 
-  Path: event:/FX environement/Rocks Break
-  guid: ee2960153a7c7f40ba9a81846832d9e5
-  Banks:
-  - {fileID: 7448122919003446300}
-  IsStream: 0
-  Is3D: 0
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 0
-  MaxDistance: 0
-  Length: 696
-=======
-  Path: event:/Characters/Anirya Footsteps
-  guid: 2107b9f40b1222449c82923700df8555
-  Banks:
-  - {fileID: 6909709769896673904}
-  IsStream: 0
-  Is3D: 1
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 156
->>>>>>> develop
---- !u!114 &11400000
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d32cf7c32a3ed8347bac48ef5ed56d82, type: 3}
-  m_Name: FMODStudioCache
-  m_EditorClassIdentifier: 
-  EditorBanks:
-<<<<<<< HEAD
-  - {fileID: 2177950608790922987}
-  - {fileID: 2280103255605557248}
-  - {fileID: -4742225071955977985}
-  - {fileID: -2813649767634679846}
-  - {fileID: 7448122919003446300}
-  EditorEvents:
-  - {fileID: -1523331828032798677}
-  - {fileID: -4297035265568015455}
-  - {fileID: -8962195427344164445}
-  - {fileID: -3184725957808447609}
-  - {fileID: -7514780772547045846}
-  - {fileID: -3484467480984211054}
-  - {fileID: -8275216537011511248}
-  - {fileID: -4006390299243211112}
-  - {fileID: -947408045753897993}
-  EditorParameters: []
-  MasterBanks:
-  - {fileID: -4742225071955977985}
-  StringsBanks:
-  - {fileID: 2177950608790922987}
-  stringsBankWriteTime: 637464702870905815
-  cacheVersion: 5
---- !u!114 &2177950608790922987
-=======
-  - {fileID: 860284026402136721}
-  - {fileID: 3453689120754430069}
-  - {fileID: -7848268871749406402}
-  - {fileID: -8049783043709778251}
-  - {fileID: 6909709769896673904}
-  EditorEvents:
-  - {fileID: -5593776973070480730}
-  - {fileID: 1625145290873034375}
-  - {fileID: -5063468059299426035}
-  - {fileID: 251126754854893248}
-  - {fileID: -311850323415017333}
-  - {fileID: 2235797703471556879}
-  - {fileID: -1051940913207482771}
-  - {fileID: 2703507460387520526}
-  - {fileID: 1874819737479595833}
-  EditorParameters: []
-  MasterBanks:
-  - {fileID: -7848268871749406402}
-  StringsBanks:
-  - {fileID: 860284026402136721}
-  stringsBankWriteTime: 637464693336188969
-  cacheVersion: 5
---- !u!114 &251126754854893248
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/Characters/Punch
-  m_EditorClassIdentifier: 
-  Path: event:/Characters/Punch
-  guid: 1652b3ac52e79544bbf8fc7f10d79df8
-  Banks:
-  - {fileID: 6909709769896673904}
-  IsStream: 0
-  Is3D: 0
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 0
-  MaxDistance: 0
-  Length: 552
---- !u!114 &860284026402136721
->>>>>>> develop
+--- !u!114 &-1667357259346860321
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -412,20 +101,31 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Path: Assets/Audio/Anyria/Build/Desktop/Master.strings.bank
   Name: Master.strings
-<<<<<<< HEAD
   lastModified: 637464702870905815
-=======
-  lastModified: 637464693336188969
->>>>>>> develop
   LoadResult: 0
   FileSizes:
   - Name: Desktop
     Value: 1294
   Exists: 1
-<<<<<<< HEAD
---- !u!114 &2280103255605557248
-=======
---- !u!114 &1625145290873034375
+--- !u!114 &-1625549915108554855
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.bank
+  m_EditorClassIdentifier: 
+  Path: Assets/Audio/Anyria/Build/Desktop/Master.bank
+  Name: Master
+  lastModified: 637461663491097154
+  LoadResult: 0
+  FileSizes: []
+  Exists: 1
+--- !u!114 &-701103218560711338
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -440,7 +140,7 @@ MonoBehaviour:
   Path: event:/Mucis/Musique tuto
   guid: ab078b5ec72980479e0031066e3f93b8
   Banks:
-  - {fileID: -8049783043709778251}
+  - {fileID: -2337326748519552864}
   IsStream: 1
   Is3D: 0
   IsOneShot: 0
@@ -448,7 +148,7 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 254829
---- !u!114 &1874819737479595833
+--- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -457,21 +157,33 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/FX environement/Rocks Break
+  m_Script: {fileID: 11500000, guid: d32cf7c32a3ed8347bac48ef5ed56d82, type: 3}
+  m_Name: FMODStudioCache
   m_EditorClassIdentifier: 
-  Path: event:/FX environement/Rocks Break
-  guid: ee2960153a7c7f40ba9a81846832d9e5
-  Banks:
-  - {fileID: 6909709769896673904}
-  IsStream: 0
-  Is3D: 0
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 0
-  MaxDistance: 0
-  Length: 696
---- !u!114 &2235797703471556879
+  EditorBanks:
+  - {fileID: -1667357259346860321}
+  - {fileID: 6017693090206942277}
+  - {fileID: -1625549915108554855}
+  - {fileID: -2337326748519552864}
+  - {fileID: 4558357919221559390}
+  EditorEvents:
+  - {fileID: -3450513157539075203}
+  - {fileID: -701103218560711338}
+  - {fileID: -5664127225367819060}
+  - {fileID: 8224197515028330375}
+  - {fileID: 3927364890263033917}
+  - {fileID: 1430215950657819037}
+  - {fileID: -2406437501742092389}
+  - {fileID: 4026021474698545943}
+  - {fileID: 6744681037124409743}
+  EditorParameters: []
+  MasterBanks:
+  - {fileID: -1625549915108554855}
+  StringsBanks:
+  - {fileID: -1667357259346860321}
+  stringsBankWriteTime: 637464702870905815
+  cacheVersion: 5
+--- !u!114 &1430215950657819037
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -486,7 +198,7 @@ MonoBehaviour:
   Path: event:/Characters/Jump
   guid: 9c0d2dd39ad23848b845bfc293a21b38
   Banks:
-  - {fileID: 6909709769896673904}
+  - {fileID: 4558357919221559390}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -494,7 +206,30 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 498
---- !u!114 &2703507460387520526
+--- !u!114 &3927364890263033917
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Characters/Anirya Footsteps
+  m_EditorClassIdentifier: 
+  Path: event:/Characters/Anirya Footsteps
+  guid: 2107b9f40b1222449c82923700df8555
+  Banks:
+  - {fileID: 4558357919221559390}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 156
+--- !u!114 &4026021474698545943
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -509,7 +244,7 @@ MonoBehaviour:
   Path: event:/FX environement/Bumper
   guid: e04345b8af5a6d41b0af825700d8fb45
   Banks:
-  - {fileID: 6909709769896673904}
+  - {fileID: 4558357919221559390}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -517,34 +252,7 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 1007
---- !u!114 &3453689120754430069
->>>>>>> develop
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: bank:/Ambiance.bank
-  m_EditorClassIdentifier: 
-  Path: Assets/Audio/Anyria/Build/Desktop/Ambiance.bank
-  Name: Ambiance
-<<<<<<< HEAD
-  lastModified: 637461663491097154
-  LoadResult: 0
-  FileSizes: []
-  Exists: 1
---- !u!114 &7448122919003446300
-=======
-  lastModified: 637461647290259948
-  LoadResult: 0
-  FileSizes: []
-  Exists: 1
---- !u!114 &6909709769896673904
->>>>>>> develop
+--- !u!114 &4558357919221559390
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -558,11 +266,71 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Path: Assets/Audio/Anyria/Build/Desktop/Sound effect.bank
   Name: Sound effect
-<<<<<<< HEAD
   lastModified: 637464702870925750
-=======
-  lastModified: 637464693336268751
->>>>>>> develop
   LoadResult: 0
   FileSizes: []
   Exists: 1
+--- !u!114 &6017693090206942277
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Ambiance.bank
+  m_EditorClassIdentifier: 
+  Path: Assets/Audio/Anyria/Build/Desktop/Ambiance.bank
+  Name: Ambiance
+  lastModified: 637461663491097154
+  LoadResult: 0
+  FileSizes: []
+  Exists: 1
+--- !u!114 &6744681037124409743
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/FX environement/Rocks Break
+  m_EditorClassIdentifier: 
+  Path: event:/FX environement/Rocks Break
+  guid: ee2960153a7c7f40ba9a81846832d9e5
+  Banks:
+  - {fileID: 4558357919221559390}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 696
+--- !u!114 &8224197515028330375
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Characters/Punch
+  m_EditorClassIdentifier: 
+  Path: event:/Characters/Punch
+  guid: 1652b3ac52e79544bbf8fc7f10d79df8
+  Banks:
+  - {fileID: 4558357919221559390}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 552
