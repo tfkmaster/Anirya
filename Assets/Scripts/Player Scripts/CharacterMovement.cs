@@ -65,7 +65,7 @@ public class CharacterMovement : MonoBehaviour
     void Update()
     {
         
-        if (!player.GM.isPaused && !Interacting)
+        if (!player.GM.isPaused)
         {
             gravity = -(2 * maxJumpHeight) / Mathf.Pow(TimeToJumpApex, 2);
             maxJumpVelocity = Mathf.Abs(gravity) * TimeToJumpApex;
@@ -79,7 +79,7 @@ public class CharacterMovement : MonoBehaviour
             }
 
             horizontalMove = calculateDirection();
-            if (!gotHit && !player.isDead)
+            if (!gotHit && !player.isDead && !Interacting)
             {
                 Jump();
                 CoyoteTime(); 
@@ -214,7 +214,7 @@ public class CharacterMovement : MonoBehaviour
     {
         Vector2 input = new Vector2(0, 0);
 
-        if (!player.isDead)
+        if (!player.isDead && !Interacting)
         {
             input = new Vector2(horizontalMove, Input.GetAxisRaw("Vertical"));
         }
