@@ -70,4 +70,10 @@ public class PlayerStatsManager : MonoBehaviour
             HeatGauge.GetComponent<HeatGaugeManager>().filler.fillAmount = actualHeat / maxHeat;
         }
     }
+
+    public void DisplayUI()
+    {
+        GameObject alim_meeting_manager = GameObject.FindGameObjectWithTag("Alim Meeting Manager");
+        alim_meeting_manager.GetComponent<AlimMeetingManager>().DisplayUI();
+    }
 }

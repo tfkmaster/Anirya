@@ -32,8 +32,6 @@ public class UIManager : MonoBehaviour
         new Color32(168, 78, 123, 255), //pink anirya
         new Color32(201, 233, 235, 255), //blue
         new Color32(255, 255, 255, 255), //white
-        
-
     };
 
     void Awake()
