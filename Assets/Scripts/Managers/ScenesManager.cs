@@ -16,6 +16,7 @@ public struct tuto_001
 public struct tuto_002
 {
     public bool TrunkIsBroken;
+    public bool XAttackDisplay;
 }
 
 public struct tuto_003
@@ -43,6 +44,7 @@ public class ScenesManager : MonoBehaviour
 
         //tuto_002
         tuto_002.TrunkIsBroken = false;
+        tuto_002.XAttackDisplay = false;
 
         //tuto_003
         tuto_003.FirstWolfSlayed = false;
