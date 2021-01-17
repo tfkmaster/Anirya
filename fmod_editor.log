@@ -7,33 +7,30 @@
 [LOG] OutputWASAPI::init                       : Output buffer size: 4096 samples, latency: 0.00ms, period: 10.00ms, DSP buffer: 1024 * 4
 [LOG] Thread::initThread                       : Init FMOD stream thread. Affinity: 0x8000000000000003, Priority: 0xFFFF7FFB, Stack Size: 98304, Semaphore: No, Sleep Time: 10, Looping: Yes.
 [LOG] Thread::initThread                       : Init FMOD mixer thread. Affinity: 0x8000000000000001, Priority: 0xFFFF7FFA, Stack Size: 81920, Semaphore: No, Sleep Time: 0, Looping: Yes.
-<<<<<<< HEAD
-[LOG] AsyncManager::init                       : manager 000002DFB84E8D88 isAsync 0 updatePeriod 0.02
-=======
-<<<<<<< HEAD
-[LOG] AsyncManager::init                       : manager 00000298AC4CE0B8 isAsync 0 updatePeriod 0.02
-=======
-<<<<<<< HEAD
-<<<<<<< HEAD
-[LOG] AsyncManager::init                       : manager 0000025F2F8B6AD8 isAsync 0 updatePeriod 0.02
-=======
-[LOG] AsyncManager::init                       : manager 000001ED3610B2A8 isAsync 0 updatePeriod 0.02
->>>>>>> develop
-=======
-<<<<<<< Updated upstream
-[LOG] AsyncManager::init                       : manager 00000175D640F038 isAsync 0 updatePeriod 0.02
-=======
-[LOG] AsyncManager::init                       : manager 00000289BA13CD28 isAsync 0 updatePeriod 0.02
->>>>>>> Stashed changes
->>>>>>> develop
->>>>>>> develop
->>>>>>> develop
+[LOG] AsyncManager::init                       : manager 000001F4DEFAD728 isAsync 0 updatePeriod 0.02
 [LOG] AsyncManager::init                       : done
 [LOG] PlaybackSystem::init                     : 
 [LOG] Thread::initThread                       : Init FMOD Studio sample load thread. Affinity: 0x8000000000000003, Priority: 0xFFFF7FFD, Stack Size: 98304, Semaphore: No, Sleep Time: 1, Looping: No.
 [LOG] PlaybackSystem::init                     : done
 [LOG] Thread::initThread                       : Init FMOD Studio bank load thread. Affinity: 0x8000000000000003, Priority: 0xFFFF7FFD, Stack Size: 98304, Semaphore: No, Sleep Time: 1, Looping: No.
 [LOG] Manager::init                            : done.
+[LOG] Manager::readBank                        : fileversion = 135, compatVersion = 132 (oldest = 44, newest = 135)
+[LOG] SoundI::release                          : untitled-001 (000001F4D5A4F588)
+[LOG] SoundI::release                          :     untitled-001 (000001F4D5FA7E78)
+[LOG] SoundI::release                          :     untitled-001 (000001F4D5A4F8E8)
+[LOG] SoundI::release                          : Musique test adventure epic (000001F4D5A4F738)
+[LOG] SoundI::release                          :     Musique test adventure epic (000001F4D5FA8018)
+[LOG] SoundI::release                          :     Musique test adventure epic (000001F4D5A4FC48)
+[LOG] Thread::callback                         : FMOD Studio update thread finished.
+[LOG] Thread::callback                         : FMOD Studio bank load thread finished.
+[LOG] Profile::disconnectAll                   : Profiler disconnecting all clients
+[LOG] Thread::callback                         : FMOD Studio sample load thread finished.
+[LOG] LiveUpdate::release                      : 
+[LOG] LiveUpdate::reset                        : Reset connection (reason Disconnected)
+[LOG] Thread::callback                         : FMOD stream thread finished.
+[LOG] Thread::callback                         : FMOD mixer thread finished.
+[LOG] Profile::disconnectAll                   : Profiler disconnecting all clients
+[LOG] SystemI::close                           : Closed.
 [LOG] Manager::readBank                        : fileversion = 135, compatVersion = 132 (oldest = 44, newest = 135)
 [LOG] Manager::readBank                        : fileversion = 135, compatVersion = 132 (oldest = 44, newest = 135)
 [LOG] Manager::readBank                        : fileversion = 135, compatVersion = 132 (oldest = 44, newest = 135)
@@ -48,3 +45,5 @@
 [LOG] Thread::callback                         : FMOD stream thread finished.
 [LOG] Thread::callback                         : FMOD mixer thread finished.
 [LOG] SystemI::close                           : Closed.
+[LOG] Thread::callback                         : FMOD nonblocking thread (0) finished.
+[LOG] Thread::callback                         : FMOD file thread finished.
