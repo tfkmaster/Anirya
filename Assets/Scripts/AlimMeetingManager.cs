@@ -43,11 +43,11 @@ public class AlimMeetingManager : MonoBehaviour
         {
             UI_on = false;
             remove_UI = true;
+        }
+        else if (remove_UI)
+        {
             GameObject.FindGameObjectWithTag("Player").GetComponent<CharacterMovement>().Interacting = false;
             GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<Animator>().SetBool("interacting", false);
-        }
-        if (remove_UI)
-        {
             StopAllCoroutines();
             StartCoroutine(FadeCanvas(DidacticCanvas, 1f, 0f, 1.2f, false));
             remove_UI = false;

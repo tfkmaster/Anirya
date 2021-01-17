@@ -214,7 +214,7 @@ public class CharacterMovement : MonoBehaviour
     {
         Vector2 input = new Vector2(0, 0);
 
-        if (!player.isDead && !Interacting && !GetComponent<CombatManager>().isHealing)
+        if (!player.isDead && !Interacting && !GetComponent<CombatManager>().isHealing && canMove)
         {
             input = new Vector2(horizontalMove, Input.GetAxisRaw("Vertical"));
         }
