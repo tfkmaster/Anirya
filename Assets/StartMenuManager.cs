@@ -12,8 +12,12 @@ public class StartMenuManager : MonoBehaviour
     private bool reset_y_axis = true;
     private bool credits_on = false;
 
+    private bool game_launched = false;
+
     [SerializeField]
     private GameObject Credits = default;
+    [SerializeField]
+    private Canvas TransitionCanvas = default;
 
     void Awake()
     {
@@ -60,6 +64,17 @@ public class StartMenuManager : MonoBehaviour
             }
             Credits.SetActive(false);
             credits_on = false;
+        }
+
+        if (game_launched)
+        {
+            StartCoroutine(FadeCanvas(TransitionCanvas.GetComponent<CanvasGroup>(), 0f, 1f, 2f, true));
+            game_launched = false;
+        }
+        if (TransitionCanvas.GetComponent<CanvasGroup>().alpha >= 1f)
+        {
+            StopAllCoroutines();
+            SceneManager.LoadScene("Intro_CINEMATIC");
         }
     }
 
@@ -108,7 +123,7 @@ public class StartMenuManager : MonoBehaviour
 
     public void LaunchGame()
     {
-        SceneManager.LoadScene("1");
+        game_launched = true;
     }
 
     public void DisplayCredits()
@@ -129,5 +144,40 @@ public class StartMenuManager : MonoBehaviour
         #else
             Application.Quit();
         #endif
+    }
+
+    public static IEnumerator FadeCanvas(CanvasGroup canvas, float startAlpha, float endAlpha, float duration, bool activate)
+    {
+        var startTime = Time.time;
+        var endTime = Time.time + duration;
+        var elapsedTime = 0f;
+
+        canvas.alpha = startAlpha;
+
+        if (activate)
+        {
+            canvas.gameObject.SetActive(true);
+        }
+
+        while (Time.time <= endTime)
+        {
+            elapsedTime = Time.time - startTime;
+            var percentage = 1 / (duration / elapsedTime);
+            if (startAlpha > endAlpha)
+            {
+                canvas.alpha = startAlpha - percentage;
+            }
+            else
+            {
+                canvas.alpha = startAlpha + percentage;
+            }
+            yield return new WaitForEndOfFrame();
+        }
+
+        canvas.alpha = endAlpha;
+        if (!activate)
+        {
+            canvas.gameObject.SetActive(false);
+        }
     }
 }
