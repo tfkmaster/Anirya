@@ -120,8 +120,6 @@ public class DialogueManager : MonoBehaviour
 
     public void EndDialogue()
     {
-        player.GetComponent<CharacterMovement>().Interacting = false;
-        player.GetComponentInChildren<Animator>().SetBool("interacting", false);
         dialogEnded = true;
     }
 

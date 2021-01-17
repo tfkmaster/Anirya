@@ -99,7 +99,7 @@ public class CharacterController2D : MonoBehaviour
         groundCollider = GetComponent<BoxCollider2D>();
         characterMovement = GetComponent<CharacterMovement>();
         CalculateRaySpacing();
-    }  
+    }
 
     private void LateUpdate()
     {

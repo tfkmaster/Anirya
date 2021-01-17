@@ -8,7 +8,7 @@ public class CombatManager : MonoBehaviour
     public bool canReceiveInput = true;                 // For determining if the character is able to receive an input 
     public bool inputReceived;                          // Checks if an attackInput has been pressed down
     
-    private bool isHealing = false;
+    public bool isHealing = false;
     public float HoldRegenTime = 1.5f;
     private float holdRegenCounter = 0;
 
@@ -96,14 +96,17 @@ public class CombatManager : MonoBehaviour
             }
         }
         
-        if (isHealing && player.healthPoints != player.maxHealthPoints)
+        if (isHealing)
         {
             holdRegenCounter += Time.deltaTime;
             player.actualHeat -= Time.deltaTime * player.RegenCost / HoldRegenTime;
             Zoom();
             if (holdRegenCounter >= HoldRegenTime)
             {
-                player.healthPoints += 1;
+                if(player.healthPoints != player.maxHealthPoints)
+                {
+                    player.healthPoints += 1;
+                }
                 if (player.actualHeat < player.RegenCost)
                 {
                     isHealing = false;
