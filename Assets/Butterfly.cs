@@ -15,6 +15,13 @@ public class Butterfly : MonoBehaviour
     public AIPath Path = default;
     public GameObject Anirya = default;
 
+    [SerializeField]
+    private Transform spawn_point = default;
+
+    [SerializeField]
+    private Cinemachine.CinemachineVirtualCamera cam = default;
+    private float timer = 0f;
+
     void Start()
     {
         Anirya = GameObject.FindGameObjectWithTag("Player");
@@ -24,10 +31,18 @@ public class Butterfly : MonoBehaviour
 
     void Update()
     {
-        if(Path.reachedDestination)
+        if(transform.position.y >= destinationTargets[0].transform.position.y - 0.2f && timer >= 2f)
         {
-            GetComponentInChildren<Animator>().SetBool("isFlying", false);
-            gameObject.SetActive(false);
+            transform.position = spawn_point.position;
+            DestinationSetter.target = spawn_point;
+        }
+        if (Path.reachedDestination)
+        {
+            timer += Time.deltaTime;
+            //GetComponentInChildren<Animator>().SetBool("isFlying", false);
+            //transform.position = spawn_point.position;
+            //DestinationSetter.target = spawn_point;
+            //cam.Priority = 0;
         }
         else
         {
@@ -44,5 +59,10 @@ public class Butterfly : MonoBehaviour
     {
         ++target_index;
         DestinationSetter.target = destinationTargets[target_index];
+    }
+
+    public void SecondSpawn()
+    {
+        spawn_point.position = new Vector3(spawn_point.position.x + 12f, spawn_point.position.y + 7f, spawn_point.position.z);
     }
 }
