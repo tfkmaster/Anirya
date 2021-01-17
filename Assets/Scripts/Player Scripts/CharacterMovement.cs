@@ -79,7 +79,7 @@ public class CharacterMovement : MonoBehaviour
             }
 
             horizontalMove = calculateDirection();
-            if (!gotHit && !player.isDead && !Interacting)
+            if (!gotHit && !player.isDead && !Interacting && !GetComponent<CombatManager>().isHealing)
             {
                 Jump();
                 CoyoteTime(); 
@@ -214,7 +214,7 @@ public class CharacterMovement : MonoBehaviour
     {
         Vector2 input = new Vector2(0, 0);
 
-        if (!player.isDead && !Interacting)
+        if (!player.isDead && !Interacting && !GetComponent<CombatManager>().isHealing)
         {
             input = new Vector2(horizontalMove, Input.GetAxisRaw("Vertical"));
         }
