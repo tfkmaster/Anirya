@@ -74,7 +74,6 @@ public class ControlsCanvas : MonoBehaviour
 
     public void ResetActiveButton()
     {
-        Debug.Log("RESET");
         active_button_index = 0;
         UIManager.ButtonHover(Buttons[active_button_index], true);
         UIManager.ButtonHover(Buttons[1], false);
