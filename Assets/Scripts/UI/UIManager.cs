@@ -73,28 +73,32 @@ public class UIManager : MonoBehaviour
 
     void Update()
     {
-        if(controlScreenOn && (Input.GetKeyDown("joystick button 1")))
+        if(controlScreenOn && ((Input.GetKeyDown("joystick button 1") || Input.GetKeyDown(KeyCode.Escape))))
         {
+            Debug.Log("Escaping");
             ControlsCanvasInstance.GetComponent<ControlsCanvas>().ResetActiveButton();
             back_to_pause_menu_button_action();
         }
 
-        //UI navigation with directional pad
-        float y_axis = Input.GetAxis("Vertical");
+        if (!controlScreenOn)
+        {
+            //UI navigation with directional pad
+            float y_axis = Input.GetAxis("Vertical");
 
-        if((y_axis < -0.2 && reset_y_axis) || Input.GetKeyDown(KeyCode.DownArrow))
-        {
-            PauseCanvasInstance.GetComponent<PauseCanvas>().SelectNextButton();
-            reset_y_axis = false;
-        }
-        else if((y_axis > 0.2 && reset_y_axis) || Input.GetKeyDown(KeyCode.UpArrow))
-        {
-            PauseCanvasInstance.GetComponent<PauseCanvas>().SelectPreviousButton();
-            reset_y_axis = false;
-        }
-        else if(y_axis >= -0.2 && y_axis <= 0.2)
-        {
-            reset_y_axis = true;
+            if ((y_axis < -0.2 && reset_y_axis) || Input.GetKeyDown(KeyCode.DownArrow))
+            {
+                PauseCanvasInstance.GetComponent<PauseCanvas>().SelectNextButton();
+                reset_y_axis = false;
+            }
+            else if ((y_axis > 0.2 && reset_y_axis) || Input.GetKeyDown(KeyCode.UpArrow))
+            {
+                PauseCanvasInstance.GetComponent<PauseCanvas>().SelectPreviousButton();
+                reset_y_axis = false;
+            }
+            else if (y_axis >= -0.2 && y_axis <= 0.2)
+            {
+                reset_y_axis = true;
+            }
         }
     }
 
