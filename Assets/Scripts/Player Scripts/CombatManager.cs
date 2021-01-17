@@ -38,6 +38,11 @@ public class CombatManager : MonoBehaviour
         CM = GetComponent<CharacterMovement>();
         CC2d = GetComponent<CharacterController2D>();
         player = GetComponent<Player>();
+        
+    }
+
+    private void Start()
+    {
         CBrain = FindObjectOfType<Cinemachine.CinemachineBrain>();
     }
 
