@@ -25,13 +25,19 @@ public class Butterfly : MonoBehaviour
     void Start()
     {
         Anirya = GameObject.FindGameObjectWithTag("Player");
+        if (GameObject.FindGameObjectWithTag("PersistentDatas").GetComponent<ScenesManager>().tuto_001.ButterflyCinematic)
+        {
+            Anirya.GetComponentInChildren<Animator>().SetBool("interacting", true);
+            Anirya.GetComponent<CharacterMovement>().Interacting = true;
+        }
+
         DestinationSetter.target = destinationTargets[0];
         Path.maxSpeed = speed;
     }
 
     void Update()
     {
-        if(transform.position.y >= destinationTargets[0].transform.position.y - 0.2f && timer >= 2f)
+        if(transform.position.y >= destinationTargets[0].transform.position.y - 0.5f && timer >= 1.5f)
         {
             transform.position = spawn_point.position;
             DestinationSetter.target = spawn_point;

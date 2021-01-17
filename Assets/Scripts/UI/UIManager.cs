@@ -56,7 +56,7 @@ public class UIManager : MonoBehaviour
         //Canvas where player stats are rendered
         PlayerStatsCanvasInstance = Instantiate(PlayerStatsCanvas, this.transform.position, new Quaternion(0f, 0f, 0f, 0f));
         DontDestroyOnLoad(PlayerStatsCanvasInstance);
-        PlayerStatsCanvasInstance.SetActive(false);
+        PlayerStatsCanvasInstance.GetComponent<CanvasGroup>().alpha = 1f;
 
         //Canvas where dialogs are displayed
         DialogCanvasInstance = Instantiate(DialogCanvas, this.transform.position, new Quaternion(0f, 0f, 0f, 0f));
@@ -107,7 +107,7 @@ public class UIManager : MonoBehaviour
         {
             PauseCanvasInstance.SetActive(true);
             PauseCanvasInstance.GetComponent<PauseCanvas>().ResetActiveButton();
-            PlayerStatsCanvasInstance.SetActive(false);
+            PlayerStatsCanvasInstance.GetComponent<CanvasGroup>().alpha = 0f;
             PlaceTitleCanvasInstance.SetActive(false);
 
             DialogCanvasInstance.SetActive(false);
@@ -115,9 +115,9 @@ public class UIManager : MonoBehaviour
         else
         {
             PauseCanvasInstance.SetActive(false);
-            PlayerStatsCanvasInstance.SetActive(true);
+            PlayerStatsCanvasInstance.GetComponent<CanvasGroup>().alpha = 1f;
 
-            if(DialogCanvasInstance.GetComponent<DialogueManager>().InProgress())
+            if (DialogCanvasInstance.GetComponent<DialogueManager>().InProgress())
             {
                 DialogCanvasInstance.GetComponent<DialogueManager>().ForceTypeSentence();
                 DialogCanvasInstance.SetActive(true);

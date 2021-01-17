@@ -6,6 +6,7 @@ public class DidacticielSeq : MonoBehaviour
 {
     public List<GameObject> TutoGuides = default;
     private float timer = 0f;
+    private float BUTTERFLY_CINEMATIC_TIME = 7.5f;
 
     private GameObject Anirya = default;
 
@@ -25,6 +26,12 @@ public class DidacticielSeq : MonoBehaviour
     void Update()
     {
         timer += Time.deltaTime;
+
+        if(timer >= BUTTERFLY_CINEMATIC_TIME)
+        {
+            Anirya.GetComponentInChildren<Animator>().SetBool("interacting", false);
+            Anirya.GetComponent<CharacterMovement>().Interacting = false;
+        }
 
         if (tutorial_step == 0 && (Input.GetButtonDown("Horizontal") || Input.GetAxisRaw("Horizontal") >= 0.2f))
         {

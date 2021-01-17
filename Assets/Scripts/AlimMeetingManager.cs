@@ -41,8 +41,10 @@ public class AlimMeetingManager : MonoBehaviour
         }
         if (UI_on && (Input.GetKeyDown("joystick button 0")))
         {
+            UI_on = false;
             remove_UI = true;
             GameObject.FindGameObjectWithTag("Player").GetComponent<CharacterMovement>().Interacting = false;
+            GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<Animator>().SetBool("interacting", false);
         }
         if (remove_UI)
         {
@@ -73,6 +75,7 @@ public class AlimMeetingManager : MonoBehaviour
             UIManager.PlayerStatsCanvasInstance.SetActive(true);
             UIManager.PlayerStatsCanvasInstance.GetComponent<Animator>().SetBool("Pop Player Stats", true);
             GameObject.FindGameObjectWithTag("Player").GetComponent<CharacterMovement>().Interacting = true;
+            GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<Animator>().SetBool("interacting", true);
         }
     }
 
