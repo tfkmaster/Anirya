@@ -185,7 +185,7 @@ public class CharacterController2D : MonoBehaviour
         */
 
     }
-
+    /*
     IEnumerator SmoothReset()
     {
         rootFloat = Mathf.Sign(root.GetComponent<RotationConstraint>().rotationOffset.z);
@@ -225,7 +225,7 @@ public class CharacterController2D : MonoBehaviour
         leftArm.localRotation = Quaternion.Euler(new Vector3(0, 0, 0));
         rightArm.localRotation = Quaternion.Euler(new Vector3(0, 0, 0));
     }
-
+    */
     public void newMove(Vector3 velocity)
     {
         UpdateRaycastOrigins();

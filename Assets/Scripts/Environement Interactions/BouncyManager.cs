@@ -28,6 +28,7 @@ public class BouncyManager : MonoBehaviour
         {
             GetComponent<Animator>().SetTrigger("bounce");
             Player.GetComponentInChildren<Animator>().SetBool("jump", true);
+            Player.GetComponent<CharacterMovement>().jumped = false;
             Player.GetComponent<CharacterMovement>().setVelocity(25);
         }
     }

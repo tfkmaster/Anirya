@@ -70,6 +70,14 @@ public class Player : Actor
         }
     }
 
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.layer == 13 && isDead)
+        {
+            Physics2D.IgnoreCollision(collision.collider, collision.otherCollider);
+        }
+    }
+
     // Update is called once per frame
     protected override void Update()
     {

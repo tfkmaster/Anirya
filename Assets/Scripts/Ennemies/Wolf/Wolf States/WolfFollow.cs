@@ -19,18 +19,27 @@ public class WolfFollow : StateMachineBehaviour
     //OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        if (wolf.player.transform.position.x + aiWolf.nearPlayerStop < animator.GetComponentInParent<Transform>().position.x)
+        if (!wolf.player.GetComponent<Player>().isDead)
         {
-            rb2dWolf.velocity = new Vector2(-wolf.FollowSpeed, rb2dWolf.velocity.y);
-        }
-        else if(wolf.player.transform.position.x - aiWolf.nearPlayerStop > animator.GetComponentInParent<Transform>().transform.position.x)
-        {
-            rb2dWolf.velocity = new Vector2(wolf.FollowSpeed, rb2dWolf.velocity.y);
+            if (wolf.player.transform.position.x + aiWolf.nearPlayerStop < animator.GetComponentInParent<Transform>().position.x)
+            {
+                rb2dWolf.velocity = new Vector2(-wolf.FollowSpeed, rb2dWolf.velocity.y);
+            }
+            else if (wolf.player.transform.position.x - aiWolf.nearPlayerStop > animator.GetComponentInParent<Transform>().transform.position.x)
+            {
+                rb2dWolf.velocity = new Vector2(wolf.FollowSpeed, rb2dWolf.velocity.y);
+            }
+            else
+            {
+                rb2dWolf.velocity = Vector2.zero;
+            }
         }
         else
         {
             rb2dWolf.velocity = Vector2.zero;
+            animator.SetBool("playerDead", true);
         }
+        
     }
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
