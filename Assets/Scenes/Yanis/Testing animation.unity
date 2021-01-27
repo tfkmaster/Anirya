@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -186,7 +186,7 @@ SpriteRenderer:
   m_Size: {x: 5.25, y: 5.25}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!95 &67901166
@@ -1785,6 +1785,11 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3382547590504743766, guid: ff9c8f4026ba58343ba95552c73ef95f,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3543607246648522055, guid: ff9c8f4026ba58343ba95552c73ef95f,
         type: 3}
       propertyPath: m_IsActive
@@ -1913,7 +1918,7 @@ PrefabInstance:
     - target: {fileID: 5073558760235559467, guid: ff9c8f4026ba58343ba95552c73ef95f,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.155701
+      value: 3.2433693
       objectReference: {fileID: 0}
     - target: {fileID: 5073558760235559467, guid: ff9c8f4026ba58343ba95552c73ef95f,
         type: 3}
@@ -2268,17 +2273,17 @@ PrefabInstance:
     - target: {fileID: 7953473428158622097, guid: ff9c8f4026ba58343ba95552c73ef95f,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.007939545
+      value: -0.25114194
       objectReference: {fileID: 0}
     - target: {fileID: 7953473428158622097, guid: ff9c8f4026ba58343ba95552c73ef95f,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.9999685
+      value: 0.96795034
       objectReference: {fileID: 0}
     - target: {fileID: 7953473428158622097, guid: ff9c8f4026ba58343ba95552c73ef95f,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 1080.91
+      value: 1050.91
       objectReference: {fileID: 0}
     - target: {fileID: 8354129185847614967, guid: ff9c8f4026ba58343ba95552c73ef95f,
         type: 3}
