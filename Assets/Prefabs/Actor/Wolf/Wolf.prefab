@@ -1112,8 +1112,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 2.0218682, y: 8.28}
-  m_Size: {x: 25.956676, y: 15.000345}
+  m_Offset: {x: 3, y: 7.4}
+  m_Size: {x: 23, y: 12.5}
   m_Direction: 1
 --- !u!114 &1218341962753452528
 MonoBehaviour:
@@ -1181,6 +1181,8 @@ MonoBehaviour:
   FollowSpeed: 10
   disapearTime: 1
   knockbacked: 0
+  playerGrounded: 0
+  waitTime: 0
 --- !u!61 &8404880359392295258
 BoxCollider2D:
   m_ObjectHideFlags: 0
