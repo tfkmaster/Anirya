@@ -3,12 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Transform))]
+//[RequireComponent(typeof(Rigidbody2D))]
 public class Raven : MonoBehaviour
 {
     public List<Transform> WanderPoints;
     public float speed = 3.0f;
     public Transform MoveTo;
     private int wanderIndex = 0;
+    public float thrust = 10.0f;
+
 
     void Start()
     {
@@ -17,9 +20,12 @@ public class Raven : MonoBehaviour
 
     void Update()
     {
+        //Calculate direction
+        Vector3 dir = MoveTo.position - transform.position;
+
         //Wandering by moving towards
         float step = speed * Time.deltaTime;
-        transform.position = Vector2.MoveTowards(transform.position, MoveTo.position, step);
+        GetComponent<Rigidbody2D>().AddForce(dir * thrust, ForceMode2D.Force);
 
         if (MoveTo.position == transform.position)
         {
@@ -34,7 +40,13 @@ public class Raven : MonoBehaviour
             MoveTo = WanderPoints[wanderIndex];
         }
 
-        //Raycasting allowing obstacle avoidance
+        //Raycasting allowing obstacle avoidance 
         
+    }
+
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        Vector3 dir = MoveTo.position - transform.position;
+        GetComponent<Rigidbody2D>().AddForce(- dir * thrust, ForceMode2D.Impulse);
     }
 }
