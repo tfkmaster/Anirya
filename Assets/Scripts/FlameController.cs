@@ -10,32 +10,33 @@ public class FlameController : MonoBehaviour
 
     public void EnableLeftFlame()
     {
-        if (GetComponent<Player>().GM.alimMet)
-        {
+        
+        /*if (GetComponentInParent<Player>().GM.alimMet)
+        {*/
             leftHandFire.GetComponent<ParticleSystem>().Play();
-        }
+        //}
     }
     public void EnableRightFlame()
     {
-        if (GetComponent<Player>().GM.alimMet)
-        {
+        /*if (GetComponentInParent<Player>().GM.alimMet)
+        {*/
             rightHandFire.GetComponent<ParticleSystem>().Play();
-        }
+        //}
     }
     public void DisableLeftFlame()
     {
-        if (GetComponent<Player>().GM.alimMet)
-        {
+        /*if (GetComponentInParent<Player>().GM.alimMet)
+        {*/
             leftHandFire.GetComponent<ParticleSystem>().Stop();
-        }
+        //}
 
     }
 
     public void DisableRightFlame()
     {
-        if (GetComponent<Player>().GM.alimMet)
-        {
+        /*if (GetComponentInParent<Player>().GM.alimMet)
+        {*/
             rightHandFire.GetComponent<ParticleSystem>().Stop();
-        }
+        //}
     }
 }

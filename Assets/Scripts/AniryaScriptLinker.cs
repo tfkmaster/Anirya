@@ -25,21 +25,22 @@ public class AniryaScriptLinker : MonoBehaviour
         CombatM.CheckHit();
     }
 
-    /*public void EnableLeftFlame()
+    public void EnableLeftFlame()
     {
-        CC2D.EnableLeftFlame();
+        GetComponent<FlameController>().EnableLeftFlame();
+        
     }
     public void EnableRightFlame()
     {
-        CC2D.EnableRightFlame();
+        GetComponent<FlameController>().EnableRightFlame();
     }
     public void DisableLeftFlame()
     {
-        CC2D.DisableLeftFlame();
+        GetComponent<FlameController>().DisableLeftFlame();
     }
 
     public void DisableRightFlame()
     {
-        CC2D.DisableRightFlame();
-    }*/
+        GetComponent<FlameController>().DisableRightFlame();
+    }
 }
