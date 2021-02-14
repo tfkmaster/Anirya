@@ -7,6 +7,7 @@ public class RunBehavior : StateMachineBehaviour
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
+        animator.GetComponent<AniryaScriptLinker>().CM.SetCanMove(true);
         animator.SetBool("attack1", false);
         animator.SetBool("attack2", false);
         animator.SetBool("attack3", false);

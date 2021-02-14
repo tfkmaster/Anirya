@@ -17,7 +17,7 @@ public class CombatManager : MonoBehaviour
     private Player player;
     [SerializeField] private float AttackMoveForce;
 
-    public ParticleSystem HitParticles;
+    public GameObject HitParticles;
     public ParticleSystem RegenParticles;
 
 
@@ -74,7 +74,7 @@ public class CombatManager : MonoBehaviour
             if (canReceiveInput)
             {
                 GetComponent<Rigidbody2D>().velocity = new Vector2(0, GetComponent<Rigidbody2D>().velocity.y);
-                CM.canMove = false;
+                CM.SetCanMove(false);
                 canReceiveInput = false;
                 inputReceived = true;
                 //CC2d.getRigidbody().AddForce(new Vector2(CC2d.facingDirection() * AttackMoveForce, 0), ForceMode2D.Impulse);
@@ -99,7 +99,7 @@ public class CombatManager : MonoBehaviour
                 StopAllCoroutines();
                 StartCoroutine(ZoomOut());
                 isHealing = false;
-                CM.canMove = true;
+                CM.SetCanMove(true);
                 canReceiveInput = true;
             }
             GetComponentInChildren<Animator>().SetTrigger("stopRegen");
@@ -197,7 +197,7 @@ public class CombatManager : MonoBehaviour
         StopAllCoroutines();
         holdRegenCounter = 0;
         isHealing = true;
-        CM.canMove = false;
+        CM.SetCanMove(false);
         canReceiveInput = false;
         GetComponentInChildren<Animator>().SetTrigger("startRegen");
         if (!RegenParticles.isPlaying)

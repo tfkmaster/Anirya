@@ -256,4 +256,10 @@ public class CharacterMovement : MonoBehaviour
     {
         velocity.y = yVelocity;
     }
+
+    public void SetCanMove(bool value)
+    {
+        canMove = value;
+        animator.SetBool("canMove", value);
+    }
 }
