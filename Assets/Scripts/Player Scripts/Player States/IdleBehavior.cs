@@ -41,7 +41,6 @@ public class IdleBehavior : StateMachineBehaviour
     //OnStateIK is called right after Animator.OnAnimatorIK()
     override public void OnStateIK(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        Debug.Log("afqsqdqsdssf");
         // Implement code that sets up animation IK (inverse kinematics)
     }
 }

@@ -5,10 +5,10 @@ using UnityEngine;
 public class Transition1Behavior : StateMachineBehaviour
 {
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
-    //override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-    //{
-    //
-    //}
+    override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    {
+        animator.GetComponent<AniryaScriptLinker>().CM.canMove = true;
+    }
 
     
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
