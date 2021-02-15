@@ -48,7 +48,7 @@ public class Raven : Actor
                 var ennemyMask = (1 << 13);
                 ennemyMask = ~ennemyMask;
 
-                RaycastHit2D hit = Physics2D.Raycast(transform.position, (transform.position - col.transform.position), attackRange * 2, ennemyMask);
+                RaycastHit2D hit = Physics2D.Raycast(transform.position, (transform.position - col.transform.position), ennemyMask);
                 
                 if (hit.collider.CompareTag("Player"))
                 {
