@@ -27,13 +27,13 @@ Transform:
   m_GameObject: {fileID: 3766574773452800080}
   m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 16.31, y: -6.76, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 5, y: 1, z: 5}
   m_Children:
   - {fileID: 3766574773453036662}
   - {fileID: 3766574773453036660}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -90.00001, y: 0, z: 0}
 --- !u!198 &3766574773437831478
 ParticleSystem:
   m_ObjectHideFlags: 0
@@ -117,7 +117,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.6
+      scalar: 0.8
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -188,7 +188,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 0.99607843, g: 0.29803923, b: 0.043137256, a: 1}
-      maxColor: {r: 0.6302717, g: 0.11764705, b: 1, a: 0.14117648}
+      maxColor: {r: 0.6302717, g: 0.11764705, b: 1, a: 0.3529412}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -4607,7 +4607,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 53e601bdd2cb5434e96ec915a4e30792, type: 2}
+  - {fileID: 2100000, guid: d37187939248a4d4ab8284eca155b745, type: 2}
   - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
