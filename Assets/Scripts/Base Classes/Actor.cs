@@ -79,6 +79,7 @@ public class Actor : MonoBehaviour
 
     protected virtual void Death()
     {
+        gameObject.layer = LayerMask.NameToLayer("DeadActor");
         dead = true;
     }
 
