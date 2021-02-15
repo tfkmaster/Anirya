@@ -242,6 +242,8 @@ public class CharacterMovement : MonoBehaviour
     public void StartKnockBack(Vector2 direction)
     {
             gotHit = true;
+            animator.SetTrigger("gotHit");
+            animator.SetBool("beingHit",true);
             velocity.y = direction.y;
             velocity.x = direction.x;
     }
@@ -249,6 +251,8 @@ public class CharacterMovement : MonoBehaviour
     public void StopKnockBack()
     {
         gotHit = false;
+        animator.SetTrigger("stopHit");
+        animator.SetBool("beingHit", false);
         /*velocity.y = 0;
         velocity.x = 0;*/
     }
