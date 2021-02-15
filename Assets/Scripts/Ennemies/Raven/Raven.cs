@@ -6,19 +6,26 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 public class Raven : Actor
 {
+    [Header("Raven Components")]
     public Rigidbody2D rb2D;
     public Animator animator;
 
+    [Header("Raven Datas")]
+    public float thrust = 6.0f;
     public Player player;
 
+    [Header("Wander")]
+    [Tooltip("Name WanderPoint following \"w00\" + WanderIndex")]
     public List<Transform> WanderPoints;
     public Transform MoveTo;
+
+    [Header("Collision Management")]
+    [Tooltip("Time during which raven is stunned and lose focus")]
     public float CollidingTime = 0.5f;
     public float MagnitudeMax = 5.0f;
     private float collidingTimer;
     private bool colliding = false;
     private int wanderIndex = 0;
-    public float thrust = 6.0f;
 
     void Start()
     {
