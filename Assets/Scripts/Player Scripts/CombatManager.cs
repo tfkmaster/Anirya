@@ -145,7 +145,8 @@ public class CombatManager : MonoBehaviour
                 if (!actor.isTrigger && (actor.CompareTag("Ennemy") || actor.CompareTag("Destructible Wall")))
                 {
                     AddHeat();
-                    Instantiate(HitParticles, GetComponent<Player>().attackPoint.position, new Quaternion());
+                    GameObject a = Instantiate(HitParticles, GetComponent<Player>().attackPoint.position, new Quaternion());
+                    a.GetComponent<RectTransform>().rotation = Quaternion.Euler(0, 0, -90);
                     actor.GetComponent<Actor>().OnHit(gameObject, GetComponent<Player>().GetDamageDone());
                 }
             }
