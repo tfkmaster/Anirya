@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Transform))]
-//[RequireComponent(typeof(Rigidbody2D))]
+[RequireComponent(typeof(Rigidbody2D))]
 public class Raven : MonoBehaviour
 {
     public List<Transform> WanderPoints;
@@ -12,6 +12,7 @@ public class Raven : MonoBehaviour
     private int wanderIndex = 0;
     public float thrust = 24f;
 
+    private Rigidbody2D rb2D;
     public const float collidingTime = 0.5f;
     public float MagnitudeMax = 5f;
     private float collidingTimer = collidingTime;
@@ -19,6 +20,7 @@ public class Raven : MonoBehaviour
 
     void Start()
     {
+        rb2D = GetComponent<Rigidbody2D>();
         MoveTo = WanderPoints[wanderIndex];       
     }
 
@@ -34,9 +36,9 @@ public class Raven : MonoBehaviour
             colliding = false;
         }
 
-        if(GetComponent<Rigidbody2D>().velocity.magnitude > MagnitudeMax)
+        if(rb2D.velocity.magnitude > MagnitudeMax)
         {
-            GetComponent<Rigidbody2D>().velocity *= 1 - ((GetComponent<Rigidbody2D>().velocity.magnitude / MagnitudeMax) - 1);
+            rb2D.velocity *= 1 - ((rb2D.velocity.magnitude / MagnitudeMax) - 1);
         }
 
     }
@@ -46,7 +48,7 @@ public class Raven : MonoBehaviour
         if(!colliding)
         {
             Vector3 direction = MoveTo.position - transform.position;
-            GetComponent<Rigidbody2D>().AddForce(direction.normalized * thrust, ForceMode2D.Force);
+            rb2D.AddForce(direction.normalized * thrust, ForceMode2D.Force);
         }
 
         FlipRaven();
