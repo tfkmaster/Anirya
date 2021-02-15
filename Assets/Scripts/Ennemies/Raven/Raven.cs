@@ -4,54 +4,75 @@ using UnityEngine;
 
 [RequireComponent(typeof(Transform))]
 [RequireComponent(typeof(Rigidbody2D))]
-public class Raven : MonoBehaviour
+public class Raven : Actor
 {
-    public List<Transform> WanderPoints;
-    public float speed = 3.0f;
-    public Transform MoveTo;
-    private int wanderIndex = 0;
-    public float thrust = 24f;
+    public Rigidbody2D rb2D;
+    public Animator animator;
 
-    private Rigidbody2D rb2D;
-    public const float collidingTime = 0.5f;
-    public float MagnitudeMax = 5f;
-    private float collidingTimer = collidingTime;
+    public Player player;
+
+    public List<Transform> WanderPoints;
+    public Transform MoveTo;
+    public float CollidingTime = 0.5f;
+    public float MagnitudeMax = 5.0f;
+    private float collidingTimer;
     private bool colliding = false;
+    private int wanderIndex = 0;
+    public float thrust = 6.0f;
 
     void Start()
     {
         rb2D = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
+
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+
+        collidingTimer = CollidingTime;
+
         MoveTo = WanderPoints[wanderIndex];       
     }
 
     void Update()
     {
-        if (colliding)
-        {
-            collidingTimer -= Time.deltaTime;
-        }
-        if(collidingTimer <= 0f)
-        {
-            collidingTimer = collidingTime;
-            colliding = false;
-        }
-
-        if(rb2D.velocity.magnitude > MagnitudeMax)
-        {
-            rb2D.velocity *= 1 - ((rb2D.velocity.magnitude / MagnitudeMax) - 1);
-        }
-
+        
     }
 
-    void FixedUpdate()
-    {       
-        if(!colliding)
+    public bool IsPlayerOnSight()
+    {
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, attackRange);
+
+        foreach (Collider2D col in colliders)
         {
-            Vector3 direction = MoveTo.position - transform.position;
-            rb2D.AddForce(direction.normalized * thrust, ForceMode2D.Force);
+            if (col.CompareTag("Player"))
+            {
+                var ennemyMask = (1 << 13);
+                ennemyMask = ~ennemyMask;
+
+                RaycastHit2D hit = Physics2D.Raycast(transform.position, (transform.position - col.transform.position), attackRange * 2, ennemyMask);
+                
+                if (hit.collider.CompareTag("Player"))
+                {
+                    hit.collider.gameObject.GetComponent<SpriteRenderer>().color = Color.red;
+                    return true;
+                }
+            }
         }
 
-        FlipRaven();
+        return false;
+    }
+
+    void OnDrawGizmos()
+    {
+        //Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, attackRange);
+
+        Vector3 direction = GameObject.FindGameObjectWithTag("Player").transform.position - transform.position;
+        Gizmos.DrawRay(transform.position, direction);
+    }
+
+    public override void OnHit(GameObject hitter, int damages)
+    {
+        base.OnHit(hitter, damages);
     }
 
     void OnCollisionEnter2D(Collision2D collision)
@@ -61,7 +82,7 @@ public class Raven : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Wander Point"))
+        if (collision.gameObject.CompareTag("Wander Point") && animator.GetBool("IsWandering"))
         {
             if(collision.transform.name == "w00" + (wanderIndex % WanderPoints.Count + 1).ToString())
             {
@@ -70,7 +91,7 @@ public class Raven : MonoBehaviour
         }
     }
 
-    void FlipRaven()
+    public void FlipSprite()
     {
         if(transform.position.x - MoveTo.position.x > 0)
         {
@@ -80,5 +101,40 @@ public class Raven : MonoBehaviour
         {
             GetComponent<SpriteRenderer>().flipX = false;
         }
+    }
+
+
+
+
+    // attribute getters
+    public bool IsColliding()
+    {
+        return colliding;
+    }
+
+    public float GetCollidingTimer()
+    {
+        return collidingTimer;
+    }
+
+    public float GetMagnitudeMax()
+    {
+        return MagnitudeMax;
+    }
+
+    // attribute setters
+    public void SetColliding(bool isColliding)
+    {
+        colliding = isColliding;
+    }
+
+    public void SetCollidingTimer(float col)
+    {
+        collidingTimer = col;
+    }
+
+    public void ResetCollidingTimer()
+    {
+        collidingTimer = CollidingTime;
     }
 }
