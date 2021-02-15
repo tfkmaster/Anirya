@@ -102,6 +102,7 @@ public class CharacterMovement : MonoBehaviour
     {
         yDistance = 0;
         jumped = false;
+        velocity.x = 0;
         animator.SetBool("jump", false);
         animator.SetBool("fall", false);
         cc2d.ResetJump();
@@ -226,8 +227,8 @@ public class CharacterMovement : MonoBehaviour
         if (!gotHit)
         {
             velocity.x = input.x * moveSpeed;
-            velocity.y += gravity * Time.deltaTime;
         }
+        velocity.y += gravity * Time.deltaTime;
         cc2d.newMove(velocity * Time.deltaTime);
         animator.SetFloat("speed", Mathf.Abs(horizontalMove));
     }
@@ -248,8 +249,8 @@ public class CharacterMovement : MonoBehaviour
     public void StopKnockBack()
     {
         gotHit = false;
-        velocity.y = 0;
-        velocity.x = 0;
+        /*velocity.y = 0;
+        velocity.x = 0;*/
     }
 
     public void setVelocity(float yVelocity)
