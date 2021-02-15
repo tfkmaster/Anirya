@@ -29,6 +29,8 @@ public class Raven : Actor
 
     void Start()
     {
+        //initWanderPoints();
+
         rb2D = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
 
@@ -42,6 +44,15 @@ public class Raven : Actor
     void Update()
     {
         
+    }
+
+    void initWanderPoints()
+    {
+        int WanderPointCount = transform.GetChild(0).childCount;
+        for (int i = 0; i < WanderPointCount; ++i)
+        {
+            WanderPoints.Add(transform.GetChild(0).GetChild(i));
+        }
     }
 
     public bool IsPlayerOnSight()
