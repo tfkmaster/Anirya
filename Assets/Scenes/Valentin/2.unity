@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -1557,7 +1557,7 @@ PrefabInstance:
     - target: {fileID: 886647805343537497, guid: 7df6ced9aa29a274f8e450f0cbd941e5,
         type: 3}
       propertyPath: m_SortingOrder
-      value: 1
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 886647805343537497, guid: 7df6ced9aa29a274f8e450f0cbd941e5,
         type: 3}
@@ -2968,7 +2968,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -935043993
   m_SortingLayer: 2
-  m_SortingOrder: 2
+  m_SortingOrder: 52
   m_Sprite: {fileID: 21300000, guid: 8d15041be045c164f8a846f18bec31c9, type: 3}
   m_Color: {r: 0.8679245, g: 0.80826133, b: 0.78195083, a: 0.90588236}
   m_FlipX: 0
@@ -5850,7 +5850,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -935043993
   m_SortingLayer: 2
-  m_SortingOrder: 3
+  m_SortingOrder: 53
   m_Sprite: {fileID: 21300000, guid: 7510af8539984774cb5d503197019651, type: 3}
   m_Color: {r: 1, g: 0.7783019, b: 0.7925983, a: 1}
   m_FlipX: 0
@@ -7017,7 +7017,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -935043993
   m_SortingLayer: 2
-  m_SortingOrder: 1
+  m_SortingOrder: 51
   m_Sprite: {fileID: 21300000, guid: 7703dc4c5d080a7418cd5066fab1ca86, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
