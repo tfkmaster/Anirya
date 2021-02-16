@@ -6,22 +6,31 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 public class Raven : Actor
 {
+    [Header("Raven Components")]
     public Rigidbody2D rb2D;
     public Animator animator;
 
+    [Header("Raven Datas")]
+    public float thrust = 6.0f;
     public Player player;
 
+    [Header("Wander")]
+    [Tooltip("Name WanderPoint following \"w00\" + WanderIndex")]
     public List<Transform> WanderPoints;
     public Transform MoveTo;
+
+    [Header("Collision Management")]
+    [Tooltip("Time during which raven is stunned and lose focus")]
     public float CollidingTime = 0.5f;
     public float MagnitudeMax = 5.0f;
     private float collidingTimer;
     private bool colliding = false;
     private int wanderIndex = 0;
-    public float thrust = 6.0f;
 
     void Start()
     {
+        //initWanderPoints();
+
         rb2D = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
 
@@ -37,6 +46,15 @@ public class Raven : Actor
         
     }
 
+    void initWanderPoints()
+    {
+        int WanderPointCount = transform.GetChild(0).childCount;
+        for (int i = 0; i < WanderPointCount; ++i)
+        {
+            WanderPoints.Add(transform.GetChild(0).GetChild(i));
+        }
+    }
+
     public bool IsPlayerOnSight()
     {
         Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, attackRange);
@@ -48,7 +66,7 @@ public class Raven : Actor
                 var ennemyMask = (1 << 13);
                 ennemyMask = ~ennemyMask;
 
-                RaycastHit2D hit = Physics2D.Raycast(transform.position, (transform.position - col.transform.position), attackRange * 2, ennemyMask);
+                RaycastHit2D hit = Physics2D.Raycast(transform.position, (transform.position - col.transform.position), ennemyMask);
                 
                 if (hit.collider.CompareTag("Player"))
                 {
