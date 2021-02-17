@@ -5,6 +5,8 @@ using UnityEngine;
 public class RavenFollow : StateMachineBehaviour
 {
     private Raven raven;
+    private float thrustMult = 4.0f;
+
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
@@ -36,7 +38,7 @@ public class RavenFollow : StateMachineBehaviour
         if (!raven.IsColliding())
         {
             Vector3 direction = raven.MoveTo.position - raven.transform.position;
-            raven.rb2D.AddForce(direction.normalized * raven.thrust *4.0f, ForceMode2D.Force);
+            raven.rb2D.AddForce(direction.normalized * raven.thrust * thrustMult, ForceMode2D.Force);
         }
 
         raven.FlipSprite();
