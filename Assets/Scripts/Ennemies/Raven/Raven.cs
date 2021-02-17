@@ -15,8 +15,7 @@ public class Raven : Actor
     public Player player;
 
     [Header("Wander")]
-    [Tooltip("Name WanderPoint following \"w00\" + WanderIndex")]
-    public List<Transform> WanderPoints;
+    public WanderManager WanderManager;
     public Transform MoveTo;
 
     [Header("Collision Management")]
@@ -28,9 +27,7 @@ public class Raven : Actor
     private int wanderIndex = 0;
 
     void Start()
-    {
-        //initWanderPoints();
-
+    {        
         rb2D = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
 
@@ -38,21 +35,7 @@ public class Raven : Actor
 
         collidingTimer = CollidingTime;
 
-        MoveTo = WanderPoints[wanderIndex];       
-    }
-
-    void Update()
-    {
-        
-    }
-
-    void initWanderPoints()
-    {
-        int WanderPointCount = transform.GetChild(0).childCount;
-        for (int i = 0; i < WanderPointCount; ++i)
-        {
-            WanderPoints.Add(transform.GetChild(0).GetChild(i));
-        }
+        MoveTo = WanderManager.GetWanderPoints()[wanderIndex];       
     }
 
     public bool IsPlayerOnSight()
@@ -96,15 +79,19 @@ public class Raven : Actor
     void OnCollisionEnter2D(Collision2D collision)
     {
         colliding = true;
+        if (animator.GetBool("IsAttacking"))
+        {
+            rb2D.velocity = Vector2.zero;
+        }
     }
 
     void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Wander Point") && animator.GetBool("IsWandering"))
         {
-            if(collision.transform.name == "w00" + (wanderIndex % WanderPoints.Count + 1).ToString())
+            if(collision.transform.name == "w00" + (wanderIndex % WanderManager.GetWanderPoints().Count + 1).ToString())
             {
-                MoveTo = WanderPoints[++wanderIndex % WanderPoints.Count];
+                MoveTo = WanderManager.GetWanderPoints()[++wanderIndex % WanderManager.GetWanderPoints().Count];
             }
         }
     }
