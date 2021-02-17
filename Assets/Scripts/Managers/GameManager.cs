@@ -6,7 +6,8 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     private static GameManager GMInstance;
-    private string checkpointSceneName;
+    private string checkpointSceneName = "";
+    private string checkpointSceneTag = "";
     private Vector3 checkpointPosition;
     private GameObject LastCheckpoint;
     public GameObject Player;
@@ -14,6 +15,7 @@ public class GameManager : MonoBehaviour
     public float TransitionTime = 1;
     private bool isLoading = false;
     private Animator sceneTransitionAnimator;
+    private bool camFound = false;
 
     public bool alimMet = false;
     
@@ -33,11 +35,11 @@ public class GameManager : MonoBehaviour
 
     void Awake()
     {
-        if(GMInstance == null)
+        if (GMInstance == null)
         {
             GMInstance = this;
             DontDestroyOnLoad(GMInstance);
-            myPlayer = Instantiate(Player,this.transform.position,new Quaternion(0,0,0,0));
+            myPlayer = Instantiate(Player, this.transform.position, new Quaternion(0, 0, 0, 0));
             UIManagerInstance = Instantiate(UIManager, this.transform.position, new Quaternion(0, 0, 0, 0));
             LevelLoaderInstance = Instantiate(LevelLoader, this.transform.position, new Quaternion(0, 0, 0, 0));
             sceneTransitionAnimator = LevelLoaderInstance.GetComponentInChildren<Animator>();
@@ -47,10 +49,21 @@ public class GameManager : MonoBehaviour
             DontDestroyOnLoad(LevelLoaderInstance);
 
             //Do put in a scene Manager
-            FollowCamRight = GameObject.FindGameObjectWithTag("FollowCamera").GetComponent<Cinemachine.CinemachineVirtualCamera>();
-            FollowCamLeft = GameObject.FindGameObjectWithTag("FollowCamera2").GetComponent<Cinemachine.CinemachineVirtualCamera>();
-            FollowCamRight.m_Follow = myPlayer.transform;
-            FollowCamLeft.m_Follow = myPlayer.transform;           
+            if (GameObject.FindGameObjectWithTag("FollowCamera") && GameObject.FindGameObjectWithTag("FollowCamera2"))
+            {
+                camFound = true;
+            }
+            if (camFound)
+            {
+                FollowCamRight = GameObject.FindGameObjectWithTag("FollowCamera").GetComponent<Cinemachine.CinemachineVirtualCamera>();
+                FollowCamLeft = GameObject.FindGameObjectWithTag("FollowCamera2").GetComponent<Cinemachine.CinemachineVirtualCamera>();
+                FollowCamRight.m_Follow = myPlayer.transform;
+                FollowCamLeft.m_Follow = myPlayer.transform;
+            }
+            if (GameObject.FindGameObjectWithTag("Checkpoint"))
+            {
+                GameObject.FindGameObjectWithTag("Checkpoint").GetComponent<CheckpointController>().SetGM(this);
+            }
         }
         else
         {
@@ -68,7 +81,10 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         changeSceneHelper();
-        FlipFollowCam();
+        if (camFound)
+        {
+            FlipFollowCam();
+        }
     }
 
     
@@ -91,8 +107,7 @@ public class GameManager : MonoBehaviour
     {
         if (checkpointSceneName != "")
         {
-            SceneManager.LoadScene(checkpointSceneName);
-            myPlayer.transform.position = checkpointPosition;
+            LoadScene(checkpointSceneName,checkpointSceneTag);
         }
         else
         {
@@ -110,6 +125,7 @@ public class GameManager : MonoBehaviour
             }
             checkpointPosition = checkpoint.GetComponent<CheckpointController>().MyPosition.position;
             checkpointSceneName = checkpoint.GetComponent<CheckpointController>().MyScene.name;
+            checkpointSceneTag = checkpoint.tag;
             checkpoint.GetComponent<SpriteRenderer>().color = new Color(1, 0, 0);
             LastCheckpoint = checkpoint;
         }
@@ -147,6 +163,11 @@ public class GameManager : MonoBehaviour
         }
         sceneTransitionAnimator.SetBool("start", false);
         sceneTransitionAnimator.SetBool("end", true);
+        Debug.Log(myPlayer.GetComponent<Player>().GetDead());
+        if (myPlayer.GetComponent<Player>().GetDead())
+        {
+            myPlayer.GetComponent<Player>().Reborn();
+        }
         isLoading = false;
     }
 

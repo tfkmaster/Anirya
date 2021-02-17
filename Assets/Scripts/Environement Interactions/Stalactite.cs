@@ -28,7 +28,6 @@ public class Stalactite : NonHittableActor
         }
         else
         {
-            Debug.LogError(collision.gameObject.name);
             Destroy(gameObject);
         }
     }

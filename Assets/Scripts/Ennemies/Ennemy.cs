@@ -57,13 +57,7 @@ public class Ennemy : Actor
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.layer == 8 && collision.gameObject.GetComponent<Player>().isDead)
-        {
-            Physics2D.IgnoreCollision(collision.collider, collision.otherCollider);
-        }
-
-
-        else if (collision.gameObject.CompareTag("Player"))
+        if (collision.gameObject.CompareTag("Player") && !dead)
         {
             collision.gameObject.GetComponent<Player>().OnHit(this.gameObject, damageDone);
         }

@@ -12,7 +12,10 @@ public class CheckpointController : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-        GM = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
+        if (GameObject.FindGameObjectWithTag("GameManager"))
+        {
+            GM = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
+        }
         MyScene = SceneManager.GetActiveScene();
         MyPosition = GetComponent<Transform>();
     }
@@ -27,6 +30,11 @@ public class CheckpointController : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void SetGM(GameManager gm)
+    {
+        GM = gm;
     }
 
     void OnTriggerEnter2D(Collider2D collider)

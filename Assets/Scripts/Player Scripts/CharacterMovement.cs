@@ -79,7 +79,7 @@ public class CharacterMovement : MonoBehaviour
             }
 
             horizontalMove = calculateDirection();
-            if (!gotHit && !player.isDead && !Interacting && !GetComponent<CombatManager>().isHealing)
+            if (!gotHit && !player.GetDead() && !Interacting && !GetComponent<CombatManager>().isHealing)
             {
                 Jump();
                 CoyoteTime(); 
@@ -91,7 +91,7 @@ public class CharacterMovement : MonoBehaviour
     void FixedUpdate()
     {
         //Turn the character on the direction he is facing
-        if (!player.isDead && !ableToMove && !Interacting && canMove && !player.GM.isPaused)
+        if (!player.GetDead() && !ableToMove && !Interacting && canMove && !player.GM.isPaused)
         {
             cc2d.Turn(horizontalMove);
         }
@@ -215,7 +215,7 @@ public class CharacterMovement : MonoBehaviour
     {
         Vector2 input = new Vector2(0, 0);
 
-        if (!player.isDead && !Interacting && !GetComponent<CombatManager>().isHealing && canMove)
+        if (!player.GetDead() && !Interacting && !GetComponent<CombatManager>().isHealing && canMove)
         {
             input = new Vector2(horizontalMove, Input.GetAxisRaw("Vertical"));
         }

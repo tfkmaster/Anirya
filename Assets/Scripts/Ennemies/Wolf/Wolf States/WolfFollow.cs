@@ -14,12 +14,22 @@ public class WolfFollow : StateMachineBehaviour
         wolf = animator.gameObject.GetComponentInParent<Wolf>();
         aiWolf = animator.gameObject.GetComponentInParent<AIWolf>();
         rb2dWolf = animator.gameObject.GetComponentInParent<Rigidbody2D>();
+
+        if (wolf.player.GetComponent<Player>().GetDead())
+        {
+            rb2dWolf.velocity = Vector2.zero;
+            animator.SetBool("playerDead", true);
+        }
+        else
+        {
+            animator.SetBool("playerDead", false);
+        }
     }
 
     //OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        if (!wolf.player.GetComponent<Player>().isDead)
+        if (!wolf.player.GetComponent<Player>().GetDead())
         {
             if (wolf.player.GetComponent<CharacterController2D>().m_Grounded)
             {

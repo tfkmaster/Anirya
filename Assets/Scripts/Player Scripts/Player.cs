@@ -12,8 +12,7 @@ public class Player : Actor
     [SerializeField] private float knockbackVelocityX;
     [SerializeField] private float knockbackVelocityY;
 
-    private float unableToMoveCounter;                                          //Counts the time during which the character is inactive
-    public bool isDead = false;                                             //Determines if the player is actually dead or not
+    private float unableToMoveCounter;                                          //Counts the time during which the character is inactive                                           //Determines if the player is actually dead or not
 
     private bool isTriggeringInteractible;                                  //Set to true when the player is triggering an interactible entity
     private Interactible lastInteractible;                                  //Last interactible entity triggered by the player - set to null if the player is not interacting anymore        
@@ -70,14 +69,6 @@ public class Player : Actor
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.layer == 13 && isDead)
-        {
-            Physics2D.IgnoreCollision(collision.collider, collision.otherCollider);
-        }
-    }
-
     // Update is called once per frame
     protected override void Update()
     {
@@ -126,21 +117,30 @@ public class Player : Actor
     protected override void Death()
     {
         base.Death();
-        isDead = true;
-        animator.SetBool("dead", true);
+        animator.SetTrigger("dead");
     }
+
+
 
     public void LoadCheckpoint()
     {
         GM.LoadCheckpoint();
-        animator.SetBool("dead", false);
     }
 
     public void Reborn()
     {
         Debug.Log("reborn");
-        isDead = false;
+        animator.SetBool("wasDead", true);
         healthPoints = maxHealthPoints;
+        SendPlayerStatsToGameManager();
+    }
+
+    public void ResetAnirya()
+    {
+        Debug.Log("a");
+        animator.SetBool("dead", false);
+        dead = false;
+        animator.SetBool("wasDead", false);
     }
 
     public void SendPlayerStatsToGameManager()

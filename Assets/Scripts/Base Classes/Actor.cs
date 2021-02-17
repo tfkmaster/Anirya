@@ -100,4 +100,9 @@ public class Actor : MonoBehaviour
     {
         return damageDone;
     }
+
+    public bool GetDead()
+    {
+        return dead;
+    }
 }
