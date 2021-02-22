@@ -27,7 +27,7 @@ public class tuto_002_Manager : MonoBehaviour
             Destroy(trunk);
         }
 
-        if (player.GM.alimMet && !PersistentDatas.tuto_003.FirstWolfSlayed)
+        if (player.GM.alimMet && !PersistentDatas.tuto_005.FirstWolfSlayed)
         {
             tallam_shadows.GetComponent<ParticleSystem>().Play();
             tallam_shadows.GetComponentInChildren<Collider2D>().isTrigger = false;

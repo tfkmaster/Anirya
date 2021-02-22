@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class tuto_005_manager : MonoBehaviour
 {
+    private ScenesManager PersistentDatas = default;
+
     [SerializeField]
     private Cinemachine.CinemachineVirtualCamera FixedCam = default;
     [SerializeField]
@@ -14,6 +16,9 @@ public class tuto_005_manager : MonoBehaviour
     [SerializeField]
     private Wolf wolf = default;
 
+    [SerializeField]
+    private GameObject TallamShadows = default;
+
     private GameObject Anirya;
 
 
@@ -22,16 +27,26 @@ public class tuto_005_manager : MonoBehaviour
 
     void Start()
     {
+        PersistentDatas = GameObject.FindGameObjectWithTag("PersistentDatas").GetComponent<ScenesManager>();
         Anirya = GameObject.FindGameObjectWithTag("Player");
-        Anirya.GetComponent<CharacterMovement>().Interacting = true;
-        Anirya.GetComponentInChildren<Animator>().SetBool("interacting", true);
+
+        if(!PersistentDatas.tuto_005.FirstWolfSlayed)
+        {
+            Anirya.GetComponent<CharacterMovement>().Interacting = true;
+            Anirya.GetComponentInChildren<Animator>().SetBool("interacting", true);
+        }
+        else
+        {
+            Destroy(wolf);
+            Destroy(TallamShadows);
+        }
     }
 
     void Update()
     {
         elapsed_time += Time.deltaTime;
 
-        if (check_in)
+        if (check_in && !PersistentDatas.tuto_005.FirstWolfEncountered)
         {
             if (elapsed_time >= 1.5f)
             {
@@ -50,9 +65,27 @@ public class tuto_005_manager : MonoBehaviour
             {
                 Anirya.GetComponent<CharacterMovement>().Interacting = false;
                 Anirya.GetComponentInChildren<Animator>().SetBool("interacting", false);
+
+                if (!PersistentDatas.tuto_005.FirstWolfEncountered)
+                {
+                    PersistentDatas.tuto_005.FirstWolfEncountered = true;
+                }
+
                 wolf.StartFight();
                 check_in = false;
             }
+        }
+        else if(!PersistentDatas.tuto_005.FirstWolfSlayed && elapsed_time >= 1.0f)
+        {
+            Anirya.GetComponent<CharacterMovement>().Interacting = false;
+            Anirya.GetComponentInChildren<Animator>().SetBool("interacting", false);
+            wolf.StartFight();
+        }
+
+        if (wolf.GetComponent<Wolf>().GetDead())
+        {
+            PersistentDatas.tuto_005.FirstWolfSlayed = true;
+            Destroy(TallamShadows);
         }
     }
 }

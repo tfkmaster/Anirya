@@ -19,9 +19,10 @@ public struct tuto_002
     public bool XAttackDisplay;
 }
 
-public struct tuto_003
+public struct tuto_005
 {
     public bool FirstWolfSlayed;
+    public bool FirstWolfEncountered;
 }
 
 public class ScenesManager : MonoBehaviour
@@ -29,7 +30,7 @@ public class ScenesManager : MonoBehaviour
     public PlayerData player_data;
     public tuto_001 tuto_001;
     public tuto_002 tuto_002;
-    public tuto_003 tuto_003;
+    public tuto_005 tuto_005;
 
     void Awake()
     {
@@ -46,7 +47,8 @@ public class ScenesManager : MonoBehaviour
         tuto_002.TrunkIsBroken = false;
         tuto_002.XAttackDisplay = false;
 
-        //tuto_003
-        tuto_003.FirstWolfSlayed = false;
+        //tuto_005
+        tuto_005.FirstWolfSlayed = false;
+        tuto_005.FirstWolfEncountered = false;
     }
 }

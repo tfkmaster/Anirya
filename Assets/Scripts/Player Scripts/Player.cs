@@ -137,10 +137,10 @@ public class Player : Actor
 
     public void ResetAnirya()
     {
-        Debug.Log("a");
         animator.SetBool("dead", false);
         dead = false;
         animator.SetBool("wasDead", false);
+        gameObject.layer = LayerMask.NameToLayer("Player");
     }
 
     public void SendPlayerStatsToGameManager()
