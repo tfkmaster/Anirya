@@ -87,18 +87,18 @@ ScriptedImporter:
     uvTransform: {x: 0, y: 0}
   mosaicSpriteImportData: []
   rigSpriteImportData:
-  - name: Head Copie
+  - name: Hear
     originalName: 
     pivot: {x: 0.5, y: 0.5}
     alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 1002
-      y: 1831
-      width: 335
-      height: 395
-    spriteID: 35ab648eda1742540a9e70c1be83ea74
+      x: 1222
+      y: 1158
+      width: 107
+      height: 182
+    spriteID: bcd3d375c7c152c4aa5c04eb3ac02eee
     internalID: 0
     spriteBone: []
     spriteOutline: []
@@ -108,8 +108,8 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     parentGroupIndex: -1
-    uvTransform: {x: 306, y: 371}
-  - name: Vegetation top Copie
+    uvTransform: {x: 200, y: -520}
+  - name: Vegetation top
     originalName: 
     pivot: {x: 0.5, y: 0.5}
     alignment: 0
@@ -118,9 +118,9 @@ ScriptedImporter:
       serializedVersion: 2
       x: 4
       y: 4
-      width: 990
-      height: 1065
-    spriteID: 8e81638dce61be045b8d2e3ce616806b
+      width: 842
+      height: 906
+    spriteID: 44868485544c87440b26f596e7bffc6c
     internalID: 0
     spriteBone: []
     spriteOutline: []
@@ -130,19 +130,19 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     parentGroupIndex: -1
-    uvTransform: {x: -670, y: -896}
-  - name: Calque 17 Copie
+    uvTransform: {x: -526, y: -998}
+  - name: Arm_R
     originalName: 
     pivot: {x: 0.5, y: 0.5}
     alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 1002
-      y: 1195
-      width: 475
-      height: 628
-    spriteID: cf21235cb09aeb5468bae0b8dc3967aa
+      x: 449
+      y: 3472
+      width: 396
+      height: 578
+    spriteID: 281b90a64553bb3449462d6e66ed4f93
     internalID: 0
     spriteBone: []
     spriteOutline: []
@@ -152,19 +152,19 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     parentGroupIndex: -1
-    uvTransform: {x: 11, y: 197}
-  - name: Calque 17 Copie 2
+    uvTransform: {x: -265, y: 2472}
+  - name: forearm_R
     originalName: 
     pivot: {x: 0.5, y: 0.5}
     alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 542
-      y: 1992
-      width: 351
-      height: 904
-    spriteID: 712cb514dd2aa9046a17f0eddd2a1d0b
+      x: 449
+      y: 2675
+      width: 359
+      height: 789
+    spriteID: 50bacb9634909b545be3d2c80860fe5a
     internalID: 0
     spriteBone: []
     spriteOutline: []
@@ -174,8 +174,30 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     parentGroupIndex: -1
-    uvTransform: {x: -624, y: 1715}
-  - name: Pelvis Copie
+    uvTransform: {x: -229, y: 2298}
+  - name: Head
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 504
+      y: 1428
+      width: 290
+      height: 388
+    spriteID: aab0dd4dbb9b94d4ab4c365e9a3ef6f5
+    internalID: 0
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: -539, y: -92}
+  - name: Pelvis
     originalName: 
     pivot: {x: 0.5, y: 0.5}
     alignment: 0
@@ -183,10 +205,10 @@ ScriptedImporter:
     rect:
       serializedVersion: 2
       x: 4
-      y: 1077
-      width: 648
-      height: 907
-    spriteID: ffe807ec4eaf53446930f0ce669adcd8
+      y: 1893
+      width: 583
+      height: 774
+    spriteID: 0215149ffe24a2f468ceadbd1b06568b
     internalID: 0
     spriteBone: []
     spriteOutline: []
@@ -196,19 +218,19 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     parentGroupIndex: -1
-    uvTransform: {x: -712, y: 673}
-  - name: Torso Copie
+    uvTransform: {x: -779, y: 1348}
+  - name: Thigh_R
     originalName: 
     pivot: {x: 0.5, y: 0.5}
     alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 4
-      y: 1992
-      width: 530
-      height: 1047
-    spriteID: 4ab92c83586ab224493183dba2f218bb
+      x: 504
+      y: 918
+      width: 288
+      height: 502
+    spriteID: 5bff25f11a5db6741b66805ca1b7cd46
     internalID: 0
     spriteBone: []
     spriteOutline: []
@@ -218,41 +240,19 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     parentGroupIndex: -1
-    uvTransform: {x: -752, y: 1443}
-  - name: Neck Copie
+    uvTransform: {x: -401, y: 454}
+  - name: Leg_R
     originalName: 
     pivot: {x: 0.5, y: 0.5}
     alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 542
-      y: 3554
-      width: 425
-      height: 490
-    spriteID: c0af2196f4ae4d84a8e215d590de96d6
-    internalID: 0
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    parentGroupIndex: -1
-    uvTransform: {x: -280, y: 2229}
-  - name: Calque 17 Copie 3
-    originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 1551
+      x: 854
       y: 4
-      width: 322
-      height: 559
-    spriteID: 967c2dd50734640419c9faadd700687e
+      width: 480
+      height: 569
+    spriteID: 1ffa96c8f43335046a6ababdc9660327
     internalID: 0
     spriteBone: []
     spriteOutline: []
@@ -262,96 +262,8 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     parentGroupIndex: -1
-    uvTransform: {x: 666, y: -496}
-  - name: Calque 17 Copie 4
-    originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 1002
-      y: 4
-      width: 541
-      height: 592
-    spriteID: d1452a1b99bc12d44986302408c05ce6
-    internalID: 0
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    parentGroupIndex: -1
-    uvTransform: {x: 249, y: -24}
-  - name: Calque 17 Copie 5
-    originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 660
-      y: 1077
-      width: 322
-      height: 559
-    spriteID: ffc7f20daded7d843a2ff8b3d8e6b120
-    internalID: 0
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    parentGroupIndex: -1
-    uvTransform: {x: -182, y: 580}
-  - name: Calque 17 Copie 6
-    originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 1002
-      y: 604
-      width: 541
-      height: 583
-    spriteID: 967f200b1ec19f04b931c318292e39c7
-    internalID: 0
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    parentGroupIndex: -1
-    uvTransform: {x: 292, y: 570}
-  - name: Calque 17 Copie 7
-    originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 542
-      y: 2904
-      width: 452
-      height: 642
-    spriteID: e8db01b049461e44e909b330d73842bc
-    internalID: 0
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    parentGroupIndex: -1
-    uvTransform: {x: -391, y: 1973}
-  - name: Calque 17 Copie 8
+    uvTransform: {x: 43, y: -14}
+  - name: Torso
     originalName: 
     pivot: {x: 0.5, y: 0.5}
     alignment: 0
@@ -359,10 +271,10 @@ ScriptedImporter:
     rect:
       serializedVersion: 2
       x: 4
-      y: 3047
-      width: 452
-      height: 810
-    spriteID: 74d8a4b4872975948870a366eefd4288
+      y: 918
+      width: 492
+      height: 967
+    spriteID: 1fffdbf7b017a1547afcde3629ff3f71
     internalID: 0
     spriteBone: []
     spriteOutline: []
@@ -372,7 +284,117 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     parentGroupIndex: -1
-    uvTransform: {x: -956, y: 2726}
+    uvTransform: {x: -789, y: 252}
+  - name: Neck
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 854
+      y: 1158
+      width: 360
+      height: 451
+    spriteID: 9bed0d180f24ed446aada33b8c9bb05a
+    internalID: 0
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: -4, y: -240}
+  - name: Thigh_L
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 854
+      y: 1617
+      width: 288
+      height: 502
+    spriteID: 32121c0110caa4446967584a02aa3813
+    internalID: 0
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: -78, y: 1153}
+  - name: Leg_L
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 854
+      y: 581
+      width: 480
+      height: 569
+    spriteID: 2abc65307c26de64db4b2db658a517e4
+    internalID: 0
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: 16, y: 563}
+  - name: Arm_L
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 3387
+      width: 372
+      height: 586
+    spriteID: e4bcddc8dc566264ab665f0c009ee393
+    internalID: 0
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: -724, y: 2398}
+  - name: forearm_L
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 2675
+      width: 437
+      height: 704
+    spriteID: 8d46ce4b5fa9dcf4091732702f7d0bb9
+    internalID: 0
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: -710, y: 2209}
   platformSettings: []
   mosaicLayers: 1
   documentPivot: {x: 0, y: 0}
@@ -392,125 +414,132 @@ ScriptedImporter:
   characterMode: 1
   mosaicPSDLayers: []
   rigPSDLayers:
-  - name: Head Copie
-    spriteName: Head Copie
+  - name: Hear
+    spriteName: Hear
     isGroup: 0
     parentIndex: -1
-    spriteID: 35ab648eda1742540a9e70c1be83ea74
-    layerID: 23
-    mosaicPosition: {x: 1002, y: 1831}
-  - name: Vegetation top Copie
-    spriteName: Vegetation top Copie
+    spriteID: bcd3d375c7c152c4aa5c04eb3ac02eee
+    layerID: 46
+    mosaicPosition: {x: 1222, y: 1158}
+  - name: Vegetation top
+    spriteName: Vegetation top
     isGroup: 0
     parentIndex: -1
-    spriteID: 8e81638dce61be045b8d2e3ce616806b
+    spriteID: 44868485544c87440b26f596e7bffc6c
     layerID: 22
     mosaicPosition: {x: 4, y: 4}
-  - name: Arm L Copie
+  - name: Arm R
     spriteName: 
     isGroup: 1
     parentIndex: -1
-    spriteID: 00000000000000000000000000000000
+    spriteID: 
     layerID: 21
     mosaicPosition: {x: 0, y: 0}
-  - name: Calque 17 Copie
-    spriteName: Calque 17 Copie
+  - name: Arm_R
+    spriteName: Arm_R
     isGroup: 0
     parentIndex: 2
-    spriteID: cf21235cb09aeb5468bae0b8dc3967aa
+    spriteID: 281b90a64553bb3449462d6e66ed4f93
     layerID: 20
-    mosaicPosition: {x: 1002, y: 1195}
-  - name: Calque 17 Copie 2
-    spriteName: Calque 17 Copie 2
+    mosaicPosition: {x: 449, y: 3472}
+  - name: forearm_R
+    spriteName: forearm_R
     isGroup: 0
     parentIndex: 2
-    spriteID: 712cb514dd2aa9046a17f0eddd2a1d0b
+    spriteID: 50bacb9634909b545be3d2c80860fe5a
     layerID: 19
-    mosaicPosition: {x: 542, y: 1992}
-  - name: Pelvis Copie
-    spriteName: Pelvis Copie
+    mosaicPosition: {x: 449, y: 2675}
+  - name: Head
+    spriteName: Head
     isGroup: 0
     parentIndex: -1
-    spriteID: ffe807ec4eaf53446930f0ce669adcd8
+    spriteID: aab0dd4dbb9b94d4ab4c365e9a3ef6f5
+    layerID: 47
+    mosaicPosition: {x: 504, y: 1428}
+  - name: Pelvis
+    spriteName: Pelvis
+    isGroup: 0
+    parentIndex: -1
+    spriteID: 0215149ffe24a2f468ceadbd1b06568b
     layerID: 17
-    mosaicPosition: {x: 4, y: 1077}
-  - name: Torso Copie
-    spriteName: Torso Copie
+    mosaicPosition: {x: 4, y: 1893}
+  - name: 'Leg R '
+    spriteName: 
+    isGroup: 1
+    parentIndex: -1
+    spriteID: 
+    layerID: 44
+    mosaicPosition: {x: 0, y: 0}
+  - name: Thigh_R
+    spriteName: Thigh_R
+    isGroup: 0
+    parentIndex: 7
+    spriteID: 5bff25f11a5db6741b66805ca1b7cd46
+    layerID: 43
+    mosaicPosition: {x: 504, y: 918}
+  - name: Leg_R
+    spriteName: Leg_R
+    isGroup: 0
+    parentIndex: 7
+    spriteID: 1ffa96c8f43335046a6ababdc9660327
+    layerID: 42
+    mosaicPosition: {x: 854, y: 4}
+  - name: Torso
+    spriteName: Torso
     isGroup: 0
     parentIndex: -1
-    spriteID: 4ab92c83586ab224493183dba2f218bb
+    spriteID: 1fffdbf7b017a1547afcde3629ff3f71
     layerID: 16
-    mosaicPosition: {x: 4, y: 1992}
-  - name: Neck Copie
-    spriteName: Neck Copie
+    mosaicPosition: {x: 4, y: 918}
+  - name: Neck
+    spriteName: Neck
     isGroup: 0
     parentIndex: -1
-    spriteID: c0af2196f4ae4d84a8e215d590de96d6
+    spriteID: 9bed0d180f24ed446aada33b8c9bb05a
     layerID: 15
-    mosaicPosition: {x: 542, y: 3554}
-  - name: Leg L Copie
+    mosaicPosition: {x: 854, y: 1158}
+  - name: Leg L Copie copie
     spriteName: 
     isGroup: 1
     parentIndex: -1
-    spriteID: 00000000000000000000000000000000
-    layerID: 14
+    spriteID: 
+    layerID: 33
     mosaicPosition: {x: 0, y: 0}
-  - name: Calque 17 Copie 3
-    spriteName: Calque 17 Copie 3
+  - name: Thigh_L
+    spriteName: Thigh_L
     isGroup: 0
-    parentIndex: 8
-    spriteID: 967c2dd50734640419c9faadd700687e
-    layerID: 13
-    mosaicPosition: {x: 1551, y: 4}
-  - name: Calque 17 Copie 4
-    spriteName: Calque 17 Copie 4
+    parentIndex: 12
+    spriteID: 32121c0110caa4446967584a02aa3813
+    layerID: 32
+    mosaicPosition: {x: 854, y: 1617}
+  - name: Leg_L
+    spriteName: Leg_L
     isGroup: 0
-    parentIndex: 8
-    spriteID: d1452a1b99bc12d44986302408c05ce6
-    layerID: 12
-    mosaicPosition: {x: 1002, y: 4}
-  - name: Leg R Copie
+    parentIndex: 12
+    spriteID: 2abc65307c26de64db4b2db658a517e4
+    layerID: 31
+    mosaicPosition: {x: 854, y: 581}
+  - name: Arm L
     spriteName: 
     isGroup: 1
     parentIndex: -1
-    spriteID: 00000000000000000000000000000000
-    layerID: 10
-    mosaicPosition: {x: 0, y: 0}
-  - name: Calque 17 Copie 5
-    spriteName: Calque 17 Copie 5
-    isGroup: 0
-    parentIndex: 11
-    spriteID: ffc7f20daded7d843a2ff8b3d8e6b120
-    layerID: 9
-    mosaicPosition: {x: 660, y: 1077}
-  - name: Calque 17 Copie 6
-    spriteName: Calque 17 Copie 6
-    isGroup: 0
-    parentIndex: 11
-    spriteID: 967f200b1ec19f04b931c318292e39c7
-    layerID: 8
-    mosaicPosition: {x: 1002, y: 604}
-  - name: Arm R Copie
-    spriteName: 
-    isGroup: 1
-    parentIndex: -1
-    spriteID: 00000000000000000000000000000000
+    spriteID: 
     layerID: 6
     mosaicPosition: {x: 0, y: 0}
-  - name: Calque 17 Copie 7
-    spriteName: Calque 17 Copie 7
+  - name: Arm_L
+    spriteName: Arm_L
     isGroup: 0
-    parentIndex: 14
-    spriteID: e8db01b049461e44e909b330d73842bc
+    parentIndex: 15
+    spriteID: e4bcddc8dc566264ab665f0c009ee393
     layerID: 5
-    mosaicPosition: {x: 542, y: 2904}
-  - name: Calque 17 Copie 8
-    spriteName: Calque 17 Copie 8
+    mosaicPosition: {x: 4, y: 3387}
+  - name: forearm_L
+    spriteName: forearm_L
     isGroup: 0
-    parentIndex: 14
-    spriteID: 74d8a4b4872975948870a366eefd4288
+    parentIndex: 15
+    spriteID: 8d46ce4b5fa9dcf4091732702f7d0bb9
     layerID: 4
-    mosaicPosition: {x: 4, y: 3047}
+    mosaicPosition: {x: 4, y: 2675}
   characterData:
     bones: []
     parts: []
