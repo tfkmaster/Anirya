@@ -31,11 +31,15 @@ public class RavenAttack : StateMachineBehaviour
         raven.rb2D.AddForce(direction.normalized * raven.thrust * thrustMult, ForceMode2D.Impulse);
     }
 
-    // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
-    //override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-    //{
-    //    
-    //}
+    //OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
+    override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    {
+        if(animator.GetCurrentAnimatorStateInfo(0).normalizedTime > 1)
+        {
+            animator.SetBool("Is Following", true);
+            animator.SetBool("Is Attacking", false);
+        }
+    }
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
