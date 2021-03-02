@@ -262,8 +262,13 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     parentGroupIndex: -1
+<<<<<<< Updated upstream
     uvTransform: {x: 43, y: -14}
   - name: Torso
+=======
+    uvTransform: {x: 1551, y: 4}
+  - name: Calque 17 Copie 4
+>>>>>>> Stashed changes
     originalName: 
     pivot: {x: 0.5, y: 0.5}
     alignment: 0
@@ -284,8 +289,13 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     parentGroupIndex: -1
+<<<<<<< Updated upstream
     uvTransform: {x: -789, y: 252}
   - name: Neck
+=======
+    uvTransform: {x: 1002, y: 4}
+  - name: Calque 17 Copie 5
+>>>>>>> Stashed changes
     originalName: 
     pivot: {x: 0.5, y: 0.5}
     alignment: 0
@@ -306,8 +316,13 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     parentGroupIndex: -1
+<<<<<<< Updated upstream
     uvTransform: {x: -4, y: -240}
   - name: Thigh_L
+=======
+    uvTransform: {x: 660, y: 1077}
+  - name: Calque 17 Copie 6
+>>>>>>> Stashed changes
     originalName: 
     pivot: {x: 0.5, y: 0.5}
     alignment: 0
@@ -328,8 +343,13 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     parentGroupIndex: -1
+<<<<<<< Updated upstream
     uvTransform: {x: -78, y: 1153}
   - name: Leg_L
+=======
+    uvTransform: {x: 1002, y: 604}
+  - name: Calque 17 Copie 7
+>>>>>>> Stashed changes
     originalName: 
     pivot: {x: 0.5, y: 0.5}
     alignment: 0
@@ -350,8 +370,13 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     parentGroupIndex: -1
+<<<<<<< Updated upstream
     uvTransform: {x: 16, y: 563}
   - name: Arm_L
+=======
+    uvTransform: {x: 542, y: 2904}
+  - name: Calque 17 Copie 8
+>>>>>>> Stashed changes
     originalName: 
     pivot: {x: 0.5, y: 0.5}
     alignment: 0
@@ -372,19 +397,23 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     parentGroupIndex: -1
+<<<<<<< Updated upstream
     uvTransform: {x: -724, y: 2398}
   - name: forearm_L
+=======
+    uvTransform: {x: 4, y: 3047}
+  - name: Calque 17 Copie 3_1
     originalName: 
     pivot: {x: 0.5, y: 0.5}
     alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 4
-      y: 2675
-      width: 437
-      height: 704
-    spriteID: 58002c0fae7fbb2429c54100c1256ef0
+      x: 1551
+      y: 4
+      width: 322
+      height: 559
+    spriteID: 602b95ab57a33e349a70adda581b3273
     internalID: 0
     spriteBone: []
     spriteOutline: []
@@ -394,7 +423,129 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     parentGroupIndex: -1
+    uvTransform: {x: 666, y: -496}
+  - name: Calque 17 Copie 4_1
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 1002
+      y: 4
+      width: 541
+      height: 592
+    spriteID: 71d259f909bf27e4bab59df56ca6e8d8
+    internalID: 0
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: 249, y: -24}
+  - name: Calque 17 Copie 5_1
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 660
+      y: 1077
+      width: 322
+      height: 559
+    spriteID: 0f3676e6ebe39fd4da958c2b3c66ad56
+    internalID: 0
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: -182, y: 580}
+  - name: Calque 17 Copie 6_1
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 1002
+      y: 604
+      width: 541
+      height: 583
+    spriteID: 401cf0152ea9c6b4da47b0039473b367
+    internalID: 0
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: 292, y: 570}
+  - name: Calque 17 Copie 7_1
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 542
+      y: 2904
+      width: 452
+      height: 642
+    spriteID: d5035970e52c66e4f8febb135c8be915
+    internalID: 0
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: -391, y: 1973}
+  - name: Calque 17 Copie 8_1
+>>>>>>> Stashed changes
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+<<<<<<< Updated upstream
+      y: 2675
+      width: 437
+      height: 704
+    spriteID: 58002c0fae7fbb2429c54100c1256ef0
+=======
+      y: 3047
+      width: 452
+      height: 810
+    spriteID: e46dfe5e27d4db84c95d626156a88dff
+>>>>>>> Stashed changes
+    internalID: 0
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+<<<<<<< Updated upstream
     uvTransform: {x: -710, y: 2209}
+=======
+    uvTransform: {x: -956, y: 2726}
+>>>>>>> Stashed changes
   platformSettings: []
   mosaicLayers: 1
   documentPivot: {x: 0, y: 0}
@@ -432,7 +583,7 @@ ScriptedImporter:
     spriteName: 
     isGroup: 1
     parentIndex: -1
-    spriteID: 
+    spriteID: 00000000000000000000000000000000
     layerID: 21
     mosaicPosition: {x: 0, y: 0}
   - name: Arm_R
@@ -468,6 +619,7 @@ ScriptedImporter:
     isGroup: 1
     parentIndex: -1
     spriteID: 
+<<<<<<< Updated upstream
     layerID: 44
     mosaicPosition: {x: 0, y: 0}
   - name: Thigh_R
@@ -499,10 +651,30 @@ ScriptedImporter:
     layerID: 15
     mosaicPosition: {x: 854, y: 1158}
   - name: Leg L Copie copie
+=======
+    layerID: 14
+    mosaicPosition: {x: 0, y: 0}
+  - name: Calque 17 Copie 3
+    spriteName: Calque 17 Copie 3_1
+    isGroup: 0
+    parentIndex: 8
+    spriteID: 602b95ab57a33e349a70adda581b3273
+    layerID: 13
+    mosaicPosition: {x: 1551, y: 4}
+  - name: Calque 17 Copie 4
+    spriteName: Calque 17 Copie 4_1
+    isGroup: 0
+    parentIndex: 8
+    spriteID: 71d259f909bf27e4bab59df56ca6e8d8
+    layerID: 12
+    mosaicPosition: {x: 1002, y: 4}
+  - name: Leg R Copie
+>>>>>>> Stashed changes
     spriteName: 
     isGroup: 1
     parentIndex: -1
     spriteID: 
+<<<<<<< Updated upstream
     layerID: 33
     mosaicPosition: {x: 0, y: 0}
   - name: Thigh_L
@@ -520,12 +692,32 @@ ScriptedImporter:
     layerID: 31
     mosaicPosition: {x: 854, y: 581}
   - name: Arm L
+=======
+    layerID: 10
+    mosaicPosition: {x: 0, y: 0}
+  - name: Calque 17 Copie 5
+    spriteName: Calque 17 Copie 5_1
+    isGroup: 0
+    parentIndex: 11
+    spriteID: 0f3676e6ebe39fd4da958c2b3c66ad56
+    layerID: 9
+    mosaicPosition: {x: 660, y: 1077}
+  - name: Calque 17 Copie 6
+    spriteName: Calque 17 Copie 6_1
+    isGroup: 0
+    parentIndex: 11
+    spriteID: 401cf0152ea9c6b4da47b0039473b367
+    layerID: 8
+    mosaicPosition: {x: 1002, y: 604}
+  - name: Arm R Copie
+>>>>>>> Stashed changes
     spriteName: 
     isGroup: 1
     parentIndex: -1
     spriteID: 
     layerID: 6
     mosaicPosition: {x: 0, y: 0}
+<<<<<<< Updated upstream
   - name: Arm_L
     spriteName: Arm_L
     isGroup: 0
@@ -538,6 +730,20 @@ ScriptedImporter:
     isGroup: 0
     parentIndex: 15
     spriteID: 58002c0fae7fbb2429c54100c1256ef0
+=======
+  - name: Calque 17 Copie 7
+    spriteName: Calque 17 Copie 7_1
+    isGroup: 0
+    parentIndex: 14
+    spriteID: d5035970e52c66e4f8febb135c8be915
+    layerID: 5
+    mosaicPosition: {x: 542, y: 2904}
+  - name: Calque 17 Copie 8
+    spriteName: Calque 17 Copie 8_1
+    isGroup: 0
+    parentIndex: 14
+    spriteID: e46dfe5e27d4db84c95d626156a88dff
+>>>>>>> Stashed changes
     layerID: 4
     mosaicPosition: {x: 4, y: 2675}
   characterData:
