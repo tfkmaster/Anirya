@@ -38,5 +38,9 @@ public class Waghzen : Ennemy
     {
         GetComponentInChildren<Animator>().SetBool("startFight", true);
     }
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawCube((transform.position + attackPoint.position) / 2, new Vector3(Vector3.Distance(transform.position, attackPoint.position), attackRange, 0));
+    }
 
 }
