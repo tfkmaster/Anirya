@@ -2,61 +2,60 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RavenFollow : StateMachineBehaviour
+public class RavenSting : StateMachineBehaviour
 {
     private Raven raven;
-    private float thrustMult = 4.0f;
+    private float thrustMult = 2.0f;
 
-    private float timeTilNextAttack;
+    private float distToPlayer;
+    private float traveledDist;
+    private Vector2 startPos;
+    private Vector2 stingDirection;
+
+    public float MAX_STING_MAGNITUDE = 15f;
+
+    private float playerReachedTimer;
 
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         raven = animator.GetComponent<Raven>();
-        raven.MoveTo = raven.player.transform;
-
-        timeTilNextAttack = Random.Range(1f, 3f);
+        distToPlayer = Vector3.Distance(raven.MoveTo.position, raven.transform.position);
+        traveledDist = 0f;
+        playerReachedTimer = 0.02f;
+        startPos = raven.transform.position;
+        stingDirection = raven.MoveTo.position - raven.transform.position;
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        raven.MoveTo = raven.player.transform;
+        traveledDist = Vector3.Distance(startPos, raven.transform.position);
+
+        if (raven.rb2D.velocity.magnitude > MAX_STING_MAGNITUDE)
+        {
+            raven.rb2D.velocity *= 1 - ((raven.rb2D.velocity.magnitude / MAX_STING_MAGNITUDE) - 1f);
+        }
+
+
+        raven.rb2D.AddForce(stingDirection.normalized * raven.thrust * thrustMult, ForceMode2D.Impulse);
 
         if (raven.IsColliding())
         {
-            raven.SetCollidingTimer(raven.GetCollidingTimer() - Time.deltaTime);
+            animator.SetBool("IsStunned", true);
+            animator.SetBool("IsStung", false);
         }
 
-        if (raven.GetCollidingTimer() <= 0f)
+        if(traveledDist >= distToPlayer)
         {
-            raven.ResetCollidingTimer();
-            raven.SetColliding(false);
+            playerReachedTimer -= Time.deltaTime;
         }
 
-        if (raven.rb2D.velocity.magnitude > raven.GetMagnitudeMax())
+        if(playerReachedTimer <= 0f)
         {
-            raven.rb2D.velocity *= 1 - ((raven.rb2D.velocity.magnitude / raven.GetMagnitudeMax()) - 1f);
+            animator.SetBool("IsStunned", true);
+            animator.SetBool("IsStung", false);
         }
-
-        if (!raven.IsColliding())
-        {
-            Vector3 direction = raven.MoveTo.position - raven.transform.position;
-            raven.rb2D.AddForce(direction.normalized * raven.thrust * thrustMult, ForceMode2D.Force);
-        }
-
-        if (raven.IsPlayerOnSight())
-        {
-            timeTilNextAttack -= Time.deltaTime;
-        }
-
-        if(raven.IsPlayerOnSight() && timeTilNextAttack <= 0f)
-        {
-            animator.SetBool("IsAttacking", true);
-            animator.SetBool("IsFollowing", false);
-        }
-
-        raven.FlipSprite();
     }
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state

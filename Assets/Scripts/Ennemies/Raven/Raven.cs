@@ -26,7 +26,12 @@ public class Raven : Actor
     private float collidingTimer;
     private bool colliding = false;
     private int wanderIndex = 0;
-    
+
+    public bool launchSting = false;
+    public bool freeRaven = false;
+
+    public int RavenMask = ~(1 << 13);
+
 
     void Start()
     {        
@@ -48,19 +53,21 @@ public class Raven : Actor
         {
             if (col.CompareTag("Player"))
             {
-                var ennemyMask = (1 << 13);
-                ennemyMask = ~ennemyMask;
-
-                RaycastHit2D hit = Physics2D.Raycast(transform.position, (transform.position - col.transform.position), ennemyMask);
+                RaycastHit2D hit = Physics2D.Raycast(transform.position, (col.transform.position - transform.position), 100000f, RavenMask);
                 
                 if (hit.collider.CompareTag("Player"))
                 {
                     hit.collider.gameObject.GetComponent<SpriteRenderer>().color = Color.red;
                     return true;
                 }
+                else
+                {
+                    Debug.Log(hit.collider.name);
+                }
             }
         }
 
+        MoveTo.GetComponent<SpriteRenderer>().color = Color.green;
         return false;
     }
 
@@ -80,11 +87,13 @@ public class Raven : Actor
 
     void OnCollisionEnter2D(Collision2D collision)
     {
+        Debug.Log(collision.collider.name);
         colliding = true;
-        if (animator.GetBool("IsAttacking"))
-        {
-            rb2D.velocity = Vector2.zero;
-        }
+    }
+
+    void OnCollisionExit(Collision collision)
+    {
+        colliding = false;
     }
 
     void OnTriggerEnter2D(Collider2D collision)
@@ -100,7 +109,6 @@ public class Raven : Actor
 
     public void FlipSprite()
     {
-
         if (transform.position.x - MoveTo.position.x > 0 && !m_FacingRight)
         {
             m_FacingRight = true;
@@ -150,5 +158,16 @@ public class Raven : Actor
     public void ResetCollidingTimer()
     {
         collidingTimer = CollidingTime;
+    }
+
+    public void LaunchSting()
+    {
+        launchSting = true;
+    }
+
+    public void LeaveAttackState()
+    {
+        animator.SetBool("IsFollowing", true);
+        animator.SetBool("IsAttacking", false);
     }
 }
