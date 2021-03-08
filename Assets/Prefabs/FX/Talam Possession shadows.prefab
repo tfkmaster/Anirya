@@ -116,9 +116,9 @@ ParticleSystem:
     enabled: 1
     startLifetime:
       serializedVersion: 2
-      minMaxState: 0
+      minMaxState: 3
       scalar: 0.8
-      minScalar: 5
+      minScalar: 0.6
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -512,7 +512,7 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     randomizeRotationDirection: 0
-    maxNumParticles: 53
+    maxNumParticles: 200
     size3D: 0
     rotation3D: 0
     gravityModifier:
