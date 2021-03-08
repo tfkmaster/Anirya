@@ -3735,9 +3735,9 @@ MonoBehaviour:
   ableToMove: 0
   Interacting: 0
   canMove: 1
-  maxJumpHeight: 4
-  minJumpHeight: 2
-  TimeToJumpApex: 0.5
+  maxJumpHeight: 8
+  minJumpHeight: 3
+  TimeToJumpApex: 0.65
   moveSpeed: 13
   coyoteTimeAfterLeavingGround: 0.1
   coyoteTimeBeforeReachingGround: 0.1
@@ -3765,7 +3765,6 @@ MonoBehaviour:
   InputFreezeDuration: 0.75
   knockbackVelocityX: 8
   knockbackVelocityY: 8
-  isDead: 0
   PlayerBox: {fileID: 0}
   isOnOneWayPlatform: 0
   maxHeat: 100
