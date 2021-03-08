@@ -10,6 +10,11 @@ public class AIWaghzen : MonoBehaviour
     //Movement Information
     public bool m_FacingRight = true;  // For determining which way the ennemy is currently facing.
     public GameObject player;
+    
+    //Waghzen Jump Attack
+    private float calculatedVelocity;
+    float distance = 0;
+    private bool startFollowing = false;
 
     // Start is called before the first frame update
     public virtual void Start()
@@ -21,6 +26,11 @@ public class AIWaghzen : MonoBehaviour
     // Update is called once per frame
     protected virtual void Update()
     {
+        if (startFollowing)
+        {
+            GetComponent<Rigidbody2D>().velocity = new Vector2(calculatedVelocity, GetComponent<Rigidbody2D>().velocity.y);
+        }
+
         if (player.transform.position.x < gameObject.transform.position.x && m_FacingRight)
         {
             Flip();
@@ -51,13 +61,28 @@ public class AIWaghzen : MonoBehaviour
 
     public void GravityBeforeJump()
     {
+        CalculateDistance();
         GetComponent<Rigidbody2D>().gravityScale = 0;
     }
 
     public void GravityAfterJump()
     {
         GetComponent<Rigidbody2D>().gravityScale = GravityAfterJumpValue;
+        startFollowing = false;
+        GetComponent<Rigidbody2D>().velocity = new Vector2(0,0);
     }
+
+    public void CalculateDistance()
+    {
+        distance = player.transform.position.x - transform.position.x;
+    }
+
+    public void startJumpAction()
+    {
+        startFollowing = true;
+        calculatedVelocity = distance * 3f; 
+    }
+
 
     protected void Flip()
     {

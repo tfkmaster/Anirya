@@ -27,4 +27,9 @@ public class WaghzenScriptLinker : MonoBehaviour
     {
         AIWaghzen.GravityAfterJump();
     }
+
+    public void StartJumpAction()
+    {
+        AIWaghzen.startJumpAction();
+    }
 }
