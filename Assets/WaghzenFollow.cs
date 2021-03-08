@@ -10,12 +10,16 @@ public class WaghzenFollow : StateMachineBehaviour
     public float MaxTime;
     private float timer;
 
-    private bool playerAlreadySelected = false;
+    private bool playerMeleeRanged = false;
+    private bool playerMidRanged = false;
+    private bool playerHighRanged = false;
 
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        playerAlreadySelected = false;
+        playerMeleeRanged = false;
+        playerMidRanged = false;
+        playerHighRanged = false;
         rb2dWaghzen = animator.gameObject.GetComponentInParent<Rigidbody2D>();
         waghzen = animator.gameObject.GetComponentInParent<Waghzen>();
         timer = Random.Range(MinTime, MaxTime);
@@ -24,24 +28,48 @@ public class WaghzenFollow : StateMachineBehaviour
     //OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        Vector2 a = animator.GetComponentInParent<Waghzen>().attackPoint.position;
-        Vector2 b = animator.GetComponentInParent<Waghzen>().attackPoint2.position;
-
-        Collider2D[] hitActors = Physics2D.OverlapBoxAll((a + b) / 2, new Vector2(Vector3.Distance(animator.GetComponentInParent<Waghzen>().attackPoint.position, animator.GetComponentInParent<Waghzen>().attackPoint2.position), animator.GetComponentInParent<Waghzen>().attackRange), 0);
-
-        foreach (Collider2D actor in hitActors)
-        {
-            if (actor.CompareTag("Player") && !playerAlreadySelected)
-            {
-                playerAlreadySelected = true;
-            }
-        }
-
         timer -= Time.deltaTime;
 
-        if(timer <= 0 && playerAlreadySelected)
+        if (timer <= 0)
         {
-            animator.SetTrigger("Jump");
+            Vector2 pos = animator.GetComponentInParent<Transform>().transform.position;
+            Vector2 a = animator.GetComponentInParent<Waghzen>().attackPoint.position;
+            Vector2 b = animator.GetComponentInParent<Waghzen>().attackPoint2.position;
+
+            Collider2D[] MeleeRangeAttackColliders = Physics2D.OverlapBoxAll((pos + a) / 2, new Vector2(Vector3.Distance(animator.GetComponentInParent<Transform>().position, animator.GetComponentInParent<Waghzen>().attackPoint.position), animator.GetComponentInParent<Waghzen>().attackRange), 0);
+
+            foreach (Collider2D actor in MeleeRangeAttackColliders)
+            {
+                if (actor.CompareTag("Player") && !playerMeleeRanged)
+                {
+                    playerMeleeRanged = true;
+                }
+            }
+
+            if (!playerMeleeRanged)
+            {
+                Collider2D[] MidRangeAttackColliders = Physics2D.OverlapBoxAll((a + b) / 2, new Vector2(Vector3.Distance(animator.GetComponentInParent<Waghzen>().attackPoint.position, animator.GetComponentInParent<Waghzen>().attackPoint2.position), animator.GetComponentInParent<Waghzen>().attackRange), 0);
+                foreach (Collider2D actor in MidRangeAttackColliders)
+                {
+                    if (actor.CompareTag("Player") && !playerMidRanged)
+                    {
+                        playerMidRanged = true;
+                    }
+                }
+            }
+
+            if (playerMeleeRanged)
+            {
+                animator.SetTrigger("Melee");
+            }
+            else if (playerMidRanged)
+            {
+                animator.SetTrigger("Jump");
+            }
+            else if (playerHighRanged)
+            {
+                animator.SetTrigger("Jump");
+            }
         }
         else
         {
@@ -67,7 +95,9 @@ public class WaghzenFollow : StateMachineBehaviour
             }
         }
 
-        playerAlreadySelected = false;
+        playerMeleeRanged = false;
+        playerMidRanged = false;
+        playerHighRanged = false;
     }
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
@@ -87,4 +117,7 @@ public class WaghzenFollow : StateMachineBehaviour
     //{
     //    // Implement code that sets up animation IK (inverse kinematics)
     //}
+
+    private void CheckDistance() { 
+    }
 }
