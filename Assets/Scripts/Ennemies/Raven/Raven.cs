@@ -22,9 +22,11 @@ public class Raven : Actor
     [Tooltip("Time during which raven is stunned and lose focus")]
     public float CollidingTime = 0.5f;
     public float MagnitudeMax = 5.0f;
+    public bool m_FacingRight = false;
     private float collidingTimer;
     private bool colliding = false;
     private int wanderIndex = 0;
+    
 
     void Start()
     {        
@@ -98,13 +100,20 @@ public class Raven : Actor
 
     public void FlipSprite()
     {
-        if(transform.position.x - MoveTo.position.x > 0)
+
+        if (transform.position.x - MoveTo.position.x > 0 && !m_FacingRight)
         {
-            GetComponent<SpriteRenderer>().flipX = true;
+            m_FacingRight = true;
+            Vector3 theScale = transform.transform.localScale;
+            theScale.x *= -1;
+            transform.transform.localScale = theScale;
         }
-        else
+        else if(transform.position.x - MoveTo.position.x < 0 && m_FacingRight)
         {
-            GetComponent<SpriteRenderer>().flipX = false;
+            m_FacingRight = false;
+            Vector3 theScale = transform.transform.localScale;
+            theScale.x *= -1;
+            transform.transform.localScale = theScale;
         }
     }
 

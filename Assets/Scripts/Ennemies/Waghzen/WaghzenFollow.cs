@@ -117,7 +117,4 @@ public class WaghzenFollow : StateMachineBehaviour
     //{
     //    // Implement code that sets up animation IK (inverse kinematics)
     //}
-
-    private void CheckDistance() { 
-    }
 }
