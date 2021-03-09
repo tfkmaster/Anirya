@@ -6,12 +6,20 @@ public class WolfIdle : StateMachineBehaviour
 {
     private float counter;
     bool startCounter;
+
+    public float MinTime;
+    public float MaxTime;
+    private float timer;
+
+
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         animator.gameObject.GetComponentInParent<Rigidbody2D>().velocity = Vector2.zero;
         counter = 0;
         startCounter = false;
+
+        timer = Random.Range(MinTime, MaxTime);
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
@@ -25,8 +33,15 @@ public class WolfIdle : StateMachineBehaviour
                 animator.SetBool("playerGrounded", true);
             }
         }
-        
-        if (animator.gameObject.GetComponentInParent<Wolf>().player.GetComponent<CharacterController2D>().m_Grounded)
+
+        timer -= Time.deltaTime;
+
+        if (timer <= 0)
+        {
+            animator.SetTrigger("StartWandering");
+        }
+
+            if (animator.gameObject.GetComponentInParent<Wolf>().player.GetComponent<CharacterController2D>().m_Grounded)
         {
             startCounter = true;
         }

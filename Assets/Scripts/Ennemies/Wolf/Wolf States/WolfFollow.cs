@@ -15,6 +15,8 @@ public class WolfFollow : StateMachineBehaviour
         aiWolf = animator.gameObject.GetComponentInParent<AIWolf>();
         rb2dWolf = animator.gameObject.GetComponentInParent<Rigidbody2D>();
 
+        animator.SetBool("wasIdle", false);
+
         if (wolf.player.GetComponent<Player>().GetDead())
         {
             rb2dWolf.velocity = Vector2.zero;
