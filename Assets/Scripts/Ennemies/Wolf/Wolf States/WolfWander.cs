@@ -9,19 +9,36 @@ public class WolfWander : StateMachineBehaviour
     private AIWolf aiWolf;
     private Rigidbody2D rb2dWolf;
 
+    public float MinTime;
+    public float MaxTime;
+    private float timer;
+
     //OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         wolf = animator.gameObject.GetComponentInParent<Wolf>();
         aiWolf = animator.gameObject.GetComponentInParent<AIWolf>();
         rb2dWolf = animator.gameObject.GetComponentInParent<Rigidbody2D>();
-        aiWolf.SelectANode();
+
+        if (!animator.GetBool("wasWandering"))
+        {
+            aiWolf.SelectANode();
+        }
+        
+
+        timer = Random.Range(MinTime, MaxTime);
     }
 
     //OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        
+        timer -= Time.deltaTime;
+
+        if (timer <= 0)
+        {
+            animator.SetTrigger("Idle");
+        }
+
         if (animator.transform.position.x - aiWolf.DestinationNode.transform.position.x >= 0.2f || animator.transform.position.x - aiWolf.DestinationNode.transform.position.x <= -0.2f)
         {
             if (animator.transform.position.x > aiWolf.DestinationNode.transform.position.x)
@@ -40,10 +57,10 @@ public class WolfWander : StateMachineBehaviour
     }
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
-    //override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-    //{
-    //    
-    //}
+    override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    {
+        animator.SetBool("wasWandering", true);
+    }
 
     // OnStateMove is called right after Animator.OnAnimatorMove()
     //override public void OnStateMove(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)

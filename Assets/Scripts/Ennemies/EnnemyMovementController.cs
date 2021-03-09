@@ -23,12 +23,12 @@ public class EnnemyMovementController : MonoBehaviour
     // Update is called once per frame
     protected virtual void Update()
     {
-        if(player.transform.position.x < gameObject.transform.position.x && m_FacingRight)
+        if(player.transform.position.x < gameObject.transform.position.x && m_FacingRight && playerOnSight)
         {
             Flip();
         }
 
-        if(player.transform.position.x > gameObject.transform.position.x && !m_FacingRight)
+        if(player.transform.position.x > gameObject.transform.position.x && !m_FacingRight && playerOnSight)
         {
             Flip();
         }
