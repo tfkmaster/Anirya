@@ -4,5 +4,23 @@ using UnityEngine;
 
 public class Brambles : MonoBehaviour
 {
-    
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        Debug.Log(collision.transform.name);
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            Debug.Log("Player hit");
+            collision.gameObject.GetComponent<Player>().OnHit(gameObject, 1);
+        }
+    }
+
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        Debug.Log(collision.transform.name);
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            Debug.Log("Player hit");
+            collision.gameObject.GetComponent<Player>().OnHit(gameObject, 1);
+        }
+    }
 }
