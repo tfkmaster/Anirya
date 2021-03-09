@@ -25,7 +25,7 @@ public class CharacterMovement : MonoBehaviour
 
     //Dash information
     Vector2 dashStart;
-    float xDistance;
+    public float xDistance;
     public bool dashed = false;
     public float dashVelocity;
 
@@ -73,6 +73,13 @@ public class CharacterMovement : MonoBehaviour
         
         if (!player.GM.isPaused)
         {
+            if (dashed)
+            {
+                DashStop();
+            }
+
+            Dash();
+
             gravity = -(2 * maxJumpHeight) / Mathf.Pow(TimeToJumpApex, 2);
             maxJumpVelocity = Mathf.Abs(gravity) * TimeToJumpApex;
 
@@ -87,10 +94,13 @@ public class CharacterMovement : MonoBehaviour
             horizontalMove = calculateDirection();
             if (!gotHit && !player.GetDead() && !Interacting && !GetComponent<CombatManager>().isHealing)
             {
+                
                 Jump();
                 CoyoteTime(); 
             }
             playerMovements();
+
+            
         }
     }
 
@@ -218,9 +228,28 @@ public class CharacterMovement : MonoBehaviour
 
     void Dash()
     {
-        if (Input.GetButtonDown("Dash"))
+        if (Input.GetButtonDown("Dash") || Input.GetKeyDown(KeyCode.U))
         {
-            StartKnockBack(new Vector2(10 * cc2d.facingDirection(),0));
+            gotHit = true;
+            animator.SetTrigger("dash");
+            animator.SetBool("isDashing",true);
+            dashStart = gameObject.transform.position;
+            velocity.y = 0;
+            velocity.x = dashVelocity * (cc2d.m_FacingRight? 1 : -1);
+            dashed = true;
+        }
+    }
+
+    void DashStop()
+    {
+        if(Vector2.Distance(new Vector2(dashStart.x,0), new Vector2(gameObject.transform.position.x,0)) >= xDistance)
+        {
+            gotHit = false;
+            Debug.Log(Vector2.Distance(dashStart, gameObject.transform.position));
+            velocity.y = 0;
+            velocity.x = 0;
+            dashed = false;
+            animator.SetBool("isDashing", false);
         }
     }
 
@@ -238,11 +267,14 @@ public class CharacterMovement : MonoBehaviour
             input = new Vector2(0, 0);
         }
         
-        if (!gotHit)
+        if (!gotHit && !dashed)
         {
             velocity.x = input.x * moveSpeed;
         }
-        velocity.y += gravity * Time.deltaTime;
+        if (!dashed)
+        {
+            velocity.y += gravity * Time.deltaTime;
+        }
         cc2d.newMove(velocity * Time.deltaTime);
         animator.SetFloat("speed", Mathf.Abs(horizontalMove));
     }
