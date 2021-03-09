@@ -20,6 +20,9 @@ public class Actor : MonoBehaviour
     [SerializeField] private float timeRed = 0.5f;
     private float timeRedCounter = 0;
 
+    //Itij essences management
+    public int itijEssences = 5;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -79,6 +82,7 @@ public class Actor : MonoBehaviour
 
     protected virtual void Death()
     {
+        GameObject.FindGameObjectWithTag("Player").GetComponent<Player>().itijEssencesCarried += itijEssences;
         gameObject.layer = LayerMask.NameToLayer("DeadActor");
         dead = true;
     }
