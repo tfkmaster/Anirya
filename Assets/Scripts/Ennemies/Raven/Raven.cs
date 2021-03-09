@@ -26,6 +26,7 @@ public class Raven : Actor
     private float collidingTimer;
     private bool colliding = false;
     private int wanderIndex = 0;
+    private float attackRangeMult = 1f;
 
     public bool launchSting = false;
     public bool freeRaven = false;
@@ -47,7 +48,16 @@ public class Raven : Actor
 
     public bool IsPlayerOnSight()
     {
-        Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, attackRange);
+        if (animator.GetBool("IsWandering"))
+        {
+            attackRangeMult = 1f;
+        }
+        else
+        {
+            attackRangeMult = 3f;
+        }
+
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, attackRange * attackRangeMult);
 
         foreach (Collider2D col in colliders)
         {
@@ -57,7 +67,7 @@ public class Raven : Actor
                 
                 if (hit.collider.CompareTag("Player"))
                 {
-                    hit.collider.gameObject.GetComponent<SpriteRenderer>().color = Color.red;
+                    //hit.collider.gameObject.GetComponent<SpriteRenderer>().color = Color.red;
                     return true;
                 }
                 else
@@ -67,14 +77,14 @@ public class Raven : Actor
             }
         }
 
-        MoveTo.GetComponent<SpriteRenderer>().color = Color.green;
+        //MoveTo.GetComponent<SpriteRenderer>().color = Color.green;
         return false;
     }
 
     void OnDrawGizmos()
     {
         //Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, attackRange);
+        Gizmos.DrawWireSphere(transform.position, attackRange *attackRangeMult);
 
         Vector3 direction = GameObject.FindGameObjectWithTag("Player").transform.position - transform.position;
         Gizmos.DrawRay(transform.position, direction);
@@ -87,7 +97,11 @@ public class Raven : Actor
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        Debug.Log(collision.collider.name);
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            player.OnHit(gameObject, damageDone);
+        }
+
         colliding = true;
     }
 

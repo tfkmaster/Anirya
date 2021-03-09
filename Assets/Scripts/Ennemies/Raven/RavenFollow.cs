@@ -13,7 +13,7 @@ public class RavenFollow : StateMachineBehaviour
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         raven = animator.GetComponent<Raven>();
-        raven.MoveTo = raven.player.transform;
+        raven.MoveTo = raven.player.transform.GetChild(3).transform;
 
         timeTilNextAttack = Random.Range(1f, 3f);
     }
@@ -21,7 +21,7 @@ public class RavenFollow : StateMachineBehaviour
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        raven.MoveTo = raven.player.transform;
+        raven.MoveTo = raven.player.transform.GetChild(3).transform;
 
         if (raven.IsColliding())
         {
