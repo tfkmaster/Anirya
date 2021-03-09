@@ -513,6 +513,36 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_CategoryHash: -2.1750502e-11
   m_labelHash: -2.1750502e-11
+--- !u!1 &471422056746459413
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3755613240305357684}
+  m_Layer: 8
+  m_Name: RAVEN ATTACK TRANSFORM
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3755613240305357684
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 471422056746459413}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.09, y: 17.42, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 7641520917133261155}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &503788318439663518
 GameObject:
   m_ObjectHideFlags: 0
@@ -3762,6 +3792,7 @@ Transform:
   - {fileID: 3382547590504743766}
   - {fileID: 8347176956834489314}
   - {fileID: 6457436966176239086}
+  - {fileID: 3755613240305357684}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -5540,15 +5571,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1c20c7996d683754db1f0f62a361952c, type: 3}
---- !u!1 &4018725654350742950 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 100004, guid: 1c20c7996d683754db1f0f62a361952c,
-    type: 3}
-  m_PrefabInstance: {fileID: 4018725654350709506}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &4018725654350846342 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400004, guid: 1c20c7996d683754db1f0f62a361952c,
+    type: 3}
+  m_PrefabInstance: {fileID: 4018725654350709506}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &4018725654350742950 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 100004, guid: 1c20c7996d683754db1f0f62a361952c,
     type: 3}
   m_PrefabInstance: {fileID: 4018725654350709506}
   m_PrefabAsset: {fileID: 0}
@@ -5954,15 +5985,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1c20c7996d683754db1f0f62a361952c, type: 3}
---- !u!1 &7098992910445599248 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 100004, guid: 1c20c7996d683754db1f0f62a361952c,
-    type: 3}
-  m_PrefabInstance: {fileID: 7098992910445698228}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &7098992910446085680 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400004, guid: 1c20c7996d683754db1f0f62a361952c,
+    type: 3}
+  m_PrefabInstance: {fileID: 7098992910445698228}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &7098992910445599248 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 100004, guid: 1c20c7996d683754db1f0f62a361952c,
     type: 3}
   m_PrefabInstance: {fileID: 7098992910445698228}
   m_PrefabAsset: {fileID: 0}
