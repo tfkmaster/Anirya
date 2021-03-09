@@ -21,6 +21,7 @@ public class Player : Actor
     private float invicibilityCounter;
     private bool isInvincible = false;
 
+    public GameObject WallFrictionCanceler;
     public Collider2D PlayerBox;
     public bool isOnOneWayPlatform = false;
 
@@ -106,6 +107,7 @@ public class Player : Actor
             isInvincible = false;
             invicibilityCounter = 0;
             gameObject.layer = LayerMask.NameToLayer("Player");
+            WallFrictionCanceler.layer = LayerMask.NameToLayer("Player");
             SpriteRenderer[] spr_renderers = GetComponentsInChildren<SpriteRenderer>();
             foreach (SpriteRenderer spr in spr_renderers)
             {
@@ -141,6 +143,7 @@ public class Player : Actor
 
             isInvincible = true;
             gameObject.layer = LayerMask.NameToLayer("DeadActor");
+            WallFrictionCanceler.layer = LayerMask.NameToLayer("DeadActor");
             SpriteRenderer[] spr_renderers = GetComponentsInChildren<SpriteRenderer>();
             foreach (SpriteRenderer spr in spr_renderers)
             {

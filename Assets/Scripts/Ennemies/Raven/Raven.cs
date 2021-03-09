@@ -47,8 +47,9 @@ public class Raven : Actor
         MoveTo = WanderManager.GetWanderPoints()[wanderIndex];       
     }
 
-    void Update()
+    protected override void Update()
     {
+        base.Update();
         applyLinearDrag();
     }
 
