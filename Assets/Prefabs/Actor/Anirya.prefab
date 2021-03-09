@@ -3932,7 +3932,7 @@ MonoBehaviour:
   damageDone: 1
   attackPoint: {fileID: 8494506563806587602}
   attackPoint2: {fileID: 0}
-  attackRange: 0.5
+  attackRange: 0.75
   timeRed: 0.2
   knockBackForce: {x: 10, y: 5}
   GM: {fileID: 0}
@@ -5730,7 +5730,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 19800000, guid: 1c20c7996d683754db1f0f62a361952c, type: 3}
       propertyPath: InitialModule.startSize.scalar
-      value: 4
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 19800000, guid: 1c20c7996d683754db1f0f62a361952c, type: 3}
       propertyPath: moveWithTransform
