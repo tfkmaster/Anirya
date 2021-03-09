@@ -44,7 +44,9 @@ public class Ennemy : Actor
         Vector2 a = attackPoint.position;
         Vector2 b = attackPoint2.position;
 
-        Collider2D[] hitActors = Physics2D.OverlapBoxAll((a + b) / 2, new Vector2(Vector3.Distance(attackPoint.position, attackPoint2.position), attackRange),0);
+        //Collider2D[] hitActors = Physics2D.OverlapBoxAll((a + b) / 2, new Vector2(Vector3.Distance(attackPoint.position, attackPoint2.position), attackRange),0);
+        Collider2D[] hitActors = Physics2D.OverlapCircleAll(attackPoint.position, attackRange);
+
 
         foreach (Collider2D actor in hitActors)
         {
