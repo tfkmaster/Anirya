@@ -29,18 +29,21 @@ public class Actor : MonoBehaviour
     // Update is called once per frame
     protected virtual void Update()
     {
-        if (gotHit)
+        if (!gameObject.CompareTag("Player"))
         {
-            timeRedCounter += Time.deltaTime;
-        }
-        if (timeRedCounter >= timeRed)
-        {
-            gotHit = false;
-            timeRedCounter = 0;
-            SpriteRenderer[] spr_renderers = GetComponentsInChildren<SpriteRenderer>();
-            foreach (SpriteRenderer spr in spr_renderers)
+            if (gotHit)
             {
-                spr.color = new Color(1, 1, 1);
+                timeRedCounter += Time.deltaTime;
+            }
+            if (timeRedCounter >= timeRed)
+            {
+                gotHit = false;
+                timeRedCounter = 0;
+                SpriteRenderer[] spr_renderers = GetComponentsInChildren<SpriteRenderer>();
+                foreach (SpriteRenderer spr in spr_renderers)
+                {
+                    spr.color = new Color(1, 1, 1);
+                }
             }
         }
     }
@@ -48,7 +51,7 @@ public class Actor : MonoBehaviour
     //Function called when the actor gets hit
     public virtual void OnHit(GameObject hitter, int damages)
     {
-        if (!dead)
+        if (!dead && !gameObject.CompareTag("Player"))
         {
             DamageFeedback();
         }
@@ -91,7 +94,6 @@ public class Actor : MonoBehaviour
         {
             spr.color = new Color(1, 0, 0);
             timeRedCounter = 0;
-            
         }
         gotHit = true;
     }
