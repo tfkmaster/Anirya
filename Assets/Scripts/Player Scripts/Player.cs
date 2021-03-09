@@ -30,6 +30,8 @@ public class Player : Actor
     public float AddHeat = 15;
     public float RegenCost = 40;
 
+    public int itijEssencesCarried = 0;
+
     void Awake()
     {
         GM = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();

@@ -17,16 +17,22 @@ public class PlayerStatsManager : MonoBehaviour
     public Sprite emptyHeart;
     public Sprite fullHeart;
 
+    public Text itijText;
+    public Player player;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if (player)
+        {
+            itijText.text = player.itijEssencesCarried.ToString();
+        }
     }
 
     public void updateVisual(int maxHealthSent, int actualHealthSent, float maxHeatSent, float actualHeatSent)
