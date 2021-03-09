@@ -23,6 +23,12 @@ public class CharacterMovement : MonoBehaviour
     public bool Interacting = false;               // Determines if the player is interacting with some entity
     public bool canMove = true;
 
+    //Dash information
+    Vector2 dashStart;
+    float xDistance;
+    public bool dashed = false;
+    public float dashVelocity;
+
     //Immobile on slopes
     float counter;
     float time = 0.1f;
@@ -210,8 +216,16 @@ public class CharacterMovement : MonoBehaviour
         }
     }
 
-    //Move the player depending on inputs and 
-    void playerMovements()
+    void Dash()
+    {
+        if (Input.GetButtonDown("Dash"))
+        {
+            StartKnockBack(new Vector2(10 * cc2d.facingDirection(),0));
+        }
+    }
+
+        //Move the player depending on inputs and 
+        void playerMovements()
     {
         Vector2 input = new Vector2(0, 0);
 
