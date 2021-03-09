@@ -27,6 +27,7 @@ public class Raven : Actor
     private bool colliding = false;
     private int wanderIndex = 0;
     private float attackRangeMult = 1f;
+    public float wanderThrustMult = 5f;
 
     public bool launchSting = false;
     public bool freeRaven = false;
@@ -44,6 +45,11 @@ public class Raven : Actor
         collidingTimer = CollidingTime;
 
         MoveTo = WanderManager.GetWanderPoints()[wanderIndex];       
+    }
+
+    void Update()
+    {
+        applyLinearDrag();
     }
 
     public bool IsPlayerOnSight()
@@ -183,5 +189,17 @@ public class Raven : Actor
     {
         animator.SetBool("IsFollowing", true);
         animator.SetBool("IsAttacking", false);
+    }
+
+    void applyLinearDrag()
+    {
+        if (animator.GetBool("IsWandering"))
+        {
+            rb2D.drag = 1f;
+        }
+        else
+        {
+            rb2D.drag = 0f;
+        }
     }
 }
