@@ -45,7 +45,7 @@ public class EnnemyMovementController : MonoBehaviour
             // ... flip the ennemy.
             Flip();
         }
-        if (playerOnSight && player.GetComponent<Collider2D>().IsTouching(MovementZone) && GetComponentInChildren<Animator>().GetCurrentAnimatorStateInfo(0).IsName("Wander"))
+        if (playerOnSight && player.GetComponent<Collider2D>().IsTouching(MovementZone) && (GetComponentInChildren<Animator>().GetCurrentAnimatorStateInfo(0).IsName("Wander")|| GetComponentInChildren<Animator>().GetCurrentAnimatorStateInfo(0).IsName("Idle")))
         {
             GetComponentInChildren<Animator>().SetTrigger("StartFollowing");
         }
