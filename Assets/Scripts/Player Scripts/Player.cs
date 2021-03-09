@@ -17,6 +17,11 @@ public class Player : Actor
     private bool isTriggeringInteractible;                                  //Set to true when the player is triggering an interactible entity
     private Interactible lastInteractible;                                  //Last interactible entity triggered by the player - set to null if the player is not interacting anymore        
 
+    [SerializeField] private float InvicibilityDuration = 2.5f;
+    private float invicibilityCounter;
+    private bool isInvincible = false;
+
+    public GameObject WallFrictionCanceler;
     public Collider2D PlayerBox;
     public bool isOnOneWayPlatform = false;
 
@@ -85,6 +90,31 @@ public class Player : Actor
             GetComponent<CharacterMovement>().ableToMove = false;
             GetComponent<CharacterMovement>().StopKnockBack();
             unableToMoveCounter = InputFreezeDuration;
+
+            /*gameObject.layer = LayerMask.NameToLayer("Player");
+            SpriteRenderer[] spr_renderers = GetComponentsInChildren<SpriteRenderer>();
+            foreach (SpriteRenderer spr in spr_renderers)
+            {
+                spr.color = new Color(1, 1, 1, 1);
+            }*/
+        }
+
+        if(isInvincible == true)
+        {
+            invicibilityCounter += Time.deltaTime;
+        }
+
+        if (invicibilityCounter >= InvicibilityDuration)
+        {
+            isInvincible = false;
+            invicibilityCounter = 0;
+            gameObject.layer = LayerMask.NameToLayer("Player");
+            WallFrictionCanceler.layer = LayerMask.NameToLayer("Player");
+            SpriteRenderer[] spr_renderers = GetComponentsInChildren<SpriteRenderer>();
+            foreach (SpriteRenderer spr in spr_renderers)
+            {
+                spr.color = new Color(1, 1, 1, 1);
+            }
         }
 
         //Interactible objects triggered one time by the player input
@@ -112,6 +142,15 @@ public class Player : Actor
             GetComponent<CharacterMovement>().StartKnockBack(new Vector2(direction.x,direction.y));
             base.OnHit(hitter, damages);
             SendPlayerStatsToGameManager();
+
+            isInvincible = true;
+            gameObject.layer = LayerMask.NameToLayer("DeadActor");
+            WallFrictionCanceler.layer = LayerMask.NameToLayer("DeadActor");
+            SpriteRenderer[] spr_renderers = GetComponentsInChildren<SpriteRenderer>();
+            foreach (SpriteRenderer spr in spr_renderers)
+            {
+                spr.color = new Color(0.8f, 0.8f, 0.8f, 0.5f);
+            }
         }
     }
 
