@@ -23,6 +23,8 @@ public class WaghzenFollow : StateMachineBehaviour
         rb2dWaghzen = animator.gameObject.GetComponentInParent<Rigidbody2D>();
         waghzen = animator.gameObject.GetComponentInParent<Waghzen>();
         timer = Random.Range(MinTime, MaxTime);
+
+        animator.SetBool("wasWandering", false);
     }
 
     //OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
