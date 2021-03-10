@@ -148,7 +148,7 @@ public class CombatManager : MonoBehaviour
                 {
                     AddHeat();
                     GameObject a = Instantiate(HitParticles, GetComponent<Player>().attackPoint.position, new Quaternion());
-                    a.GetComponent<RectTransform>().rotation = Quaternion.Euler(0, 0, -90);
+                    a.GetComponent<RectTransform>().rotation = Quaternion.Euler(0, 0, -90 * CC2d.facingDirection());
                     actor.GetComponent<Actor>().OnHit(gameObject, GetComponent<Player>().GetDamageDone());
                 }
             }
