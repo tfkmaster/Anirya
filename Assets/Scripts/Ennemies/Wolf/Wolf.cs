@@ -7,10 +7,15 @@ public class Wolf : Ennemy
     public bool knockbacked = false;
     public bool playerGrounded = false;
     public float waitTime;
+    public bool cinematicWolf = false;
 
     // Start is called before the first frame update
     protected override void Start()
     {
+        if (cinematicWolf)
+        {
+            GetComponentInChildren<Animator>().SetBool("cinematicWolf",true);
+        }
         base.Start();
         //StartFight();
     }
@@ -62,18 +67,17 @@ public class Wolf : Ennemy
         Debug.Log("knockbacked");
         knockbacked = true;
         GetComponentInChildren<Animator>().SetTrigger("Knockback");
-        GetComponent<Rigidbody2D>().AddForce(new Vector2(500, 1), ForceMode2D.Impulse);
         yield return new WaitForSeconds(1);
-        GetComponent<Rigidbody2D>().velocity = new Vector2(0, GetComponent<Rigidbody2D>().velocity.y);
         knockbacked = false;
 
     }
 
     public IEnumerator WolfDash()
     {
-        GetComponent<Rigidbody2D>().AddForce(new Vector2(30* (GetComponent<AIWolf>().m_FacingRight ? 1 : -1), 0), ForceMode2D.Impulse);
+        yield return null;
+        /*GetComponent<Rigidbody2D>().AddForce(new Vector2(30* (GetComponent<AIWolf>().m_FacingRight ? 1 : -1), 0), ForceMode2D.Impulse);
         yield return new WaitForSeconds(0.5f);
-        GetComponent<Rigidbody2D>().velocity = new Vector2(0, GetComponent<Rigidbody2D>().velocity.y);
+        GetComponent<Rigidbody2D>().velocity = new Vector2(0, GetComponent<Rigidbody2D>().velocity.y);*/
     }
 
 }

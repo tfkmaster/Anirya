@@ -82,7 +82,10 @@ public class CharacterMovement : MonoBehaviour
                 DashStop();
             }
 
-            Dash();
+            if(!player.GetDead() && !Interacting && !GetComponent<CombatManager>().isHealing)
+            {
+                Dash();
+            } 
 
             gravity = -(2 * maxJumpHeight) / Mathf.Pow(TimeToJumpApex, 2);
             maxJumpVelocity = Mathf.Abs(gravity) * TimeToJumpApex;
