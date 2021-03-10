@@ -312,6 +312,7 @@ public class CharacterMovement : MonoBehaviour
     public void StartKnockBack(Vector2 direction)
     {
             gotHit = true;
+            animator.SetBool("isDashing", false);
             animator.SetTrigger("gotHit");
             animator.SetBool("beingHit",true);
             velocity.y = direction.y;
@@ -323,8 +324,7 @@ public class CharacterMovement : MonoBehaviour
         gotHit = false;
         animator.SetTrigger("stopHit");
         animator.SetBool("beingHit", false);
-        /*velocity.y = 0;
-        velocity.x = 0;*/
+
     }
 
     public void setVelocity(float yVelocity)
