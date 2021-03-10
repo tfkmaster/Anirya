@@ -144,7 +144,7 @@ public class CombatManager : MonoBehaviour
             Collider2D[] hitActors = Physics2D.OverlapCircleAll(GetComponent<Player>().attackPoint.position, GetComponent<Player>().attackRange);
             foreach (Collider2D actor in hitActors)
             {
-                if (!actor.isTrigger && (actor.CompareTag("Ennemy") || actor.CompareTag("Destructible Wall")))
+                if (!actor.isTrigger  && (actor.CompareTag("Ennemy") && !actor.GetComponent<Actor>().GetDead()  || actor.CompareTag("Destructible Wall")))
                 {
                     AddHeat();
                     GameObject a = Instantiate(HitParticles, GetComponent<Player>().attackPoint.position, new Quaternion());
