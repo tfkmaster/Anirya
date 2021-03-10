@@ -1373,6 +1373,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 813964443604135056, guid: 4ddbe9f917b9d644e9bae223e82d719b,
+        type: 3}
+      propertyPath: maxHealthPoints
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 813964443604135056, guid: 4ddbe9f917b9d644e9bae223e82d719b,
+        type: 3}
+      propertyPath: healthPoints
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 813964443604135056, guid: 4ddbe9f917b9d644e9bae223e82d719b,
+        type: 3}
+      propertyPath: damageDone
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2539877389816207390, guid: 4ddbe9f917b9d644e9bae223e82d719b,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1927,6 +1942,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 813964443604135056, guid: 4ddbe9f917b9d644e9bae223e82d719b,
+        type: 3}
+      propertyPath: maxHealthPoints
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 813964443604135056, guid: 4ddbe9f917b9d644e9bae223e82d719b,
+        type: 3}
+      propertyPath: healthPoints
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 813964443604135056, guid: 4ddbe9f917b9d644e9bae223e82d719b,
+        type: 3}
+      propertyPath: damageDone
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 813964443604135059, guid: 4ddbe9f917b9d644e9bae223e82d719b,
         type: 3}
@@ -8224,6 +8254,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: W1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4636327710097949136, guid: fc9c000a1fc71be44aa634c23dbc2b6e,
+        type: 3}
+      propertyPath: maxHealthPoints
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4636327710097949136, guid: fc9c000a1fc71be44aa634c23dbc2b6e,
+        type: 3}
+      propertyPath: healthPoints
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 4754630819447671614, guid: fc9c000a1fc71be44aa634c23dbc2b6e,
         type: 3}

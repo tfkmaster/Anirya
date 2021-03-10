@@ -85,6 +85,10 @@ public class CombatManager : MonoBehaviour
                 return;
             }
         }
+        else if (!GetComponent<CharacterController2D>().m_Grounded && Input.GetButtonDown("Fire1"))
+        {
+            GetComponentInChildren<Animator>().SetBool("AerialAttack",true);
+        }
     }
 
     public void Regen()
