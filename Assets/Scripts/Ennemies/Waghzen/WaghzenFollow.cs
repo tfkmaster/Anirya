@@ -37,6 +37,7 @@ public class WaghzenFollow : StateMachineBehaviour
             Vector2 pos = animator.GetComponentInParent<Transform>().transform.position;
             Vector2 a = animator.GetComponentInParent<Waghzen>().attackPoint.position;
             Vector2 b = animator.GetComponentInParent<Waghzen>().attackPoint2.position;
+            Vector2 c = animator.GetComponentInParent<Waghzen>().attackPoint3.position;
 
             Collider2D[] MeleeRangeAttackColliders = Physics2D.OverlapBoxAll((pos + a) / 2, new Vector2(Vector3.Distance(animator.GetComponentInParent<Transform>().position, animator.GetComponentInParent<Waghzen>().attackPoint.position), animator.GetComponentInParent<Waghzen>().attackRange), 0);
 
@@ -58,6 +59,18 @@ public class WaghzenFollow : StateMachineBehaviour
                         playerMidRanged = true;
                     }
                 }
+
+                if (!playerMidRanged)
+                {
+                    Collider2D[] HighRangeAttackColliders = Physics2D.OverlapBoxAll((b + c) / 2, new Vector2(Vector3.Distance(animator.GetComponentInParent<Waghzen>().attackPoint2.position, animator.GetComponentInParent<Waghzen>().attackPoint3.position), animator.GetComponentInParent<Waghzen>().attackRange), 0);
+                    foreach (Collider2D actor in HighRangeAttackColliders)
+                    {
+                        if (actor.CompareTag("Player") && !playerHighRanged)
+                        {
+                            playerHighRanged = true;
+                        }
+                    }
+                }
             }
 
             if (playerMeleeRanged)
@@ -70,7 +83,7 @@ public class WaghzenFollow : StateMachineBehaviour
             }
             else if (playerHighRanged)
             {
-                animator.SetTrigger("Jump");
+                animator.SetTrigger("Range");
             }
         }
         else
