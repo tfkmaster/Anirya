@@ -63,8 +63,31 @@ MonoBehaviour:
   Parameters: []
   MinDistance: 0
   MaxDistance: 0
+<<<<<<< Updated upstream
   Length: 0
 --- !u!114 &-6113825476357815796
+=======
+  Length: 552
+--- !u!114 &-4953160536548613571
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.bank
+  m_EditorClassIdentifier: 
+  Path: Assets/Audio/Anyria/Build/Desktop/Master.bank
+  Name: Master
+  lastModified: 637461659827329646
+  LoadResult: 0
+  FileSizes: []
+  Exists: 1
+--- !u!114 &-2954552046399259687
+>>>>>>> Stashed changes
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -99,9 +122,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
   m_Name: bank:/Ambiance.bank
   m_EditorClassIdentifier: 
+<<<<<<< Updated upstream
   Path: Assets/Audio/Anyria/Build/Desktop/Ambiance.bank
   Name: Ambiance
   lastModified: 637461663491097154
+=======
+  Path: Assets/Audio/Anyria/Build/Desktop/Master.strings.bank
+  Name: Master.strings
+  lastModified: 637464902321314573
+>>>>>>> Stashed changes
   LoadResult: 0
   FileSizes: []
   Exists: 1
@@ -140,6 +169,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d32cf7c32a3ed8347bac48ef5ed56d82, type: 3}
   m_Name: FMODStudioCache
   m_EditorClassIdentifier: 
+<<<<<<< Updated upstream
   EditorBanks:
   - {fileID: 7379437853620760622}
   - {fileID: -3617250000852107039}
@@ -164,6 +194,15 @@ MonoBehaviour:
   stringsBankWriteTime: 637464702870905815
   cacheVersion: 5
 --- !u!114 &2213195834656916768
+=======
+  Path: Assets/Audio/Anyria/Build/Desktop/Music.bank
+  Name: Music
+  lastModified: 637464902325002678
+  LoadResult: 0
+  FileSizes: []
+  Exists: 1
+--- !u!114 &-447063085387960970
+>>>>>>> Stashed changes
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -175,6 +214,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
   m_Name: event:/Characters/Anirya Footsteps
   m_EditorClassIdentifier: 
+<<<<<<< Updated upstream
   Path: event:/Characters/Anirya Footsteps
   guid: 2107b9f40b1222449c82923700df8555
   Banks:
@@ -187,6 +227,15 @@ MonoBehaviour:
   MaxDistance: 20
   Length: 156
 --- !u!114 &2642585457893416335
+=======
+  Path: Assets/Audio/Anyria/Build/Desktop/Sound effect.bank
+  Name: Sound effect
+  lastModified: 637464902321314573
+  LoadResult: 0
+  FileSizes: []
+  Exists: 1
+--- !u!114 &-69659451192264190
+>>>>>>> Stashed changes
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -221,6 +270,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
   m_Name: event:/FX environement/Bumper
   m_EditorClassIdentifier: 
+<<<<<<< Updated upstream
   Path: event:/FX environement/Bumper
   guid: e04345b8af5a6d41b0af825700d8fb45
   Banks:
@@ -233,6 +283,32 @@ MonoBehaviour:
   MaxDistance: 0
   Length: 1007
 --- !u!114 &5619270943611535874
+=======
+  EditorBanks:
+  - {fileID: -2913028718529300121}
+  - {fileID: 301471033604597245}
+  - {fileID: -4953160536548613571}
+  - {fileID: -558381357064606723}
+  - {fileID: -447063085387960970}
+  EditorEvents:
+  - {fileID: -7394436669135232383}
+  - {fileID: -2510474462407087228}
+  - {fileID: 1639200178039603790}
+  - {fileID: -5368246042857801740}
+  - {fileID: 7266162250383784102}
+  - {fileID: -69659451192264190}
+  - {fileID: 2698010913413079759}
+  - {fileID: -2954552046399259687}
+  - {fileID: 4853339708378646888}
+  EditorParameters: []
+  MasterBanks:
+  - {fileID: -4953160536548613571}
+  StringsBanks:
+  - {fileID: -2913028718529300121}
+  stringsBankWriteTime: 637464902321314573
+  cacheVersion: 5
+--- !u!114 &301471033604597245
+>>>>>>> Stashed changes
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -244,9 +320,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
   m_Name: bank:/Sound effect.bank
   m_EditorClassIdentifier: 
+<<<<<<< Updated upstream
   Path: Assets/Audio/Anyria/Build/Desktop/Sound effect.bank
   Name: Sound effect
   lastModified: 637464702870925750
+=======
+  Path: Assets/Audio/Anyria/Build/Desktop/Ambiance.bank
+  Name: Ambiance
+  lastModified: 637461659827369545
+>>>>>>> Stashed changes
   LoadResult: 0
   FileSizes: []
   Exists: 1
