@@ -10,11 +10,11 @@ public class WanderManager : MonoBehaviour
     {
         WanderPoints = new List<Transform>();
         int WanderPointCount = transform.childCount;
-        Debug.Log("Count : " + WanderPointCount);
+        //Debug.Log("Count : " + WanderPointCount);
 
         for (int i = 0; i < WanderPointCount; ++i)
         {
-            Debug.Log("bite : " + transform.GetChild(i).name);
+            //Debug.Log("bite : " + transform.GetChild(i).name);
             WanderPoints.Add(transform.GetChild(i));
         }
     }

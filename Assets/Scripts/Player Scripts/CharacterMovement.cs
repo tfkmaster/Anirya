@@ -25,9 +25,13 @@ public class CharacterMovement : MonoBehaviour
 
     //Dash information
     Vector2 dashStart;
-    private float xDistance = 0;
+    private float xDistance = 8; // 7
     public bool dashed = false;
-    private float dashVelocity = 30;
+    private float dashVelocity = 30; //30 //50
+    public float dashCooldown;
+    private float dashCooldownTimeElapsed = 2;
+    private bool triggerInputDown = false;
+    private bool dashCooldownStarted = false;
 
     //Immobile on slopes
     float counter;
@@ -78,7 +82,10 @@ public class CharacterMovement : MonoBehaviour
                 DashStop();
             }
 
-            Dash();
+            if(!player.GetDead() && !Interacting && !GetComponent<CombatManager>().isHealing)
+            {
+                Dash();
+            } 
 
             gravity = -(2 * maxJumpHeight) / Mathf.Pow(TimeToJumpApex, 2);
             maxJumpVelocity = Mathf.Abs(gravity) * TimeToJumpApex;
@@ -94,7 +101,6 @@ public class CharacterMovement : MonoBehaviour
             horizontalMove = calculateDirection();
             if (!gotHit && !player.GetDead() && !Interacting && !GetComponent<CombatManager>().isHealing)
             {
-                
                 Jump();
                 CoyoteTime(); 
             }
@@ -228,25 +234,39 @@ public class CharacterMovement : MonoBehaviour
 
     void Dash()
     {
-        if (Input.GetAxisRaw("Dash") > 0.01f || Input.GetKeyDown(KeyCode.J))
+        if (dashCooldownStarted)
         {
-            gotHit = true;
-            animator.SetBool("beingHit", true);
-            animator.SetTrigger("dash");
-            animator.SetBool("isDashing",true);
-            dashStart = gameObject.transform.position;
-            velocity.y = 0;
-            velocity.x = dashVelocity * (cc2d.m_FacingRight? 1 : -1);
-            dashed = true;
+            dashCooldownTimeElapsed += Time.deltaTime;
+        }
 
-            //StartKnockBack(new Vector2(dashVelocity * (cc2d.m_FacingRight ? 1 : -1), 0));
+        if ((Input.GetAxisRaw("Dash") != 0 || Input.GetKeyDown(KeyCode.J)) && dashCooldownTimeElapsed >= dashCooldown)
+        {
+            if(triggerInputDown == false)
+            {
+                dashCooldownTimeElapsed = 0;
+                dashCooldownStarted = true;
+                triggerInputDown = true;
+                gotHit = true;
+                animator.SetBool("beingHit", true);
+                animator.SetTrigger("dash");
+                animator.SetBool("isDashing", true);
+                dashStart = gameObject.transform.position;
+                velocity.y = 0;
+                velocity.x = dashVelocity * (cc2d.m_FacingRight ? 1 : -1);
+                dashed = true;
+            }
+        }
+        if (Input.GetAxisRaw("Dash") == 0)
+        {
+            triggerInputDown = false;
         }
     }
 
     void DashStop()
     {
-        if(Vector2.Distance(new Vector2(dashStart.x,0), new Vector2(gameObject.transform.position.x,0)) >= xDistance)
+        if(Vector2.Distance(new Vector2(dashStart.x,0), new Vector2(gameObject.transform.position.x,0)) >= xDistance || cc2d.collisions.left || cc2d.collisions.right)
         {
+            Debug.Log("ab");
             gotHit = false;
             Debug.Log(Vector2.Distance(dashStart, gameObject.transform.position));
             velocity.y = 0;
@@ -257,8 +277,8 @@ public class CharacterMovement : MonoBehaviour
         }
     }
 
-        //Move the player depending on inputs and 
-        void playerMovements()
+    //Move the player depending on inputs and 
+    void playerMovements()
     {
         Vector2 input = new Vector2(0, 0);
 
@@ -292,6 +312,8 @@ public class CharacterMovement : MonoBehaviour
     public void StartKnockBack(Vector2 direction)
     {
             gotHit = true;
+            animator.SetBool("isDashing", false);
+            dashed = false;
             animator.SetTrigger("gotHit");
             animator.SetBool("beingHit",true);
             velocity.y = direction.y;
@@ -303,8 +325,7 @@ public class CharacterMovement : MonoBehaviour
         gotHit = false;
         animator.SetTrigger("stopHit");
         animator.SetBool("beingHit", false);
-        /*velocity.y = 0;
-        velocity.x = 0;*/
+
     }
 
     public void setVelocity(float yVelocity)

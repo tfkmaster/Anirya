@@ -50,7 +50,7 @@ public class RavenAttack : StateMachineBehaviour
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        Debug.Log("Exit");
+        //Debug.Log("Exit");
         animator.SetBool("IsAttacking", false);
         animator.SetBool("IsStung", true);
         //raven.rb2D.gravityScale = 0.1f;

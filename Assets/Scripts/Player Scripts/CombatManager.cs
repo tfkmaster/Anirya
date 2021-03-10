@@ -16,6 +16,7 @@ public class CombatManager : MonoBehaviour
     private CharacterController2D CC2d;
     private Player player;
     [SerializeField] private float AttackMoveForce;
+    private bool alreadyDamaged;
 
     public GameObject HitParticles;
     public ParticleSystem RegenParticles;
@@ -85,6 +86,10 @@ public class CombatManager : MonoBehaviour
                 return;
             }
         }
+        else if (!GetComponent<CharacterController2D>().m_Grounded && Input.GetButtonDown("Fire1"))
+        {
+            GetComponentInChildren<Animator>().SetBool("AerialAttack",true);
+        }
     }
 
     public void Regen()
@@ -124,10 +129,10 @@ public class CombatManager : MonoBehaviour
                     GetComponentInChildren<Animator>().SetTrigger("stopRegen");
                     RegenParticles.Stop();
                     StartCoroutine(ZoomOut());
-                    Debug.Log("BIIIIITE 2");
                 }
-                else
+                else if(player.actualHeat <= 1 )
                 {
+                    Debug.Log("startRegen");
                     startRegen();
                 }
             }
@@ -141,14 +146,30 @@ public class CombatManager : MonoBehaviour
         DamageParticles.Play();
         if (GetComponent<Player>().GM.alimMet)
         {
+            List<GameObject> ActorAlreadyDamaged = new List<GameObject>();
             Collider2D[] hitActors = Physics2D.OverlapCircleAll(GetComponent<Player>().attackPoint.position, GetComponent<Player>().attackRange);
             foreach (Collider2D actor in hitActors)
             {
-                if (!actor.isTrigger && (actor.CompareTag("Ennemy") || actor.CompareTag("Destructible Wall")))
+                bool alreadySeen = false;
+                foreach (GameObject gameobject in ActorAlreadyDamaged)
                 {
+                    if(actor.gameObject == gameObject)
+                    {
+                        alreadySeen = true;
+                    }
+                }
+
+                if (alreadySeen)
+                {
+                    break;
+                }
+
+                if (!actor.isTrigger && (actor.CompareTag("Ennemy") && !actor.GetComponent<Actor>().GetDead() || actor.CompareTag("Destructible Wall")))
+                {
+                    ActorAlreadyDamaged.Add(actor.gameObject);
                     AddHeat();
                     GameObject a = Instantiate(HitParticles, GetComponent<Player>().attackPoint.position, new Quaternion());
-                    a.GetComponent<RectTransform>().rotation = Quaternion.Euler(0, 0, -90);
+                    a.GetComponent<RectTransform>().rotation = Quaternion.Euler(0, 0, -90 * CC2d.facingDirection());
                     actor.GetComponent<Actor>().OnHit(gameObject, GetComponent<Player>().GetDamageDone());
                 }
             }
