@@ -8,7 +8,7 @@ public class Gurzil : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Player") && !GurzilManager.IsPrayInterfaceActive)
+        if (collision.gameObject.CompareTag("Player") && !GurzilManager.IsPrayInterfaceActive && !GurzilManager.IsGurzilBlessingInterface)
         {
             GurzilManager.InteractGuide.SetActive(true);
         }
@@ -16,10 +16,8 @@ public class Gurzil : MonoBehaviour
 
     void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Player") && !GurzilManager.IsPrayInterfaceActive)
+        if (collision.gameObject.CompareTag("Player") && !GurzilManager.IsPrayInterfaceActive && !GurzilManager.IsGurzilBlessingInterface)
         {
-            GurzilManager.InteractGuide.SetActive(true);
-
             float y_axis = Input.GetAxis("5th Axis");
 
             if ((y_axis > 0.99) || Input.GetKeyDown(KeyCode.UpArrow))

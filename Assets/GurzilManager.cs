@@ -10,8 +10,10 @@ public class GurzilManager : MonoBehaviour
     public Text Leave;
     public GameObject InteractGuide;
     public GameObject PrayInterface;
+    public GameObject GurzilBlessingInterface;
 
     public bool IsPrayInterfaceActive = false;
+    public bool IsGurzilBlessingInterface = false;
     private bool reset_x_axis = true;
     public bool isPrayActive = true;
     private GameObject Anirya;
@@ -47,17 +49,33 @@ public class GurzilManager : MonoBehaviour
 
             if (Input.GetKeyDown("joystick button 0"))
             {
+                IsPrayInterfaceActive = false;
+                PrayInterface.SetActive(false);
+
+                PrayInterface.GetComponent<Animator>().SetBool("Fade In", false);
+                PrayInterface.GetComponent<Animator>().SetBool("Fade Out", true);
+
                 if (isPrayActive)
                 {
-
+                    IsGurzilBlessingInterface = true;
+                    GurzilBlessingInterface.SetActive(true);
+                    GurzilBlessingInterface.GetComponent<Animator>().SetBool("Fade In", true);
+                    Anirya.GetComponent<Player>().itijEssences -= 5;
                 }
                 else
                 {
-                    PrayInterface.SetActive(false);
                     Anirya.GetComponentInChildren<Animator>().SetBool("interacting", false);
                     Anirya.GetComponent<CharacterMovement>().Interacting = false;
                 }
             }
+        }
+        else if (IsGurzilBlessingInterface && Input.GetKeyDown("joystick button 0"))
+        {
+            Anirya.GetComponentInChildren<Animator>().SetBool("interacting", false);
+            Anirya.GetComponent<CharacterMovement>().Interacting = false;
+            GurzilBlessingInterface.GetComponent<Animator>().SetBool("Fade In", false);
+            GurzilBlessingInterface.GetComponent<Animator>().SetBool("Fade Out", true);
+            IsGurzilBlessingInterface = false;
         }
        
     }
@@ -88,8 +106,16 @@ public class GurzilManager : MonoBehaviour
         PrayInterface.SetActive(true);
         IsPrayInterfaceActive = true;
 
+        PrayInterface.GetComponent<Animator>().SetBool("Fade In", true);
+        PrayInterface.GetComponent<Animator>().SetBool("Fade Out", false);
 
         Anirya.GetComponent<CharacterMovement>().Interacting = true;
         Anirya.GetComponentInChildren<Animator>().SetBool("interacting", true);
+    }
+
+    public void HideInterface()
+    {
+        GurzilBlessingInterface.SetActive(false);
+        PrayInterface.SetActive(false);
     }
 }
