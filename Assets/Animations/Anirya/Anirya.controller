@@ -34,32 +34,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b03db1c63b256d44abaf14480880f20c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1102 &-9137134504057426126
-AnimatorState:
-  serializedVersion: 5
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: AirAttack
-  m_Speed: 1
-  m_CycleOffset: 0
-  m_Transitions: []
-  m_StateMachineBehaviours: []
-  m_Position: {x: 50, y: 50, z: 0}
-  m_IKOnFeet: 0
-  m_WriteDefaultValues: 1
-  m_Mirror: 0
-  m_SpeedParameterActive: 0
-  m_MirrorParameterActive: 0
-  m_CycleOffsetParameterActive: 0
-  m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 815f4f2407dfb4d4c8a636f9e01b5ea3, type: 2}
-  m_Tag: 
-  m_SpeedParameter: 
-  m_MirrorParameter: 
-  m_CycleOffsetParameter: 
-  m_TimeParameter: 
 --- !u!1101 &-9025098207918856241
 AnimatorStateTransition:
   m_ObjectHideFlags: 1
@@ -180,10 +154,10 @@ AnimatorStateMachine:
   m_ChildStates:
   - serializedVersion: 1
     m_State: {fileID: 7658437249294326182}
-    m_Position: {x: -250, y: -190, z: 0}
+    m_Position: {x: 30, y: -180, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -6452553391516904533}
-    m_Position: {x: 320, y: -180, z: 0}
+    m_Position: {x: 330, y: -180, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -6093136811201601370}
     m_Position: {x: 30, y: 100, z: 0}
@@ -204,19 +178,19 @@ AnimatorStateMachine:
     m_Position: {x: -250, y: 100, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -5150726086256316788}
-    m_Position: {x: 40, y: -510, z: 0}
+    m_Position: {x: 30, y: -660, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -8647300113954029797}
-    m_Position: {x: 40, y: -430, z: 0}
+    m_Position: {x: 330, y: -520, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -4421225811594423514}
     m_Position: {x: 170, y: 210, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -1821014750494375262}
-    m_Position: {x: 180, y: -300, z: 0}
+    m_Position: {x: 690, y: -40, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1158610267987060347}
-    m_Position: {x: -120, y: -310, z: 0}
+    m_Position: {x: -90, y: -330, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -1874077346770487490}
     m_Position: {x: -100, y: 210, z: 0}
@@ -228,19 +202,16 @@ AnimatorStateMachine:
     m_Position: {x: -250, y: -70, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -7885252475447847692}
-    m_Position: {x: -160, y: -630, z: 0}
+    m_Position: {x: 690, y: -140, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1561738070922654637}
-    m_Position: {x: 280, y: -510, z: 0}
-  - serializedVersion: 1
-    m_State: {fileID: -9137134504057426126}
-    m_Position: {x: 490, y: -580, z: 0}
+    m_Position: {x: 30, y: -770, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 4631746705434649153}
-    m_Position: {x: -410, y: -420, z: 0}
+    m_Position: {x: -290, y: -520, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 2894094011072043315}
-    m_Position: {x: -520, y: -260, z: 0}
+    m_Position: {x: -250, y: -180, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions:
   - {fileID: -7533519418906312726}
@@ -254,9 +225,9 @@ AnimatorStateMachine:
   m_EntryTransitions: []
   m_StateMachineTransitions: {}
   m_StateMachineBehaviours: []
-  m_AnyStatePosition: {x: -230, y: -500, z: 0}
+  m_AnyStatePosition: {x: 50, y: -510, z: 0}
   m_EntryPosition: {x: -790, y: -60, z: 0}
-  m_ExitPosition: {x: 520, y: -490, z: 0}
+  m_ExitPosition: {x: 730, y: -450, z: 0}
   m_ParentStateMachinePosition: {x: 800, y: 20, z: 0}
   m_DefaultState: {fileID: -6093136811201601370}
 --- !u!1101 &-8003465440843785315
@@ -1434,19 +1405,31 @@ AnimatorController:
     m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 0}
+  - m_Name: rotation
+    m_Type: 1
+    m_DefaultFloat: 0
+    m_DefaultInt: 0
+    m_DefaultBool: 0
+    m_Controller: {fileID: 0}
   - m_Name: jump
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 0}
-  - m_Name: interacting
+  - m_Name: fall
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 0}
-  - m_Name: fall
+  - m_Name: dash
+    m_Type: 9
+    m_DefaultFloat: 0
+    m_DefaultInt: 0
+    m_DefaultBool: 0
+    m_Controller: {fileID: 0}
+  - m_Name: isDashing
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
@@ -1460,12 +1443,6 @@ AnimatorController:
     m_Controller: {fileID: 0}
   - m_Name: stopRegen
     m_Type: 9
-    m_DefaultFloat: 0
-    m_DefaultInt: 0
-    m_DefaultBool: 0
-    m_Controller: {fileID: 0}
-  - m_Name: rotation
-    m_Type: 1
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
@@ -1488,7 +1465,7 @@ AnimatorController:
     m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 0}
-  - m_Name: canMove
+  - m_Name: AerialAttack
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
@@ -1512,7 +1489,13 @@ AnimatorController:
     m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 0}
-  - m_Name: wasDead
+  - m_Name: canMove
+    m_Type: 4
+    m_DefaultFloat: 0
+    m_DefaultInt: 0
+    m_DefaultBool: 0
+    m_Controller: {fileID: 0}
+  - m_Name: interacting
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
@@ -1524,19 +1507,7 @@ AnimatorController:
     m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 0}
-  - m_Name: dash
-    m_Type: 9
-    m_DefaultFloat: 0
-    m_DefaultInt: 0
-    m_DefaultBool: 0
-    m_Controller: {fileID: 0}
-  - m_Name: isDashing
-    m_Type: 4
-    m_DefaultFloat: 0
-    m_DefaultInt: 0
-    m_DefaultBool: 0
-    m_Controller: {fileID: 0}
-  - m_Name: AerialAttack
+  - m_Name: wasDead
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
@@ -2291,6 +2262,9 @@ AnimatorStateTransition:
   m_Conditions:
   - m_ConditionMode: 1
     m_ConditionEvent: startRegen
+    m_EventTreshold: 0
+  - m_ConditionMode: 2
+    m_ConditionEvent: interacting
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -1821014750494375262}

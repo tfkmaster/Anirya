@@ -88,7 +88,7 @@ public class Raven : Actor
                 }
                 else
                 {
-                    Debug.Log(hit.collider.name);
+                    //Debug.Log(hit.collider.name);
                 }
             }
         }

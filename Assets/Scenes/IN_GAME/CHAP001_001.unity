@@ -1376,16 +1376,21 @@ PrefabInstance:
     - target: {fileID: 813964443604135056, guid: 4ddbe9f917b9d644e9bae223e82d719b,
         type: 3}
       propertyPath: maxHealthPoints
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 813964443604135056, guid: 4ddbe9f917b9d644e9bae223e82d719b,
         type: 3}
       propertyPath: healthPoints
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 813964443604135056, guid: 4ddbe9f917b9d644e9bae223e82d719b,
         type: 3}
       propertyPath: damageDone
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1991389851295369916, guid: 4ddbe9f917b9d644e9bae223e82d719b,
+        type: 3}
+      propertyPath: m_IsTrigger
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2539877389816207390, guid: 4ddbe9f917b9d644e9bae223e82d719b,
@@ -1946,12 +1951,12 @@ PrefabInstance:
     - target: {fileID: 813964443604135056, guid: 4ddbe9f917b9d644e9bae223e82d719b,
         type: 3}
       propertyPath: maxHealthPoints
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 813964443604135056, guid: 4ddbe9f917b9d644e9bae223e82d719b,
         type: 3}
       propertyPath: healthPoints
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 813964443604135056, guid: 4ddbe9f917b9d644e9bae223e82d719b,
         type: 3}
@@ -1962,6 +1967,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LinearDrag
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1991389851295369916, guid: 4ddbe9f917b9d644e9bae223e82d719b,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2539877389816207390, guid: 4ddbe9f917b9d644e9bae223e82d719b,
         type: 3}

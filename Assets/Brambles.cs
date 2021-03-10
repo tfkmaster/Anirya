@@ -15,10 +15,10 @@ public class Brambles : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log(collision.transform.name);
+        //Debug.Log(collision.transform.name);
         if (collision.gameObject.CompareTag("Player") && collision.gameObject.layer != LayerMask.NameToLayer("DeadActor"))
         {
-            Debug.Log("Player hit");
+            //Debug.Log("Player hit");
             collision.gameObject.GetComponent<Player>().OnHit(gameObject, 1);
         }
     }
