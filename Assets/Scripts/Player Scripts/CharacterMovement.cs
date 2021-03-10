@@ -261,7 +261,7 @@ public class CharacterMovement : MonoBehaviour
 
     void DashStop()
     {
-        if(Vector2.Distance(new Vector2(dashStart.x,0), new Vector2(gameObject.transform.position.x,0)) >= xDistance)
+        if(Vector2.Distance(new Vector2(dashStart.x,0), new Vector2(gameObject.transform.position.x,0)) >= xDistance || cc2d.collisions.left || cc2d.collisions.right)
         {
             Debug.Log("ab");
             gotHit = false;
@@ -274,8 +274,8 @@ public class CharacterMovement : MonoBehaviour
         }
     }
 
-        //Move the player depending on inputs and 
-        void playerMovements()
+    //Move the player depending on inputs and 
+    void playerMovements()
     {
         Vector2 input = new Vector2(0, 0);
 
