@@ -45,10 +45,7 @@ public class RavenFollow : StateMachineBehaviour
             raven.rb2D.AddForce(direction.normalized * raven.thrust * thrustMult, ForceMode2D.Force);
         }
 
-        if (raven.IsPlayerOnSight())
-        {
-            timeTilNextAttack -= Time.deltaTime;
-        }
+        timeTilNextAttack -= Time.deltaTime;
 
         if(raven.IsPlayerOnSight() && timeTilNextAttack <= 0f)
         {
