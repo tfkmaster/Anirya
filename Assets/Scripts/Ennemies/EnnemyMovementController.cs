@@ -66,6 +66,10 @@ public class EnnemyMovementController : MonoBehaviour
                 GetComponentInChildren<Animator>().SetTrigger("StartFollowing");
             }
         }
+        if (col.gameObject.CompareTag("MZLimit"))
+        {
+            GetComponentInChildren<Animator>().SetTrigger("StartWandering");
+        }
 
     }
 

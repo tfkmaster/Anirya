@@ -3835,9 +3835,8 @@ MonoBehaviour:
   ableToMove: 0
   Interacting: 0
   canMove: 1
-  xDistance: 5
   dashed: 0
-  dashVelocity: 20
+  dashCooldown: 0.75
   maxJumpHeight: 8
   minJumpHeight: 3
   TimeToJumpApex: 0.65

@@ -59,9 +59,11 @@ public class Wolf : Ennemy
 
     private IEnumerator Knockback()
     {
+        Debug.Log("knockbacked");
         knockbacked = true;
-        GetComponent<Rigidbody2D>().AddForce(new Vector2(10, 0), ForceMode2D.Impulse);
-        yield return new WaitForSeconds(0.05f);
+        GetComponentInChildren<Animator>().SetTrigger("Knockback");
+        GetComponent<Rigidbody2D>().AddForce(new Vector2(500, 1), ForceMode2D.Impulse);
+        yield return new WaitForSeconds(1);
         GetComponent<Rigidbody2D>().velocity = new Vector2(0, GetComponent<Rigidbody2D>().velocity.y);
         knockbacked = false;
 
