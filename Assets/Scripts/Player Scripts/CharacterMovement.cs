@@ -25,9 +25,9 @@ public class CharacterMovement : MonoBehaviour
 
     //Dash information
     Vector2 dashStart;
-    public float xDistance;
+    private float xDistance = 0;
     public bool dashed = false;
-    public float dashVelocity;
+    private float dashVelocity = 30;
 
     //Immobile on slopes
     float counter;
@@ -228,15 +228,18 @@ public class CharacterMovement : MonoBehaviour
 
     void Dash()
     {
-        if (Input.GetButtonDown("Dash") || Input.GetKeyDown(KeyCode.U))
+        if (Input.GetAxisRaw("Dash") > 0.01f || Input.GetKeyDown(KeyCode.J))
         {
             gotHit = true;
+            animator.SetBool("beingHit", true);
             animator.SetTrigger("dash");
             animator.SetBool("isDashing",true);
             dashStart = gameObject.transform.position;
             velocity.y = 0;
             velocity.x = dashVelocity * (cc2d.m_FacingRight? 1 : -1);
             dashed = true;
+
+            //StartKnockBack(new Vector2(dashVelocity * (cc2d.m_FacingRight ? 1 : -1), 0));
         }
     }
 
@@ -250,6 +253,7 @@ public class CharacterMovement : MonoBehaviour
             velocity.x = 0;
             dashed = false;
             animator.SetBool("isDashing", false);
+            animator.SetBool("beingHit", false);
         }
     }
 

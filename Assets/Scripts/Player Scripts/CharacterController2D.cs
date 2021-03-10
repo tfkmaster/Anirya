@@ -241,8 +241,8 @@ public class CharacterController2D : MonoBehaviour
         if (velocity.y != 0)
         {
             VerticalCollisions(ref velocity);
-        }    
-
+        }
+        Debug.Log(velocity);
         transform.Translate(velocity);
         characterMovement.CalculateYDistance(velocity.y);
     }
