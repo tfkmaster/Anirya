@@ -12,6 +12,9 @@ public class GurzilManager : MonoBehaviour
     public GameObject PrayInterface;
     public GameObject GurzilBlessingInterface;
 
+    public GameObject PrayerChoice;
+    public GameObject PrayerAcquired;
+
     public bool IsPrayInterfaceActive = false;
     public bool IsGurzilBlessingInterface = false;
     private bool reset_x_axis = true;
@@ -30,6 +33,17 @@ public class GurzilManager : MonoBehaviour
     {
         if (IsPrayInterfaceActive)
         {
+            if (!Anirya.GetComponent<Player>().hasDash)
+            {
+                PrayerChoice.SetActive(true);
+                PrayerAcquired.SetActive(false);
+            }
+            else
+            {
+                PrayerChoice.SetActive(false);
+                PrayerAcquired.SetActive(true);
+            }
+            
             float x_axis = Input.GetAxis("Horizontal");
             
             if ((x_axis < -0.2 && reset_x_axis) || Input.GetKeyDown(KeyCode.DownArrow))
@@ -55,11 +69,14 @@ public class GurzilManager : MonoBehaviour
                 PrayInterface.GetComponent<Animator>().SetBool("Fade In", false);
                 PrayInterface.GetComponent<Animator>().SetBool("Fade Out", true);
 
-                if (isPrayActive)
+                if (isPrayActive && !Anirya.GetComponent<Player>().hasDash)
                 {
+                    Anirya.GetComponent<Player>().hasDash = true;
+
                     IsGurzilBlessingInterface = true;
                     GurzilBlessingInterface.SetActive(true);
                     GurzilBlessingInterface.GetComponent<Animator>().SetBool("Fade In", true);
+
                     Anirya.GetComponent<Player>().itijEssences -= 5;
                 }
                 else

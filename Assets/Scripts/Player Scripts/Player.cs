@@ -21,6 +21,8 @@ public class Player : Actor
     private float invicibilityCounter;
     private bool isInvincible = false;
 
+    public bool hasDash = false;
+
     public GameObject WallFrictionCanceler;
     public Collider2D PlayerBox;
     public bool isOnOneWayPlatform = false;
