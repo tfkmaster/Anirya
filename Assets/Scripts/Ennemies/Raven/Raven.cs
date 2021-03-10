@@ -18,6 +18,11 @@ public class Raven : Actor
     public WanderManager WanderManager;
     public Transform MoveTo;
 
+    [Header("Death")]
+    protected bool fading;
+    public float disapearTime = 1f;
+    private float disapearTimer = 0;
+
     [Header("Collision Management")]
     [Tooltip("Time during which raven is stunned and lose focus")]
     public float CollidingTime = 0.5f;
@@ -50,6 +55,10 @@ public class Raven : Actor
     protected override void Update()
     {
         base.Update();
+        if (fading)
+        {
+            AnimateFade();
+        }
         applyLinearDrag();
     }
 
@@ -100,6 +109,12 @@ public class Raven : Actor
     public override void OnHit(GameObject hitter, int damages)
     {
         base.OnHit(hitter, damages);
+    }
+
+    protected override void Death()
+    {
+        base.Death();
+        GetComponent<Animator>().SetTrigger("IsDead");
     }
 
     void OnCollisionEnter2D(Collision2D collision)
@@ -202,5 +217,25 @@ public class Raven : Actor
         {
             rb2D.drag = 0f;
         }
+    }
+
+    protected void AnimateFade()
+    {
+        SpriteRenderer spr = GetComponent<SpriteRenderer>();
+        if (disapearTimer < disapearTime)
+        {
+            disapearTimer += Time.deltaTime;
+            spr.color = new Color(1, 1, 1, spr.color.a - Time.deltaTime / disapearTime);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
+
+    public void StartFade()
+    {
+        fading = true;
+        rb2D.velocity = Vector2.zero;
     }
 }
