@@ -313,6 +313,7 @@ public class CharacterMovement : MonoBehaviour
     {
             gotHit = true;
             animator.SetBool("isDashing", false);
+            dashed = false;
             animator.SetTrigger("gotHit");
             animator.SetBool("beingHit",true);
             velocity.y = direction.y;
