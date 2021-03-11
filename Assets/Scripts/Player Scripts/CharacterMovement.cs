@@ -217,9 +217,9 @@ public class CharacterMovement : MonoBehaviour
             }
         }
 
-        if (!cc2d.collisions.below && velocity.y <= 0)
+        if (!cc2d.collisions.below && velocity.y <= 1)
         {
-            if (yDistance <= -0.5f)
+            if (yDistance >= 1f)
             {
                 animator.SetBool("fall", true);
             }

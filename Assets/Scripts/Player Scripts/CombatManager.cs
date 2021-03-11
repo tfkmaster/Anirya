@@ -94,7 +94,7 @@ public class CombatManager : MonoBehaviour
 
     public void Regen()
     {
-        if (Input.GetButtonDown("Fire2") && player.actualHeat >= player.RegenCost)
+        if (Input.GetButton("Fire2") && player.actualHeat >= player.RegenCost)
         {
             startRegen();
         }
@@ -134,9 +134,13 @@ public class CombatManager : MonoBehaviour
                 else if(player.actualHeat <= 1 )
                 {
                     Debug.Log("startRegen");
-                    startRegen();
+                    //startRegen();
                 }
                 
+            }
+            if(player.actualHeat <= 1)
+            {
+                GetComponentInChildren<Animator>().SetTrigger("stopRegen");
             }
             player.SendPlayerStatsToGameManager();
         }
@@ -245,7 +249,6 @@ public class CombatManager : MonoBehaviour
 
     void startRegen()
     {
-        Debug.Log("e");
         StopAllCoroutines();
         holdRegenCounter = 0;
         isHealing = true;
