@@ -49,6 +49,13 @@ public class AudioSettings : MonoBehaviour
         FMODUnity.RuntimeManager.PlayOneShot("event:/FX environement/Bumper", GetComponent<Transform>().position);
 
     }
+
+     public void WolfAttack()
+    {
+
+        FMODUnity.RuntimeManager.PlayOneShot("event:/Ennemies/Wolf attack", GetComponent<Transform>().position);
+
+    }
 }
 /*
 ﻿using System.Collections;
