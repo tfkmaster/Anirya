@@ -20,6 +20,8 @@ public class CombatManager : MonoBehaviour
 
     public GameObject HitParticles;
     public ParticleSystem RegenParticles;
+    public ParticleSystem GainLifeParticles;
+    public ParticleSystem EmberOnRegen;
     public ParticleSystem DamageParticles;
 
 
@@ -112,6 +114,7 @@ public class CombatManager : MonoBehaviour
             GetComponentInChildren<Animator>().SetBool("startRegen", false);
             CM.ableToMove = false;
             RegenParticles.Stop();
+            EmberOnRegen.Stop();
         }
         
         if (isHealing)
@@ -122,15 +125,7 @@ public class CombatManager : MonoBehaviour
 
             if (player.actualHeat <= 1)
             {
-                holdRegenCounter = 0;
-                isHealing = false;
-                GetComponentInChildren<Animator>().SetBool("stopRegen", true);
-                GetComponentInChildren<Animator>().SetBool("startRegen", false);
-                CM.SetCanMove(true);
-                CM.ableToMove = false;
-                canReceiveInput = true;
-                RegenParticles.Stop();
-                StartCoroutine(ZoomOut());
+                stopRegen();
             }
 
             if (holdRegenCounter >= HoldRegenTime)
@@ -138,24 +133,21 @@ public class CombatManager : MonoBehaviour
                 Debug.Log(player.healthPoints);
                 if (player.healthPoints != player.maxHealthPoints)
                 {
+                    GainLifeParticles.Play();
                     player.healthPoints += 1;
                     holdRegenCounter = 0;
                     Debug.Log(player.healthPoints);
                 }
                 else if (player.actualHeat < player.RegenCost)
                 {
-                    holdRegenCounter = 0;
-                    isHealing = false;
-                    GetComponentInChildren<Animator>().SetBool("stopRegen",true);
-                    GetComponentInChildren<Animator>().SetBool("startRegen", false);
-                    CM.SetCanMove(true);
-                    CM.ableToMove = false;
-                    canReceiveInput = true;
-                    RegenParticles.Stop();
-                    StartCoroutine(ZoomOut());
+                    stopRegen();
                 }
             }
             player.SendPlayerStatsToGameManager();
+        }
+        else
+        {
+            holdRegenCounter = 0;
         }
 
     }
@@ -261,6 +253,7 @@ public class CombatManager : MonoBehaviour
 
     void startRegen()
     {
+        EmberOnRegen.Play();
         StopAllCoroutines();
         isHealing = true;
         CM.SetCanMove(false);
@@ -272,6 +265,20 @@ public class CombatManager : MonoBehaviour
         {
             RegenParticles.Play();
         }
+    }
+
+    void stopRegen()
+    {
+        holdRegenCounter = 0;
+        isHealing = false;
+        GetComponentInChildren<Animator>().SetBool("stopRegen", true);
+        GetComponentInChildren<Animator>().SetBool("startRegen", false);
+        CM.SetCanMove(true);
+        CM.ableToMove = false;
+        canReceiveInput = true;
+        RegenParticles.Stop();
+        EmberOnRegen.Stop();
+        StartCoroutine(ZoomOut());
     }
 
    IEnumerator ZoomOut()

@@ -239,7 +239,7 @@ public class CharacterMovement : MonoBehaviour
             dashCooldownTimeElapsed += Time.deltaTime;
         }
 
-        if ((player.hasDash && Input.GetAxisRaw("Dash") != 0 || Input.GetKeyDown(KeyCode.J)) && dashCooldownTimeElapsed >= dashCooldown)
+        if ((player.hasDash && Input.GetAxis("Dash") >= 1f || Input.GetKeyDown(KeyCode.J)) && dashCooldownTimeElapsed >= dashCooldown)
         {
             if(triggerInputDown == false)
             {
