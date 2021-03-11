@@ -36,7 +36,9 @@ public class AlimMeetingManager : MonoBehaviour
         {
             UI_on = true;
             StopAllCoroutines();
-            StartCoroutine(FadeCanvas(DidacticCanvas, 0f, 1f, 1.2f, true));
+            DidacticCanvas.GetComponent<Animator>().SetBool("Fade In", true);
+            DidacticCanvas.GetComponent<Animator>().SetBool("Fade Out", false);
+            //StartCoroutine(FadeCanvas(DidacticCanvas, 0f, 1f, 1.2f, true));
             display_UI = false;
         }
         if (UI_on && (Input.GetKeyDown("joystick button 0")))
@@ -49,7 +51,9 @@ public class AlimMeetingManager : MonoBehaviour
             GameObject.FindGameObjectWithTag("Player").GetComponent<CharacterMovement>().Interacting = false;
             GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<Animator>().SetBool("interacting", false);
             StopAllCoroutines();
-            StartCoroutine(FadeCanvas(DidacticCanvas, 1f, 0f, 1.2f, false));
+            DidacticCanvas.GetComponent<Animator>().SetBool("Fade In", false);
+            DidacticCanvas.GetComponent<Animator>().SetBool("Fade Out", true);
+            //StartCoroutine(FadeCanvas(DidacticCanvas, 1f, 0f, 1.2f, false));
             remove_UI = false;
         }
 
