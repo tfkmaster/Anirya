@@ -135,6 +135,7 @@ public class CombatManager : MonoBehaviour
                     Debug.Log("startRegen");
                     startRegen();
                 }
+                
             }
             player.SendPlayerStatsToGameManager();
         }
@@ -146,31 +147,58 @@ public class CombatManager : MonoBehaviour
         DamageParticles.Play();
         if (GetComponent<Player>().GM.alimMet)
         {
-            List<GameObject> ActorAlreadyDamaged = new List<GameObject>();
+            List<GameObject> ActorsAlreadyDamaged = new List<GameObject>();
             Collider2D[] hitActors = Physics2D.OverlapCircleAll(GetComponent<Player>().attackPoint.position, GetComponent<Player>().attackRange);
             foreach (Collider2D actor in hitActors)
             {
                 bool alreadySeen = false;
-                foreach (GameObject gameobject in ActorAlreadyDamaged)
+                foreach (GameObject actorDamaged in ActorsAlreadyDamaged)
                 {
-                    if(actor.gameObject == gameObject)
+                    
+                    if (actor.GetComponent<Actor>())
                     {
-                        alreadySeen = true;
+                        if (actor.gameObject == actorDamaged)
+                        {
+                            alreadySeen = true;
+                        }
                     }
+                    else if (actor.GetComponentInParent<Actor>())
+                    {
+                        Debug.Log(actor.GetComponentInParent<Actor>().gameObject.name + " déja pres " + gameObject.name);
+                        if (actor.GetComponentInParent<Actor>().gameObject == actorDamaged)
+                        {
+                            Debug.Log("cacs");
+                            alreadySeen = true;
+                        }
+                    }
+                    
                 }
 
                 if (alreadySeen)
                 {
                     break;
                 }
-
-                if (!actor.isTrigger && (actor.CompareTag("Ennemy") && !actor.GetComponent<Actor>().GetDead() || actor.CompareTag("Destructible Wall")))
+                if (actor.GetComponent<Actor>())
                 {
-                    ActorAlreadyDamaged.Add(actor.gameObject);
-                    AddHeat();
-                    GameObject a = Instantiate(HitParticles, GetComponent<Player>().attackPoint.position, new Quaternion());
-                    a.GetComponent<RectTransform>().rotation = Quaternion.Euler(0, 0, -90 * CC2d.facingDirection());
-                    actor.GetComponent<Actor>().OnHit(gameObject, GetComponent<Player>().GetDamageDone());
+                    if (!actor.isTrigger && (actor.CompareTag("Ennemy") && !actor.GetComponent<Actor>().GetDead() || actor.CompareTag("Destructible Wall")))
+                    {
+                        ActorsAlreadyDamaged.Add(actor.gameObject);
+                        AddHeat();
+                        GameObject a = Instantiate(HitParticles, GetComponent<Player>().attackPoint.position, new Quaternion());
+                        a.GetComponent<RectTransform>().rotation = Quaternion.Euler(0, 0, -90 * CC2d.facingDirection());
+                        actor.GetComponent<Actor>().OnHit(gameObject, GetComponent<Player>().GetDamageDone());
+                    }
+                }
+                else if(actor.GetComponentInParent<Actor>())
+                {
+                    if (!actor.isTrigger && (actor.CompareTag("Ennemy") && !actor.GetComponentInParent<Actor>().GetDead() || actor.CompareTag("Destructible Wall")))
+                    {
+                        ActorsAlreadyDamaged.Add(actor.GetComponentInParent<Actor>().gameObject);
+                        AddHeat();
+                        GameObject a = Instantiate(HitParticles, GetComponent<Player>().attackPoint.position, new Quaternion());
+                        a.GetComponent<RectTransform>().rotation = Quaternion.Euler(0, 0, -90 * CC2d.facingDirection());
+                        actor.GetComponentInParent<Actor>().OnHit(gameObject, GetComponent<Player>().GetDamageDone());
+                    }
                 }
             }
         }

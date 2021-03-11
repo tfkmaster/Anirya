@@ -71,7 +71,7 @@ public class CharacterMovement : MonoBehaviour
         jumpVelocity = Mathf.Abs(gravity) * TimeToJumpApex;*/
     }
 
-    // Update is called once per frame
+    //Update is called once per frame
     void Update()
     {
         
@@ -252,8 +252,16 @@ public class CharacterMovement : MonoBehaviour
                 animator.SetBool("isDashing", true);
                 dashStart = gameObject.transform.position;
                 velocity.y = 0;
-                velocity.x = dashVelocity * (cc2d.m_FacingRight ? 1 : -1);
+                if(calculateDirection() != 0)
+                {
+                    velocity.x = dashVelocity * (calculateDirection());
+                }
+                else
+                {
+                    velocity.x = dashVelocity * (cc2d.m_FacingRight ? 1 : -1);
+                }
                 dashed = true;
+                cc2d.Turn(horizontalMove);
             }
         }
         if (Input.GetAxisRaw("Dash") == 0)
@@ -266,7 +274,6 @@ public class CharacterMovement : MonoBehaviour
     {
         if(Vector2.Distance(new Vector2(dashStart.x,0), new Vector2(gameObject.transform.position.x,0)) >= xDistance || cc2d.collisions.left || cc2d.collisions.right)
         {
-            Debug.Log("ab");
             gotHit = false;
             Debug.Log(Vector2.Distance(dashStart, gameObject.transform.position));
             velocity.y = 0;
