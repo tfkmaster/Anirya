@@ -6,6 +6,10 @@ public class Waghzen : Ennemy
 {
     public float waitTime;
     public Transform attackPoint3;
+    public int FirstPhaseMilestone;
+    public int SecondPhaseMilestone;
+
+    private int actualPhase = 1;
 
     // Start is called before the first frame update
     protected override void Start()
@@ -18,6 +22,16 @@ public class Waghzen : Ennemy
     protected override void Update()
     {
         base.Update();
+        if (healthPoints <= FirstPhaseMilestone && healthPoints >= SecondPhaseMilestone && actualPhase == 1)
+        {
+            actualPhase = 2;
+            GetComponentInChildren<Animator>().SetTrigger("Fall");
+        }
+        if (healthPoints <= SecondPhaseMilestone && actualPhase == 2)
+        {
+            GetComponentInChildren<Animator>().SetTrigger("Fall");
+            actualPhase = 3;
+        }
     }
 
     public override void OnHit(GameObject hitter, int damages)
@@ -32,7 +46,7 @@ public class Waghzen : Ennemy
     protected override void Death()
     {
         base.Death();
-        GetComponentInChildren<Animator>().SetBool("dead", true);
+        GetComponentInChildren<Animator>().SetTrigger("Dead");
     }
 
     public void StartFight()
