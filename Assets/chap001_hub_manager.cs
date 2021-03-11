@@ -8,8 +8,6 @@ public class chap001_hub_manager : MonoBehaviour
     public GameObject BlockWaghzenPath = default;
     public GameObject WaghzenPath = default;
 
-    private bool temp = true;
-
     void Awake()
     {
         PersistentDatas = GameObject.FindGameObjectWithTag("PersistentDatas").GetComponent<ScenesManager>();
@@ -17,7 +15,7 @@ public class chap001_hub_manager : MonoBehaviour
 
     void Start()
     {
-        if (!temp) //meaning last hallway has been crossed
+        if (PersistentDatas.chap001_004.Visited)
         {
             BlockWaghzenPath.SetActive(false);
             WaghzenPath.SetActive(true);
