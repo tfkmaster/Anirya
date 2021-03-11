@@ -20,7 +20,7 @@ public class WaghzenScriptLinker : MonoBehaviour
 
     public void Teleport()
     {
-        gameObject.GetComponentInParent<Transform>().position -= new Vector3(gameObject.GetComponentInParent<Transform>().position.x, gameObject.GetComponentInParent<Transform>().position.y -7, gameObject.GetComponentInParent<Transform>().position.z);
+        //gameObject.GetComponentInParent<Transform>().position = new Vector3(gameObject.GetComponentInParent<Transform>().position.x, gameObject.GetComponentInParent<Transform>().position.y - 40, gameObject.GetComponentInParent<Transform>().position.z);
     }
 
     public void BeforeJump()
