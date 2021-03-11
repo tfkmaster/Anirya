@@ -200,9 +200,6 @@ public class CombatManager : MonoBehaviour
                         actor.GetComponentInParent<Actor>().OnHit(gameObject, GetComponent<Player>().GetDamageDone());
                     }
                 }
-
-                
-
             }
         }
     }

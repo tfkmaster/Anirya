@@ -468,8 +468,10 @@ public class CharacterController2D : MonoBehaviour
     //Flips the player model
     private void Flip()
     {
+        Debug.Log("a");
         if (!GetComponent<CharacterMovement>().ableToMove)
         {
+            Debug.Log("b");
             // Switch the way the player is labelled as facing.
             m_FacingRight = !m_FacingRight;
 
