@@ -19,8 +19,10 @@ public class Gurzil : MonoBehaviour
         if (collision.gameObject.CompareTag("Player") && !GurzilManager.IsPrayInterfaceActive && !GurzilManager.IsGurzilBlessingInterface)
         {
             float y_axis = Input.GetAxis("5th Axis");
+            float y_axis_variant = Input.GetAxis("Vertical");
+            float x_axis = Input.GetAxis("Horizontal");
 
-            if ((y_axis > 0.99) || Input.GetKeyDown(KeyCode.UpArrow))
+            if ((y_axis > 0.99f) || Input.GetKeyDown(KeyCode.UpArrow) || (y_axis_variant > 0.99f && (x_axis <= 0.2f && x_axis >= -0.2f)))
             {
                 GurzilManager.ShowPrayInterface();
             }
