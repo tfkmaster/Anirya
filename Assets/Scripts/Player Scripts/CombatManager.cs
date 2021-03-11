@@ -94,7 +94,7 @@ public class CombatManager : MonoBehaviour
 
     public void Regen()
     {
-        if (Input.GetButton("Fire2") && player.actualHeat >= player.RegenCost)
+        if (Input.GetButtonDown("Fire2") && player.actualHeat >= player.RegenCost)
         {
             startRegen();
         }
@@ -108,7 +108,9 @@ public class CombatManager : MonoBehaviour
                 CM.SetCanMove(true);
                 canReceiveInput = true;
             }
-            GetComponentInChildren<Animator>().SetTrigger("stopRegen");
+            GetComponentInChildren<Animator>().SetBool("stopRegen", true);
+            GetComponentInChildren<Animator>().SetBool("startRegen", false);
+            CM.ableToMove = false;
             RegenParticles.Stop();
         }
         
@@ -117,33 +119,45 @@ public class CombatManager : MonoBehaviour
             holdRegenCounter += Time.deltaTime;
             player.actualHeat -= Time.deltaTime * player.RegenCost / HoldRegenTime;
             Zoom();
+
+            if (player.actualHeat <= 1)
+            {
+                holdRegenCounter = 0;
+                isHealing = false;
+                GetComponentInChildren<Animator>().SetBool("stopRegen", true);
+                GetComponentInChildren<Animator>().SetBool("startRegen", false);
+                CM.SetCanMove(true);
+                CM.ableToMove = false;
+                canReceiveInput = true;
+                RegenParticles.Stop();
+                StartCoroutine(ZoomOut());
+            }
+
             if (holdRegenCounter >= HoldRegenTime)
             {
-                if(player.healthPoints != player.maxHealthPoints)
+                Debug.Log(player.healthPoints);
+                if (player.healthPoints != player.maxHealthPoints)
+                {
+                    player.healthPoints += 1;
+                    holdRegenCounter = 0;
+                    Debug.Log(player.healthPoints);
+                }
+                else if (player.actualHeat < player.RegenCost)
                 {
                     holdRegenCounter = 0;
-                    player.healthPoints += 1;
-                }
-                if (player.actualHeat < player.RegenCost)
-                {
                     isHealing = false;
-                    GetComponentInChildren<Animator>().SetTrigger("stopRegen");
+                    GetComponentInChildren<Animator>().SetBool("stopRegen",true);
+                    GetComponentInChildren<Animator>().SetBool("startRegen", false);
+                    CM.SetCanMove(true);
+                    CM.ableToMove = false;
+                    canReceiveInput = true;
                     RegenParticles.Stop();
                     StartCoroutine(ZoomOut());
                 }
-                else if(player.actualHeat <= 1 )
-                {
-                    Debug.Log("startRegen");
-                    //startRegen();
-                }
-                
-            }
-            if(player.actualHeat <= 1)
-            {
-                GetComponentInChildren<Animator>().SetTrigger("stopRegen");
             }
             player.SendPlayerStatsToGameManager();
         }
+
     }
 
     //Function called on the animation to determines the ennemies who'll get hit by the attack
@@ -169,7 +183,6 @@ public class CombatManager : MonoBehaviour
                     }
                     else if (actor.GetComponentInParent<Actor>())
                     {
-                        Debug.Log(actor.GetComponentInParent<Actor>().gameObject.name + " déja pres " + gameObject.name);
                         if (actor.GetComponentInParent<Actor>().gameObject == actorDamaged)
                         {
                             alreadySeen = true;
@@ -239,7 +252,6 @@ public class CombatManager : MonoBehaviour
             ortho_size = cam.m_Lens.OrthographicSize;
             reset_ortho = false;
         }
-        Debug.Log("b");
         if(ortho_diff <= MAX_ORTHO_DIFF)
         {
             cam.m_Lens.OrthographicSize -= 0.01f;
@@ -250,11 +262,12 @@ public class CombatManager : MonoBehaviour
     void startRegen()
     {
         StopAllCoroutines();
-        holdRegenCounter = 0;
         isHealing = true;
         CM.SetCanMove(false);
         canReceiveInput = false;
-        GetComponentInChildren<Animator>().SetTrigger("startRegen");
+        if(GetComponentInChildren<Animator>())
+        GetComponentInChildren<Animator>().SetBool("startRegen",true);
+        CM.ableToMove = true;
         if (!RegenParticles.isPlaying)
         {
             RegenParticles.Play();
@@ -266,12 +279,10 @@ public class CombatManager : MonoBehaviour
         Cinemachine.CinemachineVirtualCamera cam = CBrain.ActiveVirtualCamera as Cinemachine.CinemachineVirtualCamera;
         while (cam.m_Lens.OrthographicSize <= ortho_size) {
             yield return new WaitForSeconds(Time.deltaTime);
-            Debug.Log("a");
             cam.m_Lens.OrthographicSize += 0.01f;
             ortho_diff -= 0.01f;
         }
             cam.m_Lens.OrthographicSize = ortho_size;
-            Debug.Log("reset " + cam.m_Lens.OrthographicSize);
             ortho_size = 0f;
             reset_ortho = true;
             yield break;

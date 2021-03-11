@@ -443,7 +443,6 @@ public class CharacterController2D : MonoBehaviour
 
     public void Turn(float direction)
     {
-
         if (!GetComponent<CharacterMovement>().ableToMove)
         {
             //only control the player if grounded or airControl is turned on

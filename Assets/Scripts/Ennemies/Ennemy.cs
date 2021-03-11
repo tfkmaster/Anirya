@@ -68,7 +68,6 @@ public class Ennemy : Actor
     public override void OnHit(GameObject hitter, int damages)
     {
         base.OnHit(hitter,damages);
-        Debug.Log("Ennemy hit");
     }
 
     public void DealDamages()

@@ -275,7 +275,6 @@ public class CharacterMovement : MonoBehaviour
         if(Vector2.Distance(new Vector2(dashStart.x,0), new Vector2(gameObject.transform.position.x,0)) >= xDistance || cc2d.collisions.left || cc2d.collisions.right)
         {
             gotHit = false;
-            Debug.Log(Vector2.Distance(dashStart, gameObject.transform.position));
             velocity.y = 0;
             velocity.x = 0;
             dashed = false;
