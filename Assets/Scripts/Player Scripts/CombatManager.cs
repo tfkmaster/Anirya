@@ -167,7 +167,6 @@ public class CombatManager : MonoBehaviour
                         Debug.Log(actor.GetComponentInParent<Actor>().gameObject.name + " déja pres " + gameObject.name);
                         if (actor.GetComponentInParent<Actor>().gameObject == actorDamaged)
                         {
-                            Debug.Log("cacs");
                             alreadySeen = true;
                         }
                     }
