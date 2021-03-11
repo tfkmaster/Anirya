@@ -44,7 +44,7 @@ public class tuto_005_manager : MonoBehaviour
         {
             InvisbleWall.SetActive(false);
             SceneLoader.SetActive(true);
-            Destroy(wolf);
+            Destroy(wolf.gameObject);
             Destroy(TallamShadows);
         }
     }
