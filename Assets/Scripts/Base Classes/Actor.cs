@@ -85,7 +85,10 @@ public class Actor : MonoBehaviour
 
     protected virtual void Death()
     {
-        GameObject.FindGameObjectWithTag("Player").GetComponent<Player>().itijEssencesCarried += itijEssences;
+        if (gameObject.CompareTag("Ennemy"))
+        {
+            GameObject.FindGameObjectWithTag("Player").GetComponent<Player>().itijEssencesCarried += itijEssences;
+        }
         gameObject.layer = LayerMask.NameToLayer("DeadActor");
         dead = true;
     }
