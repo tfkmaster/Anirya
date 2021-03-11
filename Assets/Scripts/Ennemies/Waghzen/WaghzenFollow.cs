@@ -86,8 +86,8 @@ public class WaghzenFollow : StateMachineBehaviour
                 animator.SetTrigger("Range");
             }
         }
-        else
-        {
+        /*else
+        {*/
             if (!waghzen.player.GetComponent<Player>().GetDead())
             {
                 if (waghzen.player.transform.position.x < animator.GetComponentInParent<Transform>().position.x)
@@ -108,7 +108,7 @@ public class WaghzenFollow : StateMachineBehaviour
                 rb2dWaghzen.velocity = Vector2.zero;
                 animator.SetBool("playerDead", true);
             }
-        }
+        //}
 
         playerMeleeRanged = false;
         playerMidRanged = false;
