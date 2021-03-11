@@ -12,6 +12,7 @@ public class IdleBehavior : StateMachineBehaviour
         animator.SetBool("attack2", false);
         animator.SetBool("attack3", false);
         animator.SetBool("AerialAttack", false);
+        animator.SetBool("stopRegen", false);
         CombatManager.CMInstance.canReceiveInput = true;
     }
 

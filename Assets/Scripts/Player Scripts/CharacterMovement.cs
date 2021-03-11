@@ -25,9 +25,9 @@ public class CharacterMovement : MonoBehaviour
 
     //Dash information
     Vector2 dashStart;
-    private float xDistance = 8; // 7
+    private float xDistance = 7.5f; // 8
     public bool dashed = false;
-    private float dashVelocity = 30; //30 //50
+    private float dashVelocity = 35; //30 
     public float dashCooldown;
     private float dashCooldownTimeElapsed = 2;
     private bool triggerInputDown = false;
@@ -217,9 +217,9 @@ public class CharacterMovement : MonoBehaviour
             }
         }
 
-        if (!cc2d.collisions.below && velocity.y <= 0)
+        if (!cc2d.collisions.below && velocity.y <= 1)
         {
-            if (yDistance <= -0.5f)
+            if (yDistance >= 1f)
             {
                 animator.SetBool("fall", true);
             }
@@ -239,7 +239,7 @@ public class CharacterMovement : MonoBehaviour
             dashCooldownTimeElapsed += Time.deltaTime;
         }
 
-        if ((player.hasDash && Input.GetAxisRaw("Dash") != 0 || Input.GetKeyDown(KeyCode.J)) && dashCooldownTimeElapsed >= dashCooldown)
+        if ((player.hasDash && Input.GetAxis("Dash") >= 1f || Input.GetKeyDown(KeyCode.J)) && dashCooldownTimeElapsed >= dashCooldown)
         {
             if(triggerInputDown == false)
             {
@@ -275,7 +275,6 @@ public class CharacterMovement : MonoBehaviour
         if(Vector2.Distance(new Vector2(dashStart.x,0), new Vector2(gameObject.transform.position.x,0)) >= xDistance || cc2d.collisions.left || cc2d.collisions.right)
         {
             gotHit = false;
-            Debug.Log(Vector2.Distance(dashStart, gameObject.transform.position));
             velocity.y = 0;
             velocity.x = 0;
             dashed = false;

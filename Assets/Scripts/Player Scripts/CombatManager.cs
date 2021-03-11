@@ -20,6 +20,8 @@ public class CombatManager : MonoBehaviour
 
     public GameObject HitParticles;
     public ParticleSystem RegenParticles;
+    public ParticleSystem GainLifeParticles;
+    public ParticleSystem EmberOnRegen;
     public ParticleSystem DamageParticles;
 
 
@@ -108,8 +110,11 @@ public class CombatManager : MonoBehaviour
                 CM.SetCanMove(true);
                 canReceiveInput = true;
             }
-            GetComponentInChildren<Animator>().SetTrigger("stopRegen");
+            GetComponentInChildren<Animator>().SetBool("stopRegen", true);
+            GetComponentInChildren<Animator>().SetBool("startRegen", false);
+            CM.ableToMove = false;
             RegenParticles.Stop();
+            EmberOnRegen.Stop();
         }
         
         if (isHealing)
@@ -117,28 +122,34 @@ public class CombatManager : MonoBehaviour
             holdRegenCounter += Time.deltaTime;
             player.actualHeat -= Time.deltaTime * player.RegenCost / HoldRegenTime;
             Zoom();
+
+            if (player.actualHeat <= 1)
+            {
+                stopRegen();
+            }
+
             if (holdRegenCounter >= HoldRegenTime)
             {
-                if(player.healthPoints != player.maxHealthPoints)
+                Debug.Log(player.healthPoints);
+                if (player.healthPoints != player.maxHealthPoints)
                 {
+                    GainLifeParticles.Play();
                     player.healthPoints += 1;
+                    holdRegenCounter = 0;
+                    Debug.Log(player.healthPoints);
                 }
-                if (player.actualHeat < player.RegenCost)
+                else if (player.actualHeat < player.RegenCost)
                 {
-                    isHealing = false;
-                    GetComponentInChildren<Animator>().SetTrigger("stopRegen");
-                    RegenParticles.Stop();
-                    StartCoroutine(ZoomOut());
+                    stopRegen();
                 }
-                else if(player.actualHeat <= 1 )
-                {
-                    Debug.Log("startRegen");
-                    startRegen();
-                }
-                
             }
             player.SendPlayerStatsToGameManager();
         }
+        else
+        {
+            holdRegenCounter = 0;
+        }
+
     }
 
     //Function called on the animation to determines the ennemies who'll get hit by the attack
@@ -164,7 +175,6 @@ public class CombatManager : MonoBehaviour
                     }
                     else if (actor.GetComponentInParent<Actor>())
                     {
-                        Debug.Log(actor.GetComponentInParent<Actor>().gameObject.name + " déja pres " + gameObject.name);
                         if (actor.GetComponentInParent<Actor>().gameObject == actorDamaged)
                         {
                             alreadySeen = true;
@@ -234,7 +244,6 @@ public class CombatManager : MonoBehaviour
             ortho_size = cam.m_Lens.OrthographicSize;
             reset_ortho = false;
         }
-        Debug.Log("b");
         if(ortho_diff <= MAX_ORTHO_DIFF)
         {
             cam.m_Lens.OrthographicSize -= 0.01f;
@@ -244,17 +253,32 @@ public class CombatManager : MonoBehaviour
 
     void startRegen()
     {
-        Debug.Log("e");
+        EmberOnRegen.Play();
         StopAllCoroutines();
-        holdRegenCounter = 0;
         isHealing = true;
         CM.SetCanMove(false);
         canReceiveInput = false;
-        GetComponentInChildren<Animator>().SetTrigger("startRegen");
+        if(GetComponentInChildren<Animator>())
+        GetComponentInChildren<Animator>().SetBool("startRegen",true);
+        CM.ableToMove = true;
         if (!RegenParticles.isPlaying)
         {
             RegenParticles.Play();
         }
+    }
+
+    void stopRegen()
+    {
+        holdRegenCounter = 0;
+        isHealing = false;
+        GetComponentInChildren<Animator>().SetBool("stopRegen", true);
+        GetComponentInChildren<Animator>().SetBool("startRegen", false);
+        CM.SetCanMove(true);
+        CM.ableToMove = false;
+        canReceiveInput = true;
+        RegenParticles.Stop();
+        EmberOnRegen.Stop();
+        StartCoroutine(ZoomOut());
     }
 
    IEnumerator ZoomOut()
@@ -262,12 +286,10 @@ public class CombatManager : MonoBehaviour
         Cinemachine.CinemachineVirtualCamera cam = CBrain.ActiveVirtualCamera as Cinemachine.CinemachineVirtualCamera;
         while (cam.m_Lens.OrthographicSize <= ortho_size) {
             yield return new WaitForSeconds(Time.deltaTime);
-            Debug.Log("a");
             cam.m_Lens.OrthographicSize += 0.01f;
             ortho_diff -= 0.01f;
         }
             cam.m_Lens.OrthographicSize = ortho_size;
-            Debug.Log("reset " + cam.m_Lens.OrthographicSize);
             ortho_size = 0f;
             reset_ortho = true;
             yield break;

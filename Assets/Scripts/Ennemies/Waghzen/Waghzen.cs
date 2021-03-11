@@ -26,6 +26,8 @@ public class Waghzen : Ennemy
         {
             actualPhase = 2;
             GetComponentInChildren<Animator>().SetTrigger("Fall");
+            GetComponentInChildren<Animator>().SetBool("Phased",true);
+            GetComponentInChildren<Animator>().SetBool("JustPhased", true);
         }
         if (healthPoints <= SecondPhaseMilestone && actualPhase == 2)
         {
@@ -47,6 +49,12 @@ public class Waghzen : Ennemy
     {
         base.Death();
         GetComponentInChildren<Animator>().SetTrigger("Dead");
+
+        Transform[] allChildren = GetComponentsInChildren<Transform>();
+        foreach (Transform child in allChildren)
+        {
+            child.gameObject.layer = LayerMask.NameToLayer("DeadActor");
+        }
     }
 
     public void StartFight()
