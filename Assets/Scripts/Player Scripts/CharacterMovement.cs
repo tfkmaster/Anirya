@@ -25,9 +25,9 @@ public class CharacterMovement : MonoBehaviour
 
     //Dash information
     Vector2 dashStart;
-    private float xDistance = 8; // 7
+    private float xDistance = 7.5f; // 8
     public bool dashed = false;
-    private float dashVelocity = 30; //30 //50
+    private float dashVelocity = 35; //30 
     public float dashCooldown;
     private float dashCooldownTimeElapsed = 2;
     private bool triggerInputDown = false;

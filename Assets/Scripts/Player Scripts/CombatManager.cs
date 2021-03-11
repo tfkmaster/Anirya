@@ -121,6 +121,7 @@ public class CombatManager : MonoBehaviour
             {
                 if(player.healthPoints != player.maxHealthPoints)
                 {
+                    holdRegenCounter = 0;
                     player.healthPoints += 1;
                 }
                 if (player.actualHeat < player.RegenCost)
