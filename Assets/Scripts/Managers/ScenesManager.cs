@@ -25,12 +25,18 @@ public struct tuto_005
     public bool FirstWolfEncountered;
 }
 
+public struct hub
+{
+
+}
+
 public class ScenesManager : MonoBehaviour
 {
     public PlayerData player_data;
     public tuto_001 tuto_001;
     public tuto_002 tuto_002;
     public tuto_005 tuto_005;
+    public hub hub;
 
     void Awake()
     {
