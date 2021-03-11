@@ -10,6 +10,8 @@ public class AIWaghzen : MonoBehaviour
     //Movement Information
     public bool m_FacingRight = true;  // For determining which way the ennemy is currently facing.
     public GameObject player;
+
+    public FallingRockManager FallingRockManager;
     
     //Waghzen Jump Attack
     private float calculatedVelocity;

@@ -77,7 +77,7 @@ public class GurzilManager : MonoBehaviour
                     GurzilBlessingInterface.SetActive(true);
                     GurzilBlessingInterface.GetComponent<Animator>().SetBool("Fade In", true);
 
-                    Anirya.GetComponent<Player>().itijEssences -= 5;
+                    Anirya.GetComponent<Player>().itijEssencesCarried -= 5;
                 }
                 else
                 {

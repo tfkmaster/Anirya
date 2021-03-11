@@ -32,4 +32,9 @@ public class WaghzenScriptLinker : MonoBehaviour
     {
         AIWaghzen.startJumpAction();
     }
+
+    public void RockFall()
+    {
+        AIWaghzen.FallingRockManager.InstantiateRocks();
+    }
 }
