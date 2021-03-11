@@ -18,6 +18,10 @@ public class tuto_005_manager : MonoBehaviour
 
     [SerializeField]
     private GameObject TallamShadows = default;
+    [SerializeField]
+    private GameObject SceneLoader = default;
+    [SerializeField]
+    private GameObject InvisbleWall = default;
 
     private GameObject Anirya;
 
@@ -34,9 +38,12 @@ public class tuto_005_manager : MonoBehaviour
         {
             Anirya.GetComponent<CharacterMovement>().Interacting = true;
             Anirya.GetComponentInChildren<Animator>().SetBool("interacting", true);
+            InvisbleWall.SetActive(true);
         }
         else
         {
+            InvisbleWall.SetActive(false);
+            SceneLoader.SetActive(true);
             Destroy(wolf);
             Destroy(TallamShadows);
         }
@@ -85,6 +92,8 @@ public class tuto_005_manager : MonoBehaviour
         if (wolf.GetComponent<Wolf>().GetDead())
         {
             PersistentDatas.tuto_005.FirstWolfSlayed = true;
+            SceneLoader.SetActive(true);
+            InvisbleWall.SetActive(false);
             Destroy(TallamShadows);
         }
     }
