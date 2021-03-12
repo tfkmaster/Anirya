@@ -9,6 +9,8 @@ public class tuto_001_Manager : MonoBehaviour
     private GameObject ButterflyManagement = default;
     [SerializeField]
     private GameObject TutoGuideManagement = default;
+    [SerializeField]
+    private GameObject trunk = default;
 
     void Awake()
     {
@@ -33,6 +35,19 @@ public class tuto_001_Manager : MonoBehaviour
         else
         {
             PersistentDatas.tuto_001.TutorialGuide = false;
+        }
+
+        if (PersistentDatas.tuto_001.TrunkIsBroken)
+        {
+            Destroy(trunk);
+        }
+    }
+
+    void Update()
+    {
+        if (!PersistentDatas.tuto_001.TrunkIsBroken && !trunk)
+        {
+            PersistentDatas.tuto_001.TrunkIsBroken = true;
         }
     }
 }
