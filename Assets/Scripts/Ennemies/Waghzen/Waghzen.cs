@@ -29,12 +29,14 @@ public class Waghzen : Ennemy
         if (healthPoints <= FirstPhaseMilestone && healthPoints >= SecondPhaseMilestone && actualPhase == 1)
         {
             actualPhase = 2;
+            GetComponent<AudioSource>().pitch += 0.2f;
             GetComponentInChildren<Animator>().SetTrigger("Fall");
             GetComponentInChildren<Animator>().SetBool("Phased",true);
             GetComponentInChildren<Animator>().SetBool("JustPhased", true);
         }
         if (healthPoints <= SecondPhaseMilestone && actualPhase == 2)
         {
+            GetComponent<AudioSource>().pitch += 0.2f;
             GetComponentInChildren<Animator>().SetTrigger("Fall");
             actualPhase = 3;
         }

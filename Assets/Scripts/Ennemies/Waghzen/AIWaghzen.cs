@@ -1,6 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using FMOD;
+using FMODUnity;
+
 
 public class AIWaghzen : MonoBehaviour
 {
@@ -22,6 +25,8 @@ public class AIWaghzen : MonoBehaviour
     public virtual void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
+
+        player.GetComponent<StudioEventEmitter>().Stop();
         //Flip();
     }
 

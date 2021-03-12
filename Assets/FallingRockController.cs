@@ -9,6 +9,7 @@ public class FallingRockController : Ennemy
     public float fallSpeed;
     public ParticleSystem[] FXs;
     public ParticleSystem Explosion;
+    public AudioClip RockExplosion;
 
     // Start is called before the first frame update
     protected override void Start()
@@ -33,12 +34,18 @@ public class FallingRockController : Ennemy
         {
             collision.gameObject.GetComponent<Player>().OnHit(this.gameObject, damageDone);
             StopFXs();
+            GetComponentInParent<AudioSource>().clip = RockExplosion;
+            GetComponentInParent<AudioSource>().pitch = Random.Range(0.8f, 1.2f);
+            GetComponentInParent<AudioSource>().Play();
             Destroy(gameObject);
             Instantiate(Explosion, gameObject.transform.parent.transform.position, new Quaternion());
         }
         if(collision.gameObject.layer == LayerMask.NameToLayer("Ground"))
         {
             StopFXs();
+            GetComponentInParent<AudioSource>().clip = RockExplosion;
+            GetComponentInParent<AudioSource>().pitch = Random.Range(0.8f, 1.2f);
+            GetComponentInParent<AudioSource>().Play();
             Destroy(gameObject);
             Instantiate(Explosion, gameObject.transform.parent.transform.position,new Quaternion());
         }

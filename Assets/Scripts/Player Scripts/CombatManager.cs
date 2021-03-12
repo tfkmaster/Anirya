@@ -246,8 +246,11 @@ public class CombatManager : MonoBehaviour
         }
         if(ortho_diff <= MAX_ORTHO_DIFF)
         {
-            cam.m_Lens.OrthographicSize -= 0.01f;
-            ortho_diff += 0.01f;
+            if (cam)
+            {
+                cam.m_Lens.OrthographicSize -= 0.01f;
+                ortho_diff += 0.01f;
+            }
         }
     }
 
