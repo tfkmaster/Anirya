@@ -11,6 +11,9 @@ public class Waghzen : Ennemy
 
     private int actualPhase = 1;
 
+    [SerializeField]
+    private GameObject SceneLoader = default;
+
     // Start is called before the first frame update
     protected override void Start()
     {
@@ -55,6 +58,8 @@ public class Waghzen : Ennemy
         {
             child.gameObject.layer = LayerMask.NameToLayer("DeadActor");
         }
+
+        SceneLoader.SetActive(true);
     }
 
     public void StartFight()
