@@ -13,6 +13,7 @@ public class Waghzen : Ennemy
 
     [SerializeField]
     private GameObject SceneLoader = default;
+    public GameObject invisibleWall;
 
     // Start is called before the first frame update
     protected override void Start()
@@ -60,6 +61,7 @@ public class Waghzen : Ennemy
         }
 
         SceneLoader.SetActive(true);
+        invisibleWall.SetActive(false);
     }
 
     public void StartFight()
