@@ -155,9 +155,9 @@ public class CombatManager : MonoBehaviour
     //Function called on the animation to determines the ennemies who'll get hit by the attack
     public void CheckHit()
     {
-        DamageParticles.Play();
         if (GetComponent<Player>().GM.alimMet)
         {
+            DamageParticles.Play();
             List<GameObject> ActorsAlreadyDamaged = new List<GameObject>();
             Collider2D[] hitActors = Physics2D.OverlapCircleAll(GetComponent<Player>().attackPoint.position, GetComponent<Player>().attackRange);
             foreach (Collider2D actor in hitActors)
